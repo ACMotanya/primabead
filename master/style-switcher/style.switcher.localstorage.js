@@ -1,8 +1,4 @@
-/*
-Name: 			Style Switcher Initializer
-Written by: 	Okler Themes - (http://www.okler.net)
-Version: 		2.0
-*/
+
 
 if (typeof localStorage !== "undefined") {
 	if (localStorage.getItem('skin.css') !== null && !document.querySelector('html').hasAttribute('data-style-switcher-options')) {

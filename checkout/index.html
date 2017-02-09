@@ -58,7 +58,7 @@
 
   <!-- Head Libs -->
   <script src="/vendor/modernizr/modernizr.min.js"></script>
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/checkout/">
 
   
 </head>
@@ -657,818 +657,288 @@
 <div id="mobile-menu-overlay"></div>
 
       <div role="main" class="main">
-        <div class="banners-container">
+        <div class="checkout">
 	<div class="container">
+		<h1 class="h2 heading-primary mt-lg mb-md clearfix">
+							Checkout
+						</h1>
+
+		<div class="checkout-menu clearfix">
+			<a href="#" class="btn btn-primary pull-left mb-sm" data-toggle="modal" data-target=".shop-login-modal">LOGIN</a>
+
+			<div class="dropdown pull-right checkout-review-dropdown">
+				<button class="btn btn-primary mb-sm" id="reviewTable" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    	<i class="fa fa-shopping-cart"></i>
+									$689.00
+							  	</button>
+				<div class="dropdown-menu" aria-labelledby="reviewTable">
+					<h3>Review Your Order</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>Product Name</th>
+								<th class="text-center">Qty</th>
+								<th class="text-right">Subtotal</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>Jewellery Bracelets-M</td>
+								<td class="text-center">1</td>
+								<td class="text-right">$189.00</td>
+							</tr>
+						</tbody>
+
+						<tfoot>
+							<tr>
+								<td class="text-right" colspan="2">Subtotal</td>
+								<td class="text-right">$189.00</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
-			<div class="col-sm-6">
-				<div class="banner">
-					<a href="#"><img src="./img/demos/shop/banners/shop7/banner1.jpg" alt="Banner"></a>
+			<div class="col-md-4">
+				<div class="form-col">
+					<h3>Name &amp; Address</h3>
 
-					<div class="banner-content v1">
-						<h2><strong>Huge</strong> Sale</h2>
-						<p>Now starting at <strong>$99</strong></p>
-						<a href="#">Shop now ></a>
-					</div>
-
-					<div class="banner-ribbon">
-						<div class="ribbon-content">
-							<span>Up to</span>
-							<h3>70%</h3>
-							<h4>Off</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="banner">
-					<a href="#"><img src="./img/demos/shop/banners/shop7/banner2.jpg" alt="Banner"></a>
-					<div class="banner-content v2">
-						<h3>amazing</h3>
-						<h2>Collection</h2>
-						<a href="#">Show now ></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="banner">
-					<a href="#"><img src="./img/demos/shop/banners/shop7/banner3.jpg" alt="Banner"></a>
-
-					<div class="banner-content v3">
-						<p>Mobile</p>
-						<p>Mega Sale</p>
-						<h4>$450.00</h4>
-						<h3>$350.<span>00</span></h3>
-						<a href="#">Shop now ></a>
-					</div>
-				</div>
-
-				<div class="banner">
-					<a href="#"><img src="./img/demos/shop/banners/shop7/banner4.jpg" alt="Banner"></a>
-
-					<div class="banner-content v4">
-						<h2><strong>Deals</strong> +<br> PROMOS</h2>
-						<p>Limited sales in<br>our categories.</p>
-						<a href="#" class="btn btn-primary">SHOP NOW <i class="fa fa-caret-right"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<h2 class="slider-title">
-                    <span class="inline-title">Primabead Products</span>
-                    <span class="line"></span>
-                </h2>
-
-	<div class="owl-carousel owl-theme manual featured-products-carousel">
-		<div class="product">
-			<figure class="product-image-area">
-				<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-					<img src="./img/demos/shop/products/shop7/product1.jpg" alt="Product Name">
-				</a>
-
-				<a href="#" class="product-quickview">
-					<i class="fa fa-share-square-o"></i>
-					<span>Quick View</span>
-				</a>
-				<div class="product-label"><span class="discount">-10%</span></div>
-			</figure>
-			<div class="product-details-area">
-				<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Noa Sheer Blouse</a></h2>
-				<div class="product-ratings">
-					<div class="ratings-box">
-						<div class="rating" style="width:60%"></div>
-					</div>
-				</div>
-
-				<div class="product-price-box">
-					<span class="old-price">$99.00</span>
-					<span class="product-price">$89.00</span>
-				</div>
-
-				<div class="product-actions">
-					<a href="#" class="addtowishlist" title="Add to Wishlist">
-						<i class="fa fa-heart"></i>
-					</a>
-					<a href="#" class="addtocart" title="Add to Cart">
-						<i class="fa fa-shopping-cart"></i>
-						<span>Add to Cart</span>
-					</a>
-					<a href="#" class="comparelink" title="Add to Compare">
-						<i class="glyphicon glyphicon-signal"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="product">
-			<figure class="product-image-area">
-				<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-					<img src="./img/demos/shop/products/shop7/product2.jpg" alt="Product Name">
-				</a>
-
-				<a href="#" class="product-quickview">
-					<i class="fa fa-share-square-o"></i>
-					<span>Quick View</span>
-				</a>
-				<div class="product-label"><span class="discount">-25%</span></div>
-			</figure>
-			<div class="product-details-area">
-				<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Women Fashion Blouse</a></h2>
-				<div class="product-ratings">
-					<div class="ratings-box">
-						<div class="rating" style="width:0%"></div>
-					</div>
-				</div>
-
-				<div class="product-price-box">
-					<span class="old-price">$120.00</span>
-					<span class="product-price">$90.00</span>
-				</div>
-
-				<div class="product-actions">
-					<a href="#" class="addtowishlist" title="Add to Wishlist">
-						<i class="fa fa-heart"></i>
-					</a>
-					<a href="#" class="addtocart" title="Add to Cart">
-						<i class="fa fa-shopping-cart"></i>
-						<span>Add to Cart</span>
-					</a>
-					<a href="#" class="comparelink" title="Add to Compare">
-						<i class="glyphicon glyphicon-signal"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="product">
-			<figure class="product-image-area">
-				<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-					<img src="./img/demos/shop/products/shop7/product3.jpg" alt="Product Name">
-				</a>
-
-				<a href="#" class="product-quickview">
-					<i class="fa fa-share-square-o"></i>
-					<span>Quick View</span>
-				</a>
-			</figure>
-			<div class="product-details-area">
-				<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Dress</a></h2>
-				<div class="product-ratings">
-					<div class="ratings-box">
-						<div class="rating" style="width:60%"></div>
-					</div>
-				</div>
-
-				<div class="product-price-box">
-					<span class="product-price">$70.00</span>
-				</div>
-
-				<div class="product-actions">
-					<a href="#" class="addtowishlist" title="Add to Wishlist">
-						<i class="fa fa-heart"></i>
-					</a>
-					<a href="#" class="addtocart" title="Add to Cart">
-						<i class="fa fa-shopping-cart"></i>
-						<span>Add to Cart</span>
-					</a>
-					<a href="#" class="comparelink" title="Add to Compare">
-						<i class="glyphicon glyphicon-signal"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="product">
-			<figure class="product-image-area">
-				<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-					<img src="./img/demos/shop/products/shop7/product4.jpg" alt="Product Name">
-				</a>
-
-				<a href="#" class="product-quickview">
-					<i class="fa fa-share-square-o"></i>
-					<span>Quick View</span>
-				</a>
-				<div class="product-label"><span class="discount">-20%</span></div>
-			</figure>
-			<div class="product-details-area">
-				<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Sweater</a></h2>
-				<div class="product-ratings">
-					<div class="ratings-box">
-						<div class="rating" style="width:80%"></div>
-					</div>
-				</div>
-
-				<div class="product-price-box">
-					<span class="old-price">$100.00</span>
-					<span class="product-price">$90.00</span>
-				</div>
-
-				<div class="product-actions">
-					<a href="#" class="addtowishlist" title="Add to Wishlist">
-						<i class="fa fa-heart"></i>
-					</a>
-					<a href="#" class="addtocart" title="Add to Cart">
-						<i class="fa fa-shopping-cart"></i>
-						<span>Add to Cart</span>
-					</a>
-					<a href="#" class="comparelink" title="Add to Compare">
-						<i class="glyphicon glyphicon-signal"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="product">
-			<figure class="product-image-area">
-				<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-					<img src="./img/demos/shop/products/shop7/product1.jpg" alt="Product Name">
-				</a>
-
-				<a href="#" class="product-quickview">
-					<i class="fa fa-share-square-o"></i>
-					<span>Quick View</span>
-				</a>
-			</figure>
-			<div class="product-details-area">
-				<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Woman Shee Blouse</a></h2>
-				<div class="product-ratings">
-					<div class="ratings-box">
-						<div class="rating" style="width:0%"></div>
-					</div>
-				</div>
-
-				<div class="product-price-box">
-					<span class="product-price">$70.00</span>
-				</div>
-
-				<div class="product-actions">
-					<a href="#" class="addtowishlist" title="Add to Wishlist">
-						<i class="fa fa-heart"></i>
-					</a>
-					<a href="#" class="addtocart" title="Add to Cart">
-						<i class="fa fa-shopping-cart"></i>
-						<span>Add to Cart</span>
-					</a>
-					<a href="#" class="comparelink" title="Add to Compare">
-						<i class="glyphicon glyphicon-signal"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container mb-xlg">
-	<h2 class="slider-title">
-                    <span class="inline-title">BROWSE OUR CATEGORIES</span>
-                    <span class="line"></span>
-                </h2>
-
-	<div class="owl-carousel owl-theme" data-plugin-options="{'items':4, 'loop': false, 'nav': true, 'dots': false, 'margin': 10}">
-		<div class="cat-box">
-			<a href="#">
-				<img src="./img/demos/shop/category/category1.jpg" alt="Category">
-			</a>
-			<h3>Home &amp; Garden</h3>
-		</div>
-
-		<div class="cat-box">
-			<a href="#">
-				<img src="./img/demos/shop/category/category2.jpg" alt="Category">
-			</a>
-			<h3>Sports</h3>
-		</div>
-
-		<div class="cat-box">
-			<a href="#">
-				<img src="./img/demos/shop/category/category3.jpg" alt="Category">
-			</a>
-			<h3>Fashion</h3>
-		</div>
-
-		<div class="cat-box">
-			<a href="#">
-				<img src="./img/demos/shop/category/category4.jpg" alt="Category">
-			</a>
-			<h3>Electronics</h3>
-		</div>
-
-		<div class="cat-box">
-			<a href="#">
-				<img src="./img/demos/shop/category/category1.jpg" alt="Category">
-			</a>
-			<h3>Home &amp; Garden</h3>
-		</div>
-	</div>
-</div>
-
-<div class="container mb-xlg">
-	<h2 class="slider-title">
-                    <span class="inline-title">JUST ARRIVED</span>
-                </h2>
-	<ul class="products-grid columns6">
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product6.jpg" alt="Product Name">
-						<img src="./img/demos/shop/products/shop7/product6-2.jpg" alt="Product Name" class="product-hover-image">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Sports Set</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:60%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="old-price">$99.00</span>
-						<span class="product-price">$89.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product5.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Cellphone</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:0%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="old-price">$120.00</span>
-						<span class="product-price">$90.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product7.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">White Bag</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:60%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$70.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product8.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-label"><span class="discount">-20%</span></div>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Hand Bag</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:80%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="old-price">$100.00</span>
-						<span class="product-price">$90.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product9.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-label"><span class="new">New</span></div>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Sports Cap</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:20%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$230.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product10.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Bag</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:100%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="old-price">$220.00</span>
-						<span class="product-price">$180.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product11.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Cellphone</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:0%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$60.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product12.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Luggage</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:60%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$90.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product13.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Sunglasses</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:80%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$80.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product10.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Fashion Bag</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:40%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="old-price">$120.00</span>
-						<span class="product-price">$99.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product11.jpg" alt="Product Name">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Cellphone</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:0%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$70.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li>
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-						<img src="./img/demos/shop/products/shop7/product6.jpg" alt="Product Name">
-						<img src="./img/demos/shop/products/shop7/product6-2.jpg" alt="Product Name" class="product-hover-image">
-					</a>
-
-					<a href="#" class="product-quickview">
-						<i class="fa fa-share-square-o"></i>
-						<span>Quick View</span>
-					</a>
-
-					<div class="product-actions">
-						<a href="#" class="addtocart" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Backpack</a></h2>
-					<div class="product-ratings">
-						<div class="ratings-box">
-							<div class="rating" style="width:60%"></div>
-						</div>
-					</div>
-
-					<div class="product-price-box">
-						<span class="product-price">$80.00</span>
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
-</div>
-
-<div class="container mb-xlg">
-	<div class="row">
-		<div class="col-sm-6">
-			<h2 class="slider-title mt-sm">
-		                    <span class="inline-title">LATESt BLOG POSTS</span>
-		                </h2>
-
-			<div class="owl-carousel owl-theme recent-posts-carousel" data-plugin-options="{'items':1, 'loop': false}">
-				<article class="post">
 					<div class="row">
-						<div class="col-sm-5">
-							<div class="post-image">
-								<div class="img-thumbnail">
-									<img class="img-responsive" src="./img/demos/shop/blog/blog-shop-1.jpg" alt="Post">
-								</div>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>First Name<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
 							</div>
 						</div>
-
-						<div class="col-sm-7">
-							<div class="post-date">
-								<span class="day">10</span>
-								<span class="month">Jan</span>
-							</div>
-							<h2><a href="demo-shop-7-blog-post.html">Post Format - Image Gallery</a></h2>
-
-							<div class="post-content">
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi…</p>
-
-								<a href="demo-shop-7-blog-post.html" class="btn btn-link">Read more</a>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Middle Name/Initial</label>
+								<input type="text" class="form-control">
 							</div>
 						</div>
 					</div>
-				</article>
 
-				<article class="post">
 					<div class="row">
-						<div class="col-sm-5">
-							<div class="post-image">
-								<div class="img-thumbnail">
-									<img class="img-responsive" src="./img/demos/shop/blog/blog-shop-2.jpg" alt="Post">
-								</div>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Last Name<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
 							</div>
 						</div>
-
-						<div class="col-sm-7">
-							<div class="post-date">
-								<span class="day">22</span>
-								<span class="month">Dec</span>
-							</div>
-							<h2><a href="demo-shop-7-blog-post.html">Post Format - Video</a></h2>
-
-							<div class="post-content">
-								<p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent…</p>
-
-								<a href="demo-shop-7-blog-post.html" class="btn btn-link">Read more</a>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Company</label>
+								<input type="text" class="form-control">
 							</div>
 						</div>
 					</div>
-				</article>
+
+					<div class="row">
+						<div class="col-xs-12 col-md-12">
+							<div class="form-group wide">
+								<label>Email<span class="required">*</span></label>
+								<input type="email" class="form-control" required>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-md-12">
+							<div class="form-group wide">
+								<label>Address<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-12">
+							<div class="form-group wide">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>City<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>State/Province<span class="required">*</span></label>
+								<select class="form-control">
+													<option value="Please select region">Please select region</option>
+													<option value="Alabama">Alabama</option>
+													<option value="Alaska">Alaska</option>
+												</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Zip/Postal Code<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Country<span class="required">*</span></label>
+								<select class="form-control">
+													<option value="United States">United States</option>
+													<option value="China">China</option>
+													<option value="England">England</option>
+												</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Telephone<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-6">
+							<div class="form-group">
+								<label>Fax</label>
+								<input type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+
+					<div class="checkbox mb-sm">
+						<label>
+											<input type="checkbox" value="1">
+											Create an account for later use
+										</label>
+					</div>
+
+					<div class="checkbox mb-sm">
+						<label>
+											<input type="checkbox" value="1">
+											Ship to this address
+										</label>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div class="col-md-4">
+				<div class="form-col">
+					<h3>Shipping Method</h3>
+					<div class="ship-list">
+						<div class="radio">
+							<label>
+												<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked">
+												Flat Rate
+											</label>
+						</div>
+						<div class="radio">
+							<label>
+												<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">
+												Fixed <span class="text-primary">$5.00</span>
+											</label>
+						</div>
+					</div>
 
-		<div class="col-sm-6">
-			<h2 class="slider-title mt-sm">
-		                    <span class="inline-title">WHAT CLIENT'S SAY</span>
-		                </h2>
 
-			<div class="row">
-				<div class="owl-carousel owl-theme mb-none" data-plugin-options="{'items': 1}">
-					<div>
-						<div class="col-md-12">
-							<div class="testimonial testimonial-primary">
-								<blockquote>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Donec hendrerit vehicula est, in consequat.
-										Donec hendrerit vehicula est, in consequat.</p>
-								</blockquote>
-								<div class="testimonial-arrow-down"></div>
-								<div class="testimonial-author">
-									<div class="testimonial-author-thumbnail img-thumbnail">
-										<img src="img/clients/client-1.jpg" alt="">
-									</div>
-									<p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
+					<h3 class="no-border">Discount Codes <a class="expand-plus collapsed" role="button" data-toggle="collapse" href="#discountArea" aria-expanded="false" aria-controls="discountArea"></a></h3>
+
+					<div class="collapse" id="discountArea">
+						<div class="form-group wide">
+							<label>Enter your coupon code:</label>
+							<input type="text" class="form-control">
+						</div>
+
+						<a href="#" class="btn btn-primary">Apply</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-col">
+					<h3>Payment Method</h3>
+
+					<div class="checkout-payment-method">
+						<div class="radio">
+							<label>
+												<input type="radio" value="checkmo" name="payment[method]" checked="checked" class="payment-card-check">
+												Check / Money order
+											</label>
+						</div>
+
+						<div class="radio">
+							<label>
+												<input type="radio" value="checkcard"  name="payment[method]" class="payment-card-check">
+												Credit Card (saved)
+											</label>
+						</div>
+
+						<div id="payment-credit-card-area">
+							<div class="form-group wide mb-md">
+								<label>Name on Card<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+
+							<div class="form-group wide mb-md">
+								<label>Credit Card Type<span class="required">*</span></label>
+								<select class="form-control">
+													<option value="&nbsp;">--Please Select--</option>
+													<option value="AE">American Express</option>
+													<option value="VI">Visa</option>
+													<option value="MC">MasterCard</option>
+												</select>
+							</div>
+
+							<div class="form-group wide mb-md">
+								<label>Credit Card number<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
+							</div>
+
+							<div class="form-group wide mb-md">
+								<label>Credit Card Type<span class="required">*</span></label>
+								<div class="clearfix">
+									<select class="form-control pull-left">
+														<option value="&nbsp;">Month</option>
+														<option value="1">01 - January</option>
+					                                    <option value="2">02 - February</option>
+					                                    <option value="3">03 - March</option>
+					                                    <option value="4">04 - April</option>
+					                                    <option value="5">05 - May</option>
+					                                    <option value="6">06 - June</option>
+					                                    <option value="7">07 - July</option>
+					                                    <option value="8">08 - August</option>
+					                                    <option value="9">09 - September</option>
+					                                    <option value="10">10 - October</option>
+					                                    <option value="11">11 - November</option>
+					                                    <option value="12">12 - December</option>
+													</select>
+
+									<select class="form-control pull-left ml-md">
+														<option value="&nbsp;">Year</option>
+														<option value="2017">2017</option>
+														<option value="2018">2018</option>
+														<option value="2019">2019</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+													</select>
 								</div>
+							</div>
+
+							<div class="form-group mb-lg">
+								<label>Card Verification Number<span class="required">*</span></label>
+								<input type="text" class="form-control" required>
 							</div>
 						</div>
 					</div>
-					<div>
-						<div class="col-md-12">
-							<div class="testimonial testimonial-primary">
-								<blockquote>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
-								</blockquote>
-								<div class="testimonial-arrow-down"></div>
-								<div class="testimonial-author">
-									<div class="testimonial-author-thumbnail img-thumbnail">
-										<img src="img/clients/client-1.jpg" alt="">
-									</div>
-									<p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
-								</div>
-							</div>
-						</div>
+
+					<div class="checkout-review-action">
+						<h5>Grand Total <span>$389.00</span></h5>
+						<a href="#" class="btn btn-primary">Place Order now</a>
 					</div>
 				</div>
 			</div>
@@ -1476,35 +946,63 @@
 	</div>
 </div>
 
-<div class="container mb-xlg">
-	<h2 class="slider-title">
-      <span class="inline-title">FEATURED BRANDS</span>
-      <span class="line"></span>
-      <a href="#" class="view-all">View All</a>
-  </h2>
+<div class="modal fade shop-login-modal" tabindex="-1" role="dialog" aria-labelledby="myLoginModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
 
-	<div class="owl-carousel owl-theme manual clients-carousel owl-no-narrow">
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand1.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand2.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand3.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand4.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand5.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand6.jpg" alt="Brand">
-		</a>
-		<a href="#" title="Brand Name" class="client">
-			<img class="img-responsive" src="./img/demos/shop/brands/square/brand1.jpg" alt="Brand">
-		</a>
+			<form action="#">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+					<h4 class="modal-title" id="myLoginModal">Login to your Account</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="mb-xs">Email Address <span class="required">*</span></label>
+						<input type="email" class="form-control" required>
+					</div>
+
+					<div class="form-group">
+						<label class="mb-xs">Password <span class="required">*</span></label>
+						<input type="password" class="form-control" required>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-fpass-modal" data-dismiss="modal">Forget Your Password?</a>
+					<input type="submit" class="btn btn-primary" value="Login">
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade shop-fpass-modal" tabindex="-1" role="dialog" aria-labelledby="myRecoverModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+
+			<form action="#">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+					<h4 class="modal-title" id="myRecoverModal">Recover your password</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>Please enter your email address below. You will receive a link to reset your password.</p>
+					<div class="form-group">
+						<label class="mb-xs">Email Address <span class="required">*</span></label>
+						<input type="email" class="form-control" required>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-login-modal" data-dismiss="modal"><i class="fa fa-angle-double-left mr-xs"></i>Back to Login</a>
+					<input type="submit" class="btn btn-primary" value="Recover">
+				</div>
+			</form>
+
+		</div>
 	</div>
 </div>
 
