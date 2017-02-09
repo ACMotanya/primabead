@@ -21,40 +21,40 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
   <!-- Vendor CSS -->
-  <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../vendor/animate/animate.min.css">
-  <link rel="stylesheet" href="../vendor/simple-line-icons/css/simple-line-icons.min.css">
-  <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.min.css">
-  <link rel="stylesheet" href="../vendor/magnific-popup/magnific-popup.min.css">
+  <link rel="stylesheet" href="{{ "/vendor/bootstrap/css/bootstrap.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/font-awesome/css/font-awesome.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/animate/animate.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/simple-line-icons/css/simple-line-icons.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/owl.carousel/assets/owl.carousel.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/owl.carousel/assets/owl.theme.default.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/magnific-popup/magnific-popup.min.css" | prepend: site.baseurl }}">
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="../css/theme.css">
-  <link rel="stylesheet" href="../css/theme-elements.css">
-  <link rel="stylesheet" href="../css/theme-blog.css">
-  <link rel="stylesheet" href="../css/theme-shop.css">
+  <link rel="stylesheet" href="{{ "/css/theme.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/theme-elements.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/theme-blog.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/theme-shop.css" | prepend: site.baseurl }}">
 
   <!-- Current Page CSS -->
-  <link rel="stylesheet" href="../vendor/rs-plugin/css/settings.css">
-  <link rel="stylesheet" href="../vendor/rs-plugin/css/layers.css">
-  <link rel="stylesheet" href="../vendor/rs-plugin/css/navigation.css">
+  <link rel="stylesheet" href="{{ "/vendor/rs-plugin/css/settings.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/rs-plugin/css/layers.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/vendor/rs-plugin/css/navigation.css" | prepend: site.baseurl }}">
 
   <!-- Skin CSS -->
   <!--(remove-empty-lines-start)-->
 
 
-  <link rel="stylesheet" href="../css/skins/skin-shop-7.css">
+  <link rel="stylesheet" href="{{ "/css/skins/skin-shop-7.css" | prepend: site.baseurl }}">
 
   <!-- Demo CSS -->
-  <link rel="stylesheet" href="../css/demos/demo-shop-7.css">
+  <link rel="stylesheet" href="{{ "/css/demos/demo-shop-7.css" | prepend: site.baseurl }}">
   <!--(remove-empty-lines-end)-->
 
   <!-- Theme Custom CSS -->
-  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl }}">
 
   <!-- Head Libs -->
-  <script src="../vendor/modernizr/modernizr.min.js"></script>
+  <script src="{{ "/vendor/modernizr/modernizr.min.js" | prepend: site.baseurl }}"></script>
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
   {% if jekyll.environment == 'production' and site.google_analytics %}
