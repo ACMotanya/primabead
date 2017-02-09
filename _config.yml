@@ -24,9 +24,11 @@ title: "Primabead"
 markdown: kramdown
 destination: public
 source: src
+permalink: pretty
 
 gems:
   - jekyll-feed
+  
 exclude:
   - Gemfile
   - Gemfile.lock
