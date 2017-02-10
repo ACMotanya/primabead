@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<section class="page-header">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="#">Home</a></li>
+
+      <li><a href="#">Learning Center</a></li>
+      <li class="active">{{ page.title | escape }}</li>
+    </ul>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="blog-posts single-post">
+        {{ content }}
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <aside class="sidebar">
+
+        <h4>Blog Categories</h4>
+        <ul class="nav nav-list">
+          <li><a href="#">All about clothing</a></li>
+          <li><a href="#">Make-up &amp; beauty</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Fashion trends</a></li>
+          <li><a href="#">Haircuts &amp; hairstyles</a></li>
+        </ul>
+
+        <h4>Recent Posts</h4>
+        <ul class="simple-post-list">
+          <li>
+            <div class="post-image">
+              <div class="img-thumbnail">
+                <a href="blog-post.html">
+                  <img src="{{ site.baseurl }}/img/demos/shop/blog/blog-shop-1.jpg" alt="Post">
+                </a>
+              </div>
+            </div>
+            <div class="post-info">
+              <a href="blog-post.html">Post Format - Video</a>
+              <div class="post-meta">
+                October 8, 2016
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="post-image">
+              <div class="img-thumbnail">
+                <a href="blog-post.html">
+                  <img src="{{ site.baseurl }}/img/demos/shop/blog/blog-shop-2.jpg" alt="Post">
+                </a>
+              </div>
+            </div>
+            <div class="post-info">
+              <a href="blog-post.html">Post Format - Image Gallery</a>
+              <div class="post-meta">
+                 October 8, 2016
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <h4>Tagcloud</h4>
+        <div class="tagcloud">
+          <a href="#">Fashion</a>
+          <a href="#">Shoes</a>
+          <a href="#">Skirts</a>
+          <a href="#">Dresses</a>
+          <a href="#">Bags</a>
+        </div>
+
+        <h4>Compare Products</h4>
+        <div class="sidebar-compare-products">
+          You have no items to compare.
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@
 
 title: "Primabead"
 description: "Primabead, dude"
-#baseurl: "/primabead" # the subpath of your site, e.g. /blog
+baseurl: "/primabead" # the subpath of your site, e.g. /blog
 url: "http://www.primabead.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 
@@ -33,3 +33,8 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
+
+collections:
+  projects         :
+    output         : true
+    permalink      : /:collection/:path/
