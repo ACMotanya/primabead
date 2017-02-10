@@ -11,10 +11,10 @@
       </div>
 
 
-      <!-- <div id="root"></div> -->
+      <div id="root"></div>
       {% include footer.html %}
     </div>
-    <script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ "/assets/javascripts/bundle.js" | prepend: site.baseurl }}" charset="utf-8"></script>
     <!-- Vendor -->
 		<script src="{{ "/vendor/jquery/jquery.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery.appear/jquery.appear.min.js" | prepend: site.baseurl }}"></script>
