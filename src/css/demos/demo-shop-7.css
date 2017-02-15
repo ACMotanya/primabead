@@ -9,7 +9,9 @@ h1, h2, h3, h4, h5, h6,
 	line-height: 1.35;
 	margin: 0 0 15px;
 	text-transform: none;
-	letter-spacing: 0 !important;
+	letter-spacing: 0.5px !important;
+	font-family: "BioRhyme";
+	font-weight: 700;
 }
 
 h1,
@@ -448,7 +450,7 @@ h2.word-rotator-title .word-rotate {
 	}
 }
 #header .header-body {
-	border-top: 5px solid #6f9f7b;
+	border-top: 5px solid #7E993F;
 	border-bottom: none;
 	padding: 0;
 	-webkit-transition: none;
@@ -4689,7 +4691,7 @@ label {
 }
 
 #footer {
-	background-color: #121214;
+	background-color: #7B6F9F;
 	color: #777;
 	font-size: 13px;
 	padding-top: 41px;
@@ -4775,7 +4777,7 @@ label {
 }
 #footer .footer-copyright {
 	color: #777;
-	background-color: #0c0c0c;
+	background-color: #574D74;
 	border-top: none;
 	padding: 29.5px 0;
 	margin-top: 20px;
