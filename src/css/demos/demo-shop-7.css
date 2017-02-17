@@ -4729,9 +4729,10 @@ label {
 #footer .contact p {
 	margin-bottom: 0;
 	line-height: 1.5;
+	color: white;
 }
 #footer .contact i {
-	color: #777;
+	color: #7e993f;
 	display: inline-block;
 	vertical-align: top;
 	font-size: 14px;
@@ -4769,10 +4770,12 @@ label {
 #footer .newsletter p {
 	margin-bottom: 15px;
 	line-height: 1.5;
+	color: white;
 }
 @media (min-width: 992px) {
 	#footer .newsletter p.newsletter-info {
 		margin-bottom: 40px;
+		color: white;
 	}
 }
 #footer .footer-copyright {
