@@ -5,7 +5,7 @@ body {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-	color: #313131;
+	color: #7E993F;
 	line-height: 1.35;
 	margin: 0 0 15px;
 	text-transform: none;
@@ -193,7 +193,7 @@ h2.word-rotator-title .word-rotate {
 		font-size: 11px;
 		line-height: 1;
 		color: #777;
-		text-decoartion: none;
+		text-decoration: none;
 	}
 	#header .top-menu li:hover {
 		background-color: #ccc;
