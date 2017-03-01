@@ -1,0 +1,121 @@
+---
+layout: default
+---
+
+<div class="youmax-pro"></div>
+
+<script>
+ $(document).ready(function(){
+
+            $(".youmax-pro").youmaxPro({
+                apiKey:"AIzaSyAlhAqP5RS7Gxwg_0r_rh9jOv_5WfaJgXw",
+                vimeoAccessToken:"c289d754a132ca07051aaf931ef0de33",
+                channelLinkForHeader:"https://www.youtube.com/user/PrimabeadTutorials",
+                tabs:[
+                    {
+                        name:"Tutorials",
+                        type:"youtube-channel-uploads",
+                        link:"https://www.youtube.com/user/PrimabeadTutorials",
+                        //YouTube Channel Link needed here
+                    } //,
+                  //  {
+                  //      name:"Playlists",
+                  //      type:"youtube-channel-playlists",
+                    //    link:"https://www.youtube.com/user/PrimabeadTutorials"
+                        //YouTube Channel Link needed here
+                 //   },
+                  //  {
+                  //      name:"Videos",
+                  //      type:"youtube-playlist-videos",
+                  //      link:"https://www.youtube.com/playlist?list=PL6_h4dV9kuuIOBDKgxu3q9DpvvJFZ6fB5"
+                        //YouTube Playlist Link needed here
+                //    },
+                 //   {
+                 //       name:"Vimeo",
+                 //       type:"vimeo-user-videos",
+                //        link:"https://vimeo.com/proceq"
+				//	}
+                ],
+                defaultTab:"Tutorials", //Name of the Tab that should be displayed on your page start
+                videoDisplayMode:"popup",   //popup|link|inline
+
+                /*
+                callouts: [
+                {
+                    title:"The Launch Book",
+                    image:"http://ecx.images-amazon.com/images/I/51ij4WROduL._SX324_BO1,204,203,200_.jpg",
+                    description:"An Internet Millionaire's Secret Formula to Sell Almost Anything Online, Build a Business You Love and Live the Life of Your Dreams!",
+                    buyButtonText:"Only for $10",
+                    buyButtonLink:"http://www.amazon.in/Launch-Internet-Millionaires-Anything-Business/dp/1471143163/ref=sr_1_2?ie=UTF8&qid=1476074741&sr=8-2&keywords=launch",
+                    previewButtonIcon:"fa-play",
+                    previewButtonLink:"http://www.amazon.in/Launch-Internet-Millionaires-Anything-Business/dp/1471143163/ref=sr_1_2?ie=UTF8&qid=1476074741&sr=8-2&keywords=launch"
+                },
+                {
+                    title:"The Launch Book",
+                    image:"http://ecx.images-amazon.com/images/I/51ij4WROduL._SX324_BO1,204,203,200_.jpg",
+                    description:"An Internet Millionaire's Secret Formula to Sell Almost Anything Online, Build a Business You Love and Live the Life of Your Dreams!",
+                    buyButtonText:"Only for $10",
+                    buyButtonLink:"http://www.amazon.in/Launch-Internet-Millionaires-Anything-Business/dp/1471143163/ref=sr_1_2?ie=UTF8&qid=1476074741&sr=8-2&keywords=launch",
+                    previewButtonIcon:"fa-play",
+                    previewButtonLink:"http://www.amazon.in/Launch-Internet-Millionaires-Anything-Business/dp/1471143163/ref=sr_1_2?ie=UTF8&qid=1476074741&sr=8-2&keywords=launch"
+                }
+
+                ],
+                calloutType:"double-list", //list|grid|double-list
+                */
+
+                maxResults:"9",
+                autoPlay:false,
+                minimumViewsPerDayForTrendingVideos:"5",  
+                //If Views per day is greater than this number, the video will be marked a trending in Youmax.
+                
+                displayFirstVideoOnLoad:true,       //for inline video display mode only
+                defaultSortOrder:"recent-first",    //popular-first|recent-first
+                youmaxDisplayMode:"grid",           //list|double-list|grid
+                gridThumbnailType:"simple",           //simple|full|neat
+                dateFormat:"relative",              //relative|specific
+
+                //keep the titleColor in rgb format
+                youmaxBackgroundColor     :"#FFF",
+                itemBackgroundColor       :"#fbfbfb",
+                headerColor               :"#7B6F9F",
+                titleColor                :"rgb(126,153,63)",
+                descriptionColor          :"#828282",
+                viewsColor                :"#6f6f6f",
+                controlsTextColor         :"black",
+                
+                offerBackgroundColor      :"#fbfbfb",
+                offerTextColor            :"#686868",
+                offerHighlightColor       :"#FFC107",
+
+                titleFontFamily         :"BioRhyme",           //Open Sans|Roboto Condensed|sans-serif
+                generalFontFamily       :"Raleway",    //Open Sans|Roboto Condensed|sans-serif
+                titleFontSize           :"0.9",
+                titleFontWeight         :"normal",              //bold|normal
+                descriptionFontSize     :"0.85",
+                viewsDateFontSize       :"0.75",
+                baseFontSize            :"16px",                //use this to increase or decrease all font-sizes in Youmax
+                offerTitleFontSize          :"1.3",
+                offerDescriptionFontSize    :"0.85",
+                offerButtonFontSize         :"1",
+
+                responsiveBreakpoints   :[600,900,2000,2500],
+
+                loadingMechanism        :"load-more",       //load-more|prev-next
+                loadMoreText            :"<i class='fa fa-plus'></i>&nbsp;&nbsp;Show me more videos..",
+                ctaText                 :"<i class='fa fa-envelope'></i>&nbsp;&nbsp;Get me a consultation..",
+                ctaLink                 :"http://www.healthbyscience.co.uk/get-started-now/",
+                previousButtonText      :"Previous",
+                nextButtonText          :"Next",
+
+                /*
+                offerTitle              :"Christmas Offer",
+                offerDescription        :"50% Off on all Courses till December 31!",
+                offerButtonText         :"Learn More",
+                offerLink               :"http://codehandling.com",
+                */
+
+            });
+        });
+
+</script>

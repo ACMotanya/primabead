@@ -1,0 +1,264 @@
+.pindiv_user img {} .pindiv_user {
+    height: 30px;
+    text-align: center;
+}
+.pindiv_user img {
+    display: inline-block;
+    width: 30px;
+}
+.pindivheader {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+}
+.pindiv_username {
+    display: inline-block;
+    overflow: hidden;
+    margin-left: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 34px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    height: 30px;
+    font-family: "Helvetica Neue", "Helvetica", arial, sans-serif;
+    text-decoration: none;
+}
+hr.pindiv_hr {
+    height: 1px;
+    background-color: #E4E4E4;
+    border: none;
+    box-sizing: border-box;
+    margin: 10px 0 0 0;
+}
+.pindiv_tabs ul {
+    display: table;
+    table-layout: fixed;
+    margin: auto;
+    padding: 0;
+    width: 200px;
+}
+.pindiv_tabs ul li {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* background-color: #fff; */
+    
+    display: table-cell;
+    float: none;
+    line-height: 14px;
+    padding: 14px 0;
+    text-align: center;
+}
+span.pindiv_value {
+    color: #aaa;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+span.pindiv_label {
+    color: #9a9a9a;
+    display: block;
+    font-weight: normal;
+    font-size: 11px;
+}
+.pindiv_tabs {
+    font-family: "Helvetica Neue", "Helvetica", arial, sans-serif;
+}
+.pindiv_container {
+    width: 100%;
+    background-color: #e9e9e9;
+    text-align: center;
+    overflow: hidden;
+}
+img.pindiv_pinWrapper_img {
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.pindiv_pinWrapper {
+    display: block;
+    /* width: 237px; */
+    
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    margin-bottom: 20px;
+    background-color: #fff;
+    position: absolute;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transform: translate3d(0, 0, 0);
+    -moz-transition: all 0.3s ease-out;
+    left: 0;
+    top: 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.3s ease-out;
+}
+.pincontainer_pinColumn {
+    width: 237px;
+    display: inline-block;
+    vertical-align: top;
+    padding-bottom: 20px;
+}
+.pindiv_container_inner {
+    overflow: auto;
+    margin: 0 -300px 0 0;
+    padding-right: 300px;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+.pindiv_pinWrapper_decr {
+    background-color: #fff;
+    padding: 3% 5% 0 5%;
+    margin-bottom: 3%;
+    color: #444343;
+    border-top: solid 1px #F1F1F1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Helvetica Neue", "Helvetica", arial, sans-serif;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    font-size: 13px;
+    line-height: 17px;
+    box-sizing: border-box;
+    /* max-height: 50px; */
+}
+.pindiv_pinWrapper_content {
+    position: relative;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+}
+a.pindiv_pinWrapper_pinlink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 1;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+}
+a.pindiv_pinWrapper_sourcelink {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 20%;
+    max-height: 40px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    text-decoration: none;
+    font-family: "Helvetica Neue", "Helvetica", arial, sans-serif;
+    font-size: 12px;
+    padding: 5px;
+    box-sizing: border-box;
+    line-height: 18px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+100&amp;0+0,0.4+100 */
+    
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* FF3.6+ */
+    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(0, 0, 0, 0.4)));
+    /* Chrome,Safari4+ */
+    
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* Chrome10+,Safari5.1+ */
+    
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* Opera 11.10+ */
+    
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* IE10+ */
+    
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* W3C */
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#66000000', GradientType=0);
+    /* IE6-9 */
+    
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    white-space: nowrap;
+}
+.pindiv_container_inner {
+    -webkit-overflow-scrolling: touch;
+}
+.pindiv_container_inner > * {
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+a.pindiv_username:hover {
+    color: #bd081c;
+}
+a.pin_data_pinbutton {
+    z-index: 2;
+    position: absolute;
+    /* left: 50%; */
+    
+    top: 10px;
+    opacity: 0;
+    -moz-opacity: 0;
+    -webkit-opacity: 0;
+    background-size: 40px 60px!important;
+    height: 20px!important;
+    padding: 0!important;
+    vertical-align: baseline!important;
+    text-decoration: none!important;
+    width: 40px!important;
+    background-position: 0 -20px;
+    background-image: url(https://s-passets.pinimg.com/images/pidgets/pinit_bg_en_rect_red_20_1.png)!important;
+    /* box-shadow: 0px 0px 1px 0px #333; */
+    
+    margin: 0 auto;
+}
+a.pin_data_pinbutton:hover {
+    background-position: 0 0px;
+}
+a.pin_data_pinbutton:active {
+    background-position: 0 -40px;
+}

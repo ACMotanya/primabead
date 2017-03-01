@@ -1,0 +1,117 @@
+--- 
+layout: default 
+---
+
+<style>
+    .label {
+        color: black;
+    }
+</style>
+
+<div class='pinwidget'>
+    <div class='form'>
+        <div class="field">
+            <label>
+                    <span class="label">Username:</span>
+
+                    <div class="field-input-username">
+                            <input class='inputuser' type="text" name="username" value="primabead">
+                    </div>
+            </label>
+        </div>
+        <div class="field">
+            <label>
+                    <span class="label">Board:</span>
+                    <div class="field-input-board">
+                            <input class='inputboard' type="text" name="board" value="prima-bead-jewelry-projects">
+                    </div>
+            </label>
+        </div>
+
+        <div class="field">
+            <label>
+                    <span class="label">Show Header:</span>
+                    <input class='inputheader' type="checkbox" name="show_header" value="true" checked="">
+            </label>
+        </div>
+        <div class="field">
+            <label>
+                    <span class="label">Widget width</span>
+                    <div class="field-input-size">
+                            <input class='inputwidth' type="text" name="width" value="1200"><span class="field-hint">px</span>
+                    </div>
+            </label>
+            <label class="responsive">
+                    <input class='inputresponsive' type="checkbox" name="responsive" value="true" checked="">
+                    <span class="label">Responsive</span>
+            </label>
+        </div>
+        <div class="field">
+            <label>
+                    <span class="label">Widget height</span>
+                    <div class="field-input-size">
+                            <input class='inputheight' type="text" name="height" value="600"><span class="field-hint">px</span>
+                    </div>
+            </label>
+            <label class="autoheight">
+                    <input class='inputautoheight' type="checkbox" name="Auto" value="1" checked="">
+                    <span class="label">Auto</span>
+            </label>
+        </div>
+        <div class="field">
+            <label>
+                    <span class="label">Pin width</span>
+                    <div class="field-input-size">
+                            <input class='inputpinwidth' type="text" name="height" value="140"><span class="field-hint">px</span>
+                    </div>
+            </label>
+            <label class="defaultpinwidth">
+                    <input class='inputdefaultwidth' type="checkbox" name="defaultwidth" value="1" checked="">
+                    <span class="label">Default (237px)</span>
+            </label>
+        </div>
+        <div class="field">
+            <label>
+                    <span class="label">Pins to show</span>
+                    <div class="field-input-size">
+                            <input class='inputpinstoshow' type="text" name="height" value="20">
+                    </div>
+            </label>
+            <label class="pinlimit">
+                    <input class='inputdefaultwidthmax' type="checkbox" name="defaultwidth" value="1" checked="">
+                    <span class="label">Maximum (50)</span>
+            </label>
+        </div>
+        <div class="field clear">
+            <label>
+                    <span class="label">Show Pin button:</span>
+                    <input class='inputshowpinbtn' type="checkbox" name="show_pinbtn" value="true" checked="">
+            </label>
+        </div>
+        <div class="field clear">
+            <label>
+                    <span class="label">Show source link</span>
+                    <input class='inputshowsrc' type="checkbox" name="show_sourcelink" value="true" checked="">
+            </label>
+        </div>
+        <div class="field descr clear">
+            <label>
+                <span class="label">Show description</span>
+                <select class='inputdescr' name="pindescr">
+                        <option value="yes" selected="">Yes</option>
+                        <option value="no">No</option>
+                        <option value="trim">Trim to</option>
+                </select>
+            </label>
+            <label>
+                <div class="field-input-size trimto">
+                        <input class='inputdescrlength' type="text" name="height" value="50"><span class="field-hint">characters</span>
+                </div>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="pinterest-board"></div>
