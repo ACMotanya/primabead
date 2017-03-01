@@ -229,6 +229,8 @@ a.pindiv_pinWrapper_sourcelink {
     -webkit-overflow-scrolling: touch;
 }
 .pindiv_container_inner > * {
+    transform: translateZ(0px);
+    transform: translate3d(0, 0, 0);
     -webkit-transform: translateZ(0px);
     -webkit-transform: translate3d(0, 0, 0);
 }
