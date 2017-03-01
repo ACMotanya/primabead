@@ -172,7 +172,7 @@ jQuery(document).ready(function ($) {
           } else {
 
             var pinobj = jQuery.parseJSON(JSON.stringify(jsonData).replace(/\"237x/g, "\"largeimg"));
-            //console.log(pinobj);
+            console.log(pinobj);
 
             if ($(currentpindiv).attr("data-pin-type") == 'board') {
 
