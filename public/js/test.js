@@ -1,84 +1,51 @@
-function stringsRearrangement(inputArray) {
-	for (var i = 1; i < inputArray.length; i++) {
-		if (inputArray[i].length !== inputArray[0].length)
-			return false;
-	}
-
-	inputArray.sort();
-	var total = 0;
-	for (i = 1; i < inputArray.length; i++) {
-		var answer = 0;
-		first  = inputArray[i-1].split("");
-		second = inputArray[i].split("");
-		
-		for (k = 0; k < first.length; k++) {
-			if ( first[k] === second[k] ) {
-				answer += 1;
-			} else {
-				answer += 0;
-			}
-		}
-		
-		if ( answer !== first.length - 1 ) {
-			total += 1
-		}
-		if ( inputArray.length - 1 !== total) {
+function stringsRearrangement(Y) {
+	for (var i = 1; i < Y.length; i++) {
+		if (Y[i].length !== Y[0].length) {
 			return false;
 		}
 	}
-	return true;
-}
-
-
-function getValue(x)
-{
-	value = 0;
-	y = x.split("");
-	for (var i = 0; i < y.length; i++) {
-		value += alpha.indexOf(y[i]);
-	}
-	return value;
-}
-
-
-//	alpha = "0abcdefghijklmnopqrstuvwxyz".split("");
-
-//	for (var j = 0; j < inputArray.length; j++) {
-//		number = getValue(inputArray[j]);
-//		values.push([number,inputArray[j]]);
-//	}
-
-function stringsRearrangement(inputArray) {
-	for (var i = 1; i < inputArray.length; i++) {
-		if (inputArray[i].length !== inputArray[0].length) {
-			return false;
-		}
-	}
-
-	inputArray.sort();
-	var answer = 0;
-	var total = 0;
-	for (i = 1; i < inputArray.length; i++) {
-		if ( inputArray[i-1].localeCompare(inputArray[i]) === 0 ) {
-			continue;
-		} else {
-			first  = inputArray[i-1].split("");
-			second = inputArray[i].split("");
-			total += 1
-			for (k = 0; k < first.length; k++) {
-				if ( first[k] === second[k] ) {
-					answer += 0;
-				} else {
-					answer += 1;
-				}
-			}
-			console.log(total + " total");
-			console.log(answer + " answer");
-		}
-	}
-
-	if ( answer === total ) {
+	var Z = Y.filter(function(t, p) {
+    return Y.indexOf(t) == p;
+	});
+	if ( Y.length != Z.length && O(Y.length) === 0 ) {
 		return false;
+	} else {
+		Z.sort();
+		var a = 0;
+		var l = 0;
+		for (i = 1; i < Z.length; i++) {
+				first = Z[i-1].split("");
+				second = Z[i].split("");
+				l += 1;
+				for (k = 0; k < first.length; k++) {
+				
+					if ( first[k] === second[k] ) {
+						a += 0;
+					} else {
+						a += 1;
+					}
+				}
+		}
+		if (a !== l) {
+			return false;
+		}
 	}
 	return true;
 }
+
+function O(n) { return n % 2;}
+
+
+"<div class='pindiv_pinWrapper' bg-image='" + pinobj.data[i].image.original.url + "'> 	
+<div class='pindiv_pinWrapper_content' style='background-color: " + pinobj.data[i].color + ";width:" + pin_columnsize + "px;'> 	
+<a class='pindiv_pinWrapper_pinlink' target='_blank' style='width:" + pin_columnsize + "px;height:" + Math.floor((pinobj.data[i].image.original.height - 40) * pin_columnsize / 237) + "px' href='" + pinobj.data[i].url + "'></a> 	
+<a class='pindiv_pinWrapper_sourcelink' target='_blank' href='" + pinobj.data[i].original_link + "'>" + parsePinUrl(pinobj.data[i].original_link) + "</a> </div> 
+<div class='pindiv_pinWrapper_decr' style='width:" + pin_columnsize + "px'>" + descriptionTrim + "</div> </div>" : 
+						
+						
+"<div class='pindiv_pinWrapper' bg-image='" + pinobj.data[i].image.original.url + "'> 	
+<div class='pindiv_pinWrapper_content' style='background-color: " + pinobj.data[i].color + ";width:" + pin_columnsize + "px;height:" + pinobj.data[i].image.original.height * pin_columnsize / 237 + "px;'> 	
+<a class='pindiv_pinWrapper_pinlink' target='_blank' style='width:" + pin_columnsize + "px;height:" + Math.floor((pinobj.data[i].image.original.height - 40) * pin_columnsize / 237) + "px' href='" + pinobj.data[i].url + "'></a> 	
+</div> <div class='pindiv_pinWrapper_decr' style='width:" + pin_columnsize + "px'>" + descriptionTrim + "</div> </div>";
+
+$(currentpindiv).find(".pindiv_container_inner").append(pintoappend);
