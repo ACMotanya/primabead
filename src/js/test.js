@@ -14,9 +14,8 @@ function stringsRearrangement(Y) {
 		Z.sort();
     
 		var a = 0;
-		var t =0;
+		
 		for (i = 1; i < Z.length; i++) {
-				t++;
 				f = Z[i-1].split("");
 				s = Z[i].split("");
 				for (k = 0; k < f.length; k++) {
@@ -25,7 +24,7 @@ function stringsRearrangement(Y) {
 					}
 				}
 		}
-		if (a !== t) {
+		if ((a + (Z.length - Y.length)) !== Y.length - 1) {
 			return false;
 		}
 }
