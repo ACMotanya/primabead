@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+
+<style>
+	span {
+   font-size: 40px;
+			cursor: pointer;
+}
+	</style>
+
+<h1>
+<span> A</span><span> B</span><span> C</span><span> D</span><span> E</span><span> F</span><span> G</span><span> H</span><span> I</span><span> J</span><span> K</span><span> L</span><span> M</span>
+<span> N</span><span> O</span><span> P</span><span> Q</span><span> R</span><span> S</span><span> T</span><span> U</span><span> V</span><span> W</span><span> X</span><span> Y</span><span> Z</span>
+</h1>
+
+
+<script>
+jQuery("h1 span").hover(function(){
+       jQuery(this).animate({fontSize: "52px"}, 300)
+   }, function() {
+      jQuery(this).animate({fontSize: "40"}, 300)  
+   })
+
+	</script>
