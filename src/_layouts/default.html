@@ -24,7 +24,6 @@
 		<script src="{{ "/vendor/common/common.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery.validation/jquery.validation.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js" | prepend: site.baseurl }}"></script>
-	
 		<script src="{{ "/vendor/jquery.gmap/jquery.gmap.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery.lazyload/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/isotope/jquery.isotope.min.js" | prepend: site.baseurl }}"></script>
@@ -41,10 +40,11 @@
 
 		<!-- Current Page Vendor and Views -->
 		<script src="{{ "/js/views/view.contact.js" | prepend: site.baseurl }}"></script>
-
+		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-7.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/youmax.min.js" | prepend: site.baseurl }}"></script>
+	
 	<!--	<script src="{{ "/js/pinterest2.js" | prepend: site.baseurl }}"></script> -->
 
 		<!-- Theme Custom -->
@@ -56,9 +56,35 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script>
 		
 		<script src="{{ "/js/examples/examples.portfolio.js" | prepend: site.baseurl }}"></script>
+		{% if page.url == "/store/" %}
+		<script defer>
+    $(window).on('hashchange', function() {
+      whichPage();
+    });
 
-
-
+    $(function() {
+      whichPage();
+  //    sessionNumber();
+			filterFunction2('APISTKLST','80011400','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
+			/*
+      $('nav ul li a').click(function() {
+        var $linkClicked = $(this).attr('href');
+        document.location.hash = $linkClicked;
+        if (!$(this).parent().hasClass("current")) {
+          $("nav ul li").removeClass("current");
+          $(this).parent().addClass("current");
+          return false;
+        } else {
+          return false;
+        }
+      });
+  //    shopPage();
+	//    newCustomerSession();
+	*/
+		});
+</script>
+<script src="{{ site.baseurl }}/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+		{% endif %} 
   </body>
 
 </html>
