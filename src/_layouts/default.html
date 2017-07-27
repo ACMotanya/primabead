@@ -11,7 +11,7 @@
       </div>
 
 
-      <!-- <div id="root"></div> -->
+       <div id="root"></div> 
       {% include footer.html %}
     </div>
     <script type="text/javascript" src="{{ "/assets/javascripts/bundle.js" | prepend: site.baseurl }}" charset="utf-8"></script>
@@ -43,19 +43,20 @@
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-7.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/youmax.min.js" | prepend: site.baseurl }}"></script>
+		<!--	<script src="{{ "/js/youmax.min.js" | prepend: site.baseurl }}"></script> -->
 	
-	<!--	<script src="{{ "/js/pinterest2.js" | prepend: site.baseurl }}"></script> -->
-
-		<!-- Theme Custom -->
-		<script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
+		<!--	<script src="{{ "/js/pinterest2.js" | prepend: site.baseurl }}"></script> -->
 
 		<!-- Theme Initialization Files -->
 		<script src="{{ "/js/theme.init.js" | prepend: site.baseurl }}"></script>
 
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script>
-		
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script> -->
+		<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581b726c069c6315"></script>
 		<script src="{{ "/js/examples/examples.portfolio.js" | prepend: site.baseurl }}"></script>
+		<script src="{{ site.baseurl }}/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+		<!-- Theme Custom -->
+		<script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
+		
 		{% if page.url == "/store/" %}
 		<script defer>
     $(window).on('hashchange', function() {
@@ -65,7 +66,7 @@
     $(function() {
       whichPage();
   //    sessionNumber();
-			filterFunction2('APISTKLST','80011400','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
+			filterFunction2('APISTKLST','80010000','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
 			/*
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
@@ -78,12 +79,22 @@
           return false;
         }
       });
-  //    shopPage();
-	//    newCustomerSession();
-	*/
+		//    shopPage();
+		//    newCustomerSession();
+		*/
 		});
+		
 </script>
-<script src="{{ site.baseurl }}/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+<!--
+<script>
+		$(document).ready (function(){
+			$(".fill-cart").hide();
+			$(".addtocart").click(function showAlert() {
+				$(".fill-cart").fadeTo(2000, 500).slideUp(500);   
+			});
+		});
+		</script>
+		-->
 		{% endif %} 
   </body>
 

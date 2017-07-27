@@ -4,3 +4,14 @@
 .client img {
 	max-width: 80% !important;
 }
+
+.tabs.product-tabs.tabs-left .tab-content {
+	padding: 15px;
+}
+
+#floating_alert {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 5000;
+}
