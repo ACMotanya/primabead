@@ -615,10 +615,11 @@
 
       <div role="main" class="main">
         <style>
-	#cart, #checkout, #invoices,#profile,	#orders, #products, #product-details, #faq,	#search {
+	.store-page {
 		display: none;
 	}
 </style>
+
 
 <section class="page-header">
 	<div class="container">
@@ -629,6 +630,7 @@
 		</ul>
 	</div>
 </section>
+
 <div id="products" class="container store-page">
 	<div class="row">
 		<div class="col-md-9 col-md-push-3">
@@ -687,7 +689,6 @@
 								<i class="fa fa-share-square-o"></i>
 								<span>Quick View</span>
 							</a>
-
 						</figure>
 						<div class="product-details-area">
 							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Blue Bead</a></h2>
@@ -1061,12 +1062,14 @@
 	</div>
 </div>
 
+
+
 <div id="product-details" class="container store-page">
 	<div class="product-view">
 		<div class="product-essential">
 			<div class="row">
-				<div id="images" class="product-img-box col-sm-5">
-					<div class="product-img-box-wrapper">
+				<div class="product-img-box col-sm-5">
+					<div id="images" class="product-img-box-wrapper">
 						<div class="product-img-wrapper">
 							<img id="product-zoom" src="../img/demos/shop/products/single/product1.jpg" data-zoom-image="../img/demos/shop/products/single/product1.jpg">
 						</div>
@@ -1092,20 +1095,11 @@
 								<img src="../img/demos/shop/products/single/thumbs/product3.jpg" alt="product">
 							</a>
 						</div>
-						<div class="product-img-wrapper">
-							<a href="#" data-image="../img/demos/shop/products/single/product4.jpg" data-zoom-image="../img/demos/shop/products/single/product4.jpg" class="product-gallery-item">
-								<img src="../img/demos/shop/products/single/thumbs/product4.jpg" alt="product">
-							</a>
-						</div>
-						<div class="product-img-wrapper">
-							<a href="#" data-image="../img/demos/shop/products/single/product5.jpg" data-zoom-image="../img/demos/shop/products/single/product5.jpg" class="product-gallery-item">
-								<img src="../img/demos/shop/products/single/thumbs/product5.jpg" alt="product">
-							</a>
-						</div>
 					</div>
 				</div>
 
 				<div id="secondColumn" class="product-details-box col-sm-7">
+					<!--
 					<div class="product-nav-container">
 						<div class="product-nav product-nav-prev">
 							<a href="#" title="Previous Product">
@@ -1128,6 +1122,7 @@
 							</div>
 						</div>
 					</div>
+					-->
 					<h1 class="product-name itemName">
 						Black Flat Bead
 					</h1>
@@ -1149,15 +1144,12 @@
 							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
 							occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-							irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-							cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 
 					<div class="product-detail-info">
 						<div class="product-price-box">
 						
-							<span class="product-price">$89.00</span>
+							<span class="product-price"></span>
 						</div>
 						<p class="availability">
 							<span class="font-weight-semibold">Availability:</span> In Stock
@@ -1173,9 +1165,9 @@
 						<div class="product-detail-qty">
 							<input type="text" value="1" class="vertical-spinner" id="product-vqty">
 						</div>
-						<a href="#" class="addtocart" title="Add to Cart">
+						<a href="#" class="addtocart detailadd" title="Add to Cart">
 							<i class="fa fa-shopping-cart"></i>
-							<span>Add to Cart</span>
+							<span onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to Cart</span> 
 						</a>
 						<!--
 						<div class="actions-right">
@@ -1544,10 +1536,274 @@
 	</div>
 	-->
 </div>
+
+
+	<div id="cart" class="container store-page">
+		<h1 class="h2 heading-primary mt-lg clearfix">
+			<span>Shopping Cart</span>
+			<a href="#" class="btn btn-primary pull-right">Proceed to Checkout</a>
+		</h1>
+
+		<div class="row">
+			<div class="col-md-8 col-lg-9">
+				<div class="cart-table-wrap">
+					<table class="cart-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th>Product Name</th>
+								<th>Unit Price</th>
+								<th>Qty</th>
+								<th>Subtotal</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="product-action-td">
+									<a href="#" title="Remove product" class="btn-remove"><i class="fa fa-times"></i></a>
+								</td>
+								<td class="product-image-td">
+									<a href="#" title="Product Name">
+										<img src="../img/demos/shop/products/cart-product1.jpg" alt="Product Name">
+									</a>
+								</td>
+								<td class="product-name-td">
+									<h2 class="product-name"><a href="#" title="Product Name">Fashion Pendant</a></h2>
+								</td>
+								<td>$120.00</td>
+								<td>
+									<div class="qty-holder">
+										<a href="#" class="qty-dec-btn" title="Dec">-</a>
+										<input type="text" class="qty-input" value="1">
+										<a href="#" class="qty-inc-btn" title="Inc">+</a>
+										<a href="#" class="edit-qty"><i class="fa fa-pencil"></i></a>
+									</div>
+								</td>
+								<td>
+									<span class="text-primary">$120.00</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="product-action-td">
+									<a href="#" title="Remove product" class="btn-remove"><i class="fa fa-times"></i></a>
+								</td>
+								<td class="product-image-td">
+									<a href="#" title="Product Name">
+										<img src="../img/demos/shop/products/cart-product2.jpg" alt="Product Name">
+									</a>
+								</td>
+								<td class="product-name-td">
+									<h2 class="product-name"><a href="#" title="Product Name">Black Utility Knife</a></h2>
+								</td>
+								<td>$49.00</td>
+								<td>
+									<div class="qty-holder">
+										<a href="#" class="qty-dec-btn" title="Dec">-</a>
+										<input type="text" class="qty-input" value="1">
+										<a href="#" class="qty-inc-btn" title="Inc">+</a>
+										<a href="#" class="edit-qty"><i class="fa fa-pencil"></i></a>
+									</div>
+								</td>
+								<td>
+									<span class="text-primary">$49.00</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="6" class="clearfix">
+									<button class="btn btn-default hover-primary btn-continue">Continue Shopping</button>
+									<button class="btn btn-default hover-primary btn-update">Update Shopping Cart</button>
+									<button class="btn btn-default hover-primary btn-clear">Clear Shopping Cart</button>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<aside class="col-md-4 col-lg-3 sidebar shop-sidebar">
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+												<a class="accordion-toggle collapsed" data-toggle="collapse" href="#panel-cart-discount">
+													Discount Code
+												</a>
+											</h4>
+						</div>
+						<div id="panel-cart-discount" class="accordion-body collapse">
+							<div class="panel-body">
+								<p class="mb-sm">Enter your coupon code if you have one.</p>
+								<form action="#">
+									<div class="form-group">
+										<input type="text" class="form-control" required>
+									</div>
+									<input type="submit" class="btn btn-primary btn-block" value="Apply Coupon">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+												<a class="accordion-toggle collapsed" data-toggle="collapse" href="#panel-cart-ship">
+													ESTIMATE SHIPPING AND TAX
+												</a>
+											</h4>
+						</div>
+						<div id="panel-cart-ship" class="accordion-body collapse">
+							<div class="panel-body">
+								<p class="mb-sm">Enter your destination to get a shipping estimate.</p>
+								<form action="#">
+									<div class="form-group">
+										<label>Contry <span class="required">*</span></label>
+										<select name="#" class="form-control">
+															<option value="United States">United States</option>
+															<option value="United Kingdon">United Kingdon</option>
+															<option value="China">China</option>
+															<option value="Russia">Russia</option>
+														</select>
+									</div>
+									<div class="form-group">
+										<label>State/Province</label>
+										<select name="#" class="form-control">
+															<option value="United States">Please select region, state</option>
+															<option value="Alabama">Alabama</option>
+															<option value="Alaska">Alaska</option>
+														</select>
+									</div>
+									<div class="form-group">
+										<label>Zip Code</label>
+										<input type="text" class="form-control">
+									</div>
+									<input type="submit" class="btn btn-primary btn-block" value="Get a Quote">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-cart-total">
+									Cart Totals
+								</a>
+							</h4>
+						</div>
+						<div id="panel-cart-total" class="accordion-body collapse in">
+							<div class="panel-body">
+								<table class="totals-table">
+									<tbody>
+										<tr>
+											<td>Subtotal</td>
+											<td>$159.00</td>
+										</tr>
+										<tr>
+											<td>Grand Total</td>
+											<td>$159.00</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="totals-table-action">
+									<a href="#" class="btn btn-primary btn-block">Proceed to Checkout</a>
+									<a href="#" class="btn btn-link btn-block">Checkout with Multiple Addresses</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</div>
+
+		<div class="crosssell-products">
+			<h2 class="h4"><strong>Based on your selection, you may be interested in the following items:</strong></h2>
+			<div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="product product-sm">
+						<figure class="product-image-area">
+							<a href="#" title="Product Name" class="product-image">
+								<img src="../img/demos/shop/products/cart-product3.jpg" alt="Product Name">
+							</a>
+						</figure>
+						<div class="product-details-area">
+							<h2 class="product-name"><a href="#" title="Product Name">Jane Dress</a></h2>
+
+							<div class="product-price-box">
+								<span class="old-price">$120.00</span>
+								<span class="product-price">$90.00</span>
+							</div>
+
+							<a href="#" class="btn btn-default hover-primary">Add to Cart</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="product product-sm">
+						<figure class="product-image-area">
+							<a href="#" title="Product Name" class="product-image">
+								<img src="../img/demos/shop/products/cart-product4.jpg" alt="Product Name">
+							</a>
+						</figure>
+						<div class="product-details-area">
+							<h2 class="product-name"><a href="#" title="Product Name">Jane Dress - S</a></h2>
+
+							<div class="product-price-box">
+								<span class="old-price">$100.00</span>
+								<span class="product-price">$89.00</span>
+							</div>
+
+							<a href="#" class="btn btn-default hover-primary">Add to Cart</a>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix visible-sm"></div>
+				<div class="col-sm-6 col-md-3">
+					<div class="product product-sm">
+						<figure class="product-image-area">
+							<a href="#" title="Product Name" class="product-image">
+								<img src="../img/demos/shop/products/cart-product1.jpg" alt="Product Name">
+							</a>
+						</figure>
+						<div class="product-details-area">
+							<h2 class="product-name"><a href="#" title="Product Name">Jane Dress - XL</a></h2>
+
+							<div class="product-price-box">
+								<span class="old-price">$100.00</span>
+								<span class="product-price">$69.00</span>
+							</div>
+
+							<a href="#" class="btn btn-default hover-primary">Add to Cart</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="product product-sm">
+						<figure class="product-image-area">
+							<a href="#" title="Product Name" class="product-image">
+								<img src="../img/demos/shop/products/cart-product2.jpg" alt="Product Name">
+							</a>
+						</figure>
+						<div class="product-details-area">
+							<h2 class="product-name"><a href="#" title="Product Name">Jane Dress - M</a></h2>
+
+							<div class="product-price-box">
+								<span class="old-price">$110.00</span>
+								<span class="product-price">$79.00</span>
+							</div>
+
+							<a href="#" class="btn btn-default hover-primary">Add to Cart</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
       </div>
 
 
-      <!-- <div id="root"></div> -->
+       <div id="root"></div> 
       <footer id="footer">
 <!--(remove-empty-lines-end)-->
   <div class="container">
@@ -1687,19 +1943,20 @@
 		<script src="/primabead/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
 		<!-- Demo -->
 		<script src="/primabead/js/demos/demo-shop-7.js"></script>
-		<script src="/primabead/js/youmax.min.js"></script>
+		<!--	<script src="/primabead/js/youmax.min.js"></script> -->
 	
-	<!--	<script src="/primabead/js/pinterest2.js"></script> -->
-
-		<!-- Theme Custom -->
-		<script src="/primabead/js/custom.js"></script>
+		<!--	<script src="/primabead/js/pinterest2.js"></script> -->
 
 		<!-- Theme Initialization Files -->
 		<script src="/primabead/js/theme.init.js"></script>
 
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script>
-		
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script> -->
+		<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581b726c069c6315"></script>
 		<script src="/primabead/js/examples/examples.portfolio.js"></script>
+		<script src="/primabead/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+		<!-- Theme Custom -->
+		<script src="/primabead/js/custom.js"></script>
+		
 		
 		<script defer>
     $(window).on('hashchange', function() {
@@ -1709,7 +1966,7 @@
     $(function() {
       whichPage();
   //    sessionNumber();
-			filterFunction2('APISTKLST','80011400','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
+			filterFunction2('APISTKLST','80010000','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
 			/*
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
@@ -1722,12 +1979,22 @@
           return false;
         }
       });
-  //    shopPage();
-	//    newCustomerSession();
-	*/
+		//    shopPage();
+		//    newCustomerSession();
+		*/
 		});
+		
 </script>
-<script src="/primabead/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+<!--
+<script>
+		$(document).ready (function(){
+			$(".fill-cart").hide();
+			$(".addtocart").click(function showAlert() {
+				$(".fill-cart").fadeTo(2000, 500).slideUp(500);   
+			});
+		});
+		</script>
+		-->
 		 
   </body>
 
