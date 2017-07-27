@@ -294,11 +294,11 @@ function cartHeader(callback)
       cartheader = response.split("\n");
       if (cartheader.length >=3 ){
         cartHeaderFields = cartheader[1].split("|");
-        document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartHeaderFields[24].trim() + '</span>';
+        $(".cart-qty").text(cartHeaderFields[24].trim());
+        $(".cart-totals span").text('$'+cartHeaderFields[19].trim());
 
-        if ( window.location.hash === "#cart" || window.location.hash === "#checkout") {
-          $(".cart-product-name.subtotal").html( '<span class="amount">' + cartHeaderFields[19].trim() + '</span>' );
-          $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + cartHeaderFields[22].trim() + '</strong></span>');
+        if ( window.location.hash === "#cart") {
+          $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
         }
       }
     },
@@ -328,20 +328,15 @@ function cartList()
     success: function(response) {
       cartitems = response.split("\n");
 
-      jQuery("#minicart").empty();
+      jQuery(".cart-products").empty();
+      html  = [];
       html2 = [];
-      html = [];
 
       if ( window.location.hash === "#cart") {
-        $(".cart_item.products").empty();
-
+        $("table.cart-table tbody").empty();
         cartHelper();
-        $("#cartItemTable").prepend(html.join(''));
-        $("#updateCartButton").show();
-
-      } else if ( window.location.hash === "#checkout" ){
-        jQuery("#checkout-cartItemTable").empty();
-        cartHelper();
+        $("table.cart-table tbody").prepend(html.join(''));
+   //     $("#updateCartButton").show();
       } else {
         cartHelper();
       }
@@ -358,10 +353,14 @@ function cartHelper()
   if ( cartitems.length > 2 ) {
     for (i=1; i<cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '" /></a></div>';
-      miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
+      miniitem  = '<div class="product product-sm"><a href="#" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + 'mini" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
+      miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="Product Name"></a></figure>';
+      miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g,'') + ' X<span class="product-price">' + data[7].substring(0, data[7].length - 3) + '</span></div></div></div>';
+      
+     // miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '" /></a></div>';
+     // miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
       html2.push(miniitem);
-
+      /*
       if ( window.location.hash === "#cart" ) {
         item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
         item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
@@ -374,19 +373,14 @@ function cartHelper()
         item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
         html.push(item);
         $("#updateCartButton").show();
-      } else if ( window.location.hash === "#checkout" ) {
-        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
-        item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
-        item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
-        item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
-        $("#checkout-cartItemTable").append(item1);
-      }
+      } 
+      */
     }
   } else {
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
     html.push(item);
   }
-  $("#minicart").append(html2.join(''));
+  $("div.cart-products").append(html2.join(''));
 }
 
 /////////////////////////////////////
