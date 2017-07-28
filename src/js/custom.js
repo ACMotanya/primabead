@@ -106,7 +106,7 @@ function itemRender(div,response)
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod  = '<li><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
       prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2>';
-      prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); shopPage(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+      prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       html.push(prod);
     }
@@ -272,10 +272,54 @@ function removeItem(clicked_id)
 {
   line_no = clicked_id;
   removeItemGeneric(session_no, line_no);
-  shopPage();
+  cart();
   return false;
 }
 
+
+
+////////////////////////////////////////
+// SUBROUTINE - DELETE THE WHOLE CART //
+////////////////////////////////////////
+function deleteCart() 
+{
+  if (confirm("Are you sure?") === true) {
+      console.log("You pressed OK!");
+  } 
+
+}
+
+
+////////////////////////\\
+// Update Cart Function \\
+//\\\\\\\\\\\\\\\\\\\\\\\\
+function updateCart()
+{
+  $("#updateCartButton").hide();
+  var shoppingCart = {};
+  var table = $("table.cart-table tbody");
+
+  // loop thru cart and flatten the items that are repeated
+  table.find('tr').each(function () {
+    var line_no     = $(this).find('td.product-action-td a').attr('id');
+    var stockNumber = $(this).find('td.product-image-td a').attr('title');
+    var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
+    
+    removeItemGeneric(session_no, line_no);
+
+    if (!shoppingCart.hasOwnProperty(stockNumber)) {
+      shoppingCart[stockNumber] = [qty, line_no];
+    } else {
+      shoppingCart[stockNumber][0] += qty;
+      removeItemGeneric(session_no, shoppingCart[stockNumber][1]); 
+    }
+    
+  });
+  $.each( shoppingCart, function( key, value ) {
+    addItemGeneric(session_no, key, value[0]);
+  });
+  cart();
+}
 
 
 //////////////////////////////
@@ -355,14 +399,20 @@ function cartHelper()
       data = cartitems[i].split("|");
       miniitem  = '<div class="product product-sm"><a href="#" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + 'mini" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
       miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="Product Name"></a></figure>';
-      miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g,'') + ' X<span class="product-price">' + data[7].substring(0, data[7].length - 3) + '</span></div></div></div>';
-      
-     // miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '" /></a></div>';
-     // miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
+      miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g,'') + ' X <span class="product-price">$' + data[7].substring(0, data[7].length - 3).trim() + '</span></div></div></div>';
+
       html2.push(miniitem);
-      /*
+      
       if ( window.location.hash === "#cart" ) {
-        item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
+        listitem =  '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '"><i class="fa fa-times"></i></a></td>';
+        listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="' + data[2].replace(/\s+/g,'') + '"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+        listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
+        listitem += '<input type="button" class="qty-dec-btn" title="Dec" value="-" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this);" />';
+        listitem += '<input type="text" class="qty-input" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" id="' + data[2].replace(/\s+/g,'') + '" />';
+        listitem += '<input type="button" class="qty-inc-btn" title="Inc" value="+" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this);" />';
+        listitem += '<a href="#" class="edit-qty"><i class="fa fa-pencil"></i></a></div></td><td><span class="text-primary">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
+
+        item =  '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
         item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
@@ -371,10 +421,10 @@ function cartHelper()
         item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
         item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this);"></div></td>';
         item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
-        html.push(item);
-        $("#updateCartButton").show();
+        html.push(listitem);
+       // $("#updateCartButton").show();
       } 
-      */
+    
     }
   } else {
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
@@ -551,10 +601,10 @@ function whatMetal(metalCode)
 /////////////////////////////////////////////
 
 
-function shopPage()
+function cart()
 {
- // cartHeader();
- // cartList();
+  cartHeader();
+  cartList();
 }
 
 function checkoutPage()
@@ -617,7 +667,7 @@ function whichPage()
     case '#cart' :
       window.scrollTo(0, 0);
       $('#cart').show();
-      shopPage();
+      cart();
       break;
 
 
@@ -683,7 +733,7 @@ function whichPage()
     default :
       window.scrollTo(0, 0);
       $('#products').show();
-    //  shopPage();
+      cart();
   }
 }
 
@@ -732,6 +782,54 @@ function sessionNumber()
   }
 }
 
+
+
+
+//////////////////////////////////////
+// Functionality of + and - Buttons //
+//////////////////////////////////////
+function changeQuantity(element)
+{
+  var fieldName = jQuery(element).attr('data-field');
+  var type      = jQuery(element).attr('data-type');
+  var input     = jQuery("input[name='"+fieldName+"']");
+  var currentVal = parseInt(input.val());
+  if (!isNaN(currentVal)) {
+    if(type == 'minus') {
+      var minValue = parseInt(input.attr('min'));
+      if(!minValue) minValue = 1;
+      if(currentVal > minValue) {
+        input.val(currentVal - 1).change();
+      }
+      if(parseInt(input.val()) == minValue) {
+        jQuery(element).attr('disabled', true);
+      }
+    } else if(type == 'plus') {
+      var maxValue = parseInt(input.attr('max'));
+      if(!maxValue) maxValue = 9999999999999;
+      if(currentVal < maxValue) {
+        input.val(currentVal + 1).change();
+      }
+      if(parseInt(input.val()) == maxValue) {
+        jQuery(element).attr('disabled', true);
+      }
+    }
+  } else {
+    input.val(0);
+  }
+
+  jQuery('.input-number').focusin(function(){
+    jQuery(element).data('oldValue', jQuery(element).val());
+  });
+  jQuery('.input-number').change(function() {
+    var minValue = parseInt(input.attr('min'));
+    var maxValue = parseInt(input.attr('max'));
+    if(!minValue) minValue = 1;
+    if(!maxValue) maxValue = 9999999999999;
+    var valueCurrent = parseInt(input.val());
+  });
+  return false;
+}
 
 bootstrap_alert = function () {};
 bootstrap_alert.warning = function (message, alert, timeout) {
