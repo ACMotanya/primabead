@@ -1,4 +1,5 @@
-var session_no = "1ZOT4DGMB1OFTRD9RGDERD13O";
+var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
+var freeShip = false;
 
 ////////////////////////////////////////
 /// LOGIN INTO THE STORE AND VERIFY  ///
@@ -277,16 +278,16 @@ function removeItem(clicked_id)
 }
 
 
-
 ////////////////////////////////////////
 // SUBROUTINE - DELETE THE WHOLE CART //
 ////////////////////////////////////////
 function deleteCart() 
 {
   if (confirm("Are you sure?") === true) {
-      console.log("You pressed OK!");
-  } 
-
+    console.log("You pressed OK!");
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no="+ session_no +"");
+    cart();
+  }  
 }
 
 
@@ -344,6 +345,34 @@ function cartHeader(callback)
         if ( window.location.hash === "#cart") {
           $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
         }
+        if ( window.location.hash === "#checkout" ) {
+          $(".showTotal").html('$'+cartHeaderFields[22].trim());
+          console.log(cartHeaderFields);
+          document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
+          document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
+          document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
+          document.getElementById("billing-form-address2").value = cartHeaderFields[4].trim();
+          document.getElementById("billing-form-address3").value = cartHeaderFields[5].trim();
+          document.getElementById("billing-form-city").value = cartHeaderFields[6].trim();
+          document.getElementById("billing-form-state").value = cartHeaderFields[7].trim();
+          document.getElementById("billing-form-zipcode").value = cartHeaderFields[8].trim();
+          document.getElementById("billing-form-phone").value = cartHeaderFields[18].trim();
+
+          document.getElementById("shipping-form-name").value = cartHeaderFields[9].trim();
+          document.getElementById("shipping-form-address").value = cartHeaderFields[10].trim();
+          document.getElementById("shipping-form-address2").value = cartHeaderFields[11].trim();
+          document.getElementById("shipping-form-address3").value = cartHeaderFields[12].trim();
+          document.getElementById("shipping-form-city").value = cartHeaderFields[13].trim();
+          document.getElementById("shipping-form-state").value = cartHeaderFields[14].trim();
+          
+          if ( parseInt(cartHeaderFields[22]) > 25 ){
+            freeShip = true;
+            $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
+          } else {
+            freeShip = false;
+            $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+          }
+        }
       }
     },
     complete: function () {
@@ -380,7 +409,9 @@ function cartList()
         $("table.cart-table tbody").empty();
         cartHelper();
         $("table.cart-table tbody").prepend(html.join(''));
-   //     $("#updateCartButton").show();
+      } else if ( window.location.hash === "#checkout") {
+        $("table#reviewItemTable tbody").empty();
+        cartHelper();
       } else {
         cartHelper();
       }
@@ -412,19 +443,11 @@ function cartHelper()
         listitem += '<input type="button" class="qty-inc-btn" title="Inc" value="+" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this);" />';
         listitem += '<a href="#" class="edit-qty"><i class="fa fa-pencil"></i></a></div></td><td><span class="text-primary">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
 
-        item =  '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-        item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
-        item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
-        item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
-        item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
-        item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this);">';
-        item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
-        item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this);"></div></td>';
-        item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
         html.push(listitem);
        // $("#updateCartButton").show();
-      } 
-    
+      } else if ( window.location.hash === "#checkout" ) {
+        $("table#reviewItemTable tbody").append('<tr><td>' + data[3] + '</td><td class="text-center">' + data[6].replace(/\s+/g,'') + '</td><td class="text-right">$' + data[8].substring(0, data[8].length - 4) + '</td></tr>');
+      }
     }
   } else {
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
@@ -609,18 +632,15 @@ function cart()
 
 function checkoutPage()
 {
-  employeeDiscount();
-  session_no = localStorage.getItem('session_no');
-  cartList();
-  cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
+  //employeeDiscount();
+  //session_no = localStorage.getItem('session_no');
+  billingAddresses  = [];
+  shippingAddresses = [];
+  $("#creditcard").hide();
 
-  $('#shipping-form-companyname').focus();
-  if (hideCC === true ) {
-    shippingAddresses = [];
-    $("#creditcard").hide();
-    $("#minimumTotalWarning, #shipping-address").empty();
-    shipToAddress();
-  }
+  $("#billing-address, #shipping-address").empty();
+  fillAddresses();
+
   document.getElementById("creditcard").src="https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
@@ -669,13 +689,15 @@ function whichPage()
       $('#cart').show();
       cart();
       break;
-
-
     case '#checkout' :
       window.scrollTo(0, 0);
       $('#checkout').show();
+      cart();
       checkoutPage();
       break;
+
+
+
     case '#profile' :
       window.scrollTo(0, 0);
       $('#profile').show();
@@ -784,7 +806,6 @@ function sessionNumber()
 
 
 
-
 //////////////////////////////////////
 // Functionality of + and - Buttons //
 //////////////////////////////////////
@@ -831,6 +852,203 @@ function changeQuantity(element)
   return false;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     // PULL SAVED BILL TO ADDRESSES //
+/////////////////////////////////////////////
+/////////////////////////////////////////
+// Saving Addresses from Checkout Page //
+/////////////////////////////////////////
+function saveAddresses()
+{
+  var billingformname     = $("#billing-form-companyname").val();
+  var billingformaddress  = $("#billing-form-address").val();
+  var billingformaddress2 = $("#billing-form-address2").val();
+  var billingformaddress3 = $("#billing-form-address3").val();
+  var billingformcity     = $("#billing-form-city").val();
+  var billingformstate    = $("#billing-form-state").val();
+  var billingformzipcode  = $("#billing-form-zipcode").val();
+
+  var shippingformname     = $("#shipping-form-name").val();
+  var shippingformaddress  = $("#shipping-form-address").val();
+  var shippingformaddress2 = $("#shipping-form-address2").val();
+  var shippingformaddress3 = $("#shipping-form-address3").val();
+  var shippingformcity     = $("#shipping-form-city").val();
+  var shippingformstate    = $("#shipping-form-state").val();
+  var shippingformzipcode  = $("#shipping-form-zipcode").val();
+
+  var email_addr = $("#billing-form-email").val();
+  var phone      = $("#billing-form-phone").val();
+  var ponumber   = $("#shipping-form-ponumber").val();
+  
+  var text1 = "";
+  var text2 = "";
+  var text3 = "";
+  var text4 = "";
+  var text5 = "";
+  var notesArray = [];
+  var shippingPrice;
+  if (!freeShip) {
+    shippingPrice = 5.00;
+  } else {
+    shippingPrice = 0.00;
+  }
+
+  if($("#shipping-form-message").val()) {
+    notesArray = $("#shipping-form-message").val().match(/.{1,30}/g);
+    if (notesArray[0] && typeof(notesArray[0]) === "string") {
+       text1 = notesArray[0];
+    }
+    if (notesArray[1] && typeof(notesArray[1]) === "string") {
+      text2 = notesArray[1];
+    }
+    if (notesArray[2] && typeof(notesArray[2]) === "string") {
+      text3 = notesArray[2];
+    }
+    if (notesArray[3] && typeof(notesArray[3]) === "string") {
+      text4 = notesArray[3];
+    }
+    if (notesArray[4] && typeof(notesArray[4]) === "string") {
+      text5 = notesArray[4];
+    }
+  }
+
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTUPD",
+      session_no: session_no,
+      billname: billingformname,
+      billadd1: billingformaddress,
+      billadd2: billingformaddress2,
+      billadd3: billingformaddress3,
+      billcity: billingformcity,
+      billstate: billingformstate,
+      billzip: billingformzipcode,
+      shipname: shippingformname,
+      shipadd1: shippingformaddress,
+      shipadd2: shippingformaddress2,
+      shipadd3: shippingformaddress3,
+      shipcity: shippingformcity,
+      shipstate: shippingformstate,
+      shipzip: shippingformzipcode,
+      phone: phone,
+      email_addr: email_addr,
+      po_no: ponumber,
+      text1: text1,
+      text2: text2,
+      text3: text3,
+      text4: text4,
+      text5: text5,
+      misc_amt1: shippingPrice
+    }
+  });
+}
+
+
+function fillAddresses()
+{
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIBIILLST",
+      session_no: session_no
+    },
+    success: function(response) {
+
+      billLines = response.split("\n");
+
+      for (i=1; i<billLines.length - 1; i++) {
+        billflds = billLines[i].split("|");
+        billingAddresses.push([billflds[1],billflds[2],billflds[3],billflds[4],billflds[5],billflds[6],billflds[7]]);
+        document.getElementById("billing-address").innerHTML += '<option value="'+i+'">' + billflds[1] + ', ' + billflds[2] + '</option>';
+      }
+      $("#billing-address").prepend('<option selected="selected">Select Billing Address</option>');
+    }
+ });
+
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APISHIPLST",
+      session_no: session_no
+    },
+    success: function(response) {
+
+      shipLines = response.split("\n");
+
+      for (i=1; i<shipLines.length - 1; i++) {
+        shipflds = shipLines[i].split("|");
+        shippingAddresses.push([shipflds[1],shipflds[2],shipflds[3],shipflds[4],shipflds[5],shipflds[6],shipflds[7]]);
+        document.getElementById("shipping-address").innerHTML += '<option value="'+i+'">' + shipflds[1].trim() + ' - ' + shipflds[2] + '</option>';
+      }
+      $("#shipping-address").prepend('<option selected="selected">Select Shipping Address</option>');
+    }
+ });
+}
+
+function displayShippingAddress(index) {
+  var ind = index - 1;
+
+  document.getElementById("shipping-form-name").value = shippingAddresses[ind][0].trim(); 
+  document.getElementById("shipping-form-address").value = shippingAddresses[ind][1].trim();
+  document.getElementById("shipping-form-address2").value = shippingAddresses[ind][2].trim();
+  document.getElementById("shipping-form-address3").value = shippingAddresses[ind][3].trim();
+  document.getElementById("shipping-form-city").value = shippingAddresses[ind][4].trim();
+  document.getElementById("shipping-form-state").value = shippingAddresses[ind][5].trim();
+  //$('#shipping-form-state option[value='+shippingAddresses[ind][5].trim()+']').attr("selected", "selected");
+  document.getElementById("shipping-form-zipcode").value = shippingAddresses[ind][6].trim();
+}
+
+function displayBillingAddress(index) {
+  var ind = index - 1;
+
+  document.getElementById("billing-form-name").value = billingAddresses[ind][0].trim();
+  document.getElementById("billing-form-address").value = billingAddresses[ind][1].trim();
+  document.getElementById("billing-form-address2").value = billingAddresses[ind][2].trim();
+  document.getElementById("billing-form-address3").value = billingAddresses[ind][3].trim();
+  document.getElementById("billing-form-city").value = billingAddresses[ind][4].trim();
+  document.getElementById("billing-form-state").value = billingAddresses[ind][5].trim();
+  //$('#billing-form-state option[value='+billingAddresses[ind][5].trim()+']').attr("selected", "selected");
+  document.getElementById("billing-form-zipcode").value = billingAddresses[ind][6].trim();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////
+// Find Minimum for the order //
+////////////////////////////////
+function employeeDiscount()
+{
+  username = localStorage.getItem("username");
+  usernameSplit = username.split("");
+  employee = usernameSplit.slice(0,3).join("");
+}
+
+function minimumTotal()
+{ 
+  newCustomer = localStorage.getItem('newCustomer');
+  orderAmt = cartHeaderFields[22].trim();
+  orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
+
+  if ( (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200) && employee !== "CCA") {
+    $("#myButton").hide();
+    if (newCustomer === "true") {
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $200 for new customers.</h2>';
+    }
+    if (newCustomer === "false") {
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
+    }
+  } else {
+   // if ( hideCC === true) {
+   //   $("#myButton").show();
+   // }
+  }
+}
+
 bootstrap_alert = function () {};
 bootstrap_alert.warning = function (message, alert, timeout) {
     $('<div id="floating_alert" class="alert alert-' + alert + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '&nbsp;&nbsp;</div>').appendTo('body');
@@ -847,3 +1065,4 @@ function showAlert() {
     // available: success, info, warning, danger
 
 }
+
