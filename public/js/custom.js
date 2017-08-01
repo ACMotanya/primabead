@@ -344,10 +344,18 @@ function cartHeader(callback)
 
         if ( window.location.hash === "#cart") {
           $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
+          //Add the shipping cost. Depending on the Grand Total.
+          if ( parseInt(cartHeaderFields[22]) > 25 ){
+            freeShip = true;
+            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no="+ session_no +"&misc_amt1=0.00");
+          } else {
+            freeShip = false;
+            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no="+ session_no +"&misc_amt1=5.00");
+          }
         }
         if ( window.location.hash === "#checkout" ) {
           $(".showTotal").html('$'+cartHeaderFields[22].trim());
-          console.log(cartHeaderFields);
+          console.log(cartHeaderFields[28]);
           document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
           document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
           document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
@@ -454,6 +462,62 @@ function cartHelper()
     html.push(item);
   }
   $("div.cart-products").append(html2.join(''));
+}
+
+
+
+/////////////////////////
+// Credit Card Process //
+/////////////////////////
+function creditCard(n)
+{
+  var neworder;
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIORDLST",
+      session_no: session_no
+    },
+    success: function(response) {
+      openlines = response.split("\n");
+      if ( n === 1 ) {
+        numberOfOrders = openlines.length;
+      }
+      newNumberOfOrders = openlines.length;
+
+      if (numberOfOrders != newNumberOfOrders) {
+        hideCC = true;
+        orders = [];
+        for (i=1; i< openlines.length - 1; i++) {
+          fields = openlines[i].split("|");
+          orders.push(fields);
+        }
+        orders = orders.sort(function(a, b) {
+          return a[1] > b[1] ? -1 : 1;
+        });
+        newOrder = orders[0][0];
+        $( "#success" ).click();
+        $("#successMessage").empty();
+       	var message =  '<h4 style="font-family: Lato;">Your order # is: ' + newOrder + '</h4>';
+            message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
+            message += '<p class="nobottommargin">Primabead values your business and is continuously looking for ways to better satisfy their customers. Please share with us if there is a way we can serve you better.</p>';
+
+        document.getElementById("successMessage").innerHTML += message;
+
+        windowHash("orders");
+        return $.get("https://netlink.laurajanelle.com:444/mailer/prima_order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
+
+      } else {
+        return setTimeout(function(){ creditCard(n+1); }, 3000);
+      }
+    }
+  });
+}
+
+function findOrderSendEmail()
+{
+  
 }
 
 /////////////////////////////////////
@@ -643,16 +707,18 @@ function checkoutPage()
 
   document.getElementById("creditcard").src="https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
-  $("#myButton").click(function() {
-    var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
-    if (hasErrors) {
-      alert('Shipping address form has errors.');
+  $("#myButton").click(function(e) {
+    $("#billingForm, #shippingForm").validate();
+    var isBillValid = $("#billingForm").valid();
+    var isShipValid = $("#shippingForm").valid();
+    if (!isBillValid || !isShipValid) {
+        e.preventDefault();
+        alert("Address forms have errors");
     } else {
-      hideCC = false;
       saveAddresses();
-      creditCard(1);
       $( "#creditcard" ).slideDown( "slow" );
       $("#myButton").hide();
+      creditCard(1);
     }
   });
 }
@@ -1066,3 +1132,18 @@ function showAlert() {
 
 }
 
+/*
+		<script>
+			$().ready(function () {
+        $("#billingForm, #shippingForm").validate();
+        var isBillValid = $("#billingForm").valid();
+        var isShipValid = $("#shippingForm").valid();
+        if (!isBIllValid || !isShipValid) {
+            e.preventDefault();
+            alert("Address forms have errors");
+        } else {
+
+        }
+			});
+		</script>
+*/
