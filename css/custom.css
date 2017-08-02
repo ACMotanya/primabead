@@ -1,8 +1,7 @@
-/* Add here all your CSS customizations */
-
+/* CSS Customizations */
 
 .client img {
-	max-width: 80% !important;
+    max-width: 80% !important;
 }
 
 .tabs.product-tabs.tabs-left .tab-content {

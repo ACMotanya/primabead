@@ -262,17 +262,9 @@ function addItemDetailView()
 /////////////////////////////////////////
 // SUBROUTINE - REMOVE ITEMS FROM CART //
 /////////////////////////////////////////
-function removeItemGeneric(session_no, line_no)
+function removeItem(session_no, line_no)
 {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
-}
-//////////////////////////////////
-  // REMOVE ITEMS FROM CART //
-//////////////////////////////////
-function removeItem(clicked_id)
-{
-  line_no = clicked_id;
-  removeItemGeneric(session_no, line_no);
   cart();
   return false;
 }
@@ -306,13 +298,13 @@ function updateCart()
     var stockNumber = $(this).find('td.product-image-td a').attr('title');
     var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
     
-    removeItemGeneric(session_no, line_no);
+    removeItem(session_no, line_no);
 
     if (!shoppingCart.hasOwnProperty(stockNumber)) {
       shoppingCart[stockNumber] = [qty, line_no];
     } else {
       shoppingCart[stockNumber][0] += qty;
-      removeItemGeneric(session_no, shoppingCart[stockNumber][1]); 
+      removeItem(session_no, shoppingCart[stockNumber][1]); 
     }
     
   });
@@ -436,14 +428,14 @@ function cartHelper()
   if ( cartitems.length > 2 ) {
     for (i=1; i<cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem  = '<div class="product product-sm"><a href="#" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + 'mini" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
+      miniitem  = '<div class="product product-sm"><a href="#" onclick="removeItem(\''+session_no+'\', \''+data[1].replace(/\s+/g,'')+'\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
       miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="Product Name"></a></figure>';
       miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g,'') + ' X <span class="product-price">$' + data[7].substring(0, data[7].length - 3).trim() + '</span></div></div></div>';
 
       html2.push(miniitem);
       
       if ( window.location.hash === "#cart" ) {
-        listitem =  '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '"><i class="fa fa-times"></i></a></td>';
+        listitem =  '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(\''+session_no+'\', \''+data[1].replace(/\s+/g,'')+'\'); return false;" id="' + data[1].replace(/\s+/g,'') + '"><i class="fa fa-times"></i></a></td>';
         listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="' + data[2].replace(/\s+/g,'') + '"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g,'') + '" title="Product Name">' + data[3] + '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
         listitem += '<input type="button" class="qty-dec-btn" title="Dec" value="-" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this);" />';
@@ -566,8 +558,7 @@ function whatColor(colorCode)
       break;
     case "20": color = "Mulitcolored";
       break;
-    default:
-    color = "N/A";
+    default:   color = "N/A";
   }
   return color;
 }
