@@ -507,9 +507,36 @@ function creditCard(n)
   });
 }
 
-function findOrderSendEmail()
+function accountDetails() 
 {
-  
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIACCTINFO",
+      user: username},
+    success: function(response) {
+
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      $('#account-details, #contact-information').empty();
+      for (i=0; i<lines.length - 1; i++) {
+        details = lines[i].split("|");
+
+
+         $('#contact-information').html('<strong>Customer Name:</strong> '+details[2]+'<br><strong>Email Address:</strong> '+details[3]+'<br><strong>Phone Number:</strong>'+details[4]);
+     //   line += '<tr><td>Customer Name</td><td id="cust_name">'+details[2]+'</td></tr>';
+    //    line += '<tr><td>Email Address</td><td id="email_addr">'+details[3]+'</td></tr>';
+    //    line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
+         $('#account-details').html('<strong>Username:</strong> '+details[0]+'<br><strong>Customer Number:</strong> '+details[1]+'<br><strong>Session Number:</strong> '+session_no);
+      //  line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
+      //  line += '<tr><td>Customer Number</td><td id="cust_no">'+details[1]+'</td></tr>';
+      //  line += '<tr><td>Current Session Number</td><td>'+session_no+'</td></tr>';
+      //  document.getElementById("accountDetails").innerHTML += line;
+      }
+    }
+  });
 }
 
 /////////////////////////////////////
@@ -755,10 +782,10 @@ function whichPage()
 
 
 
-    case '#profile' :
+    case '#dashboard' :
       window.scrollTo(0, 0);
-      $('#profile').show();
-      username = localStorage.getItem('username').toUpperCase();
+      $('#dashboard').show();
+      //username = localStorage.getItem('username').toUpperCase();
       accountDetails();
       $("#myButtonProfile").click(function() {
         var hasErrors = $('#shipping-form-profile').validator('validate').has('.has-error').length;
