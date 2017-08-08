@@ -373,12 +373,16 @@ function cartHeader(callback)
             $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
           }
         }
+        if ( window.location.hash === "#dashboard" ) {
+          $("#default-billing-address").html(cartHeaderFields[3].trim() + cartHeaderFields[4].trim() + cartHeaderFields[5].trim() + ', ' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7].trim() + cartHeaderFields[8]);
+        }
       }
     },
     complete: function () {
       if (callback && typeof(callback) === "function") {
         callback();
       }
+      
     }
   });
   return false;
@@ -523,17 +527,9 @@ function accountDetails()
       $('#account-details, #contact-information').empty();
       for (i=0; i<lines.length - 1; i++) {
         details = lines[i].split("|");
-
-
          $('#contact-information').html('<strong>Customer Name:</strong> '+details[2]+'<br><strong>Email Address:</strong> '+details[3]+'<br><strong>Phone Number:</strong>'+details[4]);
-     //   line += '<tr><td>Customer Name</td><td id="cust_name">'+details[2]+'</td></tr>';
-    //    line += '<tr><td>Email Address</td><td id="email_addr">'+details[3]+'</td></tr>';
-    //    line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
          $('#account-details').html('<strong>Username:</strong> '+details[0]+'<br><strong>Customer Number:</strong> '+details[1]+'<br><strong>Session Number:</strong> '+session_no);
-      //  line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
-      //  line += '<tr><td>Customer Number</td><td id="cust_no">'+details[1]+'</td></tr>';
-      //  line += '<tr><td>Current Session Number</td><td>'+session_no+'</td></tr>';
-      //  document.getElementById("accountDetails").innerHTML += line;
+
       }
     }
   });
@@ -1044,7 +1040,7 @@ function fillAddresses()
 
       billLines = response.split("\n");
 
-      for (i=1; i<billLines.length - 1; i++) {
+      for (i=1; i < billLines.length - 1; i++) {
         billflds = billLines[i].split("|");
         billingAddresses.push([billflds[1],billflds[2],billflds[3],billflds[4],billflds[5],billflds[6],billflds[7]]);
         document.getElementById("billing-address").innerHTML += '<option value="'+i+'">' + billflds[1] + ', ' + billflds[2] + '</option>';
@@ -1076,27 +1072,23 @@ function fillAddresses()
 
 function displayShippingAddress(index) {
   var ind = index - 1;
-
   document.getElementById("shipping-form-name").value = shippingAddresses[ind][0].trim(); 
   document.getElementById("shipping-form-address").value = shippingAddresses[ind][1].trim();
   document.getElementById("shipping-form-address2").value = shippingAddresses[ind][2].trim();
   document.getElementById("shipping-form-address3").value = shippingAddresses[ind][3].trim();
   document.getElementById("shipping-form-city").value = shippingAddresses[ind][4].trim();
   document.getElementById("shipping-form-state").value = shippingAddresses[ind][5].trim();
-  //$('#shipping-form-state option[value='+shippingAddresses[ind][5].trim()+']').attr("selected", "selected");
   document.getElementById("shipping-form-zipcode").value = shippingAddresses[ind][6].trim();
 }
 
 function displayBillingAddress(index) {
   var ind = index - 1;
-
   document.getElementById("billing-form-name").value = billingAddresses[ind][0].trim();
   document.getElementById("billing-form-address").value = billingAddresses[ind][1].trim();
   document.getElementById("billing-form-address2").value = billingAddresses[ind][2].trim();
   document.getElementById("billing-form-address3").value = billingAddresses[ind][3].trim();
   document.getElementById("billing-form-city").value = billingAddresses[ind][4].trim();
   document.getElementById("billing-form-state").value = billingAddresses[ind][5].trim();
-  //$('#billing-form-state option[value='+billingAddresses[ind][5].trim()+']').attr("selected", "selected");
   document.getElementById("billing-form-zipcode").value = billingAddresses[ind][6].trim();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
