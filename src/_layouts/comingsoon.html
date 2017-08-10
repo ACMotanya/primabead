@@ -4,16 +4,11 @@
   {% include head.html %}
 
   <body>
-    <div class="body">
-      {% include header.html %}
-      <div role="main" class="main">
+   
         {{ content }}
-      </div>
-
-
-       <div id="root"></div> 
-      {% include footer.html %}
-    </div>
+      
+     
+    
     <script type="text/javascript" src="{{ "/assets/javascripts/bundle.js" | prepend: site.baseurl }}" charset="utf-8"></script>
     <!-- Vendor -->
 		
@@ -43,13 +38,6 @@
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-7.js" | prepend: site.baseurl }}"></script>
-
-		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/dataTables.tableTools.min.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/datatables.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/admin.extension.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/examples.datatables.tabletools.js" | prepend: site.baseurl }}"></script>
 		<!--	<script src="{{ "/js/youmax.min.js" | prepend: site.baseurl }}"></script> -->
 	
 		<!--	<script src="{{ "/js/pinterest2.js" | prepend: site.baseurl }}"></script> -->
@@ -64,45 +52,7 @@
 		<!-- Theme Custom -->
 		<script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
 		
-		{% if page.url == "/store/" %}
-		<script defer>
-    $(window).on('hashchange', function() {
-      whichPage();
-    });
 
-    $(function() {
-      whichPage();
-  //    sessionNumber();
-			filterFunction2('APISTKLST','80010000','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
-			/*
-      $('nav ul li a').click(function() {
-        var $linkClicked = $(this).attr('href');
-        document.location.hash = $linkClicked;
-        if (!$(this).parent().hasClass("current")) {
-          $("nav ul li").removeClass("current");
-          $(this).parent().addClass("current");
-          return false;
-        } else {
-          return false;
-        }
-      });
-		//    shopPage();
-		//    newCustomerSession();
-		*/
-		});
-		
-</script>
-<!--
-<script>
-		$(document).ready (function(){
-			$(".fill-cart").hide();
-			$(".addtocart").click(function showAlert() {
-				$(".fill-cart").fadeTo(2000, 500).slideUp(500);   
-			});
-		});
-		</script>
-		-->
-		{% endif %} 
   </body>
 
 </html>

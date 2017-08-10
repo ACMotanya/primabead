@@ -15,8 +15,8 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "Primabead"
-description: "Primabead, dude"
-baseurl: "/primabead" # the subpath of your site, e.g. /blog
+description: "Primabead"
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.primabead.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 

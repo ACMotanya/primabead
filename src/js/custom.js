@@ -1,5 +1,6 @@
 var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
 var freeShip = false;
+var username = "ACEWORKS";
 
 ////////////////////////////////////////
 /// LOGIN INTO THE STORE AND VERIFY  ///
@@ -276,7 +277,6 @@ function removeItem(session_no, line_no)
 function deleteCart() 
 {
   if (confirm("Are you sure?") === true) {
-    console.log("You pressed OK!");
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no="+ session_no +"");
     cart();
   }  
@@ -357,13 +357,13 @@ function cartHeader(callback)
           document.getElementById("billing-form-state").value = cartHeaderFields[7].trim();
           document.getElementById("billing-form-zipcode").value = cartHeaderFields[8].trim();
           document.getElementById("billing-form-phone").value = cartHeaderFields[18].trim();
-
           document.getElementById("shipping-form-name").value = cartHeaderFields[9].trim();
           document.getElementById("shipping-form-address").value = cartHeaderFields[10].trim();
           document.getElementById("shipping-form-address2").value = cartHeaderFields[11].trim();
           document.getElementById("shipping-form-address3").value = cartHeaderFields[12].trim();
           document.getElementById("shipping-form-city").value = cartHeaderFields[13].trim();
           document.getElementById("shipping-form-state").value = cartHeaderFields[14].trim();
+          document.getElementById("shipping-form-zipcode").value = cartHeaderFields[15].trim();
           
           if ( parseInt(cartHeaderFields[22]) > 25 ){
             freeShip = true;
@@ -374,7 +374,8 @@ function cartHeader(callback)
           }
         }
         if ( window.location.hash === "#dashboard" ) {
-          $("#default-billing-address").html(cartHeaderFields[3].trim() + cartHeaderFields[4].trim() + cartHeaderFields[5].trim() + ', ' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7].trim() + cartHeaderFields[8]);
+          $("#default-billing-address").html(cartHeaderFields[3].trim() +' '+ cartHeaderFields[4].trim() +' '+ cartHeaderFields[5].trim() + '<br>' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7] +' '+ cartHeaderFields[8].trim());
+          $("#default-shipping-address").html(cartHeaderFields[10].trim() +' '+ cartHeaderFields[11].trim() +' '+ cartHeaderFields[12].trim() + '<br>' + cartHeaderFields[13].trim() + ', ' + cartHeaderFields[14] +' '+ cartHeaderFields[15].trim() + '<br><a href="#">Add Address</a>');
         }
       }
     },
@@ -702,6 +703,11 @@ function whatMetal(metalCode)
 /////////////////////////////////////////////
 
 
+function currentAsideLink(hash)
+{
+  $('ul.nav.nav-list li.' + hash + '-link').addClass("active");
+}
+
 function cart()
 {
   cartHeader();
@@ -746,10 +752,8 @@ function whichPage()
   var locale = hashy[0];
   $('div.store-page').hide();
   switch (locale) {
-    case '#products' :
-      $('#products').show();
+    case '#products': $('#products').show();
       break;
-
     case '#product-details' :
       $('#product-details').show();
       window.scrollTo(0, 0);
@@ -775,24 +779,16 @@ function whichPage()
       cart();
       checkoutPage();
       break;
-
-
-
     case '#dashboard' :
       window.scrollTo(0, 0);
+      currentAsideLink("dashboard");
       $('#dashboard').show();
       //username = localStorage.getItem('username').toUpperCase();
+      cart();
       accountDetails();
-      $("#myButtonProfile").click(function() {
-        var hasErrors = $('#shipping-form-profile').validator('validate').has('.has-error').length;
-        if (hasErrors) {
-          alert('Shipping address form has errors.');
-        } else {
-          saveAddressProfile();
-          $("#shipping-form-profile").find("input[type=text], textarea, input[type=number], input[type=email]").val("");
-        }
-      });
+      
       break;
+
     case '#invoices' :
       window.scrollTo(0, 0);
       $('#invoices').show();
@@ -810,10 +806,11 @@ function whichPage()
       break;
     case '#orders' :
       window.scrollTo(0, 0);
+      currentAsideLink("orders");
       $('#orders').show();
       $("#orders-details-title, #orders-details-table, #orders-line-item-title, #orders-line-item-table").hide();
-      openOrders();
-      orderHistory();
+   //   openOrders();
+   //   orderHistory();
       $('#searchForOrders').click(function(){
         var orderSearchNumber = $('#orderNumber').val();
         searchOrders(orderSearchNumber);
