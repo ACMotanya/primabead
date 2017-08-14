@@ -792,8 +792,9 @@ function whichPage()
     case '#invoices' :
       window.scrollTo(0, 0);
       $('#invoices').show();
+      currentAsideLink("invoices");
       $("#details-title, #details-table, #line-item-title, #line-item-table").hide();
-      orderHistory();
+    //  orderHistory();
       $('#searchForInvoices').click(function(){
         var invoiceSearchNumber = $('#invoiceNumber').val();
         searchInvoices(invoiceSearchNumber);
