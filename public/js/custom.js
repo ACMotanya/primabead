@@ -536,6 +536,98 @@ function accountDetails()
   });
 }
 
+
+
+/////////////////////////////////////////
+// OPEN ORDER API Function - APIORDLST //
+/////////////////////////////////////////
+function openOrders()
+{
+  var openlines,
+      openfldsArray = { "data": []},
+      openfldsArray_json,
+      fields;
+  $.ajax({
+   type: "GET",
+   url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APIORDLST",
+     session_no: session_no
+   },
+   success: function(response) {
+     openlines = response.split("\n");
+     // lines[0] is header row
+     // lines[1]+ are data lines
+
+     for (i=1; i < openlines.length - 1; i++) {
+       fields = openlines[i].split("|");
+       fields.splice(3, 1);
+       fields.splice(6, 1);
+       fields.splice(6, 1);
+       fields.splice(6, 1);
+       openfldsArray.data.push(fields);
+    }
+     openfldsArray = JSON.stringify(openfldsArray);
+     openfldsArray_json = $.parseJSON(openfldsArray);
+   },
+   complete: function(){
+     table1 = $('#datatable1').DataTable();
+     table1.clear();
+     table1.rows.add( openfldsArray_json.data ).draw();
+   }
+ });
+}
+
+
+
+/////////////////////////////////////////////
+// ORDER/INVOICE API Function - APIHISTLST //
+/////////////////////////////////////////////
+function orderHistory()
+{
+  var fldsArray = { "data": []},
+      lines,
+      fldsArray_json, 
+      flds;
+  $.ajax({
+   type: "GET",
+   url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APIHISTLST",
+     session_no: session_no
+   },
+   success: function(response) {
+     lines = response.split("\n");
+     // lines[0] is header row
+     // lines[1]+ are data lines
+     // $('#tableBody').empty();
+     for (i=1; i<lines.length - 1; i++) {
+       flds = lines[i].split("|");
+       flds.splice(5, 1);
+       flds.splice(5, 1);
+       flds.splice(9, 1);
+       flds.splice(7, 1);
+       flds.splice(7, 1);
+       flds.splice(7, 1);
+
+       fldsArray.data.push(flds);
+     }
+     fldsArray = JSON.stringify(fldsArray);
+     fldsArray_json = $.parseJSON(fldsArray);
+   },
+   complete: function(){
+     table = $('#datatable2').DataTable();
+     table.clear();
+     table.rows.add( fldsArray_json.data ).draw();
+
+     table5 = $('#datatable5').DataTable();
+     table5.clear();
+     table5.rows.add( fldsArray_json.data ).draw();
+   }
+ });
+}
+
+
 /////////////////////////////////////
   // SUBROUTINE TO FIND COLOR //
 /////////////////////////////////////
@@ -794,7 +886,7 @@ function whichPage()
       $('#invoices').show();
       currentAsideLink("invoices");
       $("#details-title, #details-table, #line-item-title, #line-item-table").hide();
-    //  orderHistory();
+      orderHistory();
       $('#searchForInvoices').click(function(){
         var invoiceSearchNumber = $('#invoiceNumber').val();
         searchInvoices(invoiceSearchNumber);
@@ -810,8 +902,8 @@ function whichPage()
       currentAsideLink("orders");
       $('#orders').show();
       $("#orders-details-title, #orders-details-table, #orders-line-item-title, #orders-line-item-table").hide();
-   //   openOrders();
-   //   orderHistory();
+      openOrders();
+      orderHistory();
       $('#searchForOrders').click(function(){
         var orderSearchNumber = $('#orderNumber').val();
         searchOrders(orderSearchNumber);

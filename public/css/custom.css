@@ -14,3 +14,7 @@
     right: 20px;
     z-index: 5000;
 }
+
+.dataTables_filter, .dataTables_paginate.paging_bs_normal {
+    float: right;
+}
