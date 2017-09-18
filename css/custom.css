@@ -19,4 +19,47 @@
     float: right;
 }
 
+#header .header-nav-main nav > ul > li.active > a, 
+header .header-nav-main nav > ul > li.active > a:hover {
+    color: #5BC1A5;
+    background-color: #fff;
+}
 
+#header .header-nav-main nav > ul > li:hover > a,
+#header .header-nav-main nav > ul > li:hover > a, #header .header-nav-main nav > ul > li.open > a, #header .header-nav-main nav > ul > li.active > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a,
+#header .header-nav-main nav > ul > li:hover > a:hover, #header .header-nav-main nav > ul > li:hover > a:focus, #header .header-nav-main nav > ul > li.open > a:hover, #header .header-nav-main nav > ul > li.open > a:focus, #header .header-nav-main nav > ul > li.active > a:hover, #header .header-nav-main nav > ul > li.active > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a:focus {
+	color: #fd6b54;
+	background-color: #fff;
+}
+
+.page-header {
+    background-color: #ffdcd2;
+}
+
+.page-header .breadcrumb > li + li:before {
+    color: #FD6B54;
+}
+
+#header .header-nav-main nav > ul > li > a.dropdown-toggle,
+#header .cart-dropdown .cart-dropdown-icon i, 
+.page-header .breadcrumb > li > a, .page-header .breadcrumb > li.active,
+#footer h1, #footer h2, #footer h3, #footer h4, #footer a,
+#footer .contact p, #footer .newsletter p.newsletter-info, 
+#footer .newsletter p, #footer .footer-copyright p {
+    color: #535353;
+}
+
+#footer .contact i {
+    color: #5BC1A5;
+}
+
+#footer .footer-copyright .social-icons li a:not(:hover) {
+    background-color: #535353;
+}
+
+html .btn-primary {
+    color: #535353;
+    background-color: transparent; 
+    border-color: #535353;
+    font-weight: 600;
+}

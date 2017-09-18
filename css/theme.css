@@ -1586,7 +1586,7 @@ html[dir="rtl"] #header .header-search .btn-default {
 
 /* Page Header */
 .page-header {
-	background-color: #7B6F9F;
+	background-color: #FFDCD2;
 	border-bottom: 5px solid #CCC;
 	border-top: 5px solid #384045;
 	margin: 0 0 35px 0;
@@ -2082,7 +2082,7 @@ aside ul.nav-list > li > a {
 
 /* Home Slider - Revolution Slider */
 .slider-container {
-	background: #7B6F9F;
+	background: #FFDCD2;
 	height: 500px;
 	overflow: hidden;
 	width: 100%;
@@ -2354,7 +2354,7 @@ section.section-custom-map-2 section.section {
 
 /* Home Intro */
 .home-intro {
-	background-color: #7B6F9F;
+	background-color: #FFDCD2;
 	margin-bottom: 60px;
 	overflow: hidden;
 	padding: 20px 0 10px 0;
@@ -3084,8 +3084,8 @@ html.dark .text-muted {
 }
 /* #Footer */
 #footer {
-	background: #A59DBE;
-	border-top: 4px solid #A59DBE;
+	background: #5BC1A5;
+	border-top: 4px solid #5BC1A5;
 	font-size: 0.9em;
 	margin-top: 50px;
 	padding: 70px 0 0;
