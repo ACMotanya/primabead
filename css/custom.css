@@ -40,7 +40,7 @@ header .header-nav-main nav > ul > li.active > a:hover {
     color: #FD6B54;
 }
 
-#header .header-nav-main nav > ul > li > a.dropdown-toggle,
+#header .header-nav-main nav > ul > li > a.dropdown-toggle, #header .header-nav-main nav > ul > li > a,
 #header .cart-dropdown .cart-dropdown-icon i, 
 .page-header .breadcrumb > li > a, .page-header .breadcrumb > li.active,
 #footer h1, #footer h2, #footer h3, #footer h4, #footer a,
@@ -49,8 +49,8 @@ header .header-nav-main nav > ul > li.active > a:hover {
     color: #535353;
 }
 
-#footer .contact i {
-    color: #5BC1A5;
+#footer .contact i, html .text-color-primary {
+    color: #5BC1A5 !important;
 }
 
 #footer .footer-copyright .social-icons li a:not(:hover) {
@@ -62,4 +62,8 @@ html .btn-primary {
     background-color: transparent; 
     border-color: #535353;
     font-weight: 600;
+}
+
+.form-section .form-action a:not(.btn) {
+    color: #85CCb9;
 }
