@@ -9,101 +9,146 @@ permalink: /register/
 		<div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
 			<div class="box-content">
 				<form action="#">
-					<h4 class="heading-primary text-uppercase mb-lg">PERSONAL INFORMATION</h4>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="font-weight-normal">Name <span class="required">*</span></label>
-								<input id="create-contactname" type="text" class="form-control" required>
+					<div id="newCustomer">
+						<h4 class="heading-primary text-uppercase mb-lg">PERSONAL INFORMATION</h4>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="font-weight-normal">Name <span class="required">*</span></label>
+									<input id="create-contactname" type="text" class="form-control" required>
+								</div>
+
+								<div class="form-group">
+									<label class="font-weight-normal">Email Address <span class="required">*</span></label>
+									<input id="create-email" type="email" class="form-control" required>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="font-weight-normal">Phone <span class="required">*</span></label>
+											<input id="create-phone" minlength="10" type="number" class="form-control" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="font-weight-normal">Fax</label>
+											<input id="create-fax" type="number" class="form-control">
+										</div>
+									</div>
+								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="font-weight-normal">Email Address <span class="required">*</span></label>
-								<input id="create-email" type="email" class="form-control" required>
-							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-6 col-md-6">
 								<div class="form-group">
-									<label class="font-weight-normal">Phone <span class="required">*</span></label>
-									<input id="create-phone" type="number" class="form-control" required>
+									<label class="font-weight-normal">Address <span class="required">*</span></label>
+									<input id="create-address" maxlength="90" type="text" class="form-control" required>
 								</div>
-							</div>
-							<div class="col-sm-6">
+
 								<div class="form-group">
-									<label class="font-weight-normal">Fax</label>
-									<input id="create-fax" type="number" class="form-control" required>
+									<label class="font-weight-normal"> City / Town <span class="required">*</span></label>
+									<input id="create-city" maxlength="30" type="text" class="form-control" required>
 								</div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="font-weight-normal">State <span class="required">*</span></label>
+											<input id="create-state" maxlength="2" type="text" class="form-control" required>
+										</div>
+									</div>
+			
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="font-weight-normal">Zip Code <span class="required">*</span></label>
+											<input id="create-zipcode" maxlength="10" type="text" class="form-control" required>
+										</div>
+									</div>
+								</div>	
 							</div>
 						</div>
-
-						<div class="col-sm-6 col-md-6">
-							<div class="form-group">
-								<label class="font-weight-normal">Address <span class="required">*</span></label>
-								<input id="create-address" type="text" class="form-control" required>
-							</div>
-
-							<div class="form-group">
-								<label class="font-weight-normal"> City / Town <span class="required">*</span></label>
-								<input id="create-city" type="text" class="form-control" required>
-							</div>
-
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class="font-weight-normal">State <span class="required">*</span></label>
-									<input id="create-state" type="text" class="form-control" required>
+						<!--
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="checkbox mb-xlg">
+									<label>
+										<input type="checkbox" value="1">
+											Sign Up for Newsletter
+									</label>
 								</div>
+								
 							</div>
-	
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class="font-weight-normal">Zip Code <span class="required">*</span></label>
-									<input type="text" class="form-control" required>
+						</div>
+						-->
+						<div class="row">
+							<div class="col-xs-12">
+								<p class="required mt-lg mb-none">* Required Fields</p>
+								<div class="form-action clearnpm fix mt-none">
+									<a href="{{ site.baseurl }}/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
+									<input type="submit" class="btn btn-primary" id="myNewCustomer" onclick="createCustomer();" value="Submit">
 								</div>
 							</div>
 						</div>
 					</div>
+				</form>
 
-					<div class="row">
-						<div class="col-xs-6">
-							<div class="checkbox mb-xlg">
-								<label>
-									<input type="checkbox" value="1">
-										Sign Up for Newsletter
-								</label>
-							</div>
-							<h4 class="heading-primary text-uppercase mb-lg">LOGIN INFORMATION</h4>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="font-weight-normal">Username <span class="required">*</span></label>
-								<input type="password" class="form-control" required>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="font-weight-normal">Password <span class="required">*</span></label>
-								<input type="password" class="form-control" required>
+				<form action="#">
+					<div id="newUser">
+						<div class="row">
+							<div class="col-sm-6">
+								<h4 class="heading-primary text-uppercase mb-lg">LOGIN INFORMATION</h4>
+								<div class="form-group">
+									<label class="font-weight-normal">Username <span class="required">*</span></label>
+									<input id="create-user-name" type="text" class="form-control" required>
+								</div>
 							</div>
 						</div>
 
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="font-weight-normal">Confirm Password <span class="required">*</span></label>
-								<input type="password" class="form-control" required>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="font-weight-normal">Password <span class="required">*</span></label>
+									<input id="create-user-password" type="password" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="font-weight-normal">Confirm Password <span class="required">*</span></label>
+									<input id="create-user-password-check" type="password" class="form-control" required>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<p class="required mt-lg mb-none">* Required Fields</p>
-							<div class="form-action clearfix mt-none">
-								<a href="{{ site.baseurl }}/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
-								<input type="submit" class="btn btn-primary" value="Submit">
+
+						<div class="row" style="display: none">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="font-weight-normal">User Customer Number <span class="required">*</span></label>
+									<input id="create-user-number" type="number" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="font-weight-normal">User Email <span class="required">*</span></label>
+									<input id="create-user-email" type="email" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="font-weight-normal">User Contact Name<span class="required">*</span></label>
+									<input id="create-user-contactname" type="text" class="form-control" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<p class="required mt-lg mb-none">* Required Fields</p>
+								<div class="form-action clearnpm fix mt-none">
+									<a href="{{ site.baseurl }}/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
+									<input type="submit" class="btn btn-primary" id="myNewUser" onclick="createUser();" value="Submit">
+								</div>
 							</div>
 						</div>
 					</div>

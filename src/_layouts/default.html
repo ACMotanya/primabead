@@ -64,6 +64,14 @@
 		<!-- Theme Custom -->
 		<script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
 		
+
+		{% if page.url == "/register/" %}
+		<script defer>
+		//$("#newUser").hide();
+		</script>
+		
+		{% endif %}
+
 		{% if page.url == "/store/" %}
 		<script defer>
     $(window).on('hashchange', function() {
