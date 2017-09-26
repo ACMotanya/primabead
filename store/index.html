@@ -1001,7 +1001,6 @@
 </div>
 
 
-
 <div id="product-details" class="container store-page">
 	<div class="product-view">
 		<div class="product-essential">
@@ -2298,20 +2297,15 @@
 
 <script>
 	(function($) {
+		'use strict';
+		var datatableInit = function() {
+			$('#datatable-default, #datatable-default-1').dataTable();
+		};
 
-	'use strict';
-
-	var datatableInit = function() {
-
-		$('#datatable-default, #datatable-default-1').dataTable();
-
-	};
-
-	$(function() {
-		datatableInit();
-	});
-
-}).apply(this, [jQuery]);
+		$(function() {
+			datatableInit();
+		});
+	}).apply(this, [jQuery]);
 </script>
       </div>
 
@@ -2477,6 +2471,9 @@
 		<!-- Theme Custom -->
 		<script src="/primabead/js/custom.js"></script>
 		
+
+		
+
 		
 		<script defer>
     $(window).on('hashchange', function() {

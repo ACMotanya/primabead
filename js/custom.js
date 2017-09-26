@@ -2,6 +2,124 @@ var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
 var freeShip = false;
 var username = "ACEWORKS";
 
+
+/////////////////////////////////////////
+        // create new customer //
+/////////////////////////////////////////
+
+function createCustomer()
+{
+  var createcompanyname = $("#create-contactname").val();
+  var createcontactname = $("#create-contactname").val();
+  var createaddress1    = "";
+  var createaddress2    = "";
+  var createaddress3    = "";
+  var createcity        = $("#create-city").val();
+  var createstate       = $("#create-state").val();
+  var createzipcode     = $("#create-zipcode").val();
+  // var createcountry     = $("#create-country").val();
+  var createemail       = $("#create-email").val();
+  var createphone       = $("#create-phone").val();
+  var createfax         = $("#create-fax").val();
+  var addressArray = [];
+  if($("#create-address").val()) {
+    addressArray = $("#create-address").val().match(/.{1,30}/g);
+    if (addressArray[0] && typeof(addressArray[0]) === "string") {
+      createaddress1 = addressArray[0];
+    }
+    if (addressArray[1] && typeof(addressArray[1]) === "string") {
+      createaddress2 = addressArray[1];
+    }
+    if (addressArray[2] && typeof(addressArray[2]) === "string") {
+      createaddress3 = addressArray[2];
+    }
+  }
+
+  $.ajax({
+   type: "GET",
+   url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APINEWCUST",
+     cust_name: createcompanyname,
+     address1: createaddress1,
+     address2: createaddress2,
+     address3: createaddress3,
+     city: createcity,
+     state: createstate,
+     zip: createzipcode,
+     contact_name: createcontactname,
+     phone: createphone,
+     email: createemail,
+     fax: createfax,
+     country: "US", 
+     loc_no: "700"
+   },
+   success: function(response) {
+     if (response.length <= 10) {
+       alert("An error occured, please try again.");
+     } else {
+       var newCustomerNumber = response;
+       $("#newCustomer").hide();
+       $("#newUser").show();
+       document.getElementById("create-user-number").value = newCustomerNumber.trim();
+       document.getElementById("create-user-email").value = createemail.trim();
+       document.getElementById("create-user-contactname").value = createcompanyname.trim();
+     }
+   }
+ });
+}
+
+
+
+/////////////////////////////////////////
+//////////// Create New User ////////////
+/////////////////////////////////////////
+function createUser()
+{
+  var newUserName     = $("#create-user-name").val();
+  var userPassword    = $("#create-user-password").val();
+  var userPassword2   = $("#create-user-password-check").val();
+  var userNumber      = $("#create-user-number").val();
+  var userEmail       = $("#create-user-email").val();
+  var userContactName = $("#create-user-contactname").val();
+  
+  if (userPassword != userPassword2) { 
+    alert("Your password and confirmation password do not match.");
+    $("#create-user-password").focus();
+    return false; 
+ }
+
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ newUserName.toUpperCase() +"", function( data ) {
+    if ( data.length > 4 ) {
+      alert("Pick a different username.");
+    } else {
+      $.ajax({
+       type: "GET",
+       url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+       data: {
+         request_id: "APINEWUSER",
+         new_username: newUserName,
+         new_password: userPassword,
+         cust_no: userNumber,
+         contact_name: userContactName,
+         email: userEmail,
+         loc_no: "700"
+       },
+       success: function(response) {
+         if ( response === response.toUpperCase() ) {
+           alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
+           $.get("https://netlink.laurajanelle.com:444/mailer/prima_logincred.php?username="+ newUserName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
+         } else {
+           alert("User not created, try again.");
+         }
+       }
+     });
+   }
+  });
+}
+
+
+
 ////////////////////////////////////////
 /// LOGIN INTO THE STORE AND VERIFY  ///
 ////////////////////////////////////////
@@ -34,7 +152,7 @@ function login()
      $.ajax({
       type: "GET",
       url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-      data: {request_id: "APICLOGIN", username: username, password: password, loc_no: 800},
+      data: {request_id: "APICLOGIN", username: username, password: password, loc_no: "700"},
       async: false,
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
@@ -1218,12 +1336,9 @@ function minimumTotal()
 bootstrap_alert = function () {};
 bootstrap_alert.warning = function (message, alert, timeout) {
     $('<div id="floating_alert" class="alert alert-' + alert + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '&nbsp;&nbsp;</div>').appendTo('body');
-
-
     setTimeout(function () {
         $(".alert").alert('close');
     }, timeout);
-
 };
 
 function showAlert() {
