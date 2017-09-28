@@ -183,7 +183,7 @@
 												<div class="col-md-12">
 													<div class="row">
 														<div class="col-md-2">													
-															<a href="/primabead/store/#products" class="dropdown-mega-sub-title">Programs</a>
+															<a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','','','','','',session_no,'700');" class="dropdown-mega-sub-title">Programs</a>
 															<ul class="dropdown-mega-sub-nav">
 																<li><a href="/primabead/store/#products">DC Comics</a></li>
 																<li><a href="/primabead/store/#products">Swarovski</a></li>
@@ -194,7 +194,7 @@
 															</ul>
 														</div>
 														<div class="col-md-2">
-															<a href="/primabead/store/#products" class="dropdown-mega-sub-title">Finished Jewelry</a>
+															<a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','90020300','','','','',session_no,'900');" class="dropdown-mega-sub-title">Finished Jewelry</a>
 															<ul class="dropdown-mega-sub-nav">
 																<li><a href="/primabead/store/#products">Necklaces</a></li>
 																<li><a href="/primabead/store/#products">Earrings</a></li>
@@ -1020,9 +1020,6 @@
 </div>
 
       </div>
-
-
-      <!--<div id="root"></div>-->
       <footer id="footer">
 <!--(remove-empty-lines-end)-->
   <div class="container">
@@ -1133,9 +1130,8 @@
 </footer>
 
     </div>
-    <script type="text/javascript" src="/primabead/assets/javascripts/bundle.js" charset="utf-8"></script>
-    <!-- Vendor -->
-		
+ 
+    <!-- Vendor -->		
 		<script src="/primabead/vendor/jquery.appear/jquery.appear.min.js"></script>
 		<script src="/primabead/vendor/jquery.easing/jquery.easing.min.js"></script>
 		<script src="/primabead/vendor/jquery-cookie/jquery-cookie.min.js"></script>
@@ -1152,27 +1148,26 @@
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="/primabead/js/theme.js"></script>
-
-
 		<script src="/primabead/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 		<script src="/primabead/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
 		<!-- Current Page Vendor and Views -->
 		<script src="/primabead/js/views/view.contact.js"></script>
 		<script src="/primabead/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+
 		<!-- Demo -->
 		<script src="/primabead/js/demos/demo-shop-7.js"></script>
-
 		<script src="/primabead/js/select2.js"></script>
 		<script src="/primabead/js/jquery.datatables.js"></script>
+		<script src="/primabead/js/jquery.isotope.js"></script>
 		<script src="/primabead/js/dataTables.tableTools.min.js"></script>
 		<script src="/primabead/js/datatables.js"></script>
 		<script src="/primabead/js/admin.extension.js"></script>
 		<script src="/primabead/js/examples.datatables.tabletools.js"></script>
 		<script src="/primabead/js/youmax.min.js"></script>
-	
+		<!--
 		<script src="/primabead/js/pinterest2.js"></script> 
-
+		-->
 		<!-- Theme Initialization Files -->
 		<script src="/primabead/js/theme.init.js"></script>
 
@@ -1182,6 +1177,8 @@
 		<script src="/primabead/vendor/elevatezoom/jquery.elevatezoom.js"></script>
 		<!-- Theme Custom -->
 		<script src="/primabead/js/custom.js"></script>
+		
+
 		
 
 		

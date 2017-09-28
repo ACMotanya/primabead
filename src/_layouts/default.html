@@ -9,14 +9,10 @@
       <div role="main" class="main">
         {{ content }}
       </div>
-
-
-      <!--<div id="root"></div>-->
       {% include footer.html %}
     </div>
-    <script type="text/javascript" src="{{ "/assets/javascripts/bundle.js" | prepend: site.baseurl }}" charset="utf-8"></script>
-    <!-- Vendor -->
-		
+ 
+    <!-- Vendor -->		
 		<script src="{{ "/vendor/jquery.appear/jquery.appear.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery.easing/jquery.easing.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/jquery-cookie/jquery-cookie.min.js" | prepend: site.baseurl }}"></script>
@@ -33,27 +29,26 @@
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ "/js/theme.js" | prepend: site.baseurl }}"></script>
-
-
 		<script src="{{ "/vendor/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
 
 		<!-- Current Page Vendor and Views -->
 		<script src="{{ "/js/views/view.contact.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
+
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-7.js" | prepend: site.baseurl }}"></script>
-
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
+		<script src="{{ "/js/jquery.isotope.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/dataTables.tableTools.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/datatables.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/admin.extension.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/examples.datatables.tabletools.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/youmax.min.js" | prepend: site.baseurl }}"></script>
-	
+		<!--
 		<script src="{{ "/js/pinterest2.js" | prepend: site.baseurl }}"></script> 
-
+		-->
 		<!-- Theme Initialization Files -->
 		<script src="{{ "/js/theme.init.js" | prepend: site.baseurl }}"></script>
 
@@ -67,9 +62,18 @@
 
 		{% if page.url == "/register/" %}
 		<script defer>
-		//$("#newUser").hide();
+			$(document).ready(function () {
+				$("#newUser").hide();
+			});
+		</script>		
+		{% endif %}
+
+		{% if page.url == "/login/" %}
+		<script defer>
+			$(document).ready(function () {
+				login();
+			});
 		</script>
-		
 		{% endif %}
 
 		{% if page.url == "/store/" %}
@@ -100,16 +104,6 @@
 		});
 		
 		</script>
-		<!--
-		<script>
-		$(document).ready (function(){
-			$(".fill-cart").hide();
-			$(".addtocart").click(function showAlert() {
-				$(".fill-cart").fadeTo(2000, 500).slideUp(500);   
-			});
-		});
-		</script>
-		-->
 		{% endif %} 
   </body>
 
