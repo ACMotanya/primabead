@@ -36,7 +36,7 @@ header .header-nav-main nav > ul > li.active > a:hover {
     background-color: #ffdcd2;
 }
 
-.page-header .breadcrumb > li + li:before {
+.page-header .breadcrumb > li + li:before, .product-details-box .product-detail-info .product-price-box .product-price {
     color: #FD6B54;
 }
 
@@ -66,4 +66,8 @@ html .btn-primary {
 
 .form-section .form-action a:not(.btn) {
     color: #85CCb9;
+}
+
+.product-details-box .product-actions .addtocart { 
+    background-color: #5BC1A5;
 }
