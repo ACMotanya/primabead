@@ -191,7 +191,7 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
       loc_no: h
     },
     success: function (response) {
-      console.log(response);
+
       $('#display-products').empty();
       itemRender("display-products", response);
     }
@@ -935,6 +935,8 @@ function whatMetal(metalCode) {
 //////////////////////////////////////////////
   // Filter the Products on the Shop Page //
 //////////////////////////////////////////////
+
+/*
 function priceFilter() {
   var priceRangefrom = ( isNaN(parseFloat($("#min").val())) ? 1 : parseFloat($("#min").val()) );
   var priceRangeto   = ( isNaN(parseFloat($("#max").val())) ? 9999 : parseFloat($("#max").val()) );
@@ -962,7 +964,7 @@ var $container = $('#display-products');
 $container.isotope();
 // do stuff when checkbox change
 $('.filterbutton').on( 'change', function( event ) {
-  $container.isotope('destroy');
+ // $container.isotope('destroy');
   var checkbox = event.target;
 
   var $checkbox = $( checkbox );
@@ -1017,7 +1019,7 @@ function getComboFilter() {
 
   return comboFilter;
 }
-
+*/
 /////////////////////////////////////////////
 //  Hash loads Ajax. Let's Make this go faster.. //
 /////////////////////////////////////////////
