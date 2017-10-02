@@ -49,7 +49,8 @@ header .header-nav-main nav > ul > li.active > a:hover {
     color: #535353;
 }
 
-#footer .contact i, html .text-color-primary {
+#footer .contact i, html .text-color-primary, .product-details-box .product-detail-qty #product-vqty, 
+#header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-sub-nav > li > a, .panel-box a {
     color: #5BC1A5 !important;
 }
 
@@ -64,10 +65,25 @@ html .btn-primary {
     font-weight: 600;
 }
 
-.form-section .form-action a:not(.btn) {
+.form-section .form-action a:not(.btn), aside ul.nav-list > li.active > a {
     color: #85CCb9;
 }
 
-.product-details-box .product-actions .addtocart { 
+.product-details-box .product-actions .addtocart, .product .product-quickview { 
     background-color: #5BC1A5;
+}
+
+.product-actions a.addtocart:hover {
+    background-color: #5BC1A5 !important;
+}
+
+@media (min-width: 992px) {
+    #header .header-nav-main nav > ul > li > a {
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
+aside ul.nav-list > li.active > a:before {
+    border-left-color: #85CCB9;
 }
