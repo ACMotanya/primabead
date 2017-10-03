@@ -33,7 +33,7 @@ header .header-nav-main nav > ul > li.active > a:hover {
 }
 
 .page-header {
-    background-color: #ffdcd2;
+    background-color: #f1f1f1;
 }
 
 .page-header .breadcrumb > li + li:before, .product-details-box .product-detail-info .product-price-box .product-price {
@@ -50,7 +50,8 @@ header .header-nav-main nav > ul > li.active > a:hover {
 }
 
 #footer .contact i, html .text-color-primary, .product-details-box .product-detail-qty #product-vqty, 
-#header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-sub-nav > li > a, .panel-box a {
+#header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-sub-nav > li > a, .panel-box a,
+.cart-table tbody tr td.product-name-td h2 a, .edit-qty, .text-primary, .btn-remove, .form-col .expand-plus, .list-contact li i {
     color: #5BC1A5 !important;
 }
 
@@ -70,12 +71,10 @@ html .btn-primary {
 }
 
 .product-details-box .product-actions .addtocart, .product .product-quickview { 
-    background-color: #5BC1A5;
+    color: #5BC1A5;
+    background-color: #DCF3ED;
 }
 
-.product-actions a.addtocart:hover {
-    background-color: #5BC1A5 !important;
-}
 
 @media (min-width: 992px) {
     #header .header-nav-main nav > ul > li > a {
@@ -86,4 +85,9 @@ html .btn-primary {
 
 aside ul.nav-list > li.active > a:before {
     border-left-color: #85CCB9;
+}
+
+.sidebar.shop-sidebar .filter-price .filter-price-details .btn { 
+    background-color: #FFDCD2;
+    color: rgb(242,107,86);
 }
