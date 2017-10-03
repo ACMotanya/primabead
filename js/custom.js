@@ -173,6 +173,18 @@ function login() {
 
 
 
+////////////////////////////
+// To Populate Shop Page  //
+////////////////////////////
+
+function fillShop()
+{
+  params = localStorage.getItem('shopParams').split(",");
+  return filterFunction2('APISTKLST',params[0],params[1],params[2],params[3],params[4],'E9DZRD9OM9GRZZEOTGLOED411','800');
+}
+
+
+
 //////////////////////////
 // Filter Function      //
 //////////////////////////
@@ -191,7 +203,6 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
       loc_no: h
     },
     success: function (response) {
-
       $('#display-products').empty();
       itemRender("display-products", response);
     }
