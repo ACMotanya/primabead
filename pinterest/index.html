@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="/primabead/css/theme-elements.css">
   <link rel="stylesheet" href="/primabead/css/theme-blog.css">
   <link rel="stylesheet" href="/primabead/css/theme-shop.css">
+  
+  <link rel="stylesheet" href="/primabead/css/datatables.css">  
 
   <!-- Current Page CSS -->
   <link rel="stylesheet" href="/primabead/vendor/rs-plugin/css/settings.css">
@@ -50,13 +52,31 @@
   <link rel="stylesheet" href="/primabead/css/youmax.min.css">
   
   <!--(remove-empty-lines-end)-->
+  <link href="/primabead/jplist/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.core.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.filter-toggle-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.history-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.list-grid-view.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Theme Custom CSS -->
+  <link rel="stylesheet" href="/primabead/css/extension.css">
   <link rel="stylesheet" href="/primabead/css/custom.css">
 
   <!-- Head Libs -->
   <script src="/primabead/vendor/modernizr/modernizr.min.js"></script>
   <script src="/primabead/vendor/jquery/jquery.min.js"></script>
+
+  <script src="/primabead/jplist/jplist.core.min.js"></script>
+  <script src="/primabead/jplist/jplist.history-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.filter-toggle-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.jquery-ui-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.pagination-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.sort-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.textbox-filter.min.js"></script>
+  <script src="/primabead/jplist/jplist.list-grid-view.min.js"></script>
+
   <link rel="canonical" href="http://localhost:4000/primabead/pinterest/">
 
   
@@ -165,7 +185,7 @@
                             <div class="col-md-12">
                               <div class="row">
                                 <div class="col-md-2">													
-                                  <a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','','','','','',session_no,'700');" class="dropdown-mega-sub-title">Programs</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010500','','','','']); fillShop();" class="dropdown-mega-sub-title">Programs</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="/primabead/store/#products">Jewelry Supplies</a></li>
                                     <li><a href="/primabead/store/#products">DC Comics</a></li>
@@ -182,7 +202,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','90020300','','','','',session_no,'900');" class="dropdown-mega-sub-title">Finished Jewelry</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010300','','','','']); fillShop();" class="dropdown-mega-sub-title">Finished Jewelry</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="/primabead/store/#products">Necklaces</a></li>
                                     <li><a href="/primabead/store/#products">Earrings</a></li>
@@ -195,7 +215,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Craft Basics</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010000','','','','']); fillShop();" class="dropdown-mega-sub-title">Craft Basics</a>
                                   <ul class="dropdown-mega-sub-nav">					
                                     <li><a href="demo-shop-7-category-4col.html">Transfers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Metal Chains</a></li>
@@ -213,7 +233,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="demo-shop-7-category-4col.html">Pliers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Cutters</a></li>
@@ -232,7 +252,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010700','','','','']); fillShop();" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="demo-shop-1.html">Beads</a></li>
                                     <li><a href="demo-shop-2.html">Bead Mixes</a></li>
@@ -248,7 +268,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Findings</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Findings</a>
                                   <ul class="dropdown-mega-sub-nav">                                    
                                     <li><a href="demo-shop-2.html">Crimp Tubes</a></li>
                                     <li><a href="demo-shop-3.html">Jump / Split Rings</a></li>

@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="/primabead/css/theme-elements.css">
   <link rel="stylesheet" href="/primabead/css/theme-blog.css">
   <link rel="stylesheet" href="/primabead/css/theme-shop.css">
+  
+  <link rel="stylesheet" href="/primabead/css/datatables.css">  
 
   <!-- Current Page CSS -->
   <link rel="stylesheet" href="/primabead/vendor/rs-plugin/css/settings.css">
@@ -50,13 +52,31 @@
   <link rel="stylesheet" href="/primabead/css/youmax.min.css">
   
   <!--(remove-empty-lines-end)-->
+  <link href="/primabead/jplist/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.core.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.filter-toggle-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.history-bundle.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
+  <link href="/primabead/jplist/jplist.list-grid-view.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Theme Custom CSS -->
+  <link rel="stylesheet" href="/primabead/css/extension.css">
   <link rel="stylesheet" href="/primabead/css/custom.css">
 
   <!-- Head Libs -->
   <script src="/primabead/vendor/modernizr/modernizr.min.js"></script>
   <script src="/primabead/vendor/jquery/jquery.min.js"></script>
+
+  <script src="/primabead/jplist/jplist.core.min.js"></script>
+  <script src="/primabead/jplist/jplist.history-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.filter-toggle-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.jquery-ui-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.pagination-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.sort-bundle.min.js"></script>
+  <script src="/primabead/jplist/jplist.textbox-filter.min.js"></script>
+  <script src="/primabead/jplist/jplist.list-grid-view.min.js"></script>
+
   <link rel="canonical" href="http://localhost:4000/primabead/store/">
 
   
@@ -165,7 +185,7 @@
                             <div class="col-md-12">
                               <div class="row">
                                 <div class="col-md-2">													
-                                  <a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','','','','','',session_no,'700');" class="dropdown-mega-sub-title">Programs</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010500','','','','']); fillShop();" class="dropdown-mega-sub-title">Programs</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="/primabead/store/#products">Jewelry Supplies</a></li>
                                     <li><a href="/primabead/store/#products">DC Comics</a></li>
@@ -182,7 +202,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/store/#products" onclick="filterFunction2('APISTKLST','90020300','','','','',session_no,'900');" class="dropdown-mega-sub-title">Finished Jewelry</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010300','','','','']); fillShop();" class="dropdown-mega-sub-title">Finished Jewelry</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="/primabead/store/#products">Necklaces</a></li>
                                     <li><a href="/primabead/store/#products">Earrings</a></li>
@@ -195,7 +215,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Craft Basics</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010000','','','','']); fillShop();" class="dropdown-mega-sub-title">Craft Basics</a>
                                   <ul class="dropdown-mega-sub-nav">					
                                     <li><a href="demo-shop-7-category-4col.html">Transfers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Metal Chains</a></li>
@@ -213,7 +233,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="demo-shop-7-category-4col.html">Pliers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Cutters</a></li>
@@ -232,7 +252,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80010700','','','','']); fillShop();" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
                                   <ul class="dropdown-mega-sub-nav">
                                     <li><a href="demo-shop-1.html">Beads</a></li>
                                     <li><a href="demo-shop-2.html">Bead Mixes</a></li>
@@ -248,7 +268,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-md-2">
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Findings</a>
+                                  <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Findings</a>
                                   <ul class="dropdown-mega-sub-nav">                                    
                                     <li><a href="demo-shop-2.html">Crimp Tubes</a></li>
                                     <li><a href="demo-shop-3.html">Jump / Split Rings</a></li>
@@ -559,132 +579,36 @@
 	</div>
 </section>
 
+
 <div id="products" class="container store-page">
-	<div class="row">
-		<div class="col-md-9 col-md-push-3">
-			<div class="toolbar mb-none">
-				<div class="sorter">
-					<!--
-					<div class="sort-by">
-						<label>Sort by:</label>
-						<select>
-							<option value="Position">Position</option>
-							<option value="Name">Name</option>
-							<option value="Price">Price</option>
-						</select>
-						<a href="#" title="Set Desc Direction">
-							<img src="../img/demos/shop/i_asc_arrow.gif" alt="Set Desc Direction">
-						</a>
-					</div>
-
-					<div class="view-mode">
-						<span title="Grid">
-							<i class="fa fa-th"></i>
-						</span>
-						<a href="#" title="List">
-							<i class="fa fa-list-ul"></i>
-						</a>
-					</div>
-					-->
-					<ul class="pagination">
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-					</ul>
-
-					<div class="limiter">
-						<label>Show:</label>
-						<select>
-							<option value="12">12</option>
-							<option value="24">24</option>
-							<option value="36">36</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<ul id="display-products" class="products-grid columns3">
-				<li>
-					<div class="product">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product1.jpg" alt="Product Name">
-								<img src="../img/demos/shop/products/product1-2.jpg" alt="Product Name" class="product-hover-image">
-							</a>
-
-							<a href="#" class="product-quickview">
-								<i class="fa fa-share-square-o"></i>
-								<span>Quick View</span>
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Blue Bead</a></h2>
-
-
-							<div class="product-price-box">
-
-								<span class="product-price">$89.00</span>
-							</div>
-
-							<div class="product-actions">
-
-								<a href="#" class="addtocart" title="Add to Cart">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Add to Cart</span>
-								</a>
-
-							</div>
-						</div>
-					</div>
-				</li>
-
-				<!--
-				<li>
-					<div class="product">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product9.jpg" alt="Product Name">
-							</a>
-
-							<a href="#" class="product-quickview">
-								<i class="fa fa-share-square-o"></i>
-								<span>Quick View</span>
-							</a>
-							<div class="product-label"><span class="new">New</span></div>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Pink Pearl</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:80%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$80.00</span>
-							</div>
-
-							<div class="product-actions">
-								<a href="#" class="addtowishlist" title="Add to Wishlist">
-									<i class="fa fa-heart"></i>
-								</a>
-								<a href="#" class="addtocart" title="Add to Cart">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Add to Cart</span>
-								</a>
-								<a href="#" class="comparelink" title="Add to Compare">
-									<i class="glyphicon glyphicon-signal"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</li>
-				-->
-			</ul>
-			
-			<div class="toolbar-bottom">
-				<div class="toolbar">
+	<div id="demo" class="box jplist">
+		
+		<div class="row">
+			<div class="col-md-9 col-md-push-3">
+				<div class="toolbar mb-none">
 					<div class="sorter">
+						
+						<div class="sort-by">
+							<label>Sort by:</label>
+							<select>
+								<option value="Position">Position</option>
+								<option value="Name">Name</option>
+								<option value="Price">Price</option>
+							</select>
+							<a href="#" title="Set Desc Direction">
+								<img src="../img/demos/shop/i_asc_arrow.gif" alt="Set Desc Direction">
+							</a>
+						</div>
+
+						<div class="view-mode">
+							<span title="Grid">
+								<i class="fa fa-th"></i>
+							</span>
+							<a href="#" title="List">
+								<i class="fa fa-list-ul"></i>
+							</a>
+						</div>
+				
 						<ul class="pagination">
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
@@ -701,292 +625,354 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
-		</div>
+				
 
-		<aside class="col-md-3 col-md-pull-9 sidebar shop-sidebar">
-			<div class="panel-group">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-category">
-								Categories
-							</a>
-						</h4>
+				<ul id="display-products" class="products-grid columns3">
+					<li>
+						<div class="product">
+							<figure class="product-image-area">
+								<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
+									<img src="../img/demos/shop/products/product1.jpg" alt="Product Name">
+									<img src="../img/demos/shop/products/product1-2.jpg" alt="Product Name" class="product-hover-image">
+								</a>
+								<a href="#" class="product-quickview">
+									<i class="fa fa-share-square-o"></i>
+									<span>Quick View</span>
+								</a>
+							</figure>
+							<div class="product-details-area">
+								<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Blue Bead</a></h2>
+								<div class="product-price-box"><span class="product-price">$89.00</span></div>
+								<div class="product-actions">
+									<a href="#" class="addtocart" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+								</div>
+							</div>
+						</div>
+					</li>				
+				</ul>
+
+				<div class="toolbar-bottom">
+					<div class="toolbar">
+						<div class="sorter">
+							<ul class="pagination">
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+
+							<div class="limiter">
+								<label>Show:</label>
+								<select>
+								<option value="12">12</option>
+								<option value="24">24</option>
+								<option value="36">36</option>
+							</select>
+							</div>
+						</div>
 					</div>
-					<div id="panel-filter-category" class="accordion-body collapse in">
-						<div class="panel-body">
+				</div>
+			</div>
+
+			<aside class="col-md-3 col-md-pull-9 sidebar shop-sidebar">
+
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-category">
+									Categories
+								</a>
+							</h4>
+						</div>
+						<div id="panel-filter-category" class="accordion-body collapse in">
+							<div class="panel-body">
+								<ul>
+									<li>
+										<a href="#">Programs</a>
+									</li>
+									<li>
+										<a href="#">Finished Jewelry</a>
+									</li>
+									<li>
+										<a href="#">Tools &amp; Storage</a>
+									</li>
+									<li>
+										<a href="#">Jewelry Supplies</a>
+									</li>
+									<li>
+										<a href="#">Beads &amp; Charms</a>
+									</li>
+									<li>
+										<a href="#">Findings</a>
+									</li>
+									<div class="checkbox-custom checkbox-red">
+										<input type="checkbox" checked="" id="checkboxExample2">
+										<label for="checkboxExample2">Checkbox Primary</label>
+									</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-function">
+									Function
+								</a>
+							</h4>
+						</div>
+						<div id="panel-filter-function" class="accordion-body collapse in">
+							<div class="panel-body">
+								<ul id="panel-filter-type">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-material">
+									Material
+								</a>
+							</h4>
+						</div>
+						<div id="panel-material" class="accordion-body collapse in">
+							<div class="panel-body">
+								<ul id="panel-filter-material">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-color">
+									color
+								</a>
+							</h4>
+						</div>
+						
+						<div id="panel-filter-color" class="accordion-body collapse in">
+							<div class="panel-body">
+								<ul id="color-panel" class="configurable-filter-list filter-list-color">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-price">
+									Price
+								</a>
+							</h4>
+						</div>
+						<div id="panel-filter-price" class="accordion-body collapse in">
+							<div class="panel-body">
+								<div class="filter-price">
+									<div id="price-slider"></div>
+									<div class="filter-price-details">
+										<span>from</span>
+										<input type="text" id="price-range-low" class="form-control" placeholder="Min">
+										<span>to</span>
+										<input type="text" id="price-range-high" class="form-control" placeholder="Max">
+										<a href="#" class="btn btn-primary">FILTER</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="jplist-panel box panel-top">
+					
+						<!-- reset button -->
+						<button type="button" class="jplist-reset-btn" data-control-type="reset" data-control-name="reset" data-control-action="reset">
+							Reset &nbsp;
+							<i class="fa fa-share"></i>
+						</button>
+					
+						<!-- items per page dropdown -->
+						<div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
 							<ul>
-								<li><a href="#">Programs</a></li>
-								<li><a href="#">Finished Jewelry</a></li>
-								<li><a href="#">Tools &amp; Storage</a></li>
-								<li><a href="#">Jewelry Supplies</a></li>
-								<li><a href="#">Beads &amp; Charms</a></li>
-								<li><a href="#">Findings</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-price">
-								Price
-							</a>
-						</h4>
-					</div>
-					<div id="panel-filter-price" class="accordion-body collapse in">
-						<div class="panel-body">
-							<div class="filter-price">
-								<div id="price-slider"></div>
-								<div class="filter-price-details">
-									<span>from</span>
-									<input type="text" id="price-range-low" class="form-control" placeholder="Min">
-									<span>to</span>
-									<input type="text" id="price-range-high" class="form-control" placeholder="Max">
-									<a href="#" class="btn btn-primary">FILTER</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-color">
-								color
-							</a>
-						</h4>
-					</div>
-					<div id="panel-filter-color" class="accordion-body collapse in">
-						<div class="panel-body">
-							<ul class="configurable-filter-list filter-list-color">
 								<li>
-									<a href="#">
-										<span style="background-color: #000"></span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<span style="background-color: #21284f"></span>
-									</a>
+									<span data-number="20"> 20 per page </span>
 								</li>
 								<li>
-									<a href="#">
-										<span style="background-color: #272725"></span>
-									</a>
+									<span data-number="50"> 50 per page </span>
 								</li>
 								<li>
-									<a href="#">
-										<span style="background-color: #006b20"></span>
-									</a>
+									<span data-number="75" data-default="true"> 75 per page </span>
 								</li>
 								<li>
-									<a href="#">
-										<span style="background-color: #68686a"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #1736a9"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #f6edd1"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #a69172"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #d8c7a7"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #fd9904"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #f56ab8"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #442937"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #bd1721"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #1226ad"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #cbcbcb"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #c7b89a"></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span style="background-color: #fff"></span>
-									</a>
+									<span data-number="all"> View All </span>
 								</li>
 							</ul>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<!--
-			<h4>Featured</h4>
-			<div class="owl-carousel owl-theme" data-plugin-options="{'items':1, 'margin': 5, 'dots': false, 'nav': true}">
-				<div>
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product13.jpg" alt="Product Name">
-								<img src="../img/demos/shop/products/product13-2.jpg" alt="Product Name" class="product-hover-image">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - S</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:0%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$220.00</span>
-							</div>
+					
+						<!-- sort dropdown -->
+						<div class="jplist-drop-down" data-control-type="sort-drop-down" data-control-name="sort" data-control-action="sort">
+							<ul>
+								<li>
+									<span data-path="default">Sort by</span>
+								</li>
+								<li>
+									<span data-path=".title" data-order="asc" data-type="text">Title A-Z</span>
+								</li>
+								<li>
+									<span data-path=".title" data-order="desc" data-type="text">Title Z-A</span>
+								</li>
+								<li>
+									<span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span>
+								</li>
+								<li>
+									<span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span>
+								</li>
+								<li>
+									<span data-path=".like" data-order="asc" data-type="number" data-default="true">Likes asc</span>
+								</li>
+								<li>
+									<span data-path=".like" data-order="desc" data-type="number">Likes desc</span>
+								</li>
+							</ul>
 						</div>
-					</div>
-
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product14.jpg" alt="Product Name">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - XL</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:80%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$180.00</span>
-							</div>
+					
+						<!-- filter by title -->
+						<div class="text-filter-box">
+							<i class="fa fa-search  jplist-icon"></i>
+					
+							<!--[if lt IE 10]>
+																<div class="jplist-label">Filter by Title:</div>
+																<![endif]-->
+					
+							<input data-path=".title" type="text" value="" placeholder="Filter by Title" data-control-type="textbox" data-control-name="title-filter"
+								data-control-action="filter" />
 						</div>
-					</div>
-
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product15.jpg" alt="Product Name">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - 2XL</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:0%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$240.00</span>
-							</div>
+					
+						<!-- filter by description -->
+						<div class="text-filter-box">
+							<i class="fa fa-search  jplist-icon"></i>
+					
+							<!--[if lt IE 10]>
+																<div class="jplist-label">Filter by Description:</div>
+																<![endif]-->
+					
+							<input data-path=".desc" type="text" value="" placeholder="Filter by Description" data-control-type="textbox" data-control-name="desc-filter"
+								data-control-action="filter" />
 						</div>
-					</div>
-				</div>
+						<div style="display: none;" class="jplist-group" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="themes"
+							data-path=".themes" data-logic="or">
+							<input data-path=".1" id="1" type="checkbox" />
+							<label for="1">1</label>
 
-				<div>
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product16.jpg" alt="Product Name">
-								<img src="../img/demos/shop/products/product16-2.jpg" alt="Product Name" class="product-hover-image">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - 3XL</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:60%"></div>
-								</div>
-							</div>
+							<input data-path=".2" id="2" type="checkbox" />
+							<label for="2">2</label>
 
-							<div class="product-price-box">
-								<span class="product-price">$220.00</span>
-							</div>
+							<input data-path=".3" id="3" type="checkbox" />
+							<label for="3">3</label>
+
+							<input data-path=".4" id="4" type="checkbox" />
+							<label for="4">4</label>
+							<input data-path=".5" id="5" type="checkbox" />
+							<label for="5">5</label>
+							<input data-path=".6" id="6" type="checkbox" />
+							<label for="6">6</label>
+							<input data-path=".7" id="7" type="checkbox" />
+							<label for="7">7</label>
+
+							<input data-path=".8" id="8" type="checkbox" />
+							<label for="8">8</label>
+
+							<input data-path=".9" id="9" type="checkbox" />
+							<label for="3">9</label>
+
+							<input data-path=".10" id="10" type="checkbox" />
+							<label for="10">10</label>
+
+							<input data-path=".11" id="11" type="checkbox" />
+							<label for="11">11</label>
+
+							<input data-path=".12" id="12" type="checkbox" />
+							<label for="12">12</label>
+
+							<input data-path=".13" id="13" type="checkbox" />
+							<label for="13">13</label>
+
+							<input data-path=".14" id="14" type="checkbox" />
+							<label for="14">14</label>
+
+							<input data-path=".15" id="15" type="checkbox" />
+							<label for="15">15</label>
+
+							<input data-path=".16" id="16" type="checkbox" />
+							<label for="16">16</label>
+
+							<input data-path=".17" id="17" type="checkbox" />
+							<label for="17">17</label>
+
+							<input data-path=".18" id="18" type="checkbox" />
+							<label for="18">18</label>
+
+							<input data-path=".19" id="19" type="checkbox" />
+							<label for="19">19</label>
+
+							<input data-path=".20" id="20" type="checkbox" />
+							<label for="22">20</label>
+
+							<input data-path=".21" id="21" type="checkbox" />
+							<label for="21">21</label>
+
+							<input data-path=".22" id="22" type="checkbox" />
+							<label for="22">22</label>
+
+							<input data-path=".23" id="23" type="checkbox" />
+							<label for="23">23</label>
+
+							<input data-path=".24" id="24" type="checkbox" />
+							<label for="24">24</label>
 						</div>
-					</div>
-
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product17.jpg" alt="Product Name">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - M</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:0%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$180.00</span>
-							</div>
+						<div style="" class="jplist-group" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="functions"
+							data-path=".functions" data-logic="or">
+							<input data-path=".100" id="100" type="checkbox" />
+							<label for="100">100</label>
+							<input data-path=".200" id="200" type="checkbox" />
+							<label for="1">1</label>
+							<input data-path=".300" id="300" type="checkbox" />
+							<label for="300">300</label>
+							<input data-path=".400" id="400" type="checkbox" />
+							<label for="400">400</label>
+							<input data-path=".500" id="500" type="checkbox" />
+							<label for="500">500</label>
+							<input data-path=".600" id="600" type="checkbox" />
+							<label for="600">600</label>
+							<input data-path=".700" id="700" type="checkbox" />
+							<label for="700">700</label>
+							<input data-path=".800" id="800" type="checkbox" />
+							<label for="800">800</label>
+							<input data-path=".900" id="900" type="checkbox" />
+							<label for="900">900</label>
+							<input data-path=".1000" id="1000" type="checkbox" />
+							<label for="1000">1000</label>
+							<input data-path=".1100" id="1100" type="checkbox" />
+							<label for="1100">1100</label>
+							<input data-path=".1200" id="1200" type="checkbox" />
+							<label for="1200">1200</label>
+							<input data-path=".1300" id="1300" type="checkbox" />
+							<label for="1300">1300</label>
+							<input data-path=".1400" id="1400" type="checkbox" />
+							<label for="1400">1400</label>
+							<input data-path=".1500" id="1500" type="checkbox" />
+							<label for="1400">1500</label>
+							<input data-path=".1600" id="1600" type="checkbox" />
+							<label for="1400">1600</label>
 						</div>
-					</div>
 
-					<div class="product product-sm">
-						<figure class="product-image-area">
-							<a href="demo-shop-7-product-details.html" title="Product Name" class="product-image">
-								<img src="../img/demos/shop/products/product13.jpg" alt="Product Name">
-							</a>
-						</figure>
-						<div class="product-details-area">
-							<h2 class="product-name"><a href="demo-shop-7-product-details.html" title="Product Name">Diamond Ring - XL</a></h2>
-							<div class="product-ratings">
-								<div class="ratings-box">
-									<div class="rating" style="width:80%"></div>
-								</div>
-							</div>
-
-							<div class="product-price-box">
-								<span class="product-price">$240.00</span>
-							</div>
-						</div>
 					</div>
-				</div>
-			</div>
-			-->
-		</aside>
+					
+			</aside>
+		</div>
 	</div>
 </div>
 
@@ -2470,9 +2456,10 @@
     });
 
     $(function() {
-      whichPage();
+			whichPage();
+			fillShop();
   //    sessionNumber();
-			filterFunction2('APISTKLST','80010000','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
+			//filterFunction2('APISTKLST','','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
 			/*
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
