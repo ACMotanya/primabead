@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="{{ "/css/theme-elements.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/theme-blog.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/theme-shop.css" | prepend: site.baseurl }}">
+  
+  <link rel="stylesheet" href="{{ "/css/datatables.css" | prepend: site.baseurl }}">  
 
   <!-- Current Page CSS -->
   <link rel="stylesheet" href="{{ "/vendor/rs-plugin/css/settings.css" | prepend: site.baseurl }}">
@@ -47,13 +49,31 @@
   <link rel="stylesheet" href="{{ "/css/youmax.min.css" | prepend: site.baseurl }}">
   
   <!--(remove-empty-lines-end)-->
+  <link href="{{ "/jplist/jplist.demo-pages.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.core.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.pagination-bundle.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.filter-toggle-bundle.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.history-bundle.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.textbox-filter.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
+  <link href="{{ "/jplist/jplist.list-grid-view.min.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" />
 
   <!-- Theme Custom CSS -->
+  <link rel="stylesheet" href="{{ "/css/extension.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl }}">
 
   <!-- Head Libs -->
   <script src="{{ "/vendor/modernizr/modernizr.min.js" | prepend: site.baseurl }}"></script>
   <script src="{{ "/vendor/jquery/jquery.min.js" | prepend: site.baseurl }}"></script>
+
+  <script src="{{ "/jplist/jplist.core.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.history-bundle.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.filter-toggle-bundle.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.jquery-ui-bundle.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.pagination-bundle.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.sort-bundle.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.textbox-filter.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/jplist/jplist.list-grid-view.min.js" | prepend: site.baseurl }}"></script>
+
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
   {% if jekyll.environment == 'production' and site.google_analytics %}

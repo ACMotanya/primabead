@@ -1,7 +1,16 @@
 var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
 var freeShip = false;
 var username = "ACEWORKS";
-var filters = {};
+var functiontype = [];
+var colors = [];
+var material = [];
+var colorDictionary = [
+    [""],["Silver", "#c0c0c0"],["Gold", "#ffd700"],["Black", "#000000"],["Blue", "#0000ff"],["Brown", "#A52A2A"],
+    ["Clear", "rgba(255,255,255,0)"],["Green", "#00ff00"],["Grey", "#808080"],["Opal", "#a9c6c2"],["Orange", "#FFA500"],
+    ["Pink", "#FFC0CB"],["Purple", "#800080"],["Rainbow", "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"],
+    ["Red", "#FF0000"],["Tan", "#D2B48C"],["Teal", "#008080"],["Turquoise", "#40E0D0"],["White", "#fff"],["Yellow", "#ffff00"],
+    ["Multi", "repeating-linear-gradient(red, yellow 10%, green 20%);"],["Copper", "#b87333"],["Rose Gold", "#b76e79"],["Antique Gold", "#D4AF37"],["Gunmetal", "#2c3539"]];
+
 
 
 /////////////////////////////////////////
@@ -176,7 +185,6 @@ function login() {
 ////////////////////////////
 // To Populate Shop Page  //
 ////////////////////////////
-
 function fillShop()
 {
   params = localStorage.getItem('shopParams').split(",");
@@ -184,11 +192,13 @@ function fillShop()
 }
 
 
-
 //////////////////////////
 // Filter Function      //
 //////////////////////////
 function filterFunction2(a, b, c, d, e, f, g, h) {
+  $('#demo').jplist({
+    command: 'empty'
+   });
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
@@ -203,6 +213,7 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
       loc_no: h
     },
     success: function (response) {
+      $('.jplist-reset-btn').click();
       $('#display-products').empty();
       itemRender("display-products", response);
     }
@@ -212,12 +223,18 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
 function itemRender(div, response) {
   lines = response.split("\n");
   lines.shift();
+ 
+  functiontype.length = 0;
+  material.length = 0;
+  colors.length = 0;
   if (lines.length <= 1) {
 
     document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
-    var html = [];
+    var $demo = $('#demo');
+    var items = [];
     var linesPlus = [];
+    $("#display-products").empty();
     for (i = 0; i < lines.length - 1; i++) {
       linesPlus.push(lines[i].split("|"));
     }
@@ -226,13 +243,55 @@ function itemRender(div, response) {
       var flds = linesPlus[i];
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
-      prod = '<li class="'+ flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
-      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2>';
+      prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
+      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="display: none;">' + flds[1] + '</p><p class="desc" style="">' + flds[2].trim() + '</p><p class="themes" style=""><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
-      html.push(prod);
+      items.push($(prod));
+     
+      listOfAttributes(functiontype, flds[9]);
+      listOfAttributes(material, flds[10]);
+      listOfAttributes(colors, flds[8]);
     }
-    document.getElementById(div).innerHTML += html.join('');
+   
+    $demo.jplist({
+      itemsBox: '#display-products',
+      itemPath: '.hope',
+      panelPath: '.jplist-panel'
+    });
+    $demo.jplist({
+      command: 'add',
+      commandData: {
+        $items: items
+      }
+    });
+  }
+  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
+  fillTypeField();
+}
+
+function fillTypeField() 
+{
+  functiontype.forEach(function (element) {
+    $('#panel-filter-type').append('<li><a href="#" onclick="$(\'#'+ element +'\').click();">'+ whatType(element) +'</a></li>');
+  });
+
+  material = material.filter(function(n){ return n !== ""; });
+  material.forEach(function (element) {
+    $('#panel-filter-material').append('<li><a href="#">'+ whatMetal(element) +'</a></li>');
+  });
+
+  colors = colors.filter(function(n){ return n !== ""; });
+  colors.forEach(function (element) {
+    $('#color-panel').append('<li><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ colorDictionary[element][0] +'" style="background: '+ colorDictionary[element][1] +'" onclick="$(\'#'+ element +'\').click();"><div class="checkbox-custom checkbox-'+ colorDictionary[element][0] +'"><input type="checkbox" checked=""></div></span></a></li>');
+  });
+  $('span').tooltip({}); 
+}
+
+function listOfAttributes(attr, field)
+{
+  if ( attr.indexOf(field.trim()) == -1 ) {
+    attr.push(field.trim());
   }
 }
 
@@ -753,28 +812,28 @@ function orderHistory() {
 function whatColor(colorCode) {
   switch (colorCode) {
     case "1":
-      color = "Silver";
+      color = ["Silver"];
       break;
     case "2":
-      color = "Gold";
+      color = ["Gold"];
       break;
     case "3":
-      color = "Black";
+      color = ["Black", "#000"];
       break;
     case "4":
-      color = "Blue";
+      color = ["Blue"];
       break;
     case "5":
-      color = "Brown";
+      color = ["Brown"];
       break;
     case "6":
-      color = "Clear";
+      color = ["Clear"];
       break;
     case "7":
-      color = "Green";
+      color = ["Green"];
       break;
     case "8":
-      color = "Grey";
+      color = ["Grey"];
       break;
     case "9":
       color = "Opal";
@@ -924,10 +983,10 @@ function whatLook(lookCode) {
 function whatMetal(metalCode) {
   switch (metalCode) {
     case "10":
-      metal = "Gold";
+      metal = "Gold Plated";
       break;
     case "20":
-      metal = "Silver";
+      metal = "Silver Plated";
       break;
     case "30":
       metal = "Antique Gold";

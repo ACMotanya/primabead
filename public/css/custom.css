@@ -91,3 +91,124 @@ aside ul.nav-list > li.active > a:before {
     background-color: #FFDCD2;
     color: rgb(242,107,86);
 }
+
+html.dark .checkbox-silver label:before,
+.checkbox-silver label:before {
+	background: #c0c0c0;
+	border-color: #c0c0c0;
+}
+html.dark .checkbox-gold label:before,
+.checkbox-gold label:before {
+	background: #ffd700;
+	border-color: #ffd700;
+}
+html.dark .checkbox-black label:before,
+.checkbox-black label:before {
+	background: #000;
+	border-color: #000;
+}
+html.dark .checkbox-blue label:before,
+.checkbox-blue label:before {
+	background: #0000ff;
+	border-color: #0000ff;
+}
+html.dark .checkbox-brown label:before,
+.checkbox-brown label:before {
+	background: #A52A2A;
+	border-color: #A52A2A;
+}
+html.dark .checkbox-clear label:before,
+.checkbox-clear label:before {
+	background: rgba(255,255,255,0);
+	border-color: rgba(255,255,255,0);
+}
+html.dark .checkbox-green label:before,
+.checkbox-green label:before {
+	background: #00ff00;
+	border-color: #00ff00;
+}
+html.dark .checkbox-grey label:before,
+.checkbox-grey label:before {
+	background: #808080;
+	border-color: #808080;
+}
+html.dark .checkbox-opal label:before,
+.checkbox-opal label:before {
+	background: #A9C6C2;
+	border-color: #A9C6C2;
+}
+html.dark .checkbox-orange label:before,
+.checkbox-orange label:before {
+	background: #FFA500;
+	border-color: #FFA500;
+}
+html.dark .checkbox-pink label:before,
+.checkbox-pink label:before {
+	background: #FFC0CB;
+	border-color: #FFC0CB;
+}
+html.dark .checkbox-purple label:before,
+.checkbox-purple label:before {
+	background: #800080;
+	border-color: #800080;
+}
+html.dark .checkbox-rainbow label:before,
+.checkbox-rainbow label:before {
+	background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+	border-color: #000;
+}
+html.dark .checkbox-red label:before,
+.checkbox-red label:before {
+	background: #ff0000;
+	border-color: #ff0000;
+}
+html.dark .checkbox-tan label:before,
+.checkbox-tan label:before {
+	background: #d2B48c;
+	border-color: #D2B48C;
+}
+html.dark .checkbox-teal label:before,
+.checkbox-teal label:before {
+	background: #008080;
+	border-color: #008080;
+}
+html.dark .checkbox-turquoise label:before,
+.checkbox-turquoise label:before {
+	background: #40E0D0;
+	border-color: #40E0D0;
+}
+html.dark .checkbox-white label:before,
+.checkbox-white label:before {
+	background: #ffffff;
+	border-color: #ffffff;
+}
+html.dark .checkbox-yellow label:before,
+.checkbox-yellow label:before {
+	background: #FFFF00;
+	border-color: #FFFF00;
+}
+html.dark .checkbox-multi label:before,
+.checkbox-multi label:before {
+	background: repeating-linear-gradient(red, yellow 10%, green 20%);
+	border-color: #000;
+}
+html.dark .checkbox-copper label:before,
+.checkbox-copper label:before {
+	background: #B87333;
+	border-color: #B87333;
+}
+html.dark .checkbox-rosegold label:before,
+.checkbox-rosegold label:before {
+	background: #B76E79;
+	border-color: #B76E79;
+}
+html.dark .checkbox-antiquegold label:before,
+.checkbox-antiquegold label:before {
+	background: #D4AF37;
+	border-color: #D4AF37;
+}
+html.dark .checkbox-gunmetal label:before,
+.checkbox-gunmetal label:before {
+	background: #2C3539;
+	border-color: #2C3539;
+}

@@ -84,9 +84,10 @@
     });
 
     $(function() {
-      whichPage();
+			whichPage();
+			fillShop();
   //    sessionNumber();
-			filterFunction2('APISTKLST','80010000','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
+			//filterFunction2('APISTKLST','','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
 			/*
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
@@ -129,12 +130,12 @@
 						},
 						navigation: {
 							touch: {
-													touchenabled: "on",
-													swipe_threshold: 75,
-													swipe_min_touches: 1,
-													swipe_direction: "horizontal",
-													drag_block_vertical: false
-											},
+								touchenabled: "on",
+								swipe_threshold: 75,
+								swipe_min_touches: 1,
+								swipe_direction: "horizontal",
+								drag_block_vertical: false
+							},
 							arrows: {
 								style: "custom",
 								enable: true,
@@ -158,7 +159,7 @@
 						}
 					});
 				}
-				console.log("Hello Ace");
+			
 				// Newsletter popup
 				if ( document.getElementById('newsletter-popup-form') ) {
 					$.magnificPopup.open({
