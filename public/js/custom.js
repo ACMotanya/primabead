@@ -1,6 +1,6 @@
-var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
+//var session_no = "E9DZRD9OM9GRZZEOTGLOED411";
 var freeShip = false;
-var username = "ACEWORKS";
+//var username = "ACEWORKS";
 var functiontype = [];
 var colors = [];
 var material = [];
@@ -10,6 +10,8 @@ var colorDictionary = [
     ["Pink", "#FFC0CB"],["Purple", "#800080"],["Rainbow", "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"],
     ["Red", "#FF0000"],["Tan", "#D2B48C"],["Teal", "#008080"],["Turquoise", "#40E0D0"],["White", "#fff"],["Yellow", "#ffff00"],
     ["Multi", "repeating-linear-gradient(red, yellow 10%, green 20%);"],["Copper", "#b87333"],["Rose Gold", "#b76e79"],["Antique Gold", "#D4AF37"],["Gunmetal", "#2c3539"]];
+var session_no;
+
 
 
 
@@ -136,7 +138,6 @@ function createUser() {
 /// LOGIN INTO THE STORE AND VERIFY  ///
 ////////////////////////////////////////
 function login() {
-  console.log("hello world");
   if (localStorage.getItem('session_no') && typeof (localStorage.getItem('session_no')) === "string" && localStorage.getItem('session_no').length === 25) {
     windowHash("products");
     redirect("store");
@@ -157,11 +158,14 @@ function login() {
         password: password,
         loc_no: "700"
       },
+
+
+      // ADD the HTTPS back in when the SSL Cert becomes available again....
       success: function (response) {
         if (response.replace(/\s+/g, '').length === 25) {
-          $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function (answer) {
+          $.get("http://www.primadiy.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function (answer) {
             if (answer === "0") {
-              $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
+              $.get("http://www.primadiy.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g, '');
               localStorage.setItem('session_no', session_no);
             } else {
@@ -169,7 +173,7 @@ function login() {
             }
             localStorage.setItem('username', username);
           }).done(function () {
-            windowHash("shop");
+            windowHash("products");
             redirect("store");
           });
         } else {
@@ -182,13 +186,34 @@ function login() {
 
 
 
+
+/////////////////////////////////////////////////////
+// Get Session Number and Authorize Access to Page //
+/////////////////////////////////////////////////////
+function sessionNumber()
+{
+  session_no = localStorage.getItem('session_no');
+  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
+    pathArray = window.location.pathname.split( '/' );
+    pathArray[pathArray.length - 2] = "login";
+    window.location.pathname = pathArray.join('/');
+    alert("Please log in first.");
+  }
+}
+
 ////////////////////////////
 // To Populate Shop Page  //
 ////////////////////////////
 function fillShop()
 {
-  params = localStorage.getItem('shopParams').split(",");
-  return filterFunction2('APISTKLST',params[0],params[1],params[2],params[3],params[4],'E9DZRD9OM9GRZZEOTGLOED411','800');
+  var params;
+  if (localStorage.getItem('shopParams')) {
+    params = localStorage.getItem('shopParams').split(",");
+    return filterFunction2('APISTKLST',params[0],params[1],params[2],params[3],params[4],'E9DZRD9OM9GRZZEOTGLOED411','900');
+  } else {
+    localStorage.setItem('shopParams', ['80010000','','','','']);
+    fillShop();
+  } 
 }
 
 
