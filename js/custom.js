@@ -209,7 +209,7 @@ function fillShop()
   var params;
   if (localStorage.getItem('shopParams')) {
     params = localStorage.getItem('shopParams').split(",");
-    return filterFunction2('APISTKLST',params[0],params[1],params[2],params[3],params[4],'E9DZRD9OM9GRZZEOTGLOED411','900');
+    return filterFunction2('APISTKLST',params[0],params[1],params[2],params[3],params[4],'E9DZRD9OM9GRZZEOTGLOED411','800');
   } else {
     localStorage.setItem('shopParams', ['80010000','','','','']);
     fillShop();
@@ -269,7 +269,7 @@ function itemRender(div, response) {
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
-      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="display: none;">' + flds[1] + '</p><p class="desc" style="">' + flds[2].trim() + '</p><p class="themes" style=""><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p>';
+      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[1] + '</p><p class="desc" style="">' + flds[2].trim() + '</p><p class="themes" style=""><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style=""><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
