@@ -104,10 +104,11 @@
           <ul class="top-menu">
             <li><a href="/primabead/store/#dashboard">My Account</a></li>
             <li><a href="/primabead/comingsoon">My Wishlist</a></li>
-            <li><a href="/primabead/login">Log in</a></li>
+            <li class="loggedIn"><a href="/primabead/login">Log in</a></li>
+            <li class="loggedOff"><a onclick="logoff();">Log Out</a></li>
           </ul>
         </div>
-        <p class="welcome-msg">WELCOME ACE!</p>
+        <p class="welcome-msg loggedOff"></p>
       </div>
     </div>
     <div class="header-container container">
@@ -234,7 +235,7 @@
                                 <div class="col-md-2">
                                   <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
                                   <ul class="dropdown-mega-sub-nav">
-                                    <li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['','','','','']); fillShop();">Pliers</a></li>
+                                    <li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['70030900','','','','']); fillShop();">Pliers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Cutters</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Tool Kits</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Glue / Adhesives</a></li>
@@ -294,37 +295,31 @@
                         <div class="dropdown-mega-content">
 
                           <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                               <div class="row">
                                 <div class="col-md-4">
-                                  <a href="/primabead/youtube" class="dropdown-mega-sub-title">Watch &amp; Learn</a>
+                                  <a href="/primabead/youtube" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Watch &amp; Learn</p>
                                   </div>
                                 </div>
                                 <div class="col-md-4">                                  
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Step by Step Technique</a>
+                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Step by Step Technique</p>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <a href="#" class="dropdown-mega-sub-title">Project Ideas</a>
+                                  <a href="#" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Project Ideas</p>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="menu-banner-area">
-                                <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                <p>Add any images or links here</p>
-                              </div>
-                            </div>
+                            </div>                           
                           </div>
                         </div>
                       </li>
@@ -1214,6 +1209,17 @@
 		<!-- Theme Custom -->
 		<script src="/primabead/js/custom.js"></script>
 		
+
+		<script defer>
+			if (localStorage.getItem('session_no')) {
+				$('.loggedOff').show();
+				$('.loggedIn').hide();
+				$('.welcome-msg').html('Welcome '+ localStorage.getItem('username')+ '!');
+			} else {
+				$('.loggedOff').hide();
+				$('.loggedIn').show();
+			}
+		</script>
 
 		
 

@@ -104,10 +104,11 @@
           <ul class="top-menu">
             <li><a href="/primabead/store/#dashboard">My Account</a></li>
             <li><a href="/primabead/comingsoon">My Wishlist</a></li>
-            <li><a href="/primabead/login">Log in</a></li>
+            <li class="loggedIn"><a href="/primabead/login">Log in</a></li>
+            <li class="loggedOff"><a onclick="logoff();">Log Out</a></li>
           </ul>
         </div>
-        <p class="welcome-msg">WELCOME ACE!</p>
+        <p class="welcome-msg loggedOff"></p>
       </div>
     </div>
     <div class="header-container container">
@@ -234,7 +235,7 @@
                                 <div class="col-md-2">
                                   <a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['80011100','','','','']); fillShop();" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
                                   <ul class="dropdown-mega-sub-nav">
-                                    <li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['','','','','']); fillShop();">Pliers</a></li>
+                                    <li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['70030900','','','','']); fillShop();">Pliers</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Cutters</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Tool Kits</a></li>
                                     <li><a href="demo-shop-7-category-4col.html">Glue / Adhesives</a></li>
@@ -294,37 +295,31 @@
                         <div class="dropdown-mega-content">
 
                           <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                               <div class="row">
                                 <div class="col-md-4">
-                                  <a href="/primabead/youtube" class="dropdown-mega-sub-title">Watch &amp; Learn</a>
+                                  <a href="/primabead/youtube" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Watch &amp; Learn</p>
                                   </div>
                                 </div>
                                 <div class="col-md-4">                                  
-                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title">Step by Step Technique</a>
+                                  <a href="/primabead/pinterest" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Step by Step Technique</p>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <a href="#" class="dropdown-mega-sub-title">Project Ideas</a>
+                                  <a href="#" class="dropdown-mega-sub-title"></a>
                                   <div class="menu-banner-area">
                                     <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                    <p>Add any images or links here</p>
+                                    <p>Project Ideas</p>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="menu-banner-area">
-                                <img src="/primabead/img/demos/shop/menu-cat.png" alt="Menu Banner">
-                                <p>Add any images or links here</p>
-                              </div>
-                            </div>
+                            </div>                           
                           </div>
                         </div>
                       </li>
@@ -598,15 +593,6 @@
 							</a>
 						</div>
 
-						<div class="view-mode">
-							<span title="Grid">
-								<i class="fa fa-th"></i>
-							</span>
-							<a href="#" title="List">
-								<i class="fa fa-list-ul"></i>
-							</a>
-						</div>
-				
 						<ul class="pagination">
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
@@ -685,28 +671,20 @@
 						<div id="panel-filter-category" class="accordion-body collapse in">
 							<div class="panel-body">
 								<ul>
-									<li>
-										<a href="#">Programs</a>
-									</li>
-									<li>
-										<a href="#">Finished Jewelry</a>
-									</li>
-									<li>
-										<a href="#">Tools &amp; Storage</a>
-									</li>
-									<li>
-										<a href="#">Jewelry Supplies</a>
-									</li>
-									<li>
-										<a href="#">Beads &amp; Charms</a>
-									</li>
-									<li>
-										<a href="#">Findings</a>
-									</li>
-									<div class="checkbox-custom checkbox-red">
-										<input type="checkbox" checked="" id="checkboxExample2">
-										<label for="checkboxExample2">Checkbox Primary</label>
-									</div>
+									<li><a href="#">Beads</a></li>
+									<li><a href="#">Crafting Supplies</a></li>
+									<li><a href="#">Charms</a></li>
+									<li><a href="#">Swarovski</a></li>
+									<li><a href="#">DC Comics</a></li>
+									<li><a href="#">Holiday</a></li>
+									<li><a href="#">Kids</a></li>
+									<li><a href="#">Findings</a></li>
+									<li><a href="#">Tools &amp; Storage</a></li>
+									<li><a href="#">Jewelry Basics</a></li>
+									<li><a href="#">Elegance</a></li>
+									<li><a href="#">Chains</a></li>
+									<li><a href="#">Cording &amp; Wire</a></li>
+									<li><a href="#">Finished Jewelry</a></li>									
 								</ul>
 							</div>
 						</div>
@@ -965,61 +943,165 @@
 							<label for="1400">1500</label>
 							<input data-path=".1600" id="1600" type="checkbox" />
 							<label for="1400">1600</label>
+							<input data-path=".1700" id="1700" type="checkbox" />
+							<label for="100">1700</label>
+							<input data-path=".1800" id="1800" type="checkbox" />
+							<label for="1">1800</label>
+							<input data-path=".1900" id="1900" type="checkbox" />
+							<label for="300">1900</label>
+							<input data-path=".2000" id="2000" type="checkbox" />
+							<label for="400">2000</label>
+							<input data-path=".2100" id="2100" type="checkbox" />
+							<label for="500">2100</label>
+							<input data-path=".2200" id="2200" type="checkbox" />
+							<label for="600">2200</label>
+							<input data-path=".2300" id="2300" type="checkbox" />
+							<label for="700">2300</label>
+							<input data-path=".2400" id="2400" type="checkbox" />
+							<label for="800">2400</label>
+							<input data-path=".2500" id="2500" type="checkbox" />
+							<label for="900">2500</label>
+							<input data-path=".2600" id="2600" type="checkbox" />
+							<label for="1000">2600</label>
+							<input data-path=".2700" id="2700" type="checkbox" />
+							<label for="1100">2700</label>
+							<input data-path=".2800" id="2800" type="checkbox" />
+							<label for="1200">2800</label>
+							<input data-path=".2900" id="2900" type="checkbox" />
+							<label for="1300">2900</label>
+							<input data-path=".1400" id="1400" type="checkbox" />
+							<label for="1400">1400</label>
+							<input data-path=".1500" id="1500" type="checkbox" />
+							<label for="1400">1500</label>
+							<input data-path=".1600" id="1600" type="checkbox" />
+							<label for="1400">1600</label>
+							<input data-path=".100" id="100" type="checkbox" />
+							<label for="100">100</label>
+							<input data-path=".200" id="200" type="checkbox" />
+							<label for="1">1</label>
+							<input data-path=".300" id="300" type="checkbox" />
+							<label for="300">300</label>
+							<input data-path=".400" id="400" type="checkbox" />
+							<label for="400">400</label>
+							<input data-path=".500" id="500" type="checkbox" />
+							<label for="500">500</label>
+							<input data-path=".600" id="600" type="checkbox" />
+							<label for="600">600</label>
+							<input data-path=".700" id="700" type="checkbox" />
+							<label for="700">700</label>
+							<input data-path=".800" id="800" type="checkbox" />
+							<label for="800">800</label>
+							<input data-path=".900" id="900" type="checkbox" />
+							<label for="900">900</label>
+							<input data-path=".1000" id="1000" type="checkbox" />
+							<label for="1000">1000</label>
+							<input data-path=".1100" id="1100" type="checkbox" />
+							<label for="1100">1100</label>
+							<input data-path=".1200" id="1200" type="checkbox" />
+							<label for="1200">1200</label>
+							<input data-path=".1300" id="1300" type="checkbox" />
+							<label for="1300">1300</label>
+							<input data-path=".1400" id="1400" type="checkbox" />
+							<label for="1400">1400</label>
+							<input data-path=".1500" id="1500" type="checkbox" />
+							<label for="1400">1500</label>
+							<input data-path=".1600" id="1600" type="checkbox" />
+							<label for="1400">1600</label>
+							<input data-path=".100" id="100" type="checkbox" />
+							<label for="100">100</label>
+							<input data-path=".200" id="200" type="checkbox" />
+							<label for="1">1</label>
+							<input data-path=".300" id="300" type="checkbox" />
+							<label for="300">300</label>
+							<input data-path=".400" id="400" type="checkbox" />
+							<label for="400">400</label>
+							<input data-path=".500" id="500" type="checkbox" />
+							<label for="500">500</label>
+							<input data-path=".600" id="600" type="checkbox" />
+							<label for="600">600</label>
+							<input data-path=".700" id="700" type="checkbox" />
+							<label for="700">700</label>
+							<input data-path=".800" id="800" type="checkbox" />
+							<label for="800">800</label>
+							<input data-path=".900" id="900" type="checkbox" />
+							<label for="900">900</label>
+							<input data-path=".1000" id="1000" type="checkbox" />
+							<label for="1000">1000</label>
+							<input data-path=".1100" id="1100" type="checkbox" />
+							<label for="1100">1100</label>
+							<input data-path=".1200" id="1200" type="checkbox" />
+							<label for="1200">1200</label>
+							<input data-path=".1300" id="1300" type="checkbox" />
+							<label for="1300">1300</label>
+							<input data-path=".1400" id="1400" type="checkbox" />
+							<label for="1400">1400</label>
+							<input data-path=".1500" id="1500" type="checkbox" />
+							<label for="1400">1500</label>
+							<input data-path=".1600" id="1600" type="checkbox" />
+							<label for="1400">1600</label>
+							<div class="checkbox-custom checkbox-red">
+								<input type="checkbox" checked="" id="checkboxExample2">
+								<label for="checkboxExample2">Checkbox Primary</label>
+							</div>
 						</div>
 						<div style="" class="jplist-group" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="materials"
 							data-path=".materials" data-logic="or">
 							<input data-path=".101" id="101" type="checkbox" />
-							<label for="100">100</label>
+							<label for="100">101</label>
 							<input data-path=".201" id="201" type="checkbox" />
-							<label for="1">1</label>
+							<label for="1">201</label>
+							<input data-path=".301" id="301" type="checkbox" />
+							<label for="300">301</label>
+							<input data-path=".401" id="401" type="checkbox" />
+							<label for="300">401</label>
 							<input data-path=".501" id="501" type="checkbox" />
-							<label for="300">300</label>
+							<label for="300">501</label>
 							<input data-path=".601" id="601" type="checkbox" />
-							<label for="400">400</label>
+							<label for="400">601</label>
 							<input data-path=".701" id="701" type="checkbox" />
-							<label for="500">500</label>
+							<label for="500">701</label>
 							<input data-path=".801" id="801" type="checkbox" />
-							<label for="600">600</label>
+							<label for="600">801</label>
 							<input data-path=".901" id="901" type="checkbox" />
-							<label for="700">700</label>
+							<label for="700">901</label>
 							<input data-path=".1001" id="1001" type="checkbox" />
-							<label for="800">800</label>
+							<label for="800">1001</label>
 							<input data-path=".1101" id="1101" type="checkbox" />
-							<label for="900">900</label>
+							<label for="900">1101</label>
 							<input data-path=".1201" id="1201" type="checkbox" />
-							<label for="1000">1000</label>
+							<label for="1000">1201</label>
 							<input data-path=".1301" id="1301" type="checkbox" />
-							<label for="1100">1100</label>
+							<label for="1100">1301</label>
 							<input data-path=".1401" id="1401" type="checkbox" />
-							<label for="1200">1200</label>
+							<label for="1200">1401</label>
 							<input data-path=".1501" id="1501" type="checkbox" />
-							<label for="1300">1300</label>
+							<label for="1300">1501</label>
 							<input data-path=".1601" id="1601" type="checkbox" />
-							<label for="1400">1400</label>
+							<label for="1400">1601</label>
 							<input data-path=".1701" id="1701" type="checkbox" />
-							<label for="1400">1500</label>
+							<label for="1400">1701</label>
 							<input data-path=".1801" id="1801" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">1801</label>
 							<input data-path=".1901" id="1901" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">1901</label>
 							<input data-path=".2001" id="2001" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2001</label>
 							<input data-path=".2101" id="2101" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2101</label>
 							<input data-path=".2201" id="2201" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2201</label>
 							<input data-path=".2301" id="2301" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2301</label>
 							<input data-path=".2401" id="2401" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2401</label>
 							<input data-path=".2501" id="2501" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2501</label>
 							<input data-path=".2601" id="2601" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2601</label>
 							<input data-path=".2701" id="2701" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2701</label>
 							<input data-path=".2801" id="2801" type="checkbox" />
-							<label for="1400">1600</label>
+							<label for="1400">2801</label>
 						</div>
 
 					</div>
@@ -1862,16 +1944,19 @@
 			</div>
 			<div class="form-col">
 				<h3>Shipping Method</h3>
-				<div class="ship-list">
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+						<div class="ship-list">
 
-					<p>We offer free shipping on all orders over $25, and a flat rate $5 for any orders below that amount.</p>
-					<div class="radio">
-						<label id="freeShip">
-							<!--
-							<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked">
-							Free
-							-->
-						</label>
+							<p>We offer free shipping on all orders over $25, and a flat rate $5 for any orders below that amount.</p>
+							<div class="radio">
+								<label id="freeShip">
+									<!--
+									<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free
+									-->
+								</label>
+							</div>
+						</div>
 					</div>
 					<!--
 					<div class="radio">
@@ -1882,8 +1967,8 @@
 					</div>
 					-->
 				</div>
-
-
+			</div>
+			<div class="form-col">
 				<h3 class="no-border">Discount Codes <a class="expand-plus collapsed" role="button" data-toggle="collapse" href="#discountArea" aria-expanded="false"
 					  aria-controls="discountArea"></a></h3>
 
@@ -2498,39 +2583,33 @@
 		<script src="/primabead/js/custom.js"></script>
 		
 
+		<script defer>
+			if (localStorage.getItem('session_no')) {
+				$('.loggedOff').show();
+				$('.loggedIn').hide();
+				$('.welcome-msg').html('Welcome '+ localStorage.getItem('username')+ '!');
+			} else {
+				$('.loggedOff').hide();
+				$('.loggedIn').show();
+			}
+		</script>
+
 		
 
 		
 
 		
 		<script defer>
-    $(window).on('hashchange', function() {
-      whichPage();
-    });
+			$(window).on('hashchange', function() {
+				whichPage();
+			});
 
-    $(function() {
-			whichPage();
-			sessionNumber();
-			fillShop();
-  //    sessionNumber();
-			//filterFunction2('APISTKLST','','','','','','E9DZRD9OM9GRZZEOTGLOED411','800');
-			/*
-      $('nav ul li a').click(function() {
-        var $linkClicked = $(this).attr('href');
-        document.location.hash = $linkClicked;
-        if (!$(this).parent().hasClass("current")) {
-          $("nav ul li").removeClass("current");
-          $(this).parent().addClass("current");
-          return false;
-        } else {
-          return false;
-        }
-      });
-		//    shopPage();
-		//    newCustomerSession();
-		*/
-		});
-		
+			$(function() {
+				sessionNumber();
+				whichPage();
+				fillShop();
+			//    newCustomerSession();
+			});		
 		</script>
 		 
 
