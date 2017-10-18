@@ -58,14 +58,14 @@ header .header-nav-main nav > ul > li.active > a:hover {
 #footer .footer-copyright .social-icons li a:not(:hover) {
     background-color: #535353;
 }
-
+/*
 html .btn-primary {
     color: #535353;
     background-color: transparent; 
     border-color: #535353;
     font-weight: 600;
 }
-
+*/
 .form-section .form-action a:not(.btn), aside ul.nav-list > li.active > a {
     color: #85CCb9;
 }
