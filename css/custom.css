@@ -112,6 +112,11 @@ html.dark .checkbox-blue label:before,
 	background: #0000ff;
 	border-color: #0000ff;
 }
+html.dark .checkbox-themed label:before,
+.checkbox-themed label:before {
+	background: #FFDCD2;
+	border-color: #FD6B54;
+}
 html.dark .checkbox-brown label:before,
 .checkbox-brown label:before {
 	background: #A52A2A;

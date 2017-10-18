@@ -319,13 +319,17 @@ function itemRender(div, response) {
 function fillTypeField() 
 {
   functiontype.forEach(function (element) {
-    $('#panel-filter-type').append('<li><a href="#" onclick="$(\'#'+ element +'\').click();">'+ whatType(element) +'</a></li>');
+    //$('#panel-filter-type').append('<li><a href="#" onclick="$(\'#'+ element +'\').click();">'+ whatType(element) +'</a></li>');
+    $('#panel-filter-type').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox" onclick="$(\'#'+ element +'\').click();"><label for="checkboxExample2">'+ whatType(element) +'</label></div></li>');
   });
 
   material = material.filter(function(n){ return n !== ""; });
   material.forEach(function (element) {
-    $('#panel-filter-material').append('<li><a onclick="$(\'#'+ element + 1 +'\').click();">'+ whatMetal(element) +'</a></li>');
+    //$('#panel-filter-material').append('<li><a onclick="$(\'#'+ element + 1 +'\').click();">'+ whatMetal(element) +'</a></li>');
+    $('#panel-filter-material').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox"onclick="$(\'#'+ element + 1 +'\').click();"><label for="checkboxExample2">'+ whatMetal(element) +'</label></div></li>');
   });
+
+
 
   colors = colors.filter(function(n){ return n !== ""; });
   colors.forEach(function (element) {
