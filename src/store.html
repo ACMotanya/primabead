@@ -9,6 +9,16 @@ permalink: /store/
 	}
 </style>
 
+<script>
+	function sortBy() {
+	if(document.getElementById('selectid').value == "Name") {
+		 //Do something
+		$('#titlea-z').click();
+	} else if(document.getElementById('selectid').value == "Price") {
+		$('#titlez-a').click();
+	}
+}
+</script>
 
 <section class="page-header">
 	<div class="container">
@@ -22,31 +32,27 @@ permalink: /store/
 
 
 <div id="products" class="container store-page">
-	<div id="demo" class="box jplist">
-		
+	<div id="demo" class="box jplist">		
 		<div class="row">
 			<div class="col-md-9 col-md-push-3">
 				<div class="toolbar mb-none">
 					<div class="sorter">
-						
 						<div class="sort-by">
 							<label>Sort by:</label>
-							<select>
+							<select id="selectid" onchange="sortBy()">
 								<option value="Position">Position</option>
-								<option value="Name">Name</option>
-								<option value="Price">Price</option>
+								<option value="Name">Title A-Z</option>
+								<option value="Price">Title Z-A</option>
 							</select>
 							<a href="#" title="Set Desc Direction">
 								<img src="../img/demos/shop/i_asc_arrow.gif" alt="Set Desc Direction">
 							</a>
 						</div>
-
 						<ul class="pagination">
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
 						</ul>
-
 						<div class="limiter">
 							<label>Show:</label>
 							<select>
@@ -57,7 +63,6 @@ permalink: /store/
 						</div>
 					</div>
 				</div>
-				
 
 				<ul id="display-products" class="products-grid columns3">
 					<li>
@@ -80,7 +85,7 @@ permalink: /store/
 								</div>
 							</div>
 						</div>
-					</li>				
+					</li>
 				</ul>
 
 				<div class="toolbar-bottom">
@@ -95,9 +100,10 @@ permalink: /store/
 							<div class="limiter">
 								<label>Show:</label>
 								<select>
-								<option value="12">12</option>
-								<option value="24">24</option>
-								<option value="36">36</option>
+								<option value="21">21</option>
+								<option value="60">60</option>
+								<option value="99">99</option>
+								<option value="all">View All</option>
 							</select>
 							</div>
 						</div>
@@ -222,13 +228,13 @@ permalink: /store/
 						<div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
 							<ul>
 								<li>
-									<span data-number="20"> 20 per page </span>
+									<span data-number="21"> 21 per page </span>
 								</li>
 								<li>
-									<span data-number="50"> 50 per page </span>
+									<span data-number="60"> 60 per page </span>
 								</li>
 								<li>
-									<span data-number="75" data-default="true"> 75 per page </span>
+									<span data-number="99" data-default="true"> 99 per page </span>
 								</li>
 								<li>
 									<span data-number="all"> View All </span>
@@ -243,10 +249,10 @@ permalink: /store/
 									<span data-path="default">Sort by</span>
 								</li>
 								<li>
-									<span data-path=".title" data-order="asc" data-type="text">Title A-Z</span>
+									<span data-path=".title" data-order="asc" data-type="text" id="titlea-z">Title A-Z</span>
 								</li>
 								<li>
-									<span data-path=".title" data-order="desc" data-type="text">Title Z-A</span>
+									<span data-path=".title" data-order="desc" data-type="text" id="titlez-a">Title Z-A</span>
 								</li>
 								<li>
 									<span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span>
@@ -268,11 +274,10 @@ permalink: /store/
 							<i class="fa fa-search  jplist-icon"></i>
 					
 							<!--[if lt IE 10]>
-																<div class="jplist-label">Filter by Title:</div>
-																<![endif]-->
+							<div class="jplist-label">Filter by Title:</div>
+							<![endif]-->
 					
-							<input data-path=".title" type="text" value="" placeholder="Filter by Title" data-control-type="textbox" data-control-name="title-filter"
-								data-control-action="filter" />
+							<input data-path=".title" type="text" value="" placeholder="Filter by Title" data-control-type="textbox" data-control-name="title-filter"	data-control-action="filter" />
 						</div>
 					
 						<!-- filter by description -->
@@ -280,8 +285,8 @@ permalink: /store/
 							<i class="fa fa-search  jplist-icon"></i>
 					
 							<!--[if lt IE 10]>
-																<div class="jplist-label">Filter by Description:</div>
-																<![endif]-->
+							<div class="jplist-label">Filter by Description:</div>
+							<![endif]-->
 					
 							<input data-path=".desc" type="text" value="" placeholder="Filter by Description" data-control-type="textbox" data-control-name="desc-filter"
 								data-control-action="filter" />
@@ -290,13 +295,10 @@ permalink: /store/
 							data-path=".themes" data-logic="or">
 							<input data-path=".1" id="1" type="checkbox" />
 							<label for="1">1</label>
-
 							<input data-path=".2" id="2" type="checkbox" />
 							<label for="2">2</label>
-
 							<input data-path=".3" id="3" type="checkbox" />
 							<label for="3">3</label>
-
 							<input data-path=".4" id="4" type="checkbox" />
 							<label for="4">4</label>
 							<input data-path=".5" id="5" type="checkbox" />
@@ -305,55 +307,38 @@ permalink: /store/
 							<label for="6">6</label>
 							<input data-path=".7" id="7" type="checkbox" />
 							<label for="7">7</label>
-
 							<input data-path=".8" id="8" type="checkbox" />
 							<label for="8">8</label>
-
 							<input data-path=".9" id="9" type="checkbox" />
 							<label for="3">9</label>
-
 							<input data-path=".10" id="10" type="checkbox" />
 							<label for="10">10</label>
-
 							<input data-path=".11" id="11" type="checkbox" />
 							<label for="11">11</label>
-
 							<input data-path=".12" id="12" type="checkbox" />
 							<label for="12">12</label>
-
 							<input data-path=".13" id="13" type="checkbox" />
 							<label for="13">13</label>
-
 							<input data-path=".14" id="14" type="checkbox" />
 							<label for="14">14</label>
-
 							<input data-path=".15" id="15" type="checkbox" />
 							<label for="15">15</label>
-
 							<input data-path=".16" id="16" type="checkbox" />
 							<label for="16">16</label>
-
 							<input data-path=".17" id="17" type="checkbox" />
 							<label for="17">17</label>
-
 							<input data-path=".18" id="18" type="checkbox" />
 							<label for="18">18</label>
-
 							<input data-path=".19" id="19" type="checkbox" />
 							<label for="19">19</label>
-
 							<input data-path=".20" id="20" type="checkbox" />
 							<label for="22">20</label>
-
 							<input data-path=".21" id="21" type="checkbox" />
 							<label for="21">21</label>
-
 							<input data-path=".22" id="22" type="checkbox" />
 							<label for="22">22</label>
-
 							<input data-path=".23" id="23" type="checkbox" />
 							<label for="23">23</label>
-
 							<input data-path=".24" id="24" type="checkbox" />
 							<label for="24">24</label>
 						</div>
@@ -417,76 +402,88 @@ permalink: /store/
 							<label for="1200">2800</label>
 							<input data-path=".2900" id="2900" type="checkbox" />
 							<label for="1300">2900</label>
-							<input data-path=".1400" id="1400" type="checkbox" />
-							<label for="1400">1400</label>
-							<input data-path=".1500" id="1500" type="checkbox" />
-							<label for="1400">1500</label>
-							<input data-path=".1600" id="1600" type="checkbox" />
-							<label for="1400">1600</label>
-							<input data-path=".100" id="100" type="checkbox" />
-							<label for="100">100</label>
-							<input data-path=".200" id="200" type="checkbox" />
+							<input data-path=".3000" id="3000" type="checkbox" />
+							<label for="1400">3000</label>
+							<input data-path=".3100" id="3100" type="checkbox" />
+							<label for="1400">3100</label>
+							<input data-path=".3200" id="3200" type="checkbox" />
+							<label for="1400">3200</label>
+							<input data-path=".3300" id="3300" type="checkbox" />
+							<label for="100">3300</label>
+							<input data-path=".3400" id="3400" type="checkbox" />
 							<label for="1">1</label>
-							<input data-path=".300" id="300" type="checkbox" />
-							<label for="300">300</label>
-							<input data-path=".400" id="400" type="checkbox" />
-							<label for="400">400</label>
-							<input data-path=".500" id="500" type="checkbox" />
-							<label for="500">500</label>
-							<input data-path=".600" id="600" type="checkbox" />
-							<label for="600">600</label>
-							<input data-path=".700" id="700" type="checkbox" />
-							<label for="700">700</label>
-							<input data-path=".800" id="800" type="checkbox" />
-							<label for="800">800</label>
-							<input data-path=".900" id="900" type="checkbox" />
-							<label for="900">900</label>
-							<input data-path=".1000" id="1000" type="checkbox" />
-							<label for="1000">1000</label>
-							<input data-path=".1100" id="1100" type="checkbox" />
-							<label for="1100">1100</label>
-							<input data-path=".1200" id="1200" type="checkbox" />
-							<label for="1200">1200</label>
-							<input data-path=".1300" id="1300" type="checkbox" />
+							<input data-path=".3500" id="3500" type="checkbox" />
+							<label for="300">3500</label>
+							<input data-path=".3600" id="3600" type="checkbox" />
+							<label for="400">3600</label>
+							<input data-path=".3700" id="3700" type="checkbox" />
+							<label for="500">3700</label>
+							<input data-path=".3800" id="3800" type="checkbox" />
+							<label for="600">3800</label>
+							<input data-path=".3900" id="3900" type="checkbox" />
+							<label for="700">3900</label>
+							<input data-path=".4000" id="4000" type="checkbox" />
+							<label for="800">4000</label>
+							<input data-path=".4100" id="4100" type="checkbox" />
+							<label for="900">4100</label>
+							<input data-path=".4200" id="4200" type="checkbox" />
+							<label for="1000">4200</label>
+							<input data-path=".4300" id="4300" type="checkbox" />
+							<label for="1100">4300</label>
+							<input data-path=".4400" id="4400" type="checkbox" />
+							<label for="1200">4400</label>
+							<input data-path=".4500" id="4500" type="checkbox" />
+							<label for="1300">4500</label>
+							<input data-path=".4600" id="4600" type="checkbox" />
+							<label for="1400">4600</label>
+							<input data-path=".4700" id="4700" type="checkbox" />
+							<label for="1400">4700</label>
+							<input data-path=".4800" id="4800" type="checkbox" />
+							<label for="1400">4800</label>
+							<input data-path=".4900" id="4900" type="checkbox" />
+							<label for="100">4900</label>
+							<input data-path=".5000" id="5000" type="checkbox" />
+							<label for="1">5000</label>
+							<input data-path=".5100" id="5100" type="checkbox" />
+							<label for="300">5100</label>
+							<input data-path=".5200" id="5200" type="checkbox" />
+							<label for="400">5200</label>
+							<input data-path=".5300" id="5300" type="checkbox" />
+							<label for="500">5300</label>
+							<input data-path=".5400" id="5400" type="checkbox" />
+							<label for="600">5400</label>
+							<input data-path=".5500" id="5500" type="checkbox" />
+							<label for="700">5500</label>
+							<input data-path=".5600" id="5600" type="checkbox" />
+							<label for="800">5600</label>
+							<input data-path=".5700" id="5700" type="checkbox" />
+							<label for="900">5700</label>
+							<input data-path=".5800" id="5800" type="checkbox" />
+							<label for="1000">5800</label>
+							<input data-path=".5900" id="5900" type="checkbox" />
+							<label for="1100">5900</label>
+							<input data-path=".6000" id="6000" type="checkbox" />
+							<label for="1200">6000</label>
+							<input data-path=".6100" id="6100" type="checkbox" />
 							<label for="1300">1300</label>
-							<input data-path=".1400" id="1400" type="checkbox" />
-							<label for="1400">1400</label>
-							<input data-path=".1500" id="1500" type="checkbox" />
-							<label for="1400">1500</label>
-							<input data-path=".1600" id="1600" type="checkbox" />
-							<label for="1400">1600</label>
-							<input data-path=".100" id="100" type="checkbox" />
-							<label for="100">100</label>
-							<input data-path=".200" id="200" type="checkbox" />
-							<label for="1">1</label>
-							<input data-path=".300" id="300" type="checkbox" />
-							<label for="300">300</label>
-							<input data-path=".400" id="400" type="checkbox" />
-							<label for="400">400</label>
-							<input data-path=".500" id="500" type="checkbox" />
-							<label for="500">500</label>
-							<input data-path=".600" id="600" type="checkbox" />
-							<label for="600">600</label>
-							<input data-path=".700" id="700" type="checkbox" />
-							<label for="700">700</label>
-							<input data-path=".800" id="800" type="checkbox" />
-							<label for="800">800</label>
-							<input data-path=".900" id="900" type="checkbox" />
-							<label for="900">900</label>
-							<input data-path=".1000" id="1000" type="checkbox" />
-							<label for="1000">1000</label>
-							<input data-path=".1100" id="1100" type="checkbox" />
-							<label for="1100">1100</label>
-							<input data-path=".1200" id="1200" type="checkbox" />
-							<label for="1200">1200</label>
-							<input data-path=".1300" id="1300" type="checkbox" />
-							<label for="1300">1300</label>
-							<input data-path=".1400" id="1400" type="checkbox" />
-							<label for="1400">1400</label>
-							<input data-path=".1500" id="1500" type="checkbox" />
-							<label for="1400">1500</label>
-							<input data-path=".1600" id="1600" type="checkbox" />
-							<label for="1400">1600</label>
+							<input data-path=".6200" id="6200" type="checkbox" />
+							<label for="1400">6200</label>
+							<input data-path=".6300" id="6300" type="checkbox" />
+							<label for="1400">6300</label>
+							<input data-path=".6400" id="6400" type="checkbox" />
+							<label for="1400">6400</label>
+							<input data-path=".6500" id="6500" type="checkbox" />
+							<label for="700">6500</label>
+							<input data-path=".6600" id="6600" type="checkbox" />
+							<label for="800">6600</label>
+							<input data-path=".6700" id="6700" type="checkbox" />
+							<label for="900">6700</label>
+							<input data-path=".6800" id="6800" type="checkbox" />
+							<label for="1000">6800</label>
+							<input data-path=".6900" id="6900" type="checkbox" />
+							<label for="1100">6900</label>
+							<input data-path=".7000" id="7000" type="checkbox" />
+							<label for="1200">7000</label>
 							<div class="checkbox-custom checkbox-red">
 								<input type="checkbox" checked="" id="checkboxExample2">
 								<label for="checkboxExample2">Checkbox Primary</label>
