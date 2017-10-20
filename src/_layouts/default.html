@@ -5,7 +5,7 @@
 
   <body>
     <div class="body">
-      {% include header.html %}
+      {% include newheader.html %}
       <div role="main" class="main">
         {{ content }}
       </div>
@@ -37,7 +37,7 @@
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 
 		<!-- Demo -->
-		<script src="{{ "/js/demos/demo-shop-7.js" | prepend: site.baseurl }}"></script>
+		<script src="{{ "/js/demos/demo-shop-2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.isotope.js" | prepend: site.baseurl }}"></script>
@@ -103,7 +103,7 @@
 		</script>
 		{% endif %} 
 
-		{% if page.url == "/" %}
+		{% if page.url == "/oldoldindex/" %}
 		<script>
 		(function( $ ) {
 			
@@ -165,6 +165,18 @@
 					}, 0);
 				}
 			}).apply( this, [ jQuery ]);
+		</script>
+		{% endif %}
+
+		{% if page.url == "/" %}
+		<script>
+			$( "#header" ).addClass( "transparent header-full-width" );
+
+			setTimeout(function () {
+				$('html, body').animate({
+					scrollTop: $(window).scrollTop() + 100
+				});
+			},6000);
 		</script>
 		{% endif %}
 
