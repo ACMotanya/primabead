@@ -19,25 +19,23 @@
     float: right;
 }
 
-#header .header-nav-main nav > ul > li.active > a, 
-header .header-nav-main nav > ul > li.active > a:hover {
-    color: #5BC1A5;
-    background-color: #fff;
+.banner .ban-title, #footer .footer-ribbon {
+	background-color: #76D5D4;
 }
 
-#header .header-nav-main nav > ul > li:hover > a,
-#header .header-nav-main nav > ul > li:hover > a, #header .header-nav-main nav > ul > li.open > a, #header .header-nav-main nav > ul > li.active > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a,
-#header .header-nav-main nav > ul > li:hover > a:hover, #header .header-nav-main nav > ul > li:hover > a:focus, #header .header-nav-main nav > ul > li.open > a:hover, #header .header-nav-main nav > ul > li.open > a:focus, #header .header-nav-main nav > ul > li.active > a:hover, #header .header-nav-main nav > ul > li.active > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary:hover > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.open > a:focus, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a:hover, #header .header-nav-main nav > ul > li.dropdown-full-color.dropdown-primary.active > a:focus {
-	color: #fd6b54;
-	background-color: #fff;
+#header .header-nav-main nav > ul > li > a.dropdown-toggle {
+	color: #F4898F;
+}
+
+#header .header-body, .sticky-header-active #header .header-body, #footer .footer-copyright{
+	background-color: #3f4658;
 }
 
 .page-header {
-    background-color: #f1f1f1;
+	background-color: #F4898F;
 }
-
 .page-header .breadcrumb > li + li:before, .product-details-box .product-detail-info .product-price-box .product-price {
-    color: #FD6B54;
+    color: #FFF;
 }
 
 
@@ -45,11 +43,7 @@ header .header-nav-main nav > ul > li.active > a:hover {
 #footer .contact i, html .text-color-primary, .product-details-box .product-detail-qty #product-vqty, 
 #header .header-nav-main nav > ul > li.dropdown-mega .dropdown-mega-sub-nav > li > a, .panel-box a,
 .cart-table tbody tr td.product-name-td h2 a, .edit-qty, .text-primary, .btn-remove, .form-col .expand-plus, .list-contact li i {
-    color: #5BC1A5 !important;
-}
-
-#footer .footer-copyright .social-icons li a:not(:hover) {
-    background-color: #535353;
+    color: #F4898F !important;
 }
 
 
@@ -67,16 +61,21 @@ header .header-nav-main nav > ul > li.active > a:hover {
     #header .header-nav-main nav > ul > li > a {
         font-size: 14px;
         font-weight: 600;
-    }
+	}
+	
+	#header .header-nav-main nav > ul > li.dropdown .dropdown-menu { 
+		border-top-color: #76D5D4;
+	}
 }
+
 
 aside ul.nav-list > li.active > a:before {
     border-left-color: #85CCB9;
 }
 
 .sidebar.shop-sidebar .filter-price .filter-price-details .btn { 
-    background-color: #FFDCD2;
-    color: rgb(242,107,86);
+    background-color:  #DCF5F5;
+    color: #76D5D4;
 }
 
 html.dark .checkbox-silver label:before,
@@ -101,8 +100,8 @@ html.dark .checkbox-blue label:before,
 }
 html.dark .checkbox-themed label:before,
 .checkbox-themed label:before {
-	background: #FFDCD2;
-	border-color: #FD6B54;
+	background: #76D5D4;
+	border-color: #DCF5F5;
 }
 html.dark .checkbox-brown label:before,
 .checkbox-brown label:before {
