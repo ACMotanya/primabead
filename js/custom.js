@@ -205,22 +205,6 @@ function guestLogin()
 }
 
 
-
-/////////////////////////////////////////////////////
-// Get Session Number and Authorize Access to Page //
-/////////////////////////////////////////////////////
-function sessionNumber()
-{
-  session_no = localStorage.getItem('session_no');
-  session_no = session_no.trim();
-  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    pathArray = window.location.pathname.split( '/' );
-    pathArray[pathArray.length - 2] = "login";
-    window.location.pathname = pathArray.join('/');
-    alert("Please log in first.");
-  }
-}
-
 ////////////////////////////
 // To Populate Shop Page  //
 ////////////////////////////
@@ -1561,7 +1545,7 @@ function windowHash(name) {
 /////////////////////////////////////////////////////
 function sessionNumber() {
   session_no = localStorage.getItem('session_no');
-  if (typeof (session_no) === "undefined" || session_no.length !== 25) {
+  if (typeof (session_no) === "undefined" || session_no === null || session_no.length !== 25 ) {
     pathArray = window.location.pathname.split('/');
     pathArray[pathArray.length - 2] = "login";
     window.location.pathname = pathArray.join('/');
