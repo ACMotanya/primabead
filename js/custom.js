@@ -10,7 +10,7 @@ var colorDictionary = [
     ["Multi", "repeating-linear-gradient(red, yellow 10%, green 20%);"],["Copper", "#b87333"],["Rose Gold", "#b76e79"],["Antique Gold", "#D4AF37"],["Gunmetal", "#2c3539"]];
 var session_no;
 
-
+//3949422, 34719146, 34719128
 
 
 /////////////////////////////////////////
@@ -251,6 +251,7 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
 
 function itemRender(div, response) {
   lines = response.split("\n");
+  console.log(lines);
   lines.shift();
  
   functiontype.length = 0;
@@ -272,9 +273,9 @@ function itemRender(div, response) {
       var flds = linesPlus[i];
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
-      // prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
-      prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
-      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="display: none;">' + flds[1] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
+      prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
+      //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
+      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
@@ -382,10 +383,10 @@ function detailView(callback, callback2) {
 
       /* Fill in the pictures for the product */
       $("#product-zoom").attr({
-        //src: "https://www.laurajanelle.com/ljjpgimages/" + fields[0] + "-lg.jpg",
-        src: "../img/demos/shop/products/single/product1.jpg",
-        //"data-zoom-image": "https://www.laurajanelle.com/ljjpgimages/" + fields[0] + "-lg.jpg",
-        "data-zoom-image": "../img/demos/shop/products/single/product1.jpg",
+        src: "https://www.primaDIY.com/productimages/" + fields[0] + "-lg.jpg",
+        //src: "../img/demos/shop/products/single/product1.jpg",
+        "data-zoom-image": "https://www.primaDIY.com/productimages/" + fields[0] + "-lg.jpg",
+        //"data-zoom-image": "../img/demos/shop/products/single/product1.jpg",
         alt: fields[1]
       });
 
