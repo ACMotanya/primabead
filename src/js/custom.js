@@ -7,7 +7,8 @@ var colorDictionary = [
     ["Clear", "rgba(255,255,255,0)"],["Green", "#00ff00"],["Grey", "#808080"],["Opal", "#a9c6c2"],["Orange", "#FFA500"],
     ["Pink", "#FFC0CB"],["Purple", "#800080"],["Rainbow", "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"],
     ["Red", "#FF0000"],["Tan", "#D2B48C"],["Teal", "#008080"],["Turquoise", "#40E0D0"],["White", "#fff"],["Yellow", "#ffff00"],
-    ["Multi", "repeating-linear-gradient(red, yellow 10%, green 20%);"],["Copper", "#b87333"],["Rose Gold", "#b76e79"],["Antique Gold", "#D4AF37"],["Gunmetal", "#2c3539"]];
+    ["Multi", "repeating-linear-gradient(red, yellow 10%, green 20%);"],["Copper", "#b87333"],["Rose Gold", "#b76e79"],["Antique Gold", "#D4AF37"],["Gunmetal", "#2c3539"],
+    ["Crystal AB", "rgba(255,255,255,0)"]];
 var session_no;
 
 //3949422, 34719146, 34719128
@@ -276,7 +277,7 @@ function itemRender(div, response) {
       prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
       //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
       prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
-      prod += '<div class="product-price-box"><span class="product-price">$' + flds[4] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+      prod += '<div class="product-price-box"><span class="product-price">$' + flds[3] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
      
@@ -390,14 +391,13 @@ function detailView(callback, callback2) {
         alt: fields[1]
       });
 
-
-
       picArray.forEach(function (element) {
-        picsGallery += '<div class="product-img-wrapper"><a href="#" data-image="../img/demos/shop/products/single/product1.jpg" data-zoom-image="../img/demos/shop/products/single/product1.jpg" class="product-gallery-item"><img src="../img/demos/shop/products/single/thumbs/product1.jpg" alt="product"></a></div>';
+        picsGallery += '<div class="product-img-wrapper"><a href="#" data-image="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-sm.jpg" data-zoom-image="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-sm.jpg" class="product-gallery-item"><img src="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-sm.jpg" alt="'+ fields[1] +'"></a></div>';
       });
 
       $(".itemName").text(fields[1]);
       // add in custom ratings
+      /*
       if (rate) {
         $("div.rating").width(Math.floor(Math.random() * 101) + '%');
         $("span.count").text("2");
@@ -405,15 +405,15 @@ function detailView(callback, callback2) {
         $(".product-ratings").remove();
         $(".review-link-in").remove();
       }
-
+      */
       if (fields[8] && fields[8].length !== 0) {
         $(".product-short-desc p").html(fields[8]);
       } else {
         $(".product-short-desc p").html(fields[1]);
       }
-
-      $("span.product-price").text('$' + fields[4]);
-
+      
+      $("#detail-price").text('$' + fields[3]);
+      
       if (fields[5] && fields[5] > 0) {
         $("p.availability").html('<span class="font-weight-semibold">Availability:</span> In Stock</p></div>');
       } else {
@@ -648,7 +648,7 @@ function cartHelper() {
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
       miniitem = '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
-      miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="Product Name"></a></figure>';
+      miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="Product Name"></a></figure>';
       miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g, '') + ' X <span class="product-price">$' + data[7].substring(0, data[7].length - 3).trim() + '</span></div></div></div>';
 
       html2.push(miniitem);
