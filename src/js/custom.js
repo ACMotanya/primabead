@@ -426,8 +426,8 @@ function detailView(callback, callback2) {
       addInfo += '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
       addInfo += '<tr><td class="table-label">Color</td><td>' + whatColor(color) + '</td></tr>';
       addInfo += '<tr><td class="table-label">Type</td><td>' + whatType(type) + '</td></tr>';
-      addInfo += '<tr><td class="table-label">Look</td><td>' + whatLook(fields[2]) + '</td></tr>';
-      addInfo += '<tr><td class="table-label">Metal Color</td><td>' + whatMetal(metal) + '</td></tr>';
+      addInfo += '<tr><td class="table-label">Brand</td><td>' + whatLook(fields[2]) + '</td></tr>';
+      addInfo += '<tr><td class="table-label">Material</td><td>' + whatMetal(metal) + '</td></tr>';
 
       //$("#images").html(pic);
       $("#productGalleryThumbs").html(picsGallery);
@@ -654,8 +654,8 @@ function cartHelper() {
       html2.push(miniitem);
 
       if (window.location.hash === "#cart") {
-        listitem = '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" id="' + data[1].replace(/\s+/g, '') + '"><i class="fa fa-times"></i></a></td>';
-        listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+        listitem =  '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" id="' + data[1].replace(/\s+/g, '') + '"><i class="fa fa-times"></i></a></td>';
+        listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
         listitem += '<input type="button" class="qty-dec-btn" title="Dec" value="-" data-type="minus" data-field="quant[' + i + ']" onclick="changeQuantity(this);" />';
         listitem += '<input type="text" class="qty-input" name="quant[' + i + ']" min="1" value="' + data[6].replace(/\s+/g, '') + '" id="' + data[2].replace(/\s+/g, '') + '" />';
