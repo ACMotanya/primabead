@@ -34,10 +34,11 @@
 .page-header {
 	background-color: #F4898F;
 }
+/*
 .page-header .breadcrumb > li + li:before, .product-details-box .product-detail-info .product-price-box .product-price {
     color: #FFF;
 }
-
+*/
 
 
 #footer .contact i, html .text-color-primary, .product-details-box .product-detail-qty #product-vqty, 
