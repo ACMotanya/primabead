@@ -180,8 +180,7 @@ permalink: /store/
 						</div>
 						<div id="panel-filter-category" class="accordion-body collapse in">
 							<div class="panel-body">
-								<ul>
-									
+								<ul class="cat-list">
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70031200','','','','']); fillShop();">Beads</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70030000','','','','']); fillShop();">Crafting Supplies</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70031500','','','','']); fillShop();">Charms</a></li>
@@ -1125,12 +1124,13 @@ permalink: /store/
 	</h1>
 
 	<div class="checkout-menu clearfix">
+		<!--
 		<a href="#" class="btn btn-primary pull-left mb-sm" data-toggle="modal" data-target=".shop-login-modal">LOGIN</a>
-
+		-->
 		<div class="dropdown pull-right checkout-review-dropdown">
 			<button class="btn btn-primary mb-sm" id="reviewTable" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fa fa-shopping-cart"></i>
-				<span class="showTotal">$689.00</span>
+				<span class="showTotal"></span>
 			</button>
 			<div class="dropdown-menu" aria-labelledby="reviewTable">
 				<h3>Review Your Order</h3>
@@ -1144,17 +1144,13 @@ permalink: /store/
 					</thead>
 
 					<tbody>
-						<tr>
-							<td>Jewelry Bracelets-M</td>
-							<td class="text-center">1</td>
-							<td class="text-right">$189.00</td>
-						</tr>
+						
 					</tbody>
 
 					<tfoot>
 						<tr>
 							<td class="text-right" colspan="2">Subtotal</td>
-							<td class="text-right showTotal">$189.00</td>
+							<td class="text-right showTotal"></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -1569,7 +1565,7 @@ permalink: /store/
 
 
 			<div class="alert alert-success mb-xlg" role="alert">
-				Hello, <strong>Primabead customer!</strong> From your dashboard you have the ability to view a snapshot of your recent
+				Hello, <strong>PrimaDIY customer!</strong> From your dashboard you have the ability to view a snapshot of your recent
 				account activity and update your account information. Select a link below to view or edit information.
 			</div>
 

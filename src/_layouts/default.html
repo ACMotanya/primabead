@@ -70,6 +70,11 @@
 				$('.loggedOff').hide();
 				$('.loggedIn').show();
 			}
+			if (localStorage.getItem('username') && localStorage.getItem('username') === 'Guest' ) {
+				$('.myaccount-link').hide();
+			} else {
+				$('.myaccout.link').show();
+			}
 		</script>
 
 		{% if page.url == "/register/" %}

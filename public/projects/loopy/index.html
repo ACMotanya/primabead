@@ -86,15 +86,14 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 106, 'stickySetTop': '0', 'stickyChangeLogo': false}"
-  class="">
+      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 106, 'stickySetTop': '0', 'stickyChangeLogo': false}"  class="">
 	<div class="header-body">
 		<div class="header-container container">
 			<div class="header-row">
 				<div class="header-column">
 					<div class="header-logo">
 						<a  href="/primabead/">
-								<img alt="PrimaDIY" src="/primabead/images/logos/primalogo.png">
+							<img alt="PrimaDIY" src="/primabead/images/logos/primalogo.png">
 						</a>
 					</div>
 				</div>
@@ -272,7 +271,8 @@
 								<i class="fa fa-caret-down"></i>
 							</a>
 							<ul class="top-menu">
-								<li><a href="/primabead/store/#dashboard">My Account</a></li>
+								<li><a href="#" class="welcome-msg"></a></li>
+								<li class="myaccount-link"><a href="/primabead/store/#dashboard">My Account</a></li>
 					<!--			<li><a href="/primabead/comingsoon">My Wishlist</a></li> -->
 								<li class="loggedIn"><a href="/primabead/login">Log in</a></li>
 								<li class="loggedOff"><a onclick="logoff();">Log Out</a></li>
@@ -755,6 +755,7 @@
       </div>
       <footer id="footer">
 <!--(remove-empty-lines-end)-->
+<!--
   <div class="container">
     <div class="row">
       <div class="footer-ribbon">
@@ -846,6 +847,7 @@
       </div>
     </div>
   </div>
+-->
   <div class="footer-copyright">
     <div class="container">
       <a href="index.html" class="logo">
@@ -921,6 +923,11 @@
 			} else {
 				$('.loggedOff').hide();
 				$('.loggedIn').show();
+			}
+			if (localStorage.getItem('username') && localStorage.getItem('username') === 'Guest' ) {
+				$('.myaccount-link').hide();
+			} else {
+				$('.myaccout.link').show();
 			}
 		</script>
 

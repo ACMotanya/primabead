@@ -193,8 +193,7 @@ function guestLogin()
     data: {
       request_id: "APICLOGIN"
     },
-    success: function (response) {
-      
+    success: function (response) {      
       localStorage.setItem('session_no', response.trim());
       localStorage.setItem('username', 'Guest');
     },
@@ -426,7 +425,7 @@ function detailView(callback, callback2) {
       addInfo += '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
       addInfo += '<tr><td class="table-label">Color</td><td>' + whatColor(color) + '</td></tr>';
       addInfo += '<tr><td class="table-label">Type</td><td>' + whatType(type) + '</td></tr>';
-      addInfo += '<tr><td class="table-label">Brand</td><td>' + whatLook(fields[2]) + '</td></tr>';
+      addInfo += '<tr><td class="table-label">Brand</td><td>' + fields[2] + '</td></tr>';
       addInfo += '<tr><td class="table-label">Material</td><td>' + whatMetal(metal) + '</td></tr>';
 
       //$("#images").html(pic);
@@ -1458,7 +1457,7 @@ function whichPage() {
       window.scrollTo(0, 0);
       currentAsideLink("dashboard");
       $('#dashboard').show();
-      //username = localStorage.getItem('username').toUpperCase();
+      username = localStorage.getItem('username').toUpperCase();
       cart();
       accountDetails();
 
@@ -1773,6 +1772,27 @@ function displayBillingAddress(index) {
 ////////////////////////////////
 // Find Minimum for the order //
 ////////////////////////////////
+function discount10() {
+  var couponAmt;
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+    invoiceLines = data.split("\n");
+    console.log();
+    for (i = 1; i < invoiceLines.length - 1; i++) {
+      invoicefields = invoiceLines[i].split("|");
+      if (invoicefields[3] > "11/1/18") {
+        /*
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTH&session_no=" + session_no + "", function ( answer ) {
+          cartheaderdis = answer.split("\n");
+          cartHeaderFieldsdis = cartheaderdis[1].split("|");
+          couponAmt = 0.1 / parseFloat(cartHeaderFieldsdis[22]);
+        });
+        */
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_amt1=0.00");
+      }
+    }
+  });
+}
+
 function employeeDiscount() {
   username = localStorage.getItem("username");
   usernameSplit = username.split("");
