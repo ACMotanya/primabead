@@ -84,7 +84,7 @@ permalink: /register/
 								<p class="required mt-lg mb-none">* Required Fields</p>
 								<div class="form-action clearnpm fix mt-none">
 									<a href="{{ site.baseurl }}/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
-									<input type="submit" class="btn btn-primary" id="myNewCustomer" onclick="createCustomer();" value="Submit">
+									<input type="button" class="btn btn-primary" id="myNewCustomer" onclick="createCustomer(); return false;" value="Submit">
 								</div>
 							</div>
 						</div>
@@ -147,7 +147,7 @@ permalink: /register/
 								<p class="required mt-lg mb-none">* Required Fields</p>
 								<div class="form-action clearnpm fix mt-none">
 									<a href="{{ site.baseurl }}/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
-									<input type="submit" class="btn btn-primary" id="myNewUser" onclick="createUser();" value="Submit">
+									<input type="button" class="btn btn-primary" id="myNewUser" onclick="createUser(); return false;" value="Submit">
 								</div>
 							</div>
 						</div>

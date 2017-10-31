@@ -257,8 +257,7 @@
 							</a>
 							<form action="#" method="get">
 								<div class="header-search-wrapper">
-									<input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
-									
+									<input id="searchvalue" type="text" class="form-control" name="q" id="q" placeholder="Search..." required onKeyPress="return search();">									
 									<button class="btn btn-default" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
@@ -366,7 +365,7 @@
 								<p class="required mt-lg mb-none">* Required Fields</p>
 								<div class="form-action clearnpm fix mt-none">
 									<a href="/primabead/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
-									<input type="submit" class="btn btn-primary" id="myNewCustomer" onclick="createCustomer();" value="Submit">
+									<input type="button" class="btn btn-primary" id="myNewCustomer" onclick="createCustomer(); return false;" value="Submit">
 								</div>
 							</div>
 						</div>
@@ -429,7 +428,7 @@
 								<p class="required mt-lg mb-none">* Required Fields</p>
 								<div class="form-action clearnpm fix mt-none">
 									<a href="/primabead/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
-									<input type="submit" class="btn btn-primary" id="myNewUser" onclick="createUser();" value="Submit">
+									<input type="button" class="btn btn-primary" id="myNewUser" onclick="createUser(); return false;" value="Submit">
 								</div>
 							</div>
 						</div>

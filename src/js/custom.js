@@ -67,6 +67,7 @@ function createCustomer() {
     success: function (response) {
       if (response.length <= 10) {
         alert("An error occured, please try again.");
+        return false;
       } else {
         var newCustomerNumber = response;
         $("#newCustomer").hide();
@@ -74,6 +75,7 @@ function createCustomer() {
         document.getElementById("create-user-number").value = newCustomerNumber.trim();
         document.getElementById("create-user-email").value = createemail.trim();
         document.getElementById("create-user-contactname").value = createcompanyname.trim();
+        return false;
       }
     }
   });
@@ -116,15 +118,14 @@ function createUser() {
         },
         success: function (response) {
           if (response === response.toUpperCase()) {
-            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
-            $.get("https://netlink.laurajanelle.com:444/mailer/prima_logincred.php?username=" + newUserName + "&email=" + userEmail + "&password=" + userPassword + "&name=" + userContactName + "");
+            alert("Your PrimaDIY account has been created! Happy Shopping!");
+            $.get("dusername=" + newUserName + "&email=" + userEmail + "&password=" + userPassword + "&name=" + userContactName + "");
           } else {
             alert("User not created, try again.");
           }
         },
         complete: function () {
-          windowHash("products");
-          redirect("store");
+          redirect("login");
         }
       });
     }
@@ -205,6 +206,39 @@ function guestLogin()
 }
 
 
+
+/////////////////////////
+// Search API Function //
+/////////////////////////
+function search() 
+{
+  var oldhash;
+  
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    if ( window.location.hash != "#search" ) {
+      oldhash = window.location.hash;
+    }
+    var searchTerm = $('#searchvalue').val().split(' ').join('+');
+    $.ajax({
+      type: "GET",
+      url: "https://netlink.laurajanelle.com:444/nlhelpers/web-search-api/",
+      data: {        
+        data: searchTerm,
+        location: 700},
+      success: function(response) {
+        $('#searchDiv').empty();
+        
+        windowHash("search");
+        itemRender("searchDiv", response);
+        $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
+      },
+      complete: function(){
+        SEMICOLON.initialize.lightbox();
+      }
+    });
+  }
+}
 ////////////////////////////
 // To Populate Shop Page  //
 ////////////////////////////
@@ -251,7 +285,6 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
 
 function itemRender(div, response) {
   lines = response.split("\n");
-  console.log(lines);
   lines.shift();
  
   functiontype.length = 0;
@@ -275,7 +308,7 @@ function itemRender(div, response) {
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
       //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
-      prod += '<a href="#" class="product-quickview"><i class="fa fa-share-square-o"></i><span>Quick View</span></a></figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
+      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + flds[3] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
@@ -314,11 +347,9 @@ function fillTypeField()
     $('#panel-filter-material').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox"onclick="$(\'#'+ element + 1 +'\').click();"><label for="checkboxExample2">'+ whatMetal(element) +'</label></div></li>');
   });
 
-
-
   colors = colors.filter(function(n){ return n !== ""; });
   colors.forEach(function (element) {
-    $('#color-panel').append('<li><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ colorDictionary[element][0] +'" style="background: '+ colorDictionary[element][1] +'" onclick="$(\'#'+ element +'\').click();"><div class="checkbox-custom checkbox-'+ colorDictionary[element][0] +'"><input type="checkbox" checked=""></div></span></a></li>');
+    $('#color-panel').append('<li><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ colorDictionary[element][0] +'" style="background: '+ colorDictionary[element][1] +'" onclick="$(\'#'+ element +'\').click();"></span></a></li>');
   });
   $('span').tooltip({}); 
 }
@@ -1609,6 +1640,16 @@ function changeQuantity(element) {
   return false;
 }
 
+
+
+//////////////////////////////////////
+// Functionality of toggle colors //
+//////////////////////////////////////
+function selectColor() {
+  $(".sidebar.shop-sidebar .filter-list-color li a").click(function(event) {
+     $(this).toggleClass("selected-color");
+  });
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PULL SAVED BILL TO ADDRESSES //
