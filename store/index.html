@@ -86,15 +86,14 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 106, 'stickySetTop': '0', 'stickyChangeLogo': false}"
-  class="">
+      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 106, 'stickySetTop': '0', 'stickyChangeLogo': false}"  class="">
 	<div class="header-body">
 		<div class="header-container container">
 			<div class="header-row">
 				<div class="header-column">
 					<div class="header-logo">
 						<a  href="/primabead/">
-								<img alt="PrimaDIY" src="/primabead/images/logos/primalogo.png">
+							<img alt="PrimaDIY" src="/primabead/images/logos/primalogo.png">
 						</a>
 					</div>
 				</div>
@@ -272,7 +271,8 @@
 								<i class="fa fa-caret-down"></i>
 							</a>
 							<ul class="top-menu">
-								<li><a href="/primabead/store/#dashboard">My Account</a></li>
+								<li><a href="#" class="welcome-msg"></a></li>
+								<li class="myaccount-link"><a href="/primabead/store/#dashboard">My Account</a></li>
 					<!--			<li><a href="/primabead/comingsoon">My Wishlist</a></li> -->
 								<li class="loggedIn"><a href="/primabead/login">Log in</a></li>
 								<li class="loggedOff"><a onclick="logoff();">Log Out</a></li>
@@ -462,8 +462,7 @@
 						</div>
 						<div id="panel-filter-category" class="accordion-body collapse in">
 							<div class="panel-body">
-								<ul>
-									
+								<ul class="cat-list">
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70031200','','','','']); fillShop();">Beads</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70030000','','','','']); fillShop();">Crafting Supplies</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['70031500','','','','']); fillShop();">Charms</a></li>
@@ -1407,12 +1406,13 @@
 	</h1>
 
 	<div class="checkout-menu clearfix">
+		<!--
 		<a href="#" class="btn btn-primary pull-left mb-sm" data-toggle="modal" data-target=".shop-login-modal">LOGIN</a>
-
+		-->
 		<div class="dropdown pull-right checkout-review-dropdown">
 			<button class="btn btn-primary mb-sm" id="reviewTable" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fa fa-shopping-cart"></i>
-				<span class="showTotal">$689.00</span>
+				<span class="showTotal"></span>
 			</button>
 			<div class="dropdown-menu" aria-labelledby="reviewTable">
 				<h3>Review Your Order</h3>
@@ -1426,17 +1426,13 @@
 					</thead>
 
 					<tbody>
-						<tr>
-							<td>Jewelry Bracelets-M</td>
-							<td class="text-center">1</td>
-							<td class="text-right">$189.00</td>
-						</tr>
+						
 					</tbody>
 
 					<tfoot>
 						<tr>
 							<td class="text-right" colspan="2">Subtotal</td>
-							<td class="text-right showTotal">$189.00</td>
+							<td class="text-right showTotal"></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -1851,7 +1847,7 @@
 
 
 			<div class="alert alert-success mb-xlg" role="alert">
-				Hello, <strong>Primabead customer!</strong> From your dashboard you have the ability to view a snapshot of your recent
+				Hello, <strong>PrimaDIY customer!</strong> From your dashboard you have the ability to view a snapshot of your recent
 				account activity and update your account information. Select a link below to view or edit information.
 			</div>
 
@@ -2136,6 +2132,7 @@
       </div>
       <footer id="footer">
 <!--(remove-empty-lines-end)-->
+<!--
   <div class="container">
     <div class="row">
       <div class="footer-ribbon">
@@ -2227,6 +2224,7 @@
       </div>
     </div>
   </div>
+-->
   <div class="footer-copyright">
     <div class="container">
       <a href="index.html" class="logo">
@@ -2302,6 +2300,11 @@
 			} else {
 				$('.loggedOff').hide();
 				$('.loggedIn').show();
+			}
+			if (localStorage.getItem('username') && localStorage.getItem('username') === 'Guest' ) {
+				$('.myaccount-link').hide();
+			} else {
+				$('.myaccout.link').show();
 			}
 		</script>
 
