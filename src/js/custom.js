@@ -212,6 +212,9 @@ function guestLogin()
 /////////////////////////
 function search() 
 {
+  $('#demo').jplist({
+    command: 'empty'
+   });
   var oldhash;
   
   if(event.keyCode == 13) {
@@ -220,19 +223,20 @@ function search()
       oldhash = window.location.hash;
     }
     var searchTerm = $('#searchvalue').val().split(' ').join('+');
+    console.log(searchTerm);
     $.ajax({
       type: "GET",
       url: "https://netlink.laurajanelle.com:444/nlhelpers/web-search-api/",
       data: {        
         data: searchTerm,
-        location: 700},
+        location: "700"},
       success: function(response) {
        // $('#searchDiv').empty();
         
         windowHash("products");
         $('.jplist-reset-btn').click();
         $('#display-products').empty();
-        itemRender2("display-products", response);
+        itemRender3("display-products", response);
        // $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       }
     });
@@ -401,6 +405,54 @@ function filterFunction3(a) {
 
 function itemRender2(div, response) {
   lines = JSON.parse(response);
+  console.log(lines);
+  functiontype.length = 0;
+  material.length = 0;
+  colors.length = 0;
+  if (lines.length <= 1) {
+
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
+  } else {
+    var $demo = $('#demo');
+    var items = [];
+    $("#display-products").empty();
+    
+    Object.keys(lines).forEach(function(k){
+      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
+
+      stringOfDetails = lines[k].itemnum;
+      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></a>';
+      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
+      prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+
+      items.push($(prod));
+      console.log(lines[k].func);
+     
+      listOfAttributes(functiontype, lines[k].func );
+      
+      listOfAttributes(material, lines[k].material);
+      listOfAttributes(colors, lines[k].color);
+      
+    });
+   
+    $demo.jplist({
+      itemsBox: '#display-products',
+      itemPath: '.hope',
+      panelPath: '.jplist-panel'
+    });
+    $demo.jplist({
+      command: 'add',
+      commandData: {
+        $items: items
+      }
+    });
+  }
+  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
+  fillTypeField();
+}
+
+function itemRender3(div, response) {
+  lines = response;
   console.log(lines);
   functiontype.length = 0;
   material.length = 0;
