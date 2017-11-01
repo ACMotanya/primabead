@@ -33,21 +33,21 @@
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Brands</a>
 																	<ul class="dropdown-mega-sub-nav">																
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030200','','','','']); fillShop();">Swarovski</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031000','','','','']); fillShop();">Elegance</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031100','','','','']); fillShop();">Jewelry Basics</a></li> 
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030400','','','','']); fillShop();">Holiday</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030600','','','','']); fillShop();">Finished Jewelry</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('swarovski');">Swarovski</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('elegance');">Elegance</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a></li> 
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('holiday');">Holiday</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('finished jewelry');">Finished Jewelry</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Craft Supplies</a>
 																	<ul class="dropdown-mega-sub-nav">
-																			<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030900','','','','']); fillShop();">Findings</a></li>
-																			<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031400','','','','']); fillShop();">Cord / Wire</a></li>																			
-																			<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031600','','','','']); fillShop();">Kits</a></li>
-																			<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031300','','','','']); fillShop();">Chains</a></li>
-																	<!--		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030000','','','','']); fillShop();">Supplies</a></li> -->
+																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('findings');">Findings</a></li>
+																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('cording');">Cord / Wire</a></li>																			
+																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('kits');">Kits</a></li>
+																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('chains');">Chains</a></li>
+																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('crafting supplies');">Supplies</a></li>
 																	</ul>
 																</div>
 															</div>
@@ -55,8 +55,8 @@
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
 																	<ul class="dropdown-mega-sub-nav">
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030700','','','','']); fillShop();">Storage</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030100','','','','']); fillShop();">Tools</a></li>															
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('storage');">Storage</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('tools');">Tools</a></li>															
 																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['','4900','','','']); fillShop();">Organizers</a></li>
 																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['','6500','','','']); fillShop();">Misc Tools</a></li>	
 																	</ul>
@@ -64,11 +64,11 @@
 																<div class="col-md-6">
 																	<a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70030900','','','','']); fillShop();" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
 																	<ul class="dropdown-mega-sub-nav">
-																		<li><a href="demo-shop-1.html">Beads</a></li>
-																		<li><a href="demo-shop-5.html">Gemstones</a></li>
-																		<li><a href="demo-shop-6.html">Pendants</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031500','','','','']); fillShop();">Charms</a></li>
-																		<li><a href="demo-shop-8.html">Connectors</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('beads');">Beads</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction3('gemstones');">Gemstones</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction3('pendants');">Pendants</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('charms');">Charms</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction3('connectors');">Connectors</a></li>
 																	</ul>
 																</div>
 															</div>
@@ -162,7 +162,7 @@
 						<a href="#" class="mmenu-toggle-btn" title="Toggle menu">
 							<i class="fa fa-bars"></i>
 						</a>
-						<!--
+						
 						<div class="header-search">
 							<a href="#" class="search-toggle">
 								<i class="fa fa-search"></i>
@@ -176,7 +176,7 @@
 								</div>
 							</form>
 						</div>
-					-->
+				
 						<div class="top-menu-area">
 							<a href="#">Links
 								<i class="fa fa-caret-down"></i>

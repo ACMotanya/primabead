@@ -100,13 +100,14 @@
 			});
 
 			$(function() {
-				if (!localStorage.getItem('shopParams')) {
-					localStorage.setItem('shopParams', ['70030200','','','','']);
-				}
+			//	if (!localStorage.getItem('shopParams')) {
+			//		localStorage.setItem('shopParams', ['70030200','','','','']);
+			//	}
 				sessionNumber();
 				whichPage();
-				fillShop();
+			//	fillShop();
 			//    newCustomerSession();
+			filterFunction('swarovski');
 			});		
 		</script>
 		{% endif %} 
