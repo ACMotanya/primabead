@@ -227,11 +227,13 @@ function search()
         data: searchTerm,
         location: 700},
       success: function(response) {
-        $('#searchDiv').empty();
+       // $('#searchDiv').empty();
         
-        windowHash("search");
-        itemRender2("searchDiv", response);
-        $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
+        windowHash("products");
+        $('.jplist-reset-btn').click();
+        $('#display-products').empty();
+        itemRender2("display-products", response);
+       // $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       }
     });
   }
@@ -276,6 +278,7 @@ function filterFunction2(a, b, c, d, e, f, g, h) {
       $('.jplist-reset-btn').click();
       $('#display-products').empty();
       itemRender("display-products", response);
+      console.log(response);
     }
   });
 }
@@ -342,7 +345,7 @@ function fillTypeField()
   });
   
   colors.forEach(function (element) {
-    $('#color-panel').append('<li><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ element +'" style="background: '+ colorDictionary[element] +'" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"></span></a></li>');
+    $('#color-panel').append('<li id="'+ element.replace(/ +/g, "") + 1 +'"><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ element +'" style="background: '+ colorDictionary[element] +'" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"></span></a></li>');
   });
   $('span').tooltip({}); 
 }
@@ -1733,11 +1736,11 @@ function changeQuantity(element) {
 //////////////////////////////////////
 // Functionality of toggle colors //
 //////////////////////////////////////
-function selectColor() {
-  $(".sidebar.shop-sidebar .filter-list-color li a").click(function(event) {
-     $(this).toggleClass("selected-color");
-  });
-}
+$('input.color-selector:checkbox').change(function(){
+  color = $(this).attr('id');
+  this.checked ? $('#'+color+'1 a span').addClass("selected-color") : $('#'+color+'1 a span').removeClass("selected-color");
+});
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PULL SAVED BILL TO ADDRESSES //
@@ -1901,26 +1904,6 @@ function displayBillingAddress(index) {
 ////////////////////////////////
 // Find Minimum for the order //
 ////////////////////////////////
-function discount10() {
-  var couponAmt;
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
-    invoiceLines = data.split("\n");
-    console.log();
-    for (i = 1; i < invoiceLines.length - 1; i++) {
-      invoicefields = invoiceLines[i].split("|");
-      if (invoicefields[3] > "11/1/18") {
-        /*
-        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTH&session_no=" + session_no + "", function ( answer ) {
-          cartheaderdis = answer.split("\n");
-          cartHeaderFieldsdis = cartheaderdis[1].split("|");
-          couponAmt = 0.1 / parseFloat(cartHeaderFieldsdis[22]);
-        });
-        */
-        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_amt1=0.00");
-      }
-    }
-  });
-}
 
 function employeeDiscount() {
   username = localStorage.getItem("username");

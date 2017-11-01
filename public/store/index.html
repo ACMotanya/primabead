@@ -283,6 +283,160 @@
 		</div>
 	</div>
 </header>
+
+<div class="mobile-nav">
+	<div class="mobile-nav-wrapper">
+		<ul class="mobile-side-menu">
+			<li><a href="/primabead/">Home</a></li>
+			<li>
+				<span class="mmenu-toggle"></span>
+				<a href="#">SHOP</span></a>
+				<ul>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Brands</a>
+						<ul>
+							<li>
+								<a href="#">DC Comics</a>
+							</li>
+							<li>
+								<a href="#">Swarovski</a>
+							</li>
+							<li>
+								<a href="#">Elegance</a>
+							</li>
+							<li>
+								<a href="#">Jewelry Basics</a>
+							</li>
+							<li>
+								<a href="#">Holiday</a>
+							</li>
+							<li>
+								<a href="#">Finished Jewelry</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Craft Supplies</a>
+
+						<ul>
+							<li>
+								<a href="#">Findings</a>
+							</li>
+							<li>
+								<a href="#">Cording &amp; Wire</span></a>
+							</li>
+							<li>
+								<a href="#">Kits</a>
+							</li>
+							<li>
+								<a href="#">Chains</a>
+							</li>
+							<li>
+								<a href="#">Supplies</a>
+							</li>
+							<li>
+								<a href="#">Rhinestones</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Tools &amp; Storage</a>
+
+						<ul>
+							<li>
+								<a href="#">Storage</a>
+							</li>
+							<li>
+								<a href="#">Tools</a>
+							</li>
+							<li>
+								<a href="#">Organizers</a>
+							</li>
+							<li>
+								<a href="#">Misc Tools</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Beads &amp; Charms</a>
+
+						<ul>
+							<li>
+								<a href="#">Beads</a>
+							</li>
+							<li>
+								<a href="#">Gemstones</a>
+							</li>
+							<li>
+								<a href="#">Pendants</a>
+							</li>
+							<li>
+								<a href="#">Charms</a>
+							</li>
+							<li>
+								<a href="#">Connectors</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/primabead/store/#cart">Cart</a>
+			</li>
+			<li>
+				<a href="/primabead/store/#checkout">Checkout</a>
+			</li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Login &amp; Register</a>
+
+				<ul>
+					
+					<li>
+						<a href="/primabead/login">Login</a>
+					</li>
+					<li>
+						<a href="/primabead/register">Register</a>
+					</li>
+
+				</ul>
+			</li>
+			<li class="loggedOff">
+				<a href="#" onclick="logoff();">Log Out</a>
+			</li>
+			<li>
+				<span class="mmenu-toggle"></span>
+				<a class="myaccount-link" href="#">My Account</a>
+				<ul>
+					<li>
+						<a href="/primabead/store/#dashboard">Dashboard</a>
+					</li>
+					<li>
+						<a href="/primabead/store/#orders">Orders</a>
+					</li>
+					<li>
+						<a href="/primabead/store/#invoices">Invoices</a>
+					</li>
+				</ul>
+			</li>
+			<!--
+			<li>
+				<a href="demo-shop-2-about-us.html">About Us</a>
+			</li>
+
+			<li>
+				<a href="demo-shop-2-contact-us.html">Contact Us</a>
+			</li>
+			-->
+		</ul>
+	</div>
+</div>
+
+<div id="mobile-menu-overlay"></div>
       <div role="main" class="main">
         <style>
 	.store-page {
@@ -558,60 +712,60 @@
 				<div class="jplist-panel box panel-top">
 					<div style="display: none" class="jplist-group" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="themes"
 						data-path=".themes" data-logic="or">
-						<input data-path=".Silver" id="Silver" type="checkbox" />
+						<input data-path=".Silver" id="Silver" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Gold" id="Gold" type="checkbox" />
+						<input data-path=".Gold" id="Gold" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Black" id="Black" type="checkbox" />
+						<input data-path=".Black" id="Black" type="checkbox" class="color-selector" />
 			
-						<input data-path=".Blue" id="Blue" type="checkbox" />
+						<input data-path=".Blue" id="Blue" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Brown" id="Brown" type="checkbox" />
+						<input data-path=".Brown" id="Brown" type="checkbox" class="color-selector" />
 			
-						<input data-path=".Clear" id="Clear" type="checkbox" />
+						<input data-path=".Clear" id="Clear" type="checkbox" class="color-selector" />
 			
-						<input data-path=".Green" id="Green" type="checkbox" />
+						<input data-path=".Green" id="Green" type="checkbox" class="color-selector" />
 		
-						<input data-path=".Grey" id="Grey" type="checkbox" />
+						<input data-path=".Grey" id="Grey" type="checkbox" class="color-selector" />
 		
-						<input data-path=".Opal" id="Opal" type="checkbox" />
+						<input data-path=".Opal" id="Opal" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Orange" id="Orange" type="checkbox" />
+						<input data-path=".Orange" id="Orange" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Pink" id="Pink" type="checkbox" />
+						<input data-path=".Pink" id="Pink" type="checkbox" class="color-selector" />
 			
-						<input data-path=".Purple" id="Purple" type="checkbox" />
+						<input data-path=".Purple" id="Purple" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Rainbow" id="Rainbow" type="checkbox" />
+						<input data-path=".Rainbow" id="Rainbow" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Red" id="Red" type="checkbox" />
+						<input data-path=".Red" id="Red" type="checkbox" class="color-selector" />
 			
-						<input data-path=".Tan" id="Tan" type="checkbox" />
+						<input data-path=".Tan" id="Tan" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Teal" id="Teal" type="checkbox" />
+						<input data-path=".Teal" id="Teal" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Turquoise" id="Turquoise" type="checkbox" />
+						<input data-path=".Turquoise" id="Turquoise" type="checkbox" class="color-selector" />
 
-						<input data-path=".White" id="White" type="checkbox" />
+						<input data-path=".White" id="White" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Yellow" id="Yellow" type="checkbox" />
+						<input data-path=".Yellow" id="Yellow" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Multi" id="Multi" type="checkbox" />
+						<input data-path=".Multi" id="Multi" type="checkbox" class="color-selector" />
 				
-						<input data-path=".Copper" id="Copper" type="checkbox" />
+						<input data-path=".Copper" id="Copper" type="checkbox" class="color-selector" />
 					
-						<input data-path=".RoseGold" id="RoseGold" type="checkbox" />
+						<input data-path=".RoseGold" id="RoseGold" type="checkbox" class="color-selector" />
 				
-						<input data-path=".AntiqueGold" id="AntiqueGold" type="checkbox" />
+						<input data-path=".AntiqueGold" id="AntiqueGold" type="checkbox" class="color-selector" />
 					
-						<input data-path=".Gunmetal" id="Gunmetal" type="checkbox" />
+						<input data-path=".Gunmetal" id="Gunmetal" type="checkbox" class="color-selector" />
 
-						<input data-path=".CrystalAB" id="CrystalAB" type="checkbox" />
+						<input data-path=".CrystalAB" id="CrystalAB" type="checkbox" class="color-selector" />
 					
 					</div>
 					<div style="display: none;" class="jplist-group" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="functions"
 						data-path=".functions" data-logic="or">
-						<input data-path=".Organizers" id="Organizers" type="checkbox" />					
+						<input data-path=".Organizers" id="Organizers" type="checkbox" />
 						<input data-path=".GiftPackaging" id="GiftPackaging" type="checkbox" />
 						<input data-path=".Displays" id="Displays" type="checkbox" />
 						
@@ -1438,7 +1592,7 @@
 			</div>
 		</div>
 	</div>
--->
+	-->
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-col">
