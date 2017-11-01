@@ -427,9 +427,7 @@ function itemRender2(div, response) {
 
       items.push($(prod));
       console.log(lines[k].func);
-     
       listOfAttributes(functiontype, lines[k].func );
-      
       listOfAttributes(material, lines[k].material);
       listOfAttributes(colors, lines[k].color);
       
@@ -1727,14 +1725,12 @@ function sessionNumber() {
   }
 }
 
-
-
 function logoff()
 {
   localStorage.removeItem('session_no');
   localStorage.removeItem('newCustomer');
   localStorage.removeItem('username');
-  redirect("");
+  redirect("/");
 }
 
 
