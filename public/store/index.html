@@ -120,7 +120,8 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Brands</a>
-																	<ul class="dropdown-mega-sub-nav">																
+																	<ul class="dropdown-mega-sub-nav">
+																			<li><a href="/primabead/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a></li>
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('swarovski');">Swarovski</a></li>
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('elegance');">Elegance</a></li>
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a></li> 
@@ -136,6 +137,7 @@
 																			<li><a href="/primabead/store/#products" onclick="filterFunction('kits');">Kits</a></li>
 																			<li><a href="/primabead/store/#products" onclick="filterFunction('chains');">Chains</a></li>
 																			<li><a href="/primabead/store/#products" onclick="filterFunction('crafting supplies');">Supplies</a></li>
+																			<li><a href="/primabead/store/#products" onclick="filterFunction3('rhinestones');">Rhinestones</a></li>
 																	</ul>
 																</div>
 															</div>
@@ -145,12 +147,12 @@
 																	<ul class="dropdown-mega-sub-nav">
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('storage');">Storage</a></li>
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('tools');">Tools</a></li>															
-																		<li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['','4900','','','']); fillShop();">Organizers</a></li>
-																		<li><a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['','6500','','','']); fillShop();">Misc Tools</a></li>	
+																		<li><a href="/primabead/store/#products" onclick="filterFunction3('organizers');">Organizers</a></li>
+																		<li><a href="/primabead/store/#products" onclick="filterFunction3('misc tools');">Misc Tools</a></li>	
 																	</ul>
 																</div>
 																<div class="col-md-6">
-																	<a href="/primabead/store/#products" onclick="localStorage.setItem('shopParams', ['70030900','','','','']); fillShop();" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
+																	<a href="/primabead/store/#products" onclick="filterFunction3('beads');" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
 																	<ul class="dropdown-mega-sub-nav">
 																		<li><a href="/primabead/store/#products" onclick="filterFunction('beads');">Beads</a></li>
 																		<li><a href="/primabead/store/#products" onclick="filterFunction3('gemstones');">Gemstones</a></li>
@@ -297,22 +299,22 @@
 						<a href="#">Brands</a>
 						<ul>
 							<li>
-								<a href="#">DC Comics</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a>
 							</li>
 							<li>
-								<a href="#">Swarovski</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('swarovski');">Swarovski</a>
 							</li>
 							<li>
-								<a href="#">Elegance</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('elegance');">Elegance</a>
 							</li>
 							<li>
-								<a href="#">Jewelry Basics</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a>
 							</li>
 							<li>
-								<a href="#">Holiday</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('holiday');">Holiday</a>
 							</li>
 							<li>
-								<a href="#">Finished Jewelry</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('finished jewelry');">Finished Jewelry</a>
 							</li>
 						</ul>
 					</li>
@@ -322,22 +324,22 @@
 
 						<ul>
 							<li>
-								<a href="#">Findings</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('findings');">Findings</a>
 							</li>
 							<li>
-								<a href="#">Cording &amp; Wire</span></a>
+								<a href="/primabead/store/#products" onclick="filterFunction('cording');">Cording &amp; Wire</span></a>
 							</li>
 							<li>
-								<a href="#">Kits</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('kits');">Kits</a>
 							</li>
 							<li>
-								<a href="#">Chains</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('chains');">Chains</a>
 							</li>
 							<li>
-								<a href="#">Supplies</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('crafting supplies');">Supplies</a>
 							</li>
 							<li>
-								<a href="#">Rhinestones</a>
+								<a href="/primabead/store/#products" onclick="filterFunction3('rhinestones');">Rhinestones</a>
 							</li>
 						</ul>
 					</li>
@@ -347,39 +349,28 @@
 
 						<ul>
 							<li>
-								<a href="#">Storage</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('storage');">Storage</a>
 							</li>
 							<li>
-								<a href="#">Tools</a>
+								<a href="/primabead/store/#products" onclick="filterFunction('tools');">Tools</a>
 							</li>
 							<li>
-								<a href="#">Organizers</a>
+								<a href="/primabead/store/#products" onclick="filterFunction3('organizers');">Organizers</a>
 							</li>
 							<li>
-								<a href="#">Misc Tools</a>
+								<a href="/primabead/store/#products" onclick="filterFunction3('misc tools');">Misc Tools</a>
 							</li>
 						</ul>
 					</li>
 					<li>
 						<span class="mmenu-toggle"></span>
 						<a href="#">Beads &amp; Charms</a>
-
 						<ul>
-							<li>
-								<a href="#">Beads</a>
-							</li>
-							<li>
-								<a href="#">Gemstones</a>
-							</li>
-							<li>
-								<a href="#">Pendants</a>
-							</li>
-							<li>
-								<a href="#">Charms</a>
-							</li>
-							<li>
-								<a href="#">Connectors</a>
-							</li>
+								<li><a href="/primabead/store/#products" onclick="filterFunction('beads');">Beads</a></li>
+								<li><a href="/primabead/store/#products" onclick="filterFunction3('gemstones');">Gemstones</a></li>
+								<li><a href="/primabead/store/#products" onclick="filterFunction3('pendants');">Pendants</a></li>
+								<li><a href="/primabead/store/#products" onclick="filterFunction('charms');">Charms</a></li>
+								<li><a href="/primabead/store/#products" onclick="filterFunction3('connectors');">Connectors</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -616,6 +607,7 @@
 						<div id="panel-filter-category" class="accordion-body collapse in">
 							<div class="panel-body">
 								<ul class="cat-list">
+									<li><a href="#" onclick="filterFunction('DC Comics');">DC Comics</a></li>
 									<li><a href="#" onclick="filterFunction('beads');">Beads</a></li>
 									<li><a href="#" onclick="filterFunction('crafting supplies');">Crafting Supplies</a></li>
 									<li><a href="#" onclick="filterFunction('charms');">Charms</a></li>
@@ -1498,7 +1490,7 @@
 								<div class="form-group">
 									<input type="text" class="form-control" required>
 								</div>
-								<input type="submit" class="btn btn-primary btn-block" value="Apply Coupon">
+								<input type="button" class="btn btn-primary btn-block" value="Apply Coupon">
 							</form>
 						</div>
 					</div>
@@ -1831,7 +1823,7 @@
 						<label>Enter your coupon code:</label>
 						<input type="text" class="form-control">
 					</div>
-					<a href="#" class="btn btn-primary">Apply</a>
+					<a class="btn btn-primary">Apply</a>
 				</div>
 			</div>
 			<div class="form-col">
