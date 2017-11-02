@@ -1650,6 +1650,7 @@ function whichPage() {
       cart();
       break;
     case '#checkout':
+ 
       window.scrollTo(0, 0);
       $('#checkout').show();
       cart();
