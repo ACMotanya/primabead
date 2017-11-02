@@ -14,14 +14,14 @@
 						<div class="header-nav-main">
 							<nav>
 								<ul class="nav nav-pills" id="mainNav">
-									<li class="dropdown">
+									<li>
 										<a href="{{site.baseurl}}/">
 											Home
 										</a>                    
 									</li>
 									
 									<li class="dropdown dropdown-mega-small">
-										<a href="{{site.baseurl}}/store/#products" onclick="localStorage.setItem('shopParams', ['70031000','','','','']); fillShop();" class="dropdown-toggle">
+										<a href="{{site.baseurl}}/store/#products" onclick="filterFunction('DC Comics');" class="dropdown-toggle">
 											SHOP
 										</a>
 										<ul class="dropdown-menu">
@@ -33,8 +33,8 @@
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Brands</a>
 																	<ul class="dropdown-mega-sub-nav">
-																			<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a></li>
-																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('swarovski');">Swarovski</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a></li>
+																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('swarovski');">swarovski&reg;</a></li>
 																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('elegance');">Elegance</a></li>
 																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a></li> 
 																		<li><a href="{{site.baseurl}}/store/#products" onclick="filterFunction('holiday');">Holiday</a></li>
@@ -85,6 +85,17 @@
 											</li>
 										</ul>
 									</li>
+									<li class="loggedOff">
+										<a href="{{site.baseurl}}/">
+											Cart
+										</a>                    
+									</li>
+									<li class="loggedOff">
+										<a href="{{site.baseurl}}/">
+											Checkout
+										</a>                    
+									</li>
+									
 									<!--
 									<li class="dropdown dropdown-mega">
 										<a href="#" class="dropdown-toggle">
@@ -214,7 +225,7 @@
 								<a href="{{site.baseurl}}/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a>
 							</li>
 							<li>
-								<a href="{{site.baseurl}}/store/#products" onclick="filterFunction('swarovski');">Swarovski</a>
+								<a href="{{site.baseurl}}/store/#products" onclick="filterFunction('swarovski');">swarovski&reg;</a>
 							</li>
 							<li>
 								<a href="{{site.baseurl}}/store/#products" onclick="filterFunction('elegance');">Elegance</a>

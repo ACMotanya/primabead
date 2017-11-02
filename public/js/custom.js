@@ -430,7 +430,6 @@ function itemRender2(div, response) {
       listOfAttributes(functiontype, lines[k].func );
       listOfAttributes(material, lines[k].material);
       listOfAttributes(colors, lines[k].color);
-      
     });
    
     $demo.jplist({
@@ -560,15 +559,7 @@ function detailView(callback, callback2) {
         */
         $(".itemName").text(response[k].shortdescription);
         // add in custom ratings
-        /*
-        if (rate) {
-          $("div.rating").width(Math.floor(Math.random() * 101) + '%');
-          $("span.count").text("2");
-        } else {
-          $(".product-ratings").remove();
-          $(".review-link-in").remove();
-        }
-        */
+
         if (response[k].longdescription && response[k].longdescription.length !== 0 ) {
           $(".product-short-desc p").html(response[k].description);
         } else {
