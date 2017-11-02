@@ -609,6 +609,7 @@ function detailView(callback, callback2) {
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty) {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + stock_no + "&qty=" + qty + "");
+  cart();
 }
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
@@ -632,6 +633,7 @@ function addItemDetailView() {
   if (window.location.hash !== "#products") {
     window.location.hash = "cart";
   }
+
   return false;
 }
 
@@ -693,84 +695,101 @@ function updateCart() {
 // Get back the cart header //
 //////////////////////////////
 function cartHeader(callback) {
-  jQuery.ajax({
-    type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTH",
-      session_no: session_no
-    },
-    success: function (response) {
-      console.log(response);
-      cartheader = response.split("\n");
-      if (cartheader.length >= 3) {
-        cartHeaderFields = cartheader[1].split("|");
 
-        if (window.location.hash === "#cart") {
+  
+      jQuery.ajax({
+        type: "GET",
+        url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+        data: {
+          request_id: "APICARTH",
+          session_no: session_no
+        },
+        success: function (response) {
+          console.log(response);
+          cartheader = response.split("\n");
           
-          //Add the shipping cost. Depending on the Grand Total.
-          if (parseInt(cartHeaderFields[22]) > 25 || cartHeaderFields[19].trim() === ".00" ) {
-            freeShip = true;
-            discount_amt = 0 - (parseFloat(cartHeaderFields[19]) * 0.1);
-            discount_amt = discount_amt.toFixed(2);
-            console.log(discount_amt);
-            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_amt1=" + discount_amt + "");
-          } else {
-            freeShip = false;
-            discount_amt = 5 - (parseFloat(cartHeaderFields[19]) * 0.1);
-            discount_amt = discount_amt.toFixed(2);
-            console.log(discount_amt);
-            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_amt1=" + discount_amt + "");
+          if (cartheader.length >= 3) {
+            
+            cartHeaderFields = cartheader[1].split("|");
+            calculateShipping(cartHeaderFields[22], cartHeaderFields[19]);
+                        
+            if (window.location.hash === "#cart") {
+              getTax(cartHeaderFields[14], cartHeaderFields[7]);
+            }
+            if (window.location.hash === "#checkout") {
+              getTax(cartHeaderFields[14], cartHeaderFields[7]);
+              $(".showTotal").html('$' + cartHeaderFields[22].trim());
+              console.log(cartHeaderFields[28]);
+              document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
+              document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
+              document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
+              document.getElementById("billing-form-address2").value = cartHeaderFields[4].trim();
+              document.getElementById("billing-form-address3").value = cartHeaderFields[5].trim();
+              document.getElementById("billing-form-city").value = cartHeaderFields[6].trim();
+              document.getElementById("billing-form-state").value = cartHeaderFields[7].trim();
+              document.getElementById("billing-form-zipcode").value = cartHeaderFields[8].trim();
+              document.getElementById("billing-form-phone").value = cartHeaderFields[18].trim();
+              document.getElementById("shipping-form-name").value = cartHeaderFields[9].trim();
+              document.getElementById("shipping-form-address").value = cartHeaderFields[10].trim();
+              document.getElementById("shipping-form-address2").value = cartHeaderFields[11].trim();
+              document.getElementById("shipping-form-address3").value = cartHeaderFields[12].trim();
+              document.getElementById("shipping-form-city").value = cartHeaderFields[13].trim();
+              document.getElementById("shipping-form-state").value = cartHeaderFields[14].trim();
+              document.getElementById("shipping-form-zipcode").value = cartHeaderFields[15].trim();
+            }
+            if (window.location.hash === "#dashboard") {
+              $("#default-billing-address").html(cartHeaderFields[3].trim() + ' ' + cartHeaderFields[4].trim() + ' ' + cartHeaderFields[5].trim() + '<br>' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7] + ' ' + cartHeaderFields[8].trim());
+              $("#default-shipping-address").html(cartHeaderFields[10].trim() + ' ' + cartHeaderFields[11].trim() + ' ' + cartHeaderFields[12].trim() + '<br>' + cartHeaderFields[13].trim() + ', ' + cartHeaderFields[14] + ' ' + cartHeaderFields[15].trim() + '<br><a href="#">Add Address</a>');
+            }
           }
-
-          $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
-        }
-        if (window.location.hash === "#checkout") {
-          $(".showTotal").html('$' + cartHeaderFields[22].trim());
-          console.log(cartHeaderFields[28]);
-          document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
-          document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
-          document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
-          document.getElementById("billing-form-address2").value = cartHeaderFields[4].trim();
-          document.getElementById("billing-form-address3").value = cartHeaderFields[5].trim();
-          document.getElementById("billing-form-city").value = cartHeaderFields[6].trim();
-          document.getElementById("billing-form-state").value = cartHeaderFields[7].trim();
-          document.getElementById("billing-form-zipcode").value = cartHeaderFields[8].trim();
-          document.getElementById("billing-form-phone").value = cartHeaderFields[18].trim();
-          document.getElementById("shipping-form-name").value = cartHeaderFields[9].trim();
-          document.getElementById("shipping-form-address").value = cartHeaderFields[10].trim();
-          document.getElementById("shipping-form-address2").value = cartHeaderFields[11].trim();
-          document.getElementById("shipping-form-address3").value = cartHeaderFields[12].trim();
-          document.getElementById("shipping-form-city").value = cartHeaderFields[13].trim();
-          document.getElementById("shipping-form-state").value = cartHeaderFields[14].trim();
-          document.getElementById("shipping-form-zipcode").value = cartHeaderFields[15].trim();
-
-          if (parseInt(cartHeaderFields[22]) > 25) {
-            freeShip = true;
-            $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
-          } else {
-            freeShip = false;
-            $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+        },
+        complete: function () {
+          if (callback && typeof (callback) === "function") {
+            callback();
           }
+          $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTH&session_no=" + session_no + "", function (response) {
+            cartheader = response.split("\n");
+            
+            if (cartheader.length >= 3) {
+              
+              cartHeaderFields = cartheader[1].split("|");
+              $(".cart-qty").text(cartHeaderFields[24].trim());
+              $(".cart-totals span").text('$' + cartHeaderFields[19].trim());
+              $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
+            }
+          });
         }
-        if (window.location.hash === "#dashboard") {
-          $("#default-billing-address").html(cartHeaderFields[3].trim() + ' ' + cartHeaderFields[4].trim() + ' ' + cartHeaderFields[5].trim() + '<br>' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7] + ' ' + cartHeaderFields[8].trim());
-          $("#default-shipping-address").html(cartHeaderFields[10].trim() + ' ' + cartHeaderFields[11].trim() + ' ' + cartHeaderFields[12].trim() + '<br>' + cartHeaderFields[13].trim() + ', ' + cartHeaderFields[14] + ' ' + cartHeaderFields[15].trim() + '<br><a href="#">Add Address</a>');
-        }
-      }
-      $(".cart-qty").text(cartHeaderFields[24].trim());
-      $(".cart-totals span").text('$' + cartHeaderFields[19].trim());
-    },
-    complete: function () {
-      if (callback && typeof (callback) === "function") {
-        callback();
-      }
-    }
-  });
+      });
+      
   return false;
+
 }
 
-
+///////////////////////
+// Shipping Function //
+///////////////////////
+function calculateShipping(total, subtotal)
+{
+  if ( subtotal.trim() === ".00") {
+    freeShip = true;
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+    $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
+  } else if (total > 25 ) {
+    freeShip = true;
+    discount_amt = 0 - (parseFloat(subtotal) * 0.1);
+    discount_amt = discount_amt.toFixed(2);
+    console.log(discount_amt);
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+    $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
+  } else {
+    freeShip = false;
+    discount_amt = 5 - (subtotal * 0.1);
+    discount_amt = discount_amt.toFixed(2);
+    console.log(discount_amt);
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
+    $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+  }
+}
 
 ////////////////////
 // Get Line items //
@@ -840,6 +859,17 @@ function cartHelper() {
   $("div.cart-products").append(html2.join(''));
 }
 
+
+/////////////////////////
+  // GETTING FL TAX //
+/////////////////////////
+function getTax(shipstate, billstate)
+{
+  if(shipstate.toLowerCase() === "fl" || billstate.toLowercase() === "fl") {
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=Y");
+    console.log("are you gettin the fucking tax!");
+  }
+}
 
 
 /////////////////////////
@@ -1556,9 +1586,12 @@ function cart() {
 
 function checkoutPage() {
   //employeeDiscount();
+  var readyForMoney;
   session_no = localStorage.getItem('session_no');
   billingAddresses = [];
   shippingAddresses = [];
+  billstate = $('#billing-form-state').val();
+  shipstate = $('#shipping-form-state').val();
   $("#creditcard").hide();
 
   $("#billing-address, #shipping-address").empty();
@@ -1566,14 +1599,16 @@ function checkoutPage() {
 
   document.getElementById("creditcard").src = "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
-  $("#myButton").click(function (e) {
+  $("#myButton").click(function (e, callback) {
     $("#billingForm, #shippingForm").validate();
     var isBillValid = $("#billingForm").valid();
     var isShipValid = $("#shippingForm").valid();
+
     if (!isBillValid || !isShipValid) {
       e.preventDefault();
       alert("Address forms have errors");
     } else {
+     
       saveAddresses();
       $("#creditcard").slideDown("slow");
       $("#myButton").hide();
@@ -1708,7 +1743,8 @@ function windowHash(name) {
 /////////////////////////////////////////////////////
 // Get Session Number and Authorize Access to Page //
 /////////////////////////////////////////////////////
-function sessionNumber() {
+function sessionNumber() 
+{
   session_no = localStorage.getItem('session_no');
   if (typeof (session_no) === "undefined" || session_no === null || session_no.length !== 25 ) {
     pathArray = window.location.pathname.split('/');
@@ -1782,6 +1818,11 @@ $('input.color-selector:checkbox').change(function(){
   this.checked ? $('#'+color+'1 a span').addClass("selected-color") : $('#'+color+'1 a span').removeClass("selected-color");
 });
 
+$('#billing-form-state, #shipping-form-state').change(function() {
+  billstate = $('#billing-form-state').val();
+  shipstate = $('#shipping-form-state').val();
+  getTax(billstate, shipstate);
+});
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PULL SAVED BILL TO ADDRESSES //
