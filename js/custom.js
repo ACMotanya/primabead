@@ -1589,8 +1589,9 @@ function cart() {
 
 function checkoutPage() {
   //employeeDiscount();
-  var readyForMoney;
+ 
   session_no = localStorage.getItem('session_no');
+  username = localStorage.getItem('username');
   billingAddresses = [];
   shippingAddresses = [];
   billstate = $('#billing-form-state').val();
@@ -1601,6 +1602,7 @@ function checkoutPage() {
   fillAddresses();
 
   document.getElementById("creditcard").src = "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+  
 
   $("#myButton").click(function (e, callback) {
     $("#billingForm, #shippingForm").validate();
@@ -1618,6 +1620,8 @@ function checkoutPage() {
       creditCard(1);
     }
   });
+
+  
 }
 
 /////////////////////////////////////////////
@@ -1939,6 +1943,12 @@ function fillAddresses() {
         document.getElementById("billing-address").innerHTML += '<option value="' + i + '">' + billflds[1] + ', ' + billflds[2] + '</option>';
       }
       $("#billing-address").prepend('<option selected="selected">Select Billing Address</option>');
+     
+    }, 
+    complete: function() {
+      if (localStorage.getItem('username') === "Guest") {
+        $('#billing-form-name, #billing-form-address, #shipping-form-name, #shipping-form-address').val("");
+      }
     }
   });
 
@@ -1959,6 +1969,11 @@ function fillAddresses() {
         document.getElementById("shipping-address").innerHTML += '<option value="' + i + '">' + shipflds[1].trim() + ' - ' + shipflds[2] + '</option>';
       }
       $("#shipping-address").prepend('<option selected="selected">Select Shipping Address</option>');
+    }, 
+    complete: function() {
+      if (localStorage.getItem('username') === "Guest") {
+        $('#billing-form-name, #billing-form-address, #shipping-form-name, #shipping-form-address').val("");
+      }
     }
   });
 }
