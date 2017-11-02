@@ -864,12 +864,11 @@ function cartHelper() {
 /////////////////////////
 function getTax(shipstate, billstate)
 {
-  if (billstate && shipstate) {
-    if(shipstate.toLowerCase() === "fl" || billstate.toLowercase() === "fl") {
+  
+    if(shipstate.toLowerCase() === "fl" || billstate.toLowerCase() === "fl") {
       $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=Y");
       console.log("are you gettin the fucking tax!");
     }
-  }
 }
 
 
