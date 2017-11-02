@@ -688,6 +688,7 @@ function updateCart() {
     addItemGeneric(session_no, key, value[0]);
   });
   cart();
+  setTimeout(function(){ location.reload();}, 1000);
 }
 
 
@@ -760,9 +761,7 @@ function cartHeader(callback) {
           });
         }
       });
-      
   return false;
-
 }
 
 ///////////////////////
@@ -885,12 +884,15 @@ function creditCard(n) {
       session_no: session_no
     },
     success: function (response) {
+      $(window).on('hashchange', function() {
+        location.reload();
+      });
       openlines = response.split("\n");
       if (n === 1) {
         numberOfOrders = openlines.length;
       }
       newNumberOfOrders = openlines.length;
-
+      
       if (numberOfOrders != newNumberOfOrders) {
         hideCC = true;
         orders = [];
