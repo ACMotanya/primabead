@@ -1499,9 +1499,9 @@
 							<p class="mb-sm">Enter your coupon code if you have one.</p>
 							<form action="#">
 								<div class="form-group">
-									<input type="text" class="form-control" required>
+									<input id="coupon1" type="text" class="form-control" required>
 								</div>
-								<input type="button" class="btn btn-primary btn-block" value="Apply Coupon">
+								<input type="button" class="btn btn-primary btn-block" onclick="beaderCoupon();" value="Apply Coupon">
 							</form>
 						</div>
 					</div>
@@ -1831,9 +1831,9 @@
 				<div class="collapse" id="discountArea">
 					<div class="form-group wide">
 						<label>Enter your coupon code:</label>
-						<input type="text" class="form-control">
+						<input id="coupon2" type="text" class="form-control">
 					</div>
-					<a class="btn btn-primary">Apply</a>
+					<a class="btn btn-primary" onclick="beaderCoupon();">Apply</a>
 				</div>
 			</div>
 			<div class="form-col">
@@ -2491,7 +2491,7 @@
 				whichPage();
 			//	fillShop();
 			//    newCustomerSession();
-			filterFunction('swarovski');
+		//	filterFunction('swarovski');
 			});		
 		</script>
 		 
