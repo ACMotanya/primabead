@@ -10,9 +10,37 @@ var colorDictionary = {
     "Multi": "repeating-linear-gradient(red: yellow 10%: green 20%);","Copper": "#b87333","Rose Gold": "#b76e79","Antique Gold": "#D4AF37","Gunmetal": "#2c3539",
     "Crystal AB": "rgba(255,255,255,0)"};
 var session_no;
+var couponUsed = false; 
 
 //3949422, 34719146, 34719128
-
+function beaderCoupon()
+{
+  if (couponUsed != false) {
+  console.log("I ran");
+  itemsInCart = [];
+  if ($('#coupon1').val().toUpperCase() === "WEMISSYOU" || $('#coupon2').val().toUpperCase() === "WEMISSYOU" ) {
+    couponUsed = true;
+    addItemGeneric(session_no, "COUPONWEMISSU", "1");
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
+      couponcartitems = response.split("\n");
+      console.log(cartitems);
+      if (couponcartitems.length > 2) {
+        for (i = 1; i < couponcartitems.length - 1; i++) {
+          coupondata = couponcartitems[i].split("|");
+          itemsInCart.push(coupondata[2]);
+        }
+      }
+      if ( itemsInCart.indexOf("7746222") != -1 ) { 
+        return false;
+      } else {
+        addItemGeneric(session_no, "7746222", "1");
+      }
+    });
+  }
+} else {
+  return false;
+}
+}
 
 /////////////////////////////////////////
 // create new customer //
@@ -391,6 +419,24 @@ function filterFunction3(a) {
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/functions.php?",
+    data: {
+      data: a,
+      location: "700"
+    },
+    success: function (response) {
+      $('.jplist-reset-btn').click();
+      $('#display-products').empty();
+      itemRender2("display-products", response);
+    }
+  });
+}
+function filterFunction4(a) {
+  $('#demo').jplist({
+    command: 'empty'
+   });
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/allproductsfunctions.php?",
     data: {
       data: a,
       location: "700"
@@ -2062,7 +2108,9 @@ function showAlert() {
 		</script>
 */
 
-banned = [
+banned = [];
+
+notbanned = [
   "4697108",
   "34697106",
   "34697105",
