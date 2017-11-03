@@ -23,9 +23,7 @@
 	background-color: #76D5D4;
 }
 
-#header .header-nav-main nav > ul > li > a.dropdown-toggle {
-	color: #F4898F;
-}
+
 
 #header .header-body, .sticky-header-active #header .header-body, #footer .footer-copyright{
 	background-color: #3f4658;
@@ -38,6 +36,15 @@
 ul.cat-list li a {
  font-weight: 600;
  font-size: 15px;
+}
+
+#header .header-nav-main nav > ul > li > a, #header .header-nav-main nav > ul > li > a.dropdown-toggle, #header .top-menu li a{ 
+	color: #76D5D4;
+}
+
+
+#header .header-nav-main nav > ul > li:hover > a:hover { 
+	color: #F4898F !important;
 }
 
 .selected-color {
