@@ -15,10 +15,10 @@ var couponUsed = false;
 //3949422, 34719146, 34719128
 function beaderCoupon()
 {
-  if (couponUsed != false) {
+  if (couponUsed !== false) {
   console.log("I ran");
   itemsInCart = [];
-  if ($('#coupon1').val().toUpperCase() === "WEMISSYOU" || $('#coupon2').val().toUpperCase() === "WEMISSYOU" ) {
+  if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
     couponUsed = true;
     addItemGeneric(session_no, "COUPONWEMISSU", "1");
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
@@ -47,31 +47,37 @@ function beaderCoupon()
 /////////////////////////////////////////
 
 function createCustomer() {
-  var createcompanyname = $("#create-contactname").val();
-  var createcontactname = $("#create-contactname").val();
-  var createaddress1 = "";
-  var createaddress2 = "";
-  var createaddress3 = "";
-  var createcity = $("#create-city").val();
-  var createstate = $("#create-state").val();
-  var createzipcode = $("#create-zipcode").val();
-  // var createcountry     = $("#create-country").val();
-  var createemail = $("#create-email").val();
-  var createphone = $("#create-phone").val();
-  var createfax = $("#create-fax").val();
-  var addressArray = [];
-  if ($("#create-address").val()) {
-    addressArray = $("#create-address").val().match(/.{1,30}/g);
-    if (addressArray[0] && typeof (addressArray[0]) === "string") {
-      createaddress1 = addressArray[0];
+  $("#billingForm, #shippingForm").validate();
+  var isBillValid = $("#billingForm").valid();
+  var isShipValid = $("#shippingForm").valid();
+
+  if ($("#create-contactname").valid() && $("#create-email").valid() && $("#create-phone").valid() && $("#create-address").valid() && $("#create-city").valid() && $("#create-state").valid() && $("#create-zipcode").valid()) {
+    var createcompanyname = $("#create-contactname").val();
+    var createcontactname = $("#create-contactname").val();
+    var createaddress1 = "";
+    var createaddress2 = "";
+    var createaddress3 = "";
+    var createcity = $("#create-city").val();
+    var createstate = $("#create-state").val();
+    var createzipcode = $("#create-zipcode").val();
+    // var createcountry = $("#create-country").val();
+    var createemail = $("#create-email").val();
+    var createphone = $("#create-phone").val();
+    var createfax = $("#create-fax").val();
+    var addressArray = [];
+    if ($("#create-address").val()) {
+      addressArray = $("#create-address").val().match(/.{1,30}/g);
+      if (addressArray[0] && typeof (addressArray[0]) === "string") {
+        createaddress1 = addressArray[0];
+      }
+      if (addressArray[1] && typeof (addressArray[1]) === "string") {
+        createaddress2 = addressArray[1];
+      }
+      if (addressArray[2] && typeof (addressArray[2]) === "string") {
+        createaddress3 = addressArray[2];
+      }
     }
-    if (addressArray[1] && typeof (addressArray[1]) === "string") {
-      createaddress2 = addressArray[1];
-    }
-    if (addressArray[2] && typeof (addressArray[2]) === "string") {
-      createaddress3 = addressArray[2];
-    }
-  }
+  
 
   $.ajax({
     type: "GET",
@@ -107,6 +113,7 @@ function createCustomer() {
       }
     }
   });
+  }
 }
 
 
