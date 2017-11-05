@@ -4,6 +4,11 @@
     max-width: 80% !important;
 }
 
+/* hide the 'X' on orders and invoice page */
+.panel-action.panel-action-dismiss {
+	display: none;
+}
+
 .tabs.product-tabs.tabs-left .tab-content {
 	padding: 15px;
 }
