@@ -886,7 +886,6 @@ function cartHeader(callback) {
           });
         }
       });
-
 }
 
 ///////////////////////
@@ -900,16 +899,16 @@ function calculateShipping(total, subtotal)
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=0.00");
     
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
-  } else if (parseFloat(subtotal) > 25 ) {
+  } else if (parseFloat(subtotal.replace(/[, ]/g, '')) > 25 ) {
     freeShip = true;
-    discount_amt = 0 - (parseFloat(subtotal) * 0.1);
+    discount_amt = 0 - (parseFloat(subtotal.replace(/[, ]/g, '')) * 0.1);
     discount_amt = discount_amt.toFixed(2);
     console.log(discount_amt);
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
   } else {
     freeShip = false;
-    discount_amt = 5 - (subtotal * 0.1);
+    discount_amt = 5 - (subtotal.replace(/[, ]/g, '') * 0.1);
     discount_amt = discount_amt.toFixed(2);
     console.log(discount_amt);
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
