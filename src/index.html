@@ -59,19 +59,19 @@ layout: default
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4">
-				<a href="{{ site.baseurl }}/login" class="banner">
+				<a href="{{ site.baseurl }}/login" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();" class="banner">
 					<img src="{{site.baseurl}}/images/dc.jpg" alt="Banner">
 					<span class="ban-title">DC Comics</span>
 				</a>
 			</div>
 			<div class="col-sm-4">
-				<a href="{{ site.baseurl }}/login" class="banner">
+				<a href="{{ site.baseurl }}/login" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();" class="banner">
 					<img src="{{site.baseurl}}/images/swarovski.jpg" alt="Banner">
 					<span class="ban-title">Swarovski&reg;</span>
 				</a>
 			</div>
 			<div class="col-sm-4">
-				<a href="{{ site.baseurl }}/login" class="banner">
+				<a href="{{ site.baseurl }}/login" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();" class="banner">
 					<img src="{{site.baseurl}}/images/elegance.jpg" alt="Banner">
 					<span class="ban-title">Elegance</span>
 				</a>
@@ -174,7 +174,7 @@ layout: default
 		</div>
 	</div>
 </div>
-
+<!--
 <section class="explore-section parallax section section-text-light section-parallax section-center section-overlay-opacity section-overlay-opacity-scale-8 mt-none"
   data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="{{ site.baseurl }}/images/parallax.jpeg">
 	<div class="container">
@@ -205,9 +205,11 @@ layout: default
 				<a href="#" class="btn btn-default text-uppercase font-weight-semibold custom-text-color-1">Purchase now</a>
 			</div>
 		-->
+		<!--
 		</div>
 	</div>
 </section>
+-->
 <!--
 <div class="container">
 	<h2 class="slider-title v2 heading-primary text-center mt-sm">
