@@ -11,6 +11,7 @@ var colorDictionary = {
     "Crystal AB": "rgba(255,255,255,0)"};
 var session_no;
 var couponUsed = false; 
+var gotTax;
 
 //3949422, 34719146, 34719128
 function beaderCoupon()
@@ -47,9 +48,6 @@ function beaderCoupon()
 /////////////////////////////////////////
 
 function createCustomer() {
-  $("#billingForm, #shippingForm").validate();
-  var isBillValid = $("#billingForm").valid();
-  var isShipValid = $("#shippingForm").valid();
 
   if ($("#create-contactname").valid() && $("#create-email").valid() && $("#create-phone").valid() && $("#create-address").valid() && $("#create-city").valid() && $("#create-state").valid() && $("#create-zipcode").valid()) {
     var createcompanyname = $("#create-contactname").val();
@@ -229,7 +227,7 @@ function guestLogin()
     data: {
       request_id: "APICLOGIN"
     },
-    success: function (response) {      
+    success: function (response) {
       localStorage.setItem('session_no', response.trim());
       localStorage.setItem('username', 'Guest');
     },
@@ -284,10 +282,16 @@ function fillShop()
 {
   var params;
   if (localStorage.getItem('shopParams')) {
-    params = localStorage.getItem('shopParams');
-    return filterFunction(params);
+    params = params = localStorage.getItem('shopParams').split(",");
+    if (params[1] === "1") {
+      return filterFunction(params[0]);
+    } else if ( params[1] === "3") {
+      return filterFunction3(params[0]);
+    } else if ( params[1] === "4") {
+      return filterFunction4();
+    }
   } else {
-    localStorage.setItem('shopParams', 'elegance');
+    localStorage.setItem('shopParams', ['all', '4']);
     fillShop();
   } 
 }
@@ -343,7 +347,7 @@ function itemRender(div, response) {
 
     for (i = 0; i < linesPlus.length; i++) {
       var flds = linesPlus[i];
-      if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+      if ( notbanned.indexOf(flds[0].trim()) != -1 ) { continue; } 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
       //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
@@ -447,7 +451,7 @@ function filterFunction4(a) {
     success: function (response) {
       $('.jplist-reset-btn').click();
       $('#display-products').empty();
-      itemRender3("display-products", response);
+      itemRender2("display-products", response);
     }
   });
 }
@@ -468,7 +472,7 @@ function itemRender2(div, response) {
     $("#display-products").empty();
     
     Object.keys(lines).forEach(function(k){
-      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
+      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
       prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></a>';
@@ -513,7 +517,7 @@ function itemRender3(div, response) {
     $("#display-products").empty();
     
     Object.keys(lines).forEach(function(k){
-      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
+      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
       prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></a>';
@@ -737,9 +741,10 @@ function updateCart() {
   });
   $.each(shoppingCart, function (key, value) {
     addItemGeneric(session_no, key, value[0]);
+  }).promise().done(function() {
+    cart();
   });
-  cart();
-  setTimeout(function(){ location.reload();}, 1000);
+  
 }
 
 
@@ -767,7 +772,7 @@ function cartHeader(callback) {
               getTax(cartHeaderFields[14], cartHeaderFields[7]);
             }
             if (window.location.hash === "#checkout") {
-              getTax(cartHeaderFields[14], cartHeaderFields[7]);
+              
               $(".showTotal").html('$' + cartHeaderFields[22].trim());
               console.log(cartHeaderFields[28]);
               document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
@@ -806,6 +811,9 @@ function cartHeader(callback) {
               $(".cart-qty").text(cartHeaderFields[24].trim());
               $(".cart-totals span").text('$' + cartHeaderFields[19].trim());
               $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
+              if ( cartHeaderFields[19].trim() === ".00") {
+                $("#cart-grand-total").hide();
+              } 
             }
           });
         }
@@ -822,7 +830,7 @@ function calculateShipping(total, subtotal)
   if ( subtotal.trim() === ".00") {
     freeShip = true;
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
-    $("#cart-grand-total").hide();
+    
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
   } else if (parseFloat(total) > 25 ) {
     freeShip = true;
@@ -854,21 +862,18 @@ function cartList() {
     },
     success: function (response) {
       cartitems = response.split("\n");
-
-      jQuery(".cart-products").empty();
       html = [];
       html2 = [];
-
+      cartHelper();
+      jQuery(".cart-products").empty();
+      
       if (window.location.hash === "#cart") {
         $("table.cart-table tbody").empty();
-        cartHelper();
         $("table.cart-table tbody").prepend(html.join(''));
       } else if (window.location.hash === "#checkout") {
         $("table#reviewItemTable tbody").empty();
-        cartHelper();
-      } else {
-        cartHelper();
       }
+      
     }
   });
   return false;
@@ -915,9 +920,12 @@ function cartHelper() {
 /////////////////////////
 function getTax(shipstate, billstate)
 {
-    if(shipstate.toLowerCase() === "fl" || billstate.toLowerCase() === "fl") {
+    if(shipstate.toLowerCase() === "fl" || billstate.toLowerCase() === "fl" && gotTax === false) {
       $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=Y");
-      console.log("are you gettin the fucking tax!");
+      gotTax = true;
+    } else if (shipstate.toLowerCase() !== "fl" || billstate.toLowerCase() !== "fl" && gotTax === true) {
+      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=");
+      gotTax = false;
     }
 }
 
@@ -1093,76 +1101,6 @@ function orderHistory() {
 }
 
 
-/////////////////////////////////////
-// SUBROUTINE TO FIND COLOR //
-/////////////////////////////////////
-function whatColor(colorCode) {
-  switch (colorCode) {
-    case "1":
-      color = ["Silver"];
-      break;
-    case "2":
-      color = ["Gold"];
-      break;
-    case "3":
-      color = ["Black", "#000"];
-      break;
-    case "4":
-      color = ["Blue"];
-      break;
-    case "5":
-      color = ["Brown"];
-      break;
-    case "6":
-      color = ["Clear"];
-      break;
-    case "7":
-      color = ["Green"];
-      break;
-    case "8":
-      color = ["Grey"];
-      break;
-    case "9":
-      color = "Opal";
-      break;
-    case "10":
-      color = "Orange";
-      break;
-    case "11":
-      color = "Pink";
-      break;
-    case "12":
-      color = "Purple";
-      break;
-    case "13":
-      color = "Rainbow";
-      break;
-    case "14":
-      color = "Red";
-      break;
-    case "15":
-      color = "Tan";
-      break;
-    case "16":
-      color = "Teal";
-      break;
-    case "17":
-      color = "Turquoise";
-      break;
-    case "18":
-      color = "White";
-      break;
-    case "19":
-      color = "Yellow";
-      break;
-    case "20":
-      color = "Mulitcolored";
-      break;
-    default:
-      color = "N/A";
-  }
-  return color;
-}
 /////////////////////////////////////
 // SUBROUTINE TO FIND TYPE //
 /////////////////////////////////////
@@ -1386,43 +1324,8 @@ function whatType(typeCode) {
   }
   return type;
 }
-/////////////////////////////////////
-// SUBROUTINE TO FIND LOOK //
-/////////////////////////////////////
-function whatLook(lookCode) {
-  switch (lookCode) {
-    case "SLK":
-      look = "SLEEK";
-      break;
-    case "ENC":
-      look = "enCHARMing";
-      break;
-    case "GLB":
-      look = "RGLB";
-      break;
-    case "IDT":
-      look = "iDentify";
-      break;
-    case "ZEN":
-      look = "AURA";
-      break;
-    case "SRK":
-      look = "Salt Rock";
-      break;
-    case "MAN":
-      look = "MANTRA";
-      break;
-    case "TRS":
-      look = "Natural Treasures";
-      break;
-    case "TEM":
-      look = "TEAM SPIRIT!";
-      break;
-    default:
-      look = "N/A";
-  }
-  return look;
-}
+
+
 /////////////////////////////////////
 // SUBROUTINE TO FIND METAL TYPE //
 /////////////////////////////////////
@@ -1634,6 +1537,7 @@ function currentAsideLink(hash) {
 }
 
 function cart() {
+  //cartList();
   cartHeader(cartList);
   
 }
@@ -1685,11 +1589,13 @@ function whichPage() {
   switch (locale) {
     case '#products':
       $('#products').show();
+      cart();
       break;
     case '#product-details':
       $('#product-details').show();
       window.scrollTo(0, 0);
       detailView(); //detailView(getQuestions, getReviews);
+      cart();
       /*
       $('#questionField').keypress(function(e){
         if(e.which == 13 && ($('#questionField').val() !== "")) {//Enter key pressed
@@ -1758,10 +1664,6 @@ function whichPage() {
     case '#faq':
       window.scrollTo(0, 0);
       $('#faq').show();
-      break;
-    case '#search':
-      window.scrollTo(0, 0);
-      $('#search').show();
       break;
     default:
       window.scrollTo(0, 0);
@@ -2116,432 +2018,365 @@ function showAlert() {
 banned = [];
 
 notbanned = [
-  "4697108",
-  "34697106",
-  "34697105",
-  "34697095",
-  "34697087",
-  "34697085",
-  "34697063",
-  "34697049",
-  "34697048",
-  "34697046",
-  "34696107",
-  "34696106",
-  "34696105",
-  "34696104",
-  "34696079",
-  "29505400",
-  "25916140",
-  "25916126",
-  "25788147",
-  "25788141",
-  "25788139",
-  "25788138",
-  "25788135",
-  "25788132",
-  "25788123",
-  "25788115",
-  "25788114",
-  "2950550",
-  "2950543",
-  "2950541",
-  "2950515",
-  "2949889",
-  "2591669",
-  "2591625",
-  "2591607",
-  "2578874",
-  "2578865",
-  "2578840",
-  "2578813",
-  "34716111",
-  "34716133",
-  "34716132",
-  "34716131",
-  "34716129",
-  "34716128",
-  "34716125",
-  "34716124",
-  "34716122",
-  "34716116",
-  "34716113",
-  "34716109",
-  "34716107",
-  "34716105",
-  "34716102",
-  "34716101",
-  "34716100",
-  "34697108",
-  "4697108",
-  "34706012",
-  "34706011",
-  "34706010",
-  "34706009",
-  "4697026",
-  "34696061",
-  "34696026",
-  "29505306",
-  "34697026",
-  "47537193",
-  "47523193",
-  "47690230",
-  "77528350",
-  "47748193",
-  "47748100",
-  "47733193",
-  "47733100",
-  "47692230",
-  "47692193",
-  "47692141",
-  "47692135",
-  "47692130",
-  "47691100",
-  "47690193",
-  "47690168",
-  "47690141",
-  "47690139",
-  "47690135",
-  "47690130",
-  "47690100",
-  "34697026",
-  "64116008",
-  "34706008",
-  "34706007",
-  "34706006",
-  "34706005",
-  "34706003",
-  "34706001",
-  "2591699",
-  "29505319",
-  "29505316",
-  "29505315",
-  "29505309",
-  "29505304",
-  "29505303",
-  "29505301",
-  "29505300",
-  "29505167",
-  "29505165",
-  "29499144",
-  "29499142",
-  "29499141",
-  "29499138",
-  "29499137",
-  "29499136",
-  "29499135",
-  "29499133",
-  "3578897",
-  "2950579",
-  "2950572",
-  "2950564",
-  "2950548",
   "2950542",
-  "2950527",
-  "2950523",
-  "2950522",
-  "2950513",
-  "2950512",
-  "2950511",
-  "2950509",
-  "2949943",
-  "2949942",
-  "2949941",
-  "2949936",
-  "2949925",
-  "2949914",
-  "2949913",
-  "2949909",
-  "2949906",
-  "2949901",
-  "2591650",
-  "74100070",
-  "39494134",
-  "39494132",
-  "34700068",
-  "34700027",
-  "34700012",
-  "34700011",
-  "34700010",
-  "34700008",
-  "34700007",
-  "29497206",
-  "29497172",
-  "29497169",
-  "29497168",
-  "7120330",
-  "7120328",
-  "7120327",
-  "7120326",
-  "7120322",
-  "7120321",
-  "7120317",
-  "7120316",
-  "7120314",
-  "7120312",
-  "7120311",
-  "7120310",
-  "7120309",
-  "7120308",
-  "7120220",
-  "7120216",
-  "7120214",
-  "7120210",
-  "7120209",
-  "7120208",
-  "7120207",
-  "7120204",
-  "7120115",
-  "7120106",
-  "7120031",
-  "7120009",
-  "7120008",
-  "3949413",
-  "3949410",
-  "3244407",
-  "2949760",
-  "2949759",
-  "2949753",
-  "2949744",
-  "7120324",
-  "39494144",
-  "39494142",
-  "39494141",
-  "39494140",
-  "39494139",
-  "74100077",
-  "34708430",
-  "34708424",
-  "34708423",
-  "34708307",
-  "34708298",
-  "34708297",
-  "34708296",
-  "34708293",
-  "34708292",
-  "34708291",
-  "34708290",
-  "34708289",
-  "34708288",
-  "34708287",
-  "34708286",
-  "34708284",
-  "34708283",
-  "34708282",
-  "34708281",
-  "34708272",
-  "34708266",
-  "34708265",
-  "34708262",
-  "34708261",
-  "34708259",
-  "34708258",
-  "34708255",
-  "34708250",
-  "34708248",
-  "34708246",
-  "34708245",
-  "34708241",
-  "34708240",
-  "34708239",
-  "34708238",
-  "34708237",
-  "34708236",
-  "34708235",
-  "34708233",
-  "34708231",
-  "34708230",
-  "34708229",
-  "34708227",
-  "34708226",
-  "34708224",
-  "34708223",
-  "34708222",
-  "34708219",
-  "34708218",
-  "34708217",
-  "34708215",
-  "34708213",
-  "34708209",
-  "34708207",
-  "34708206",
-  "34708186",
-  "34708185",
-  "34708184",
-  "34708182",
-  "34708181",
-  "34708180",
-  "34708179",
-  "34708178",
-  "34708177",
-  "34708176",
-  "34708175",
-  "34708174",
-  "34708173",
-  "34708172",
-  "34708171",
-  "34708170",
-  "34708169",
-  "34708146",
-  "34708087",
-  "34770482",
-  "34770481",
-  "34770480",
-  "34741062",
-  "34741059",
-  "34741057",
-  "34741056",
-  "34741055",
-  "34741054",
-  "34741053",
-  "34741052",
-  "34741051",
-  "34741050",
-  "34741049",
-  "34741048",
-  "34741047",
-  "34741044",
-  "34741043",
-  "34741040",
-  "34741039",
-  "34741037",
-  "34741036",
-  "34741034",
-  "34741033",
-  "34741032",
-  "34722027",
-  "34722024",
-  "34722022",
-  "34722021",
-  "34722019",
-  "34722018",
-  "34722017",
-  "34722016",
-  "34722015",
-  "34722010",
-  "34722009",
-  "34722008",
-  "34722007",
-  "34722005",
-  "34722004",
-  "34714127",
-  "34714126",
-  "34714125",
-  "34714119",
-  "34714112",
-  "34714098",
-  "34714089",
-  "34714085",
-  "34714084",
-  "34714083",
-  "34714082",
-  "34714072",
-  "34714070",
-  "34714069",
-  "34714063",
-  "34714062",
-  "34714060",
-  "34714057",
-  "34714054",
-  "34714052",
-  "34714051",
-  "34714049",
-  "34714048",
-  "34714028",
-  "34714025",
-  "34714024",
-  "34714023",
-  "34714018",
-  "34714013",
-  "34714007",
-  "34714004",
-  "34714001",
-  "34708145",
-  "34722044",
-  "34741031",
-  "34741030",
-  "34741029",
-  "34741028",
-  "34741027",
-  "34741026",
-  "34741025",
-  "34741024",
-  "34741023",
-  "34741022",
-  "34741021",
-  "34741020",
-  "34741018",
-  "34741016",
-  "34741013",
-  "34741011",
-  "34741010",
-  "34741009",
-  "34741008",
-  "34741007",
-  "34741006",
-  "34741005",
-  "34741004",
-  "34741003",
-  "34741002",
-  "34741001",
-  "34733090",
-  "34733089",
-  "34733085",
-  "34733080",
-  "34733061",
-  "34733055",
-  "34733034",
-  "34733030",
-  "34733027",
-  "34722104",
-  "34722103",
-  "34722091",
-  "34722083",
-  "34722073",
-  "34722071",
-  "34722056",
-  "34722053",
-  "34722052",
-  "34722051",
-  "34722049",
-  "34722045",
-  "34722043",
-  "34722037",
-  "34722036",
-  "34722031",
-  "34722030",
-  "34722029",
-  "34722028",
-  "34708562",
-  "34697117",
-  "34697115",
-  "34697114",
-  "34697056",
-  "34697055",
-  "34697054",
-  "34697053",
-  "34696122",
-  "34696048",
-  "34696117",
-  "72099427",
-  "72099423",
-  "34738056",
-  "34738054",
-  "34697092",
-  "34697091",
-  "34697090",
-  "34697042",
-  "34697040",
-  "34697038",
-  "34696113",
-  "34696111",
-  "34696109",
-  "34696108",
-  "34696042",
-  "34696041",
-  "34696039",
-  "34696038",
-  "29505125",
+  "2950543",
+  "2950548",
+  "2950550",
+  "2950564",
+  "2950572",
+  "2950579",
   "3202102",
+  "3244407",
+  "3578897",
+  "3949410",
+  "3949413",
+  "7120008",
+  "7120009",
+  "7120031",
+  "7120106",
+  "7120204",
+  "7120207",
+  "7120208",
+  "7120209",
+  "7120210",
+  "7120214",
+  "7120216",
+  "7120220",
+  "7120308",
+  "7120309",
+  "7120310",
+  "7120311",
+  "7120312",
+  "7120314",
+  "7120316",
+  "7120317",
+  "7120321",
+  "7120322",
+  "7120324",
+  "7120326",
+  "7120327",
+  "7120328",
+  "7120330",
+  "25788114",
+  "25788115",
+  "25788123",
+  "25788132",
+  "25788135",
+  "25788138",
+  "25788139",
+  "25788141",
+  "25788147",
+  "25916126",
+  "25916140",
+  "29497168",
+  "29497169",
+  "29497172",
+  "29497206",
+  "29499133",
+  "29499135",
+  "29499136",
+  "29499137",
+  "29499138",
+  "29499141",
+  "29499142",
+  "29499144",
+  "29505125",
+  "29505165",
+  "29505167",
+  "29505300",
+  "29505301",
+  "29505303",
+  "29505304",
+  "29505306",
+  "29505309",
+  "29505315",
+  "29505316",
+  "29505319",
+  "29505400",
+  "34696026",
+  "34696038",
+  "34696039",
   "34696040",
+  "34696041",
+  "34696042",
+  "34696048",
+  "34696061",
+  "34696079",
+  "34696104",
+  "34696105",
+  "34696106",
+  "34696107",
+  "34696108",
+  "34696109",
+  "34696111",
+  "34696113",
+  "34696117",
+  "34696122",
+  "34697026",
+  "34697038",
+  "34697040",
+  "34697042",
+  "34697046",
+  "34697048",
+  "34697049",
+  "34697053",
+  "34697054",
+  "34697055",
+  "34697056",
+  "34697063",
+  "34697085",
+  "34697087",
+  "34697090",
+  "34697091",
+  "34697092",
+  "34697095",
+  "34697105",
+  "34697106",
+  "34697108",
+  "34697114",
+  "34697115",
+  "34697117",
+  "34700007",
+  "34700008",
+  "34700010",
+  "34700011",
+  "34700012",
+  "34700027",
+  "34700068",
+  "34706001",
+  "34706003",
+  "34706005",
+  "34706006",
+  "34706007",
+  "34706008",
+  "34706009",
+  "34706010",
+  "34706011",
+  "34706012",
+  "34708145",
+  "34708169",
+  "34708170",
+  "34708171",
+  "34708172",
+  "34708173",
+  "34708174",
+  "34708175",
+  "34708176",
+  "34708177",
+  "34708178",
+  "34708179",
+  "34708180",
+  "34708181",
+  "34708182",
+  "34708184",
+  "34708185",
+  "34708186",
+  "34708206",
+  "34708209",
+  "34708213",
+  "34708215",
+  "34708217",
+  "34708218",
+  "34708219",
+  "34708222",
+  "34708223",
+  "34708224",
+  "34708227",
+  "34708229",
+  "34708230",
+  "34708231",
+  "34708233",
+  "34708235",
+  "34708236",
+  "34708237",
+  "34708238",
+  "34708240",
+  "34708241",
+  "34708245",
+  "34708246",
+  "34708248",
+  "34708258",
+  "34708259",
+  "34708261",
+  "34708281",
+  "34708282",
+  "34708284",
+  "34708286",
+  "34708289",
+  "34708290",
+  "34708291",
+  "34708292",
+  "34708293",
+  "34708296",
+  "34708297",
+  "34708298",
+  "34708307",
+  "34708423",
+  "34708430",
+  "34714001",
+  "34714007",
+  "34714013",
+  "34714018",
+  "34714023",
+  "34714024",
+  "34714025",
+  "34714048",
+  "34714070",
+  "34714072",
+  "34714083",
+  "34714084",
+  "34714085",
+  "34714089",
+  "34714098",
+  "34714112",
+  "34714119",
+  "34714125",
+  "34714126",
+  "34714127",
+  "34716100",
+  "34716101",
+  "34716102",
+  "34716105",
+  "34716107",
+  "34716109",
+  "34716111",
+  "34716113",
+  "34716116",
+  "34716122",
+  "34716124",
+  "34716125",
+  "34716128",
+  "34716129",
+  "34716131",
+  "34716132",
+  "34716133",
+  "34722004",
+  "34722005",
+  "34722007",
+  "34722008",
+  "34722009",
+  "34722010",
+  "34722015",
+  "34722016",
+  "34722017",
+  "34722018",
+  "34722019",
+  "34722021",
+  "34722022",
+  "34722024",
+  "34722027",
+  "34722028",
+  "34722029",
+  "34722030",
+  "34722031",
+  "34722036",
+  "34722037",
+  "34722043",
+  "34722044",
+  "34722045",
+  "34722049",
+  "34722051",
+  "34722052",
+  "34722053",
+  "34722056",
+  "34722071",
+  "34722073",
+  "34722083",
+  "34722091",
+  "34722103",
+  "34722104",
+  "34733027",
+  "34733030",
+  "34733034",
+  "34733055",
+  "34733061",
+  "34733080",
+  "34733085",
+  "34733089",
+  "34733090",
+  "34738054",
+  "34738056",
+  "34741002",
+  "34741003",
+  "34741004",
+  "34741006",
+  "34741007",
+  "34741009",
+  "34741011",
+  "34741016",
+  "34741018",
+  "34741020",
+  "34741021",
+  "34741022",
+  "34741025",
+  "34741027",
+  "34741028",
+  "34741029",
+  "34741030",
+  "34741031",
+  "34741032",
+  "34741036",
+  "34741037",
+  "34741039",
+  "34741040",
+  "34741044",
+  "34741048",
+  "34741049",
+  "34741052",
+  "34741054",
+  "34741055",
+  "34741057",
+  "34741059",
+  "34741062",
+  "34770480",
+  "34770481",
+  "39494132",
+  "39494134",
+  "39494139",
+  "39494140",
+  "39494141",
+  "39494142",
+  "39494144",
+  "47523193",
+  "47748100",
+  "47748193",
+  "64116008",
+  "72099423",
+  "72099427",
+  "74100070",
+  "74100077",
+  "77528350",
+  "2578813",
+  "2578840",
+  "2578865",
+  "2578874",
+  "2591607",
+  "2591625",
+  "2591650",
+  "2591669",
+  "2591699",
+  "2949744",
+  "2949753",
+  "2949759",
+  "2949760",
+  "2949889",
+  "2949901",
+  "2949906",
+  "2949909",
+  "2949913",
+  "2949914",
+  "2949925",
+  "2949936",
+  "2949941",
+  "2949942",
+  "2949943",
+  "2950509",
+  "2950511",
+  "2950512",
+  "2950513",
+  "2950515",
+  "2950522",
+  "2950523",
+  "2950527",
+  "2950541",
 ];
