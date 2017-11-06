@@ -729,16 +729,18 @@ function deleteCart() {
 //\\\\\\\\\\\\\\\\\\\\\\\\
 function updateCart() {
   $("#updateCartButton").hide();
-  var shoppingCart = {};
+  UpdatedShoppingCart = {};
   loopCart();
   addItemsBack();
   cart();
 }
 
 function addItemsBack() {
-  $.each(shoppingCart, function (key, value) {
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "");
-    console.log("I ran once.");
+  $.each(UpdatedShoppingCart, function (key, value) {
+    return $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+      console.log('Is there a '+ response+'!');
+    });
+    
   });
 }
 
@@ -752,15 +754,15 @@ function loopCart() {
 
     removeItemWhileUpdating(session_no, line_no);
 
-    if (!shoppingCart.hasOwnProperty(stockNumber)) {
-      shoppingCart[stockNumber] = [qty, line_no];
+    if (!UpdatedShoppingCart.hasOwnProperty(stockNumber.trim())) {
+      UpdatedShoppingCart[stockNumber.trim()] = [parseInt(qty), line_no];
     //  removeItemWhileUpdating(session_no, line_no);
     } else {
-      shoppingCart[stockNumber][0] += qty;
+      UpdatedShoppingCart[stockNumber.trim()][0] += parseInt(qty);
     //   removeItemWhileUpdating(session_no, line_no);
     //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
     }
-    console.log(shoppingCart);
+    console.log(UpdatedShoppingCart);
   });
 }
 
@@ -890,14 +892,15 @@ function cartList() {
       }
     }
   });
-  return false;
 }
 
 /////////////////////////////////////////////
 // SUBROUTINE - CONSTRUCTING THE CART LIST //
 /////////////////////////////////////////////
 function cartHelper() {
+
   if (cartitems.length > 2) {
+    shoppingCart = {};
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
       miniitem = '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
@@ -905,11 +908,13 @@ function cartHelper() {
       miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g, '') + ' X <span class="product-price">$' + data[7].substring(0, data[7].length - 3).trim() + '</span></div></div></div>';
 
       html2.push(miniitem);
+
       if (!shoppingCart.hasOwnProperty(data[2].replace(/\s+/g, ''))) {
-        shoppingCart[data[2].replace(/\s+/g, '') ] = [ data[6].replace(/\s+/g, ''),  data[1].trim()];
+        shoppingCart[data[2].replace(/\s+/g, '') ] = [ parseInt(data[6].replace(/\s+/g, '')),  data[1].trim()];
       //  removeItemWhileUpdating(session_no, line_no);
       } else {
-        shoppingCart[data[2].replace(/\s+/g, '') ][0] += data[6];
+         shoppingCart[data[2].replace(/\s+/g, '')][0] += parseInt(data[6]);
+        
       //  removeItemWhileUpdating(session_no, data[1].trim());
       //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
       }
@@ -1809,6 +1814,9 @@ $('#billing-form-state, #shipping-form-state').change(function() {
   shipstate = $('#shipping-form-state').val();
   getTax(billstate, shipstate);
 });
+
+$('input.qty-input').change(function(){});
+  
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PULL SAVED BILL TO ADDRESSES //
