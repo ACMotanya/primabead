@@ -281,9 +281,10 @@ function search()
 ////////////////////////////
 function fillShop()
 {
-  var params;
+  var params ="";
   if (localStorage.getItem('shopParams')) {
     params = params = localStorage.getItem('shopParams').split(",");
+    $('#shopParamName').html(params[0]); 
     if (params[1] === "1") {
       return filterFunction(params[0]);
     } else if ( params[1] === "3") {
@@ -294,9 +295,10 @@ function fillShop()
   } else {
     localStorage.setItem('shopParams', ['all', '4']);
     fillShop();
+    
   }
 
-  $('#shopParamName').text(params[0]); 
+  
 }
 
 
@@ -766,15 +768,14 @@ var userController = {
     cart();
   }
 };
-function updateCart() {
+function updateCart() 
+{
   //$("#updateCartButton").hide();
   UpdatedShoppingCart = {};
-//  loopCart().promise.done(function();
-  addItemsBack();
+  loopCart().promise.done(function() {
+    addItemsBack();
+  });
   //cart();
-
- 
-
 }
 
 function addItemsBack() {
@@ -870,7 +871,7 @@ function cartHeader(callback) {
               $(".cart-totals span").text('$' + cartHeaderFields[19].trim());
               $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
               if ( cartHeaderFields[19].trim() === ".00") {
-                $("#cart-grand-total").hide();
+             //   $("#cart-grand-total").hide();
               } 
               $(".showTotal").html('$' + cartHeaderFields[22].trim());
               $(".showTax").html('$' + cartHeaderFields[21].trim());
@@ -889,7 +890,7 @@ function calculateShipping(total, subtotal)
   var discount_amt;
   if ( subtotal.trim() === ".00") {
     freeShip = true;
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=0.00");
     
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
   } else if (parseFloat(subtotal) > 25 ) {
