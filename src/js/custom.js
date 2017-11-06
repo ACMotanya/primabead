@@ -1,3 +1,4 @@
+var calls = [];
 var freeShip = false;
 var functiontype = [];
 var colors = [];
@@ -13,6 +14,7 @@ var session_no;
 var couponUsed = false; 
 var gotTax;
 var shoppingCart = {};
+var UpdatedShoppingCart = {};
 
 //3949422, 34719146, 34719128
 function beaderCoupon()
@@ -296,9 +298,7 @@ function fillShop()
     localStorage.setItem('shopParams', ['all', '4']);
     fillShop();
     
-  }
-
-  
+  }  
 }
 
 
@@ -731,64 +731,37 @@ function deleteCart() {
 ////////////////////////\\
 // Update Cart Function \\
 //\\\\\\\\\\\\\\\\\\\\\\\\
-var userController = {
-  loopCart1: function() {
-    var table = $("table.cart-table tbody");
-    // loop thru cart and flatten the items that are repeated
-    table.find('tr').each(function () {
-      var line_no = $(this).find('td.product-action-td a').attr('id');
-      var stockNumber = $(this).find('td.product-image-td a').attr('title');
-      var qty = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
-  
-      removeItemWhileUpdating(session_no, line_no);
-  
-      if (!UpdatedShoppingCart.hasOwnProperty(stockNumber.trim())) {
-        UpdatedShoppingCart[stockNumber.trim()] = [parseInt(qty), line_no];
-      //  removeItemWhileUpdating(session_no, line_no);
-      } else {
-        UpdatedShoppingCart[stockNumber.trim()][0] += parseInt(qty);
-      //   removeItemWhileUpdating(session_no, line_no);
-      //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
-      }
-      console.log(UpdatedShoppingCart);
-    });
-  }, 
 
-  addItemsBack1: function() {
-    $.each(UpdatedShoppingCart, function (key, value) {
-      setTimeout(function() {
-        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
-          console.log('Is there a '+ response+'!');
-        });
-      }, 500);
-    });
-  },
-
-  cart1: function() {
-    cart();
-  }
-};
-function updateCart() 
+function updateCart(callback) 
 {
   //$("#updateCartButton").hide();
   UpdatedShoppingCart = {};
-  loopCart().promise.done(function() {
-    addItemsBack();
-  });
+  loopCart();
+  
+  //addItemsBack();
+  setTimeout(function(){ addItemsBack(cart); }, 4000);
   //cart();
+  if (callback && typeof (callback) === "function") {
+    callback(cart);
+  }
 }
 
-function addItemsBack() {
-  $.each(UpdatedShoppingCart, function (key, value) {
-    setTimeout(function() {
-      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
-        console.log('Is there a '+ response+'!');
-      });
-    }, 500);
+function addItemsBack(callback) {
+  calls = [];
+  $.each(UpdatedShoppingCart, function (key, value) { 
+    return $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+        console.log('Is there a '+ response+', '+ value +'!');
+    //  calls.push("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "");
+      
+    });
   });
+  //console.log(calls);
+  if (callback && typeof (callback) === "function") {
+    callback(cart);
+  }
 }
 
-function loopCart() {
+function loopCart(callback) {
   var table = $("table.cart-table tbody");
   // loop thru cart and flatten the items that are repeated
   table.find('tr').each(function () {
@@ -806,8 +779,26 @@ function loopCart() {
     //   removeItemWhileUpdating(session_no, line_no);
     //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
     }
-    console.log(UpdatedShoppingCart);
+    /*
+    $.ajax({
+      type: "GET",
+      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APICARTDEL", 
+        session_no: session_no
+      },
+      success: function (response) {
+        console.log(UpdatedShoppingCart);
+      },
+      complete: function (response) {
+        
+      }
+    });
+    */
   });
+  if (callback && typeof (callback) === "function") {
+    callback();
+  }
 }
 
 
