@@ -294,7 +294,9 @@ function fillShop()
   } else {
     localStorage.setItem('shopParams', ['all', '4']);
     fillShop();
-  } 
+  }
+
+  $('#shopParamName').text(params[0]); 
 }
 
 
@@ -727,12 +729,52 @@ function deleteCart() {
 ////////////////////////\\
 // Update Cart Function \\
 //\\\\\\\\\\\\\\\\\\\\\\\\
+var userController = {
+  loopCart1: function() {
+    var table = $("table.cart-table tbody");
+    // loop thru cart and flatten the items that are repeated
+    table.find('tr').each(function () {
+      var line_no = $(this).find('td.product-action-td a').attr('id');
+      var stockNumber = $(this).find('td.product-image-td a').attr('title');
+      var qty = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
+  
+      removeItemWhileUpdating(session_no, line_no);
+  
+      if (!UpdatedShoppingCart.hasOwnProperty(stockNumber.trim())) {
+        UpdatedShoppingCart[stockNumber.trim()] = [parseInt(qty), line_no];
+      //  removeItemWhileUpdating(session_no, line_no);
+      } else {
+        UpdatedShoppingCart[stockNumber.trim()][0] += parseInt(qty);
+      //   removeItemWhileUpdating(session_no, line_no);
+      //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
+      }
+      console.log(UpdatedShoppingCart);
+    });
+  }, 
+
+  addItemsBack1: function() {
+    $.each(UpdatedShoppingCart, function (key, value) {
+      setTimeout(function() {
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+          console.log('Is there a '+ response+'!');
+        });
+      }, 500);
+    });
+  },
+
+  cart1: function() {
+    cart();
+  }
+};
 function updateCart() {
   //$("#updateCartButton").hide();
   UpdatedShoppingCart = {};
-//  Promise.loopCart().promise().done()then(addItemsBack).then(cart);
- // addItemsBack();
- // cart();
+//  loopCart().promise.done(function();
+  addItemsBack();
+  //cart();
+
+ 
+
 }
 
 function addItemsBack() {
@@ -1614,6 +1656,8 @@ function checkoutPage() {
 function whichPage() {
   var hashy = window.location.hash.split("+");
   var locale = hashy[0];
+ var shopParamsName = localStorage.getItem('shopParams').split(",");
+ $('#shopParamName').text(shopParamsName[0]);
   $('div.store-page').hide();
   switch (locale) {
     case '#products':
