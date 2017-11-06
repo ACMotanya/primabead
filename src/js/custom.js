@@ -16,7 +16,7 @@ var gotTax;
 //3949422, 34719146, 34719128
 function beaderCoupon()
 {
-  if (couponUsed !== false) {
+  if (couponUsed === false) {
   console.log("I ran");
   itemsInCart = [];
   if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
@@ -666,6 +666,11 @@ function addItemGeneric(session_no, stock_no, qty) {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + stock_no + "&qty=" + qty + "");
   cart();
 }
+
+function addItemWhileUpdating(session_no, stock_no, qty) {
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + stock_no + "&qty=" + qty + "");
+  
+}
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
 //////////////////////////////////////////////
@@ -702,7 +707,10 @@ function removeItem(session_no, line_no) {
   cartHeader(cartList);
   return false;
 }
-
+function removeItemWhileUpdating(session_no, line_no) {
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no=" + session_no + "&line_no=" + line_no + "");
+  return false;
+}
 
 ////////////////////////////////////////
 // SUBROUTINE - DELETE THE WHOLE CART //
@@ -729,21 +737,24 @@ function updateCart() {
     var stockNumber = $(this).find('td.product-image-td a').attr('title');
     var qty = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
 
-    removeItem(session_no, line_no);
+    removeItemWhileUpdating(session_no, line_no);
 
     if (!shoppingCart.hasOwnProperty(stockNumber)) {
       shoppingCart[stockNumber] = [qty, line_no];
+    //  removeItemWhileUpdating(session_no, line_no);
     } else {
       shoppingCart[stockNumber][0] += qty;
-      removeItem(session_no, shoppingCart[stockNumber][1]);
+   //   removeItemWhileUpdating(session_no, line_no);
+    //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
     }
+    console.log(shoppingCart);
+  });
+    $.each(shoppingCart, function (key, value) {
+      addItemWhileUpdating(session_no, key, value[0]);
+    });
+ 
 
-  });
-  $.each(shoppingCart, function (key, value) {
-    addItemGeneric(session_no, key, value[0]);
-  }).promise().done(function() {
-    cart();
-  });
+  cart();
   
 }
 
@@ -767,14 +778,10 @@ function cartHeader(callback) {
             
             cartHeaderFields = cartheader[1].split("|");
             calculateShipping(cartHeaderFields[22], cartHeaderFields[19]);
-                        
-            if (window.location.hash === "#cart") {
-              getTax(cartHeaderFields[14], cartHeaderFields[7]);
-            }
-            if (window.location.hash === "#checkout") {
-              
-              $(".showTotal").html('$' + cartHeaderFields[22].trim());
+            
+            if (window.location.hash === "#checkout") {              
               console.log(cartHeaderFields[28]);
+              getTax(cartHeaderFields[14], cartHeaderFields[7]);
               document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
               document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
               document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
@@ -814,11 +821,13 @@ function cartHeader(callback) {
               if ( cartHeaderFields[19].trim() === ".00") {
                 $("#cart-grand-total").hide();
               } 
+              $(".showTotal").html('$' + cartHeaderFields[22].trim());
+              $(".showTax").html('$' + cartHeaderFields[21].trim());
             }
           });
         }
       });
-  return false;
+
 }
 
 ///////////////////////
@@ -832,7 +841,7 @@ function calculateShipping(total, subtotal)
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
     
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
-  } else if (parseFloat(total) > 25 ) {
+  } else if (parseFloat(subtotal) > 25 ) {
     freeShip = true;
     discount_amt = 0 - (parseFloat(subtotal) * 0.1);
     discount_amt = discount_amt.toFixed(2);
@@ -864,9 +873,9 @@ function cartList() {
       cartitems = response.split("\n");
       html = [];
       html2 = [];
-      cartHelper();
-      jQuery(".cart-products").empty();
       
+      jQuery(".cart-products").empty();
+      cartHelper();
       if (window.location.hash === "#cart") {
         $("table.cart-table tbody").empty();
         $("table.cart-table tbody").prepend(html.join(''));
@@ -903,15 +912,16 @@ function cartHelper() {
 
         html.push(listitem);
         // $("#updateCartButton").show();
-      } else if (window.location.hash === "#checkout") {
-        $("table#reviewItemTable tbody").append('<tr><td>' + data[3] + '</td><td class="text-center">' + data[6].replace(/\s+/g, '') + '</td><td class="text-right">$' + data[8].substring(0, data[8].length - 4) + '</td></tr>');
-      }
+      } //else if (window.location.hash === "#checkout") {
+        //$("table#reviewItemTable tbody").append('<tr><td>' + data[3] + '</td><td class="text-center">' + data[6].replace(/\s+/g, '') + '</td><td class="text-right">$' + data[8].substring(0, data[8].length - 4) + '</td></tr>');
+      //}
     }
+    $("div.cart-products").append(html2.join(''));
   } else {
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
     html.push(item);
   }
-  $("div.cart-products").append(html2.join(''));
+  
 }
 
 
@@ -1537,9 +1547,9 @@ function currentAsideLink(hash) {
 }
 
 function cart() {
-  //cartList();
-  cartHeader(cartList);
-  
+
+  cartHeader();
+  cartList();
 }
 
 function checkoutPage() {
