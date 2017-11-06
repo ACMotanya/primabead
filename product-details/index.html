@@ -109,7 +109,7 @@
 									</li>
 									
 									<li class="dropdown dropdown-mega-small">
-										<a href="/primadiy/store/#products" onclick="filterFunction('DC Comics');" class="dropdown-toggle">
+										<a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['all', '4']); fillShop();" class="dropdown-toggle">
 											SHOP
 										</a>
 										<ul class="dropdown-menu">
@@ -121,23 +121,23 @@
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Brands</a>
 																	<ul class="dropdown-mega-sub-nav">
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('swarovski');">Swarovski&reg;</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('elegance');">Elegance</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a></li> 
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('holiday');">Holiday</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('finished jewelry');">Finished Jewelry</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li> 
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Finished Jewelry', '1']); fillShop();">Finished Jewelry</a></li>
 																	</ul>
 																</div>
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Craft Supplies</a>
 																	<ul class="dropdown-mega-sub-nav">
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction('findings');">Findings</a></li>
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction('cording');">Cord / Wire</a></li>																			
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction('kits');">Kits</a></li>
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction('chains');">Chains</a></li>
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction('crafting supplies');">Supplies</a></li>
-																			<li><a href="/primadiy/store/#products" onclick="filterFunction3('rhinestones');">Rhinestones</a></li>
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop();">Cord / Wire</a></li>																			
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop();">Kits</a></li>
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Chains', '1']); fillShop();">Chains</a></li>
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Crafting Supplies', '1']); fillShop();">Supplies</a></li>
+																			<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['rhinestones', '3']); fillShop();">Rhinestones</a></li>
 																	</ul>
 																</div>
 															</div>
@@ -145,20 +145,20 @@
 																<div class="col-md-6">
 																	<a href="#" class="dropdown-mega-sub-title">Tools &amp; Storage</a>
 																	<ul class="dropdown-mega-sub-nav">
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('storage');">Storage</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('tools');">Tools</a></li>															
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction3('organizers');">Organizers</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction3('misc tools');">Misc Tools</a></li>	
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Storage', '1']); fillShop();">Storage</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>															
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Organizers', '3']); fillShop();">Organizers</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Misc Tools', '3']); fillShop();">Misc Tools</a></li>	
 																	</ul>
 																</div>
 																<div class="col-md-6">
-																	<a href="/primadiy/store/#products" onclick="filterFunction3('beads');" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
+																	<a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '3']); fillShop();" class="dropdown-mega-sub-title">Beads &amp; Charms</a>
 																	<ul class="dropdown-mega-sub-nav">
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('beads');">Beads</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction3('gemstones');">Gemstones</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction3('pendants');">Pendants</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction('charms');">Charms</a></li>
-																		<li><a href="/primadiy/store/#products" onclick="filterFunction3('connectors');">Connectors</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop();">Beads</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Gemstones', '3']); fillShop();">Gemstones</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Pendants', '3']); fillShop();">Pendants</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
+																		<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['connnectors', '3']); fillShop();">Connectors</a></li>
 																	</ul>
 																</div>
 															</div>
@@ -309,49 +309,24 @@
 						<span class="mmenu-toggle"></span>
 						<a href="#">Brands</a>
 						<ul>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('DC Comics');">DC Comics</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('swarovski');">Swarovski&reg;</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('elegance');">Elegance</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('Jewelry Basics');">Jewelry Basics</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('holiday');">Holiday</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('finished jewelry');">Finished Jewelry</a>
-							</li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li> 
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Finished Jewelry', '1']); fillShop();">Finished Jewelry</a></li>
 						</ul>
 					</li>
 					<li>
 						<span class="mmenu-toggle"></span>
 						<a href="#">Craft Supplies</a>
-
 						<ul>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('findings');">Findings</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('cording');">Cording &amp; Wire</span></a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('kits');">Kits</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('chains');">Chains</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('crafting supplies');">Supplies</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction3('rhinestones');">Rhinestones</a>
-							</li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop();">Cord / Wire</a></li>																			
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop();">Kits</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Chains', '1']); fillShop();">Chains</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Crafting Supplies', '1']); fillShop();">Supplies</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['rhinestones', '3']); fillShop();">Rhinestones</a></li>
 						</ul>
 					</li>
 					<li>
@@ -359,29 +334,21 @@
 						<a href="#">Tools &amp; Storage</a>
 
 						<ul>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('storage');">Storage</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction('tools');">Tools</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction3('organizers');">Organizers</a>
-							</li>
-							<li>
-								<a href="/primadiy/store/#products" onclick="filterFunction3('misc tools');">Misc Tools</a>
-							</li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Storage', '1']); fillShop();">Storage</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>															
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Organizers', '3']); fillShop();">Organizers</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Misc Tools', '3']); fillShop();">Misc Tools</a></li>	
 						</ul>
 					</li>
 					<li>
 						<span class="mmenu-toggle"></span>
 						<a href="#">Beads &amp; Charms</a>
 						<ul>
-								<li><a href="/primadiy/store/#products" onclick="filterFunction('beads');">Beads</a></li>
-								<li><a href="/primadiy/store/#products" onclick="filterFunction3('gemstones');">Gemstones</a></li>
-								<li><a href="/primadiy/store/#products" onclick="filterFunction3('pendants');">Pendants</a></li>
-								<li><a href="/primadiy/store/#products" onclick="filterFunction('charms');">Charms</a></li>
-								<li><a href="/primadiy/store/#products" onclick="filterFunction3('connectors');">Connectors</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop();">Beads</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Gemstones', '3']); fillShop();">Gemstones</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Pendants', '3']); fillShop();">Pendants</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
+							<li><a href="/primadiy/store/#products" onclick="localStorage.setItem('shopParams', ['connnectors', '3']); fillShop();">Connectors</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -1118,8 +1085,6 @@
 		
 
 		
-
-		 
 
 		
 
