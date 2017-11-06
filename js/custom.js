@@ -666,6 +666,7 @@ function detailView(callback, callback2) {
 function addItemGeneric(session_no, stock_no, qty) {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + stock_no + "&qty=" + qty + "");
   cart();
+  
 }
 
 function addItemWhileUpdating(session_no, stock_no, qty) {
@@ -694,8 +695,6 @@ function addItemDetailView() {
   if (window.location.hash !== "#products") {
     window.location.hash = "cart";
   }
-
-  return false;
 }
 
 
@@ -709,8 +708,7 @@ function removeItem(session_no, line_no) {
   return false;
 }
 function removeItemWhileUpdating(session_no, line_no) {
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no=" + session_no + "&line_no=" + line_no + "");
-  return false;
+  return $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no=" + session_no + "&line_no=" + line_no + "");
 }
 
 ////////////////////////////////////////
@@ -720,6 +718,8 @@ function deleteCart() {
   if (confirm("Are you sure?") === true) {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no=" + session_no + "");
     cart();
+    $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$0.00</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$0.00</td></tr>');
+    $(".cart-qty").text("");
   }
 }
 
@@ -728,19 +728,20 @@ function deleteCart() {
 // Update Cart Function \\
 //\\\\\\\\\\\\\\\\\\\\\\\\
 function updateCart() {
-  $("#updateCartButton").hide();
+  //$("#updateCartButton").hide();
   UpdatedShoppingCart = {};
-  loopCart();
-  addItemsBack();
-  cart();
+//  Promise.loopCart().promise().done()then(addItemsBack).then(cart);
+ // addItemsBack();
+ // cart();
 }
 
 function addItemsBack() {
   $.each(UpdatedShoppingCart, function (key, value) {
-    return $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
-      console.log('Is there a '+ response+'!');
-    });
-    
+    setTimeout(function() {
+      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+        console.log('Is there a '+ response+'!');
+      });
+    }, 500);
   });
 }
 
@@ -911,12 +912,10 @@ function cartHelper() {
 
       if (!shoppingCart.hasOwnProperty(data[2].replace(/\s+/g, ''))) {
         shoppingCart[data[2].replace(/\s+/g, '') ] = [ parseInt(data[6].replace(/\s+/g, '')),  data[1].trim()];
-      //  removeItemWhileUpdating(session_no, line_no);
+
       } else {
          shoppingCart[data[2].replace(/\s+/g, '')][0] += parseInt(data[6]);
-        
-      //  removeItemWhileUpdating(session_no, data[1].trim());
-      //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
+
       }
 
       if (window.location.hash === "#cart") {
