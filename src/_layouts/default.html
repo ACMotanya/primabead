@@ -26,6 +26,7 @@
 		<script src="{{ "/vendor/owl.carousel/owl.carousel.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/magnific-popup/jquery.magnific-popup.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/vide/vide.min.js" | prepend: site.baseurl }}"></script>
+	
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ "/js/theme.js" | prepend: site.baseurl }}"></script>
@@ -34,10 +35,12 @@
 
 		<!-- Current Page Vendor and Views -->
 		<script src="{{ "/js/views/view.contact.js" | prepend: site.baseurl }}"></script>
+		<script src="{{ "/vendor/nivo-slider/jquery.nivo.slider.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-2.js" | prepend: site.baseurl }}"></script>
+		
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.isotope.js" | prepend: site.baseurl }}"></script>
@@ -54,9 +57,9 @@
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhpYHdYRY2U6V_VfyyNtkPHhywLjDkhfg"></script>
 		
-		<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581b726c069c6315"></script>
+		<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581b726c069c6315"></script>
 		<script src="{{ "/js/examples/examples.portfolio.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ site.baseurl }}/vendor/elevatezoom/jquery.elevatezoom.js"></script>
+		<script src="{{ "/vendor/elevatezoom/jquery.elevatezoom.js" | prepend: site.baseurl }}"></script>
 		<!-- Theme Custom -->
 		<script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
 		
@@ -108,7 +111,6 @@
 				whichPage();
 				fillShop();
 			//    newCustomerSession();
-		//	filterFunction('swarovski');
 		
 			});		
 		</script>
@@ -117,12 +119,18 @@
 		{% if page.url == "/" %}
 		<script>
 			$( "#header" ).addClass( "transparent header-full-width" );
-
 			setTimeout(function () {
 				$('html, body').animate({
 					scrollTop: $(window).scrollTop() + 100
 				});
 			},6000);
+		</script>
+		{% endif %}
+
+		{% if page.url == "/index2/" %}
+		<script>
+			$( "#header" ).addClass( "transparent header-full-width" );
+
 		</script>
 		{% endif %}
 
@@ -135,14 +143,14 @@
 					- http://universimmedia.pagesperso-orange.fr/geo/loc.htm
 					- http://www.findlatitudeandlongitude.com/find-address-from-latitude-and-longitude/
 
-		
+			*/
 
 			// Map Markers
 			var mapMarkers = [{
-				address: "New York, NY 10017",
-				html: "<strong>New York Office</strong><br>New York, NY 10017",
+				address: "Largo, FL 33773",
+				html: "<strong>PrimaDIY</strong><br>Largo, FL 33773",
 				icon: {
-					image: "img/pin.png",
+					image: "../img/pin.png",
 					iconsize: [26, 46],
 					iconanchor: [12, 46]
 				},
@@ -150,8 +158,8 @@
 			}];
 
 			// Map Initial Location
-			var initLatitude = 40.75198;
-			var initLongitude = -73.96978;
+			var initLatitude = 27.884898636083026;
+			var initLongitude = -82.75917291641235;
 
 			// Map Extended Settings
 			var mapSettings = {
@@ -168,7 +176,7 @@
 				markers: mapMarkers,
 				latitude: initLatitude,
 				longitude: initLongitude,
-				zoom: 16
+				zoom: 13
 			};
 
 			var map = $('#googlemaps').gMap(mapSettings);
@@ -178,7 +186,7 @@
 				e.preventDefault();
 				$('#googlemaps').gMap("centerAt", options);
 			}
-				*/
+			
 		</script>	
 		{% endif %}
   </body>

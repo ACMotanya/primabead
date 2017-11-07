@@ -1,17 +1,13 @@
-/*
-Name: 			Shop2
-Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.3.0
-*/
+
 
 (function( $ ) {
-
+/*
 	// Home page slider
 	if ($.fn.revolution) {
 		$('#revolutionSlider').revolution({
 			sliderType: 'standard',
 			sliderLayout: 'fullscreen',
-            fullScreenAutoWidth: 'on',
+      fullScreenAutoWidth: 'on',
 			delay: 9000,
 			gridwidth: 1170,
 			gridheight: 500,
@@ -54,7 +50,7 @@ Theme Version:	5.3.0
 			}
 		});
 	}
-
+*/
 	// Newsletter popup
 	if ( document.getElementById('newsletter-popup-form') ) {
 		$.magnificPopup.open({
