@@ -110,7 +110,7 @@ permalink: /store/
 					</div>
 				</div>
 
-				<ul id="display-products" class="products-grid columns3">
+				<ul id="display-products" class="products-grid columns4">
 					
 				</ul>
 
@@ -189,7 +189,7 @@ permalink: /store/
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['kits', '1']); fillShop();">Kits</a></li>
-									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>								
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>
@@ -1105,6 +1105,10 @@ permalink: /store/
 										<td></td>
 									</tr>
 									<tr>
+										<td>Tax</td>
+										<td></td>
+									</tr>
+									<tr>
 										<td>Grand Total</td>
 										<td></td>
 									</tr>
@@ -1481,12 +1485,40 @@ permalink: /store/
 						</div>
 					</div>
 					-->
+					<!--
 				<div class="checkout-review-action">
-				
+					<h5 style="margin-top: 10px">Discount <span class="disocunt-percentage">-10%</span></h5>
 					<h5 style="margin-top: 10px">Tax <span class="showTax"></span></h5>
 					<h5 style="margin-top: 10px">Grand Total <span class="showTotal"></span></h5>
-					<a class="btn btn-primary" id="myButton">Place Order now</a>
+					<a class="btn btn-primary" id="myButton">Place Order</a>
+				</div>-->
+		
+				<div class="panel-body" style="padding: 0px;">
+					<table class="totals-table">
+						<tbody>
+							<tr>
+								<td>Discount</td>
+								<td>-10%</td>
+							</tr>
+							<tr>
+								<td>Subtotal</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Tax</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Grand Total</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="totals-table-action">
+						<a id="myButton" class="btn btn-primary btn-block">PLACE ORDER</a>
+					</div>
 				</div>
+			
 			</div>
 		</div>
 	</div>

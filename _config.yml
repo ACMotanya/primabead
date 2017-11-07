@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "PrimaDIY"
-description: "PrimaDIY"
+description: "Jewelry Making Supplies at Great Prices – Fast Shipping on All Orders adn Free Shipping on All Order ovr $25"
 baseurl: "/primadiy" # the subpath of your site, e.g. /blog
 url: "https://www.primadiy.com" # the base hostname & protocol for your site, e.g. http://example.com
 
