@@ -19,8 +19,7 @@ var UpdatedShoppingCart = {};
 //3949422, 34719146, 34719128
 function beaderCoupon()
 {
-    if (couponUsed === false) {
-   
+  if (couponUsed === false) {
     itemsInCart = [];
     if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
       couponUsed = true;
@@ -2428,6 +2427,5 @@ notbanned = [
   "2950515",
   "2950522",
   "2950523",
-  "2950527",
-  "2950541",
+  "2950527"
 ];

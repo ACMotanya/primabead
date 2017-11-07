@@ -9,6 +9,37 @@
 	display: none;
 }
 
+.home-intro {
+	background-color: #F4898F;
+
+}
+
+h1.home-marquee.get-started {
+	color: #76D5D4;
+	font-size: 28px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.home-intro .get-started a {
+	font-size: 28px;
+}
+
+@media (max-width: 768px) {
+	h1.home-marquee.get-started, .home-intro .get-started a {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 468px) {
+	h1.home-marquee.get-started, .home-intro .get-started a {
+		font-size: 16px;
+	}
+	#header .header-logo {
+		display: none;
+	}
+}
+
 .tabs.product-tabs.tabs-left .tab-content {
 	padding: 15px;
 }
@@ -20,36 +51,46 @@
     z-index: 5000;
 }
 
+.get-started {
+	text-align: center;
+}
+
 .dataTables_filter, .dataTables_paginate.paging_bs_normal {
     float: right;
 }
 
 .banner .ban-title, #footer .footer-ribbon {
-	background-color: #5c616e;
+	background-color: #3f4658
 }
 
-
-
-#header .header-body, .sticky-header-active #header .header-body, #footer .footer-copyright{
-	background-color: #3f4658;
+#header .header-body, .sticky-header-active #header .header-body, #footer .footer-copyright, .sticky-header-active #header.transparent .header-body, .sticky-header-active #header .header-body, #header .header-body {
+	background-color: #fff;
+	border-bottom: #fff
 }
 
 .page-header {
 	background-color: #F4898F;
 }
 
+
 ul.cat-list li a {
  font-weight: 600;
  font-size: 15px;
 }
 
-#header .header-nav-main nav > ul > li > a, #header .header-nav-main nav > ul > li > a.dropdown-toggle, #header .top-menu li a{ 
-	color: #76D5D4;
+#header .header-nav-main nav > ul > li > a, #header .header-nav-main nav > ul > li > a.dropdown-toggle, #header .top-menu li a,
+#header .top-menu-area > a, .mmenu-toggle-btn, #header .header-search .search-toggle, #header .cart-dropdown .cart-dropdown-icon { 
+	color:#F4898F; 
 }
 
 
 #header .header-nav-main nav > ul > li:hover > a:hover { 
-	color: #F4898F !important;
+	color: #76D5D4 !important;
+}
+
+html section.section-secondary {
+	background-color: #f7acb0 !important;
+	border-color: #F4898F !important;
 }
 
 .selected-color {
