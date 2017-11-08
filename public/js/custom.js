@@ -7,8 +7,6 @@ var colorDictionary = {
   "Multi": "repeating-linear-gradient(red: yellow 10%: green 20%);","Copper": "#b87333","Rose Gold": "#b76e79","Antique Gold": "#D4AF37","Gunmetal": "#2c3539",
   "Crystal AB": "rgba(255,255,255,0)"};
 var colors = [];
-var couponUsed; 
-var freeShip = false;
 var functiontype = [];
 var gotTax;
 var material = [];
@@ -19,10 +17,10 @@ var UpdatedShoppingCart = {};
 //3949422, 34719146, 34719128
 function beaderCoupon()
 {
-  if (couponUsed === false) {
+  if (localStorage.getItem('couponUsed') !== "true") {
     itemsInCart = [];
     if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
-      couponUsed = true;
+      localStorage.setItem('couponUsed', "true");
       addItemGeneric(session_no, "COUPONWEMISSU", "1");
       $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
         couponcartitems = response.split("\n");
@@ -577,22 +575,6 @@ function detailView(callback, callback2) {
   var stock_no = hash[1];
   // var productRating = [];
 
-
-  // switch around the if later for faster rendering?
-  /*
-  if (hash[3] !== "" && hash.length === 5) {
-    detailString = window.location.hash;
-    color = hash[2];
-    type = hash[3];
-    metal = hash[4];
-    localStorage.setItem(stock_no, detailString);
-  } else if (localStorage.getItem(stock_no) !== null && localStorage.getItem(stock_no) != "undefined" && localStorage.getItem(stock_no).length >= 15) { //  add back if undefined ever comes up again
-    dets = localStorage.getItem(stock_no).split("+");
-    color = dets[2];
-    type = dets[3];
-    metal = dets[4];
-  }
- */
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/detail-views.php?",
@@ -627,16 +609,9 @@ function detailView(callback, callback2) {
         }
         
         $("#detail-price").text('$' + response[k].msrp);
-        /*
-        if (fields[5] && fields[5] > 0) {
-          $("p.availability").html('<span class="font-weight-semibold">Availability:</span> In Stock</p></div>');
-        } else {
-          $("p.availability").html('<span class="font-weight-semibold">Availability:</span> Out of Stock</p></div>');
-        }
-        */
+
         $(".product-detail-qty").after('<a href="#" class="addtocart detailadd" title="Add to Cart" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView(); return false;"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>');
 
-        //addInfo = '<tr><td class="table-label">Description</td><td>' + fields[1] + '</td></tr>';
         //addInfo += '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
         addInfo = '<tr><td class="table-label">Item Number</td><td>' + response[k].itemnum + '</td></tr>';
         addInfo += '<tr><td class="table-label">Color</td><td>' + response[k].color + '</td></tr>';
@@ -688,12 +663,6 @@ function addItemDetailView() {
     detailViewQty = "1";
   }
 
-  // Save color and type in the 
-  /*
-  if (!localStorage.getItem(stock_no) || localStorage.getItem(stock_no) === "undefined" || localStorage.getItem(stock_no) === null) {
-    localStorage.setItem(stock_no, detailString);
-  }
-  */
   addItemGeneric(session_no, stock_no, detailViewQty);
 
   if (window.location.hash !== "#products") {
@@ -757,7 +726,7 @@ function updateCart(callback)
   loopCart();
   addItemsBack(cart);
   if (callback && typeof (callback) === "function") {
-    callback(cart);
+    callback();
   }
 }
 
@@ -772,7 +741,7 @@ function addItemsBack(callback) {
   });
 
   if (callback && typeof (callback) === "function") {
-    callback(cart);
+    callback();
   }
 }
 
@@ -839,24 +808,27 @@ function cartHeader(callback) {
       if (callback && typeof (callback) === "function") {
         callback();
       }
-      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTH&session_no=" + session_no + "", function (response) {
-        cartheader = response.split("\n");
-        
-        if (cartheader.length >= 3) {
-          
-          cartHeaderFields = cartheader[1].split("|");
-          $(".cart-qty").text(cartHeaderFields[24].trim());
-          //$(".cart-totals span").text('$' + cartHeaderFields[19].trim());
-          $("table.totals-table tbody").html('<tr class="discount-percentage"><td>Discount Percentage</td><td>-10%</td></tr><tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr class="show-tax"><td>Tax</td><td>$' + cartHeaderFields[21].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
-          if ( cartHeaderFields[19].trim() === ".00") {
-          //   $("#cart-grand-total").hide();
-          }
-        }
-      });
+      updateTotals();
     }
   });
 }
-
+function updateTotals()
+{
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTH&session_no=" + session_no + "", function (response) {
+    cartheader = response.split("\n");
+    
+    if (cartheader.length >= 3) {
+      
+      cartHeaderFields = cartheader[1].split("|");
+      $(".cart-qty").text(cartHeaderFields[24].trim());
+      //$(".cart-totals span").text('$' + cartHeaderFields[19].trim());
+      $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr class="show-tax"><td>Tax</td><td>$' + cartHeaderFields[21].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
+      if (localStorage.getItem('username') !== "Guest") {
+        $("table.totals-table tbody").prepend('<tr class="discount-percentage"><td>Discount Percentage</td><td>-10%</td></tr>');
+      }
+    }
+  });
+}
 ///////////////////////
 // Shipping Function //
 ///////////////////////
@@ -864,24 +836,34 @@ function calculateShipping(total, subtotal)
 {
   var discount_amt;
   if ( subtotal.trim() === ".00") {
-    freeShip = true;
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=0.00");
-    
-    $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
-  } else if (parseFloat(subtotal.replace(/[, ]/g, '')) > 25 ) {
-    freeShip = true;
-    discount_amt = 0 - (parseFloat(subtotal.replace(/[, ]/g, '')) * 0.1);
-    discount_amt = discount_amt.toFixed(2);
-    console.log(discount_amt);
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
   } else {
-    freeShip = false;
-    discount_amt = 5 - (subtotal.replace(/[, ]/g, '') * 0.1);
-    discount_amt = discount_amt.toFixed(2);
-    console.log(discount_amt);
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
-    $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+    if (localStorage.getItem('username') === "Guest") {
+      if (parseFloat(subtotal.replace(/[, ]/g, '')) > 25 ) {
+        discount_amt = "0.00";
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+        $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
+      } else {
+        discount_amt = "5.00";
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
+        $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+      }
+    } else {
+      if (parseFloat(subtotal.replace(/[, ]/g, '')) > 25 ) {
+        discount_amt = 0 - (parseFloat(subtotal.replace(/[, ]/g, '')) * 0.1);
+        discount_amt = discount_amt.toFixed(2);
+        console.log(discount_amt);
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+        $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
+      } else {
+        discount_amt = 5 - (subtotal.replace(/[, ]/g, '') * 0.1);
+        discount_amt = discount_amt.toFixed(2);
+        console.log(discount_amt);
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
+        $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+      }
+    }
   }
 }
 
@@ -906,6 +888,7 @@ function cartList() {
       if (window.location.hash === "#cart") {
         $("table.cart-table tbody").empty();
         $("table.cart-table tbody").prepend(html.join(''));
+        jQuery('#COUPONWEMISSU').parent().hide();
       } else if (window.location.hash === "#checkout") {
         $("table#reviewItemTable tbody").empty();
       }
@@ -1611,7 +1594,7 @@ function checkoutPage() {
 
     if (!isBillValid || !isShipValid) {
       e.preventDefault();
-      alert("Address forms have errors");
+      alert("Form has errors");
     } else {
      
       saveAddresses();
@@ -1620,8 +1603,6 @@ function checkoutPage() {
       creditCard(1);
     }
   });
-
-  
 }
 
 /////////////////////////////////////////////
@@ -1826,14 +1807,13 @@ $('input.color-selector:checkbox').change(function(){
   this.checked ? $('#'+color+'1 a span').addClass("selected-color") : $('#'+color+'1 a span').removeClass("selected-color");
 });
 
-$('#billing-form-state, #shipping-form-state').change(function() {
+$('input#billing-form-state, input#shipping-form-state').blur( function() {
   billstate = $('#billing-form-state').val();
   shipstate = $('#shipping-form-state').val();
   getTax(billstate, shipstate);
+  updateTotals();
 });
 
-$('input.qty-input').change(function(){});
-  
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PULL SAVED BILL TO ADDRESSES //
@@ -1869,11 +1849,7 @@ function saveAddresses() {
   var text5 = "";
   var notesArray = [];
   var shippingPrice;
-  if (!freeShip) {
-    shippingPrice = 5.00;
-  } else {
-    shippingPrice = 0.00;
-  }
+
 
   if ($("#shipping-form-message").val()) {
     notesArray = $("#shipping-form-message").val().match(/.{1,30}/g);
@@ -1921,8 +1897,7 @@ function saveAddresses() {
       text2: text2,
       text3: text3,
       text4: text4,
-      text5: text5,
-      misc_amt1: shippingPrice
+      text5: text5
     }
   });
 }
@@ -2049,21 +2024,7 @@ function showAlert() {
 
 }
 
-/*
-		<script>
-			$().ready(function () {
-        $("#billingForm, #shippingForm").validate();
-        var isBillValid = $("#billingForm").valid();
-        var isShipValid = $("#shippingForm").valid();
-        if (!isBIllValid || !isShipValid) {
-            e.preventDefault();
-            alert("Address forms have errors");
-        } else {
 
-        }
-			});
-		</script>
-*/
 
 banned = [];
 

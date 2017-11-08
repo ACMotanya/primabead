@@ -44,6 +44,10 @@ h1.home-marquee.get-started {
 	padding: 15px;
 }
 
+#header .cart-dropdown .cart-dropdownmenu .dropdownmenu-wrapper { 
+	border-top: 6px solid #76D5D4;
+}
+
 #floating_alert {
     position: absolute;
     top: 20px;
