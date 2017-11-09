@@ -98,9 +98,7 @@
 
 		{% if page.url == "/store/" %}
 		<script defer>
-			$(window).on('hashchange', function() {
-				whichPage();
-			});
+			sessionNumber();
 
 			$('#coupon1, #coupon2').keypress(function(e){
         if(e.which == 13 ) {
@@ -118,9 +116,12 @@
 						localStorage.setItem('shopParams', ['all','4']);
 					}
 					fillShop();
+					whichPage();
 				}
-				sessionNumber();
+			
+			$(window).on('hashchange', function() {
 				whichPage();
+			});
 			//    newCustomerSession();
 			});		
 		</script>
