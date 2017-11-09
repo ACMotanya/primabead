@@ -90,8 +90,44 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}"  class="">
+      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
 	<div class="header-body">
+			<div class="header-top header-top-style-2">
+					<div class="container">
+						<p class="pull-left hidden-xs">
+							Get in touch! <span class="ml-xs"><i class="fa fa-phone"></i> (800) 366-2218</span><span class="hidden-xs"> | <a href="mailto:customerservice@primaDIY.com?Subject=Hello%20There" target="_top" style="color: #777">customerservice@primaDIY.com</a></span>
+						</p>
+						<p class="pull-right">
+							<ul class="header-social-icons social-icons hidden-xs">
+								<li class="social-icons-facebook">
+									<a href="https://www.facebook.com/PrimaDIY" target="_blank" title="Facebook">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li class="social-icons-instagram">
+									<a href="https://www.instagram.com/PrimaDIY" target="_blank" title="Instagram">
+										<i class="fa fa-instagram"></i>
+									</a>
+								</li>
+								<li class="social-icons-pinterest">
+									<a href="https://www.pinterest.com/PrimaDIY" target="_blank" title="Pinterest">
+										<i class="fa fa-pinterest"></i>
+									</a>
+								</li>
+								<li class="social-icons-youtube">
+									<a href="https://www.youtube.com/PrimaDIY" target="_blank" title="Youtube">
+										<i class="fa fa-youtube"></i>
+									</a>
+								</li>
+								<li class="social-icons-twitter">
+									<a href="https://www.twitter.com/PrimaDIY" target="_blank" title="Twitter">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+							</ul>
+						</p>
+					</div>
+				</div>
 		<div class="header-container container">
 			<div class="header-row">
 				<div class="header-column">
@@ -306,6 +342,36 @@
 	<div class="mobile-nav-wrapper">
 		<ul class="mobile-side-menu">
 			<li><a href="/">Home</a></li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Learning Center</a>
+				<ul>
+					<li>
+						<a href="/youtube">Watch &amp; Learn</a>
+					</li>
+					<li>
+						<a href="/maintenance">Step by Step Techinques</a>
+					</li>
+					<li>
+						<a href="/maintenance">Project Ideas</a>
+					</li>
+				</ul>
+			</li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Login &amp; Register</a>
+
+				<ul>
+					
+					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+
+				</ul>
+			</li>
 			<li>
 				<span class="mmenu-toggle"></span>
 				<a href="#">SHOP</span></a>
@@ -364,25 +430,11 @@
 			<li>
 				<a href="/store/#checkout">Checkout</a>
 			</li>
-			<li class="loggedIn">
-				<span class="mmenu-toggle"></span>
-				<a href="#">Login &amp; Register</a>
-
-				<ul>
-					
-					<li>
-						<a href="/login">Login</a>
-					</li>
-					<li>
-						<a href="/register">Register</a>
-					</li>
-
-				</ul>
-			</li>
+			
 			<li class="loggedOff">
 				<a href="#" onclick="logoff();">Log Out</a>
 			</li>
-			<li>
+			<li class="loggedOff">
 				<span class="mmenu-toggle"></span>
 				<a class="myaccount-link" href="#">My Account</a>
 				<ul>
@@ -397,15 +449,15 @@
 					</li>
 				</ul>
 			</li>
-			<!--
+		
 			<li>
-				<a href="demo-shop-2-about-us.html">About Us</a>
+				<a href="/about">About Us</a>
 			</li>
 
 			<li>
-				<a href="demo-shop-2-contact-us.html">Contact Us</a>
+				<a href="/contact">Contact Us</a>
 			</li>
-			-->
+		
 		</ul>
 	</div>
 </div>
@@ -1028,34 +1080,24 @@
 					</div>
 				-->
 					<div class="product-short-desc">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-							occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p></p>
 					</div>
 
 					<div class="product-detail-info">
 						<div class="product-price-box">
-							<span id="detail-price" class="product-price">$3.00</span>
+							<span id="detail-price" class="product-price"></span>
 						</div>
-						<p class="availability">
-							<span class="font-weight-semibold">Availability:</span> In Stock
-						</p>
+					
 						<!--
 						<p class="email-to-friend"><a href="#">Email to a Friend</a></p>
 						-->
 					</div>
 
-
-
 					<div class="product-actions">
 						<div class="product-detail-qty">
 							<input type="text" value="1" class="vertical-spinner" id="product-vqty">
 						</div>
-						<a href="#" class="addtocart detailadd" title="Add to Cart">
-							<i class="fa fa-shopping-cart"></i>
-							<span>Add to Cart</span> 
-						</a>
+						
 						<!--
 						<div class="actions-right">
 							<a href="#" class="addtowishlist" title="Add to Wishlist">
@@ -1091,14 +1133,7 @@
 							<div id="product-add" class="tab-pane active">
 								<table class="product-table">
 									<tbody>
-										<tr>
-											<td class="table-label">Color</td>
-											<td>Black</td>
-										</tr>
-										<tr>
-											<td class="table-label">Size</td>
-											<td>16mx24mx18m</td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -1486,7 +1521,7 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a class="accordion-toggle collapsed" data-toggle="collapse" href="#panel-cart-ship">
-								ESTIMATE SHIPPING AND TAX
+							 SHIPPING AND TAX INFO
 							</a>
 						</h4>
 					</div>
@@ -1494,6 +1529,7 @@
 						<div class="panel-body">
 							<p class="mb-sm">Free shipping for all orders over $25.
 								<br>A flat rate of $5 for all orders under that amount.</p>
+								<p>You will assessed tax if Florida is your billing or shipping state.</p>
 						</div>
 					</div>
 				</div>
@@ -1501,8 +1537,8 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a class="accordion-toggle" data-toggle="collapse" href="#panel-cart-total">
-									Cart Totals
-								</a>
+								Cart Totals
+							</a>
 						</h4>
 					</div>
 					<div id="panel-cart-total" class="accordion-body collapse in">
@@ -1515,6 +1551,10 @@
 									</tr>
 									<tr>
 										<td>Tax</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Shipping</td>
 										<td></td>
 									</tr>
 									<tr>
@@ -2318,7 +2358,7 @@
         <ul class="links">
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
-            <a href="/maintenance">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
@@ -2330,7 +2370,7 @@
           </li>
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
-            <a href="/maintenance">Order Information</a>
+            <a href="/order-info">Order Information</a>
           </li>
           <!--
           <li>
@@ -2568,12 +2608,17 @@
 			});
 
 			$(function() {
-				if (!localStorage.getItem('shopParams')) {
-					localStorage.setItem('shopParams', ['all','4']);
+				if ( localStorage.getItem('urlHash') && localStorage.getItem('session_no') ) {
+					window.location.hash = localStorage.getItem('urlHash');
+					localStorage.removeItem('urlHash');
+				} else {
+					if (!localStorage.getItem('shopParams')) {
+						localStorage.setItem('shopParams', ['all','4']);
+					}
+					fillShop();
 				}
 				sessionNumber();
 				whichPage();
-				fillShop();
 			//    newCustomerSession();
 			});		
 		</script>

@@ -110,26 +110,24 @@
 			});
 
 			$(function() {
-				if (!localStorage.getItem('shopParams')) {
-					localStorage.setItem('shopParams', ['all','4']);
+				if ( localStorage.getItem('urlHash') && localStorage.getItem('session_no') ) {
+					window.location.hash = localStorage.getItem('urlHash');
+					localStorage.removeItem('urlHash');
+				} else {
+					if (!localStorage.getItem('shopParams')) {
+						localStorage.setItem('shopParams', ['all','4']);
+					}
+					fillShop();
 				}
 				sessionNumber();
 				whichPage();
-				fillShop();
 			//    newCustomerSession();
 			});		
 		</script>
 		{% endif %}
 
 		{% if page.url == "/" %}
-		<script>
-			$( "#header" ).addClass( "transparent header-full-width" );
-			setTimeout(function () {
-				$('html, body').animate({
-					scrollTop: $(window).scrollTop() + 100
-				});
-			},6000);
-		</script>
+
 		{% endif %}
 
 		{% if page.url == "/index2/" %}

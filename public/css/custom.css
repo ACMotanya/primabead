@@ -45,6 +45,20 @@ h1.home-marquee.get-started {
 	}
 }
 
+@media (min-width: 992px) {
+	#footer .newsletter p.newsletter-info {
+			margin-bottom: 20px;
+	}
+}
+
+.mc-field-group {
+	margin-bottom: 2px;
+}
+
+#header .header-top.header-top-style-2 {
+	padding: 0px;
+	margin-top: 0px;
+}
 .tabs.product-tabs.tabs-left .tab-content {
 	padding: 15px;
 }
@@ -68,7 +82,7 @@ h1.home-marquee.get-started {
     float: right;
 }
 
-.banner .ban-title, #footer .footer-ribbon {
+#footer .footer-ribbon {
 	background-color: #76D5D4;
 }
 
