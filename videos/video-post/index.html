@@ -90,8 +90,44 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}"  class="">
+      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
 	<div class="header-body">
+			<div class="header-top header-top-style-2">
+					<div class="container">
+						<p class="pull-left hidden-xs">
+							Get in touch! <span class="ml-xs"><i class="fa fa-phone"></i> (800) 366-2218</span><span class="hidden-xs"> | <a href="mailto:customerservice@primaDIY.com?Subject=Hello%20There" target="_top" style="color: #777">customerservice@primaDIY.com</a></span>
+						</p>
+						<p class="pull-right">
+							<ul class="header-social-icons social-icons hidden-xs">
+								<li class="social-icons-facebook">
+									<a href="https://www.facebook.com/PrimaDIY" target="_blank" title="Facebook">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li class="social-icons-instagram">
+									<a href="https://www.instagram.com/PrimaDIY" target="_blank" title="Instagram">
+										<i class="fa fa-instagram"></i>
+									</a>
+								</li>
+								<li class="social-icons-pinterest">
+									<a href="https://www.pinterest.com/PrimaDIY" target="_blank" title="Pinterest">
+										<i class="fa fa-pinterest"></i>
+									</a>
+								</li>
+								<li class="social-icons-youtube">
+									<a href="https://www.youtube.com/PrimaDIY" target="_blank" title="Youtube">
+										<i class="fa fa-youtube"></i>
+									</a>
+								</li>
+								<li class="social-icons-twitter">
+									<a href="https://www.twitter.com/PrimaDIY" target="_blank" title="Twitter">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+							</ul>
+						</p>
+					</div>
+				</div>
 		<div class="header-container container">
 			<div class="header-row">
 				<div class="header-column">
@@ -306,6 +342,36 @@
 	<div class="mobile-nav-wrapper">
 		<ul class="mobile-side-menu">
 			<li><a href="/">Home</a></li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Learning Center</a>
+				<ul>
+					<li>
+						<a href="/youtube">Watch &amp; Learn</a>
+					</li>
+					<li>
+						<a href="/maintenance">Step by Step Techinques</a>
+					</li>
+					<li>
+						<a href="/maintenance">Project Ideas</a>
+					</li>
+				</ul>
+			</li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Login &amp; Register</a>
+
+				<ul>
+					
+					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+
+				</ul>
+			</li>
 			<li>
 				<span class="mmenu-toggle"></span>
 				<a href="#">SHOP</span></a>
@@ -364,25 +430,11 @@
 			<li>
 				<a href="/store/#checkout">Checkout</a>
 			</li>
-			<li class="loggedIn">
-				<span class="mmenu-toggle"></span>
-				<a href="#">Login &amp; Register</a>
-
-				<ul>
-					
-					<li>
-						<a href="/login">Login</a>
-					</li>
-					<li>
-						<a href="/register">Register</a>
-					</li>
-
-				</ul>
-			</li>
+			
 			<li class="loggedOff">
 				<a href="#" onclick="logoff();">Log Out</a>
 			</li>
-			<li>
+			<li class="loggedOff">
 				<span class="mmenu-toggle"></span>
 				<a class="myaccount-link" href="#">My Account</a>
 				<ul>
@@ -397,15 +449,15 @@
 					</li>
 				</ul>
 			</li>
-			<!--
+		
 			<li>
-				<a href="demo-shop-2-about-us.html">About Us</a>
+				<a href="/about">About Us</a>
 			</li>
 
 			<li>
-				<a href="demo-shop-2-contact-us.html">Contact Us</a>
+				<a href="/contact">Contact Us</a>
 			</li>
-			-->
+		
 		</ul>
 	</div>
 </div>
@@ -668,7 +720,7 @@
         <ul class="links">
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
-            <a href="/maintenance">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
@@ -680,7 +732,7 @@
           </li>
           <li>
             <i class="fa fa-caret-right text-color-primary"></i>
-            <a href="/maintenance">Order Information</a>
+            <a href="/order-info">Order Information</a>
           </li>
           <!--
           <li>

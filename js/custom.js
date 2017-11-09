@@ -613,8 +613,8 @@ function detailView(callback, callback2) {
 
         $(".product-detail-qty").after('<a href="#" class="addtocart detailadd" title="Add to Cart" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView(); return false;"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>');
 
-        //addInfo += '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
-        addInfo = '<tr><td class="table-label">Item Number</td><td>' + response[k].itemnum + '</td></tr>';
+        addInfo =  '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
+        addInfo += '<tr><td class="table-label">Item Number</td><td>' + response[k].itemnum + '</td></tr>';
         addInfo += '<tr><td class="table-label">Color</td><td>' + response[k].color + '</td></tr>';
         addInfo += '<tr><td class="table-label">Type</td><td>' + response[k].func + '</td></tr>';
         addInfo += '<tr><td class="table-label">Brand</td><td>' + response[k].program + '</td></tr>';
@@ -783,7 +783,7 @@ function cartHeader(callback) {
         getTax(cartHeaderFields[14], cartHeaderFields[7]);
         calculateShipping(cartHeaderFields[22], cartHeaderFields[19]);
         
-        if (window.location.hash === "#checkout") {              
+        if (window.location.hash === "#checkout") {
           
           getTax(cartHeaderFields[14], cartHeaderFields[7]);
           document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
@@ -827,9 +827,14 @@ function updateTotals()
       cartHeaderFields = cartheader[1].split("|");
       $(".cart-qty").text(cartHeaderFields[24].trim());
       //$(".cart-totals span").text('$' + cartHeaderFields[19].trim());
-      $("table.totals-table tbody").html('<tr><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr class="show-tax"><td>Tax</td><td>$' + cartHeaderFields[21].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
+      $("table.totals-table tbody").html('<tr id="subtotal-amount"><td>Subtotal</td><td>$' + cartHeaderFields[19].trim() + '</td></tr><tr class="show-tax"><td>Tax</td><td>$' + cartHeaderFields[21].trim() + '</td></tr><tr id="cart-grand-total"><td>Grand Total</td><td>$' + cartHeaderFields[22].trim() + '</td></tr>');
       if (localStorage.getItem('username') !== "Guest") {
         $("table.totals-table tbody").prepend('<tr class="discount-percentage"><td>Discount Percentage</td><td>-10%</td></tr>');
+      }
+      if (parseFloat(cartHeaderFields[19].replace(/[, ]/g, '')) > 25) {
+        $("#subtotal-amount").after('<tr><td>Shipping</td><td>FREE</td></tr>');
+      } else {
+        $("#subtotal-amount").after('<tr><td>Shipping</td><td>$5.00</td></tr>');
       }
     }
   });
