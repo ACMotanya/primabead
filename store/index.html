@@ -18,6 +18,8 @@
 
   <!-- Web Fonts  -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+  
   <link href="https://fonts.googleapis.com/css?family=BioRhyme:700" rel="stylesheet">
 
   <!-- Vendor CSS -->
@@ -224,7 +226,7 @@
 										</a>                    
 									</li>
 									
-									<!--
+									
 									<li class="dropdown dropdown-mega">
 										<a href="#" class="dropdown-toggle">
 											Learning Center
@@ -237,21 +239,23 @@
 														<div class="col-md-12">
 															<div class="row">
 																<div class="col-md-4">
-																	<a href="/youtube" class="dropdown-mega-sub-title"></a>
+																	<a href="/youtube" class="dropdown-mega-sub-title">
 																	<div class="menu-banner-area">
 																		<img src="/img/demos/shop/menu-cat.png" alt="Menu Banner">
 																		<p>Watch &amp; Learn</p>
 																	</div>
+																</a>
 																</div>
 																<div class="col-md-4">                                  
-																	<a href="/pinterest" class="dropdown-mega-sub-title"></a>
+																	<a href="/pinterest" class="dropdown-mega-sub-title">
 																	<div class="menu-banner-area">
 																		<img src="/img/demos/shop/menu-cat.png" alt="Menu Banner">
 																		<p>Step by Step Technique</p>
 																	</div>
+																</a>
 																</div>
 																<div class="col-md-4">
-																	<a href="/store/#products"onclick="localStorage.setItem('shopParams', ['','','','','']); fillShop();" class="dropdown-mega-sub-title">test 2 hide</a>
+																	<a href="/how-to" class="dropdown-mega-sub-title"></a>
 																	<div class="menu-banner-area">
 																		<img src="/img/demos/shop/menu-cat.png" alt="Menu Banner">
 																		<p>Project Ideas</p>
@@ -264,7 +268,7 @@
 											</li>
 										</ul>
 									</li>
-									-->
+									
 								</ul>
 							</nav>
 						</div>
@@ -476,6 +480,7 @@
 		<ul class="breadcrumb">
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Shop</a></li>
+			<li><a href="#" id="shopHashName"></a></li>
 			<li><a href="#" id="shopParamName"></a></li>
 		</ul>
 	</div>
@@ -1579,11 +1584,11 @@
 	<h1 class="h2 heading-primary mt-lg mb-md clearfix">
 		Checkout
 	</h1>
-	<!--
+	
 	<div class="checkout-menu clearfix">
 	
 		<a href="#" class="btn btn-primary pull-left mb-sm" data-toggle="modal" data-target=".shop-login-modal">LOGIN</a>
-		
+		<!--
 		<div class="dropdown pull-right checkout-review-dropdown">
 			<button class="btn btn-primary mb-sm" id="reviewTable" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fa fa-shopping-cart"></i>
@@ -1613,8 +1618,9 @@
 				</table>
 			</div>
 		</div>
-	</div>
 	-->
+	</div>
+
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-col">
@@ -1781,12 +1787,14 @@
 							</div>
 						</div>
 					</div>
+					<!--
 					<div class="checkbox mb-sm">
 						<label>
 						<input type="checkbox" value="1">
 						Same as billing address
 					</label>
 					</div>
+				-->
 					<div class="checkbox mb-sm">
 						<label>
 						<input type="checkbox" value="1">
@@ -2003,10 +2011,11 @@
 							<label class="mb-xs">Password <span class="required">*</span></label>
 							<input type="password" class="form-control" required>
 						</div>
+						
 					</div>
-
+					<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-fpass-modal" data-dismiss="modal">Forget Your Password?</a>
 					<div class="modal-footer">
-						<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-fpass-modal" data-dismiss="modal">Forget Your Password?</a>
+							<input type="submit" class="btn btn-primary" value="Login">
 						<input type="submit" class="btn btn-primary" value="Login">
 					</div>
 				</form>
@@ -2042,6 +2051,221 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="h2 heading-primary font-weight-normal mb-md mt-lg">Login or Create an Account</h1>
+				</div>
+				<div class="modal-body">
+					<div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
+						<div class="box-content">
+							<form id="login-form" action="#">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-content">
+											<h3 class="heading-text-color font-weight-normal">Registered Customers</h3>
+											<p>If you have an account with us, please log in.</p>
+											<div class="form-group">
+												<label class="font-weight-normal">Email Address
+													<span class="required">*</span>
+												</label>
+												<input id="login-form-username" type="text" class="form-control" required>
+											</div>
+
+											<div class="form-group">
+												<label class="font-weight-normal">Password
+													<span class="required">*</span>
+												</label>
+												<input id="login-form-password" type="password" class="form-control" required>
+											</div>
+
+											<p class="required">* Required Fields</p>
+										</div>
+
+										<div class="form-action clearfix">
+											<!--
+																<a href="#" class="pull-left">Forgot Your Password?</a>
+																-->
+											<a href="#" onclick="guestLogin();" style="margin-right: 10px">Login as Guest</a>
+											<input type="submit" class="btn btn-primary" value="Submit">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-content">
+											<h3 class="heading-text-color font-weight-normal">New Customers</h3>
+											<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple
+												shipping addresses, view and track your orders in your account and more.</p>
+										</div>
+
+										<div class="form-action clearfix">
+											<a href="/register" class="btn btn-primary">Create an Account</a>
+										</div>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-primary" data-toggle="modal" data-target="#largeModal">
+		Launch Large Modal
+	</button>
+	<div class="modal fade" id="largeModal2" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h1 class="h2 heading-primary font-weight-normal mb-md mt-lg">Create an Account</h1>
+					</div>
+					<div class="modal-body">
+						
+							<div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
+								<div class="box-content">
+									<form action="#">
+										<div id="newCustomer">
+											<h4 class="heading-primary text-uppercase mb-lg">PERSONAL INFORMATION</h4>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label class="font-weight-normal">Name <span class="required">*</span></label>
+														<input id="create-contactname" type="text" class="form-control" required>
+													</div>
+					
+													<div class="form-group">
+														<label class="font-weight-normal">Email Address <span class="required">*</span></label>
+														<input id="create-email" type="email" class="form-control" required>
+													</div>
+													<div class="row">
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="font-weight-normal">Phone <span class="required">*</span></label>
+																<input id="create-phone" minlength="10" type="number" class="form-control" required>
+															</div>
+														</div>
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="font-weight-normal">Fax</label>
+																<input id="create-fax" type="number" class="form-control">
+															</div>
+														</div>
+													</div>
+												</div>
+					
+												<div class="col-sm-6 col-md-6">
+													<div class="form-group">
+														<label class="font-weight-normal">Address <span class="required">*</span></label>
+														<input id="create-address" maxlength="90" type="text" class="form-control" required>
+													</div>
+					
+													<div class="form-group">
+														<label class="font-weight-normal"> City / Town <span class="required">*</span></label>
+														<input id="create-city" maxlength="30" type="text" class="form-control" required>
+													</div>
+					
+													<div class="row">
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="font-weight-normal">State <span class="required">*</span></label>
+																<input id="create-state" maxlength="2" type="text" class="form-control" required>
+															</div>
+														</div>
+								
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="font-weight-normal">Zip Code <span class="required">*</span></label>
+																<input id="create-zipcode" maxlength="10" type="text" class="form-control" required>
+															</div>
+														</div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</form>
+									<hr>
+									<form action="#">
+										<div id="newUser">
+											<div class="row">
+												<div class="col-sm-6">
+													<h4 class="heading-primary text-uppercase mb-lg">LOGIN INFORMATION</h4>
+													<div class="form-group">
+														<label class="font-weight-normal">Username <span class="required">*</span></label>
+														<input id="create-user-name" type="text" class="form-control" required>
+													</div>
+												</div>
+											</div>
+					
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label class="font-weight-normal">Password <span class="required">*</span></label>
+														<input id="create-user-password" type="password" class="form-control" required>
+													</div>
+												</div>
+					
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label class="font-weight-normal">Confirm Password <span class="required">*</span></label>
+														<input id="create-user-password-check" type="password" class="form-control" required>
+													</div>
+												</div>
+											</div>
+					
+											<div class="row" style="display: none">
+												<div class="col-sm-4">
+													<div class="form-group">
+														<label class="font-weight-normal">User Customer Number <span class="required">*</span></label>
+														<input id="create-user-number" type="number" class="form-control" required>
+													</div>
+												</div>
+					
+												<div class="col-sm-4">
+													<div class="form-group">
+														<label class="font-weight-normal">User Email <span class="required">*</span></label>
+														<input id="create-user-email" type="email" class="form-control" required>
+													</div>
+												</div>
+					
+												<div class="col-sm-4">
+													<div class="form-group">
+														<label class="font-weight-normal">User Contact Name<span class="required">*</span></label>
+														<input id="create-user-contactname" type="text" class="form-control" required>
+													</div>
+												</div>
+											</div>
+					
+											<div class="row">
+												<div class="col-xs-12">
+													<p class="required mt-lg mb-none">* Required Fields</p>
+													<div class="form-action clearnpm fix mt-none">
+														<a href="/login" class="pull-left"><i class="fa fa-angle-double-left"></i> Back</a>
+														<input type="button" class="btn btn-primary pull-right" id="myNewUser" onclick="createUser(); return false;" value="Submit">
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+	
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#largeModal2">
+			Launch Large Modal
+		</button>
 </div>
 
 
@@ -2596,9 +2820,7 @@
 
 		
 		<script defer>
-			$(window).on('hashchange', function() {
-				whichPage();
-			});
+			sessionNumber();
 
 			$('#coupon1, #coupon2').keypress(function(e){
         if(e.which == 13 ) {
@@ -2616,9 +2838,12 @@
 						localStorage.setItem('shopParams', ['all','4']);
 					}
 					fillShop();
+					whichPage();
 				}
-				sessionNumber();
+			
+			$(window).on('hashchange', function() {
 				whichPage();
+			});
 			//    newCustomerSession();
 			});		
 		</script>

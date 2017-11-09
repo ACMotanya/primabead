@@ -1,5 +1,9 @@
 /* CSS Customizations */
 
+body {
+ font-family: "Source Sans Pro";
+}
+
 .client img {
     max-width: 80% !important;
 }

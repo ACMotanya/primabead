@@ -171,11 +171,12 @@ function createUser() {
 /// LOGIN INTO THE STORE AND VERIFY  ///
 ////////////////////////////////////////
 function login() {
+  /*
   if (localStorage.getItem('session_no') && typeof (localStorage.getItem('session_no')) === "string" && localStorage.getItem('session_no').length === 25) {
     windowHash("products");
     redirect("store");
   }
-
+  */
   $("#login-form").on("submit", function (e) {
     e.preventDefault();
 
@@ -613,8 +614,8 @@ function detailView(callback, callback2) {
 
         $(".product-detail-qty").after('<a href="#" class="addtocart detailadd" title="Add to Cart" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView(); return false;"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>');
 
-        addInfo =  '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
-        addInfo += '<tr><td class="table-label">Item Number</td><td>' + response[k].itemnum + '</td></tr>';
+       // addInfo =  '<tr><td class="table-label">Dimensions</td><td>' + fields[6] + '</td></tr>';
+        addInfo = '<tr><td class="table-label">Item Number</td><td>' + response[k].itemnum + '</td></tr>';
         addInfo += '<tr><td class="table-label">Color</td><td>' + response[k].color + '</td></tr>';
         addInfo += '<tr><td class="table-label">Type</td><td>' + response[k].func + '</td></tr>';
         addInfo += '<tr><td class="table-label">Brand</td><td>' + response[k].program + '</td></tr>';
@@ -634,9 +635,6 @@ function detailView(callback, callback2) {
       }
       if (callback2 && typeof (callback2) === "function") {
         callback2(stock_no);
-      }
-      if ( localStorage.getItem('username') === null || localStorage.getItem('username') === undefined ) {
-        $(".product-actions").html('<a href="{{ site.baseurl }}/login" class="addtocart detailadd" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>Login to Buy</span></a>');
       }
     }
   });
@@ -780,12 +778,12 @@ function cartHeader(callback) {
       if (cartheader.length >= 3) {
         
         cartHeaderFields = cartheader[1].split("|");
-        getTax(cartHeaderFields[14], cartHeaderFields[7]);
+        getTax(cartHeaderFields[7]);
         calculateShipping(cartHeaderFields[22], cartHeaderFields[19]);
         
         if (window.location.hash === "#checkout") {
           
-          getTax(cartHeaderFields[14], cartHeaderFields[7]);
+         
           document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
           document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
           document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
@@ -802,6 +800,7 @@ function cartHeader(callback) {
           document.getElementById("shipping-form-city").value = cartHeaderFields[13].trim();
           document.getElementById("shipping-form-state").value = cartHeaderFields[14].trim();
           document.getElementById("shipping-form-zipcode").value = cartHeaderFields[15].trim();
+          getTax(cartHeaderFields[7]);
         }
         if (window.location.hash === "#dashboard") {
           $("#default-billing-address").html(cartHeaderFields[3].trim() + ' ' + cartHeaderFields[4].trim() + ' ' + cartHeaderFields[5].trim() + '<br>' + cartHeaderFields[6].trim() + ', ' + cartHeaderFields[7] + ' ' + cartHeaderFields[8].trim());
@@ -956,14 +955,16 @@ function cartHelper()
 /////////////////////////
   // GETTING FL TAX //
 /////////////////////////
-function getTax(shipstate, billstate)
+function getTax(billstate)
 {
-  if(shipstate.toLowerCase() === "fl" || billstate.toLowerCase() === "fl" && gotTax === false) {
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=Y");
-    gotTax = true;
-  } else if (shipstate.toLowerCase() !== "fl" || billstate.toLowerCase() !== "fl" && gotTax === true) {
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=");
-    gotTax = false;
+  if (billstate) {
+    if( billstate.toLowerCase() === "fl" && gotTax === false) {
+      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=Y");
+      gotTax = true;
+    } else if (billstate.toLowerCase() !== "fl" && gotTax === true) {
+      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&tax_code=");
+      gotTax = false;
+    }
   }
 }
 
@@ -1575,7 +1576,6 @@ function currentAsideLink(hash) {
 }
 
 function cart() {
-
   cartHeader();
   cartList();
 }
@@ -1621,16 +1621,23 @@ function checkoutPage() {
 function whichPage() {
   var hashy = window.location.hash.split("+");
   var locale = hashy[0];
- var shopParamsName = localStorage.getItem('shopParams').split(",");
- $('#shopParamName').text(shopParamsName[0]);
+  var shopParamsName = localStorage.getItem('shopParams').split(",");
+  $('#shopHashName').text(locale.slice(1));
+ 
   $('div.store-page').hide();
   switch (locale) {
     case '#products':
+      if (!localStorage.getItem('shopParams')) {
+        localStorage.setItem('shopParams', ['all','4']);
+      }
+      fillShop();
       $('#products').show();
       cart();
+      $('#shopParamName').text(shopParamsName[0]);
       break;
     case '#product-details':
       $('#product-details').show();
+
       window.scrollTo(0, 0);
       detailView(); //detailView(getQuestions, getReviews);
       cart();
@@ -1642,8 +1649,9 @@ function whichPage() {
         }
       });
       */
+    
       break;
-
+      
     case '#cart':
       window.scrollTo(0, 0);
       $('#cart').show();
@@ -1653,7 +1661,7 @@ function whichPage() {
  
       window.scrollTo(0, 0);
       $('#checkout').show();
-      cart();
+      cartHeader();
       checkoutPage();
       break;
     case '#dashboard':
@@ -1746,10 +1754,7 @@ function sessionNumber()
 {
   session_no = localStorage.getItem('session_no');
   if (typeof (session_no) === "undefined" || session_no === null || session_no.length !== 25 ) {
-    pathArray = window.location.pathname.split('/');
-    pathArray[pathArray.length - 2] = "login";
-    window.location.pathname = pathArray.join('/');
-    alert("Please log in first.");
+    guestLogin();
   }
 }
 
@@ -1817,10 +1822,9 @@ $('input.color-selector:checkbox').change(function(){
   this.checked ? $('#'+color+'1 a span').addClass("selected-color") : $('#'+color+'1 a span').removeClass("selected-color");
 });
 
-$('input#billing-form-state, input#shipping-form-state').blur( function() {
+$('input#billing-form-state').blur( function() {
   billstate = $('#billing-form-state').val();
-  shipstate = $('#shipping-form-state').val();
-  getTax(billstate, shipstate);
+  getTax(billstate);
   updateTotals();
 });
 
