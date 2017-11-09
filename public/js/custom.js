@@ -225,7 +225,8 @@ function guestLogin()
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
     data: {
-      request_id: "APICLOGIN"
+      request_id: "APICLOGIN",
+      loc_no: 700
     },
     success: function (response) {
       localStorage.setItem('session_no', response.trim());
@@ -480,7 +481,7 @@ function itemRender2(div, response) {
       if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
-      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></a>';
+      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span></a>';
       prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
@@ -525,7 +526,7 @@ function itemRender3(div, response) {
       if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
-      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></a>';
+      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
       prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
@@ -556,7 +557,7 @@ function itemRender3(div, response) {
 
 //////////////////////////////
 // Get Detail View for Item //
-//////////////////////////////    /#detail-view+11956+20+100+30
+//////////////////////////////
 function detailView(callback, callback2) {
   jQuery("#productGalleryThumbs, .product-short-desc p").empty();
   jQuery("a.detailadd").remove();
@@ -624,6 +625,7 @@ function detailView(callback, callback2) {
         $("table.product-table tbody").html(addInfo);
        // $('.owl-carousel').owlCarousel('destroy');
        // $('.owl-carousel').owlCarousel('refresh');
+        
       });
     },
     complete: function () {
@@ -632,6 +634,9 @@ function detailView(callback, callback2) {
       }
       if (callback2 && typeof (callback2) === "function") {
         callback2(stock_no);
+      }
+      if ( localStorage.getItem('username') === null || localStorage.getItem('username') === undefined ) {
+        $(".product-actions").html('<a href="{{ site.baseurl }}/login" class="addtocart detailadd" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>Login to Buy</span></a>');
       }
     }
   });

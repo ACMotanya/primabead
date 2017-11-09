@@ -82,7 +82,7 @@
   <script src="/jplist/jplist.textbox-filter.min.js"></script>
   <script src="/jplist/jplist.list-grid-view.min.js"></script>
 
-  <link rel="canonical" href="http://localhost:4000/checkout/">
+  <link rel="canonical" href="http://localhost:4000/product-preview/">
 
   
 </head>
@@ -412,356 +412,479 @@
 
 <div id="mobile-menu-overlay"></div>
       <div role="main" class="main">
-        <div class="checkout">
-	<div class="container">
-		<h1 class="h2 heading-primary mt-lg mb-md clearfix">
-			Checkout
-		</h1>
-
-		<div class="checkout-menu clearfix">
-			<a href="#" class="btn btn-primary pull-left mb-sm" data-toggle="modal" data-target=".shop-login-modal">LOGIN</a>
-
-			<div class="dropdown pull-right checkout-review-dropdown">
-				<button class="btn btn-primary mb-sm" id="reviewTable" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fa fa-shopping-cart"></i>
-				$689.00
-				</button>
-				<div class="dropdown-menu" aria-labelledby="reviewTable">
-					<h3>Review Your Order</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Product Name</th>
-								<th class="text-center">Qty</th>
-								<th class="text-right">Subtotal</th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<td>Jewellery Bracelets-M</td>
-								<td class="text-center">1</td>
-								<td class="text-right">$189.00</td>
-							</tr>
-						</tbody>
-
-						<tfoot>
-							<tr>
-								<td class="text-right" colspan="2">Subtotal</td>
-								<td class="text-right">$189.00</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-col">
-					<h3>Name &amp; Address</h3>
-
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>First Name<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
+        <div id="product-details" class="container store-page">
+	<div class="product-view">
+		<div class="product-essential">
+			<div class="row">
+				<div class="product-img-box col-sm-5">
+					<div id="images" class="product-img-box-wrapper">
+						<div class="product-img-wrapper">
+							<img id="product-zoom" src="../img/demos/shop/products/single/product1.jpg" data-zoom-image="../img/demos/shop/products/single/product1.jpg">
 						</div>
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Middle Name/Initial</label>
-								<input type="text" class="form-control">
-							</div>
-						</div>
+
+						<a href="#" class="product-img-zoom" title="Zoom">
+							<!--
+							<span class="glyphicon glyphicon-search"></span>
+							-->
+						</a>
 					</div>
 
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Last Name<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
+					<div class="owl-carousel manual" id="productGalleryThumbs">
+						<div class="product-img-wrapper">
+							<a href="#" data-image="../img/demos/shop/products/single/product1.jpg" data-zoom-image="../img/demos/shop/products/single/product1.jpg"
+							  class="product-gallery-item">
+								<img src="../img/demos/shop/products/single/thumbs/product1.jpg" alt="product">
+							</a>
 						</div>
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Company</label>
-								<input type="text" class="form-control">
-							</div>
+						<div class="product-img-wrapper">
+							<a href="#" data-image="../img/demos/shop/products/single/product2.jpg" data-zoom-image="../img/demos/shop/products/single/product2.jpg"
+							  class="product-gallery-item">
+								<img src="../img/demos/shop/products/single/thumbs/product2.jpg" alt="product">
+							</a>
 						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-md-12">
-							<div class="form-group wide">
-								<label>Email<span class="required">*</span></label>
-								<input type="email" class="form-control" required>
-							</div>
+						<div class="product-img-wrapper">
+							<a href="#" data-image="../img/demos/shop/products/single/product3.jpg" data-zoom-image="../img/demos/shop/products/single/product3.jpg"
+							  class="product-gallery-item">
+								<img src="../img/demos/shop/products/single/thumbs/product3.jpg" alt="product">
+							</a>
 						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-md-12">
-							<div class="form-group wide">
-								<label>Address<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-12">
-							<div class="form-group wide">
-								<input type="text" class="form-control">
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>City<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>State/Province<span class="required">*</span></label>
-								<select class="form-control">
-									<option value="Please select region">Please select region</option>
-									<option value="Alabama">Alabama</option>
-									<option value="Alaska">Alaska</option>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Zip/Postal Code<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Country<span class="required">*</span></label>
-								<select class="form-control">
-									<option value="United States">United States</option>
-									<option value="China">China</option>
-									<option value="England">England</option>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Telephone<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-6">
-							<div class="form-group">
-								<label>Fax</label>
-								<input type="text" class="form-control">
-							</div>
-						</div>
-					</div>
-
-					<div class="checkbox mb-sm">
-						<label>
-							<input type="checkbox" value="1">
-							Create an account for later use
-						</label>
-					</div>
-
-					<div class="checkbox mb-sm">
-						<label>
-							<input type="checkbox" value="1">
-							Ship to this address
-						</label>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="form-col">
-					<h3>Shipping Method</h3>
-					<div class="ship-list">
-						<div class="radio">
-							<label>
-								<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked">
-								Flat Rate
-							</label>
+
+				<div id="secondColumn" class="product-details-box col-sm-7">
+					<!--
+					<div class="product-nav-container">
+						<div class="product-nav product-nav-prev">
+							<a href="#" title="Previous Product">
+								<i class="fa fa-chevron-left"></i>
+							</a>
+
+							<div class="product-nav-dropdown">
+								<img src="../img/demos/shop/products/product1.jpg" alt="Product">
+								<h4>Blue Cord</h4>
+							</div>
 						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">
-								Fixed <span class="text-primary">$5.00</span>
-							</label>
+						<div class="product-nav product-nav-next">
+							<a href="#" title="Next Product">
+								<i class="fa fa-chevron-right"></i>
+							</a>
+
+							<div class="product-nav-dropdown">
+								<img src="../img/demos/shop/products/product2.jpg" alt="Product">
+								<h4>Red Pliers</h4>
+							</div>
 						</div>
+					</div>
+					-->
+					<h1 class="product-name itemName">
+					
+					</h1>
+					<!--
+					<div class="product-rating-container">
+						<div class="product-ratings">
+							<div class="ratings-box">
+								<div class="rating" style="width:60%"></div>
+							</div>
+						</div>
+						<div class="review-link">
+							<a href="#" class="review-link-in" rel="nofollow"> <span class="count">1</span> Customer review</a> |
+							<a href="#" class="write-review-link" rel="nofollow">Add a review</a>
+						</div>
+					</div>
+				-->
+					<div class="product-short-desc">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+							occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</div>
+
+					<div class="product-detail-info">
+						<div class="product-price-box">
+							<span id="detail-price" class="product-price">$3.00</span>
+						</div>
+						<p class="availability">
+							<span class="font-weight-semibold">Availability:</span> In Stock
+						</p>
+						<!--
+						<p class="email-to-friend"><a href="#">Email to a Friend</a></p>
+						-->
 					</div>
 
 
-					<h3 class="no-border">Discount Codes <a class="expand-plus collapsed" role="button" data-toggle="collapse" href="#discountArea" aria-expanded="false" aria-controls="discountArea"></a></h3>
 
-					<div class="collapse" id="discountArea">
-						<div class="form-group wide">
-							<label>Enter your coupon code:</label>
-							<input type="text" class="form-control">
+					<div class="product-actions">
+					
+					
+						<a href="/login" class="addtocart detailadd" title="Add to Cart">
+							<i class="fa fa-shopping-cart"></i>
+							<span>Login to Buy</span> 
+						</a>
+						<!--
+						<div class="actions-right">
+							<a href="#" class="addtowishlist" title="Add to Wishlist">
+								<i class="fa fa-heart"></i>
+							</a>
+							<a href="#" class="comparelink" title="Add to Compare">
+								<i class="glyphicon glyphicon-signal"></i>
+							</a>
 						</div>
-
-						<a href="#" class="btn btn-primary">Apply</a>
+						-->
 					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="form-col">
-					<h3>Payment Method</h3>
 
-					<div class="checkout-payment-method">
-						<div class="radio">
-							<label>
-								<input type="radio" value="checkmo" name="payment[method]" checked="checked" class="payment-card-check">
-								Check / Money order
-							</label>
-						</div>
+					<div class="product-share-box">
+						<div class="addthis_inline_share_toolbox"></div>
+					</div>
 
-						<div class="radio">
-							<label>
-								<input type="radio" value="checkcard"  name="payment[method]" class="payment-card-check">
-								Credit Card (saved)
-							</label>
-						</div>
+					<div class="tabs tabs-vertical tabs-left product-tabs">
+						<ul class="nav nav-tabs col-sm-3 col-lg-2">
+							<li>
+								<a href="#product-add" data-toggle="tab">Additional</a>
+							</li>
+							<!--
+							<li>
+								<a href="#product-reviews" data-toggle="tab">Reviews</a>
+							</li>
+							-->
+						</ul>
 
-						<div id="payment-credit-card-area">
-							<div class="form-group wide mb-md">
-								<label>Name on Card<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
+						<div class="tab-content">
+
+							<div id="product-add" class="tab-pane active">
+								<table class="product-table">
+									<tbody>
+										<tr>
+											<td class="table-label">Color</td>
+											<td>Black</td>
+										</tr>
+										<tr>
+											<td class="table-label">Size</td>
+											<td>16mx24mx18m</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
+							<!--
+							<div id="product-reviews" class="tab-pane">
+								<div class="collateral-box">
+									<ul class="list-unstyled">
+										<li>Be the first to review this product</li>
+									</ul>
+								</div>
 
-							<div class="form-group wide mb-md">
-								<label>Credit Card Type<span class="required">*</span></label>
-								<select class="form-control">
-									<option value="&nbsp;">--Please Select--</option>
-									<option value="AE">American Express</option>
-									<option value="VI">Visa</option>
-									<option value="MC">MasterCard</option>
-								</select>
-							</div>
+								<div class="add-product-review">
+									<h3 class="text-uppercase heading-text-color font-weight-semibold">WRITE YOUR OWN REVIEW</h3>
+									<p>How do you rate this product? *</p>
 
-							<div class="form-group wide mb-md">
-								<label>Credit Card number<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
+									<form action="#">
+										<table class="ratings-table">
+											<thead>
+												<tr>
+													<th>&nbsp;</th>
+													<th>1 star</th>
+													<th>2 stars</th>
+													<th>3 stars</th>
+													<th>4 stars</th>
+													<th>5 stars</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Quality</td>
+													<td>
+														<input type="radio" name="ratings[1]" id="Quality_1" value="1" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="ratings[1]" id="Quality_2" value="2" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="ratings[1]" id="Quality_3" value="3" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="ratings[1]" id="Quality_4" value="4" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="ratings[1]" id="Quality_5" value="5" class="radio">
+													</td>
+												</tr>
+												<tr>
+													<td>Value</td>
+													<td>
+														<input type="radio" name="value[1]" id="Value_1" value="1" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="value[1]" id="Value_2" value="2" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="value[1]" id="Value_3" value="3" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="value[1]" id="Value_4" value="4" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="value[1]" id="Value_5" value="5" class="radio">
+													</td>
+												</tr>
+												<tr>
+													<td>Price</td>
+													<td>
+														<input type="radio" name="price[1]" id="Price_1" value="1" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="price[1]" id="Price_2" value="2" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="price[1]" id="Price_3" value="3" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="price[1]" id="Price_4" value="4" class="radio">
+													</td>
+													<td>
+														<input type="radio" name="price[1]" id="Price_5" value="5" class="radio">
+													</td>
+												</tr>
+											</tbody>
+										</table>
 
-							<div class="form-group wide mb-md">
-								<label>Credit Card Type<span class="required">*</span></label>
-								<div class="clearfix">
-									<select class="form-control pull-left">
-										<option value="&nbsp;">Month</option>
-										<option value="1">01 - January</option>
-										<option value="2">02 - February</option>
-										<option value="3">03 - March</option>
-										<option value="4">04 - April</option>
-										<option value="5">05 - May</option>
-										<option value="6">06 - June</option>
-										<option value="7">07 - July</option>
-										<option value="8">08 - August</option>
-										<option value="9">09 - September</option>
-										<option value="10">10 - October</option>
-										<option value="11">11 - November</option>
-										<option value="12">12 - December</option>
-									</select>
+										<div class="form-group">
+											<label>Nickname<span class="required">*</span></label>
+											<input type="text" class="form-control" required>
+										</div>
+										<div class="form-group">
+											<label>Summary of Your Review<span class="required">*</span></label>
+											<input type="text" class="form-control" required>
+										</div>
+										<div class="form-group mb-xlg">
+											<label>Review<span class="required">*</span></label>
+											<textarea cols="5" rows="6" class="form-control"></textarea>
+										</div>
 
-									<select class="form-control pull-left ml-md">
-										<option value="&nbsp;">Year</option>
-										<option value="2017">2017</option>
-										<option value="2018">2018</option>
-										<option value="2019">2019</option>
-										<option value="2020">2020</option>
-										<option value="2021">2021</option>
-										<option value="2022">2022</option>
-									</select>
+										<div class="text-right">
+											<input type="submit" class="btn btn-primary" value="Submit Review">
+										</div>
+									</form>
 								</div>
 							</div>
-
-							<div class="form-group mb-lg">
-								<label>Card Verification Number<span class="required">*</span></label>
-								<input type="text" class="form-control" required>
-							</div>
+							-->
 						</div>
 					</div>
 
-					<div class="checkout-review-action">
-						<h5>Grand Total <span>$389.00</span></h5>
-						<a href="#" class="btn btn-primary">Place Order now</a>
-					</div>
 				</div>
 			</div>
 		</div>
-	
+
+
 	</div>
-</div>
 
-<div class="modal fade shop-login-modal" tabindex="-1" role="dialog" aria-labelledby="myLoginModal">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
 
-			<form action="#">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
-					<h4 class="modal-title" id="myLoginModal">Login to your Account</h4>
-				</div>
+	<!--
+	<h2 class="slider-title">
+		<span class="inline-title">Also Purchased</span>
+		<span class="line"></span>
+	</h2>
 
-				<div class="modal-body">
-					<div class="form-group">
-						<label class="mb-xs">Email Address <span class="required">*</span></label>
-						<input type="email" class="form-control" required>
+	<div class="owl-carousel owl-theme" data-plugin-options="{'items':4, 'margin':20, 'nav':true, 'dots': false, 'loop': false}">
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="#" title="Product Name" class="product-image">
+					<img src="../img/demos/shop/products/product1.jpg" alt="Product Name">
+					<img src="../img/demos/shop/products/product1-2.jpg" alt="Product Name" class="product-hover-image">
+				</a>
+
+				<a href="#" class="product-quickview">
+					<i class="fa fa-share-square-o"></i>
+					<span>Quick View</span>
+				</a>
+				<div class="product-label"><span class="discount">-10%</span></div>
+				<div class="product-label"><span class="new">New</span></div>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name"><a href="#" title="Product Name">Noa Sheer Bead</a></h2>
+				<div class="product-ratings">
+					<div class="ratings-box">
+						<div class="rating" style="width:60%"></div>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<label class="mb-xs">Password <span class="required">*</span></label>
-						<input type="password" class="form-control" required>
+				<div class="product-price-box">
+					<span class="old-price">$99.00</span>
+					<span class="product-price">$89.00</span>
+				</div>
+
+				<div class="product-actions">
+					<a href="#" class="addtowishlist" title="Add to Wishlist">
+						<i class="fa fa-heart"></i>
+					</a>
+					<a href="#" class="addtocart" title="Add to Cart">
+						<i class="fa fa-shopping-cart"></i>
+						<span>Add to Cart</span>
+					</a>
+					<a href="#" class="comparelink" title="Add to Compare">
+						<i class="glyphicon glyphicon-signal"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="#" title="Product Name" class="product-image">
+					<img src="../img/demos/shop/products/product2.jpg" alt="Product Name">
+					<img src="../img/demos/shop/products/product2-2.jpg" alt="Product Name" class="product-hover-image">
+				</a>
+
+				<a href="#" class="product-quickview">
+					<i class="fa fa-share-square-o"></i>
+					<span>Quick View</span>
+				</a>
+				<div class="product-label"><span class="discount">-25%</span></div>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name"><a href="#" title="Product Name">Crystazzi</a></h2>
+				<div class="product-ratings">
+					<div class="ratings-box">
+						<div class="rating" style="width:0%"></div>
 					</div>
 				</div>
 
-				<div class="modal-footer">
-					<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-fpass-modal" data-dismiss="modal">Forget Your Password?</a>
-					<input type="submit" class="btn btn-primary" value="Login">
+				<div class="product-price-box">
+					<span class="old-price">$120.00</span>
+					<span class="product-price">$90.00</span>
 				</div>
-			</form>
 
+				<div class="product-actions">
+					<a href="#" class="addtowishlist" title="Add to Wishlist">
+						<i class="fa fa-heart"></i>
+					</a>
+					<a href="#" class="addtocart" title="Add to Cart">
+						<i class="fa fa-shopping-cart"></i>
+						<span>Add to Cart</span>
+					</a>
+					<a href="#" class="comparelink" title="Add to Compare">
+						<i class="glyphicon glyphicon-signal"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="#" title="Product Name" class="product-image">
+					<img src="../img/demos/shop/products/product3.jpg" alt="Product Name">
+				</a>
+
+				<a href="#" class="product-quickview">
+					<i class="fa fa-share-square-o"></i>
+					<span>Quick View</span>
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name"><a href="#" title="Product Name">Beadalon</a></h2>
+				<div class="product-ratings">
+					<div class="ratings-box">
+						<div class="rating" style="width:60%"></div>
+					</div>
+				</div>
+
+				<div class="product-price-box">
+					<span class="product-price">$70.00</span>
+				</div>
+
+				<div class="product-actions">
+					<a href="#" class="addtowishlist" title="Add to Wishlist">
+						<i class="fa fa-heart"></i>
+					</a>
+					<a href="#" class="addtocart" title="Add to Cart">
+						<i class="fa fa-shopping-cart"></i>
+						<span>Add to Cart</span>
+					</a>
+					<a href="#" class="comparelink" title="Add to Compare">
+						<i class="glyphicon glyphicon-signal"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="#" title="Product Name" class="product-image">
+					<img src="../img/demos/shop/products/product4.jpg" alt="Product Name">
+				</a>
+
+				<a href="#" class="product-quickview">
+					<i class="fa fa-share-square-o"></i>
+					<span>Quick View</span>
+				</a>
+				<div class="product-label"><span class="discount">-20%</span></div>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name"><a href="#" title="Product Name">Swarovski</a></h2>
+				<div class="product-ratings">
+					<div class="ratings-box">
+						<div class="rating" style="width:80%"></div>
+					</div>
+				</div>
+
+				<div class="product-price-box">
+					<span class="old-price">$100.00</span>
+					<span class="product-price">$90.00</span>
+				</div>
+
+				<div class="product-actions">
+					<a href="#" class="addtowishlist" title="Add to Wishlist">
+						<i class="fa fa-heart"></i>
+					</a>
+					<a href="#" class="addtocart" title="Add to Cart">
+						<i class="fa fa-shopping-cart"></i>
+						<span>Add to Cart</span>
+					</a>
+					<a href="#" class="comparelink" title="Add to Compare">
+						<i class="glyphicon glyphicon-signal"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="#" title="Product Name" class="product-image">
+					<img src="../img/demos/shop/products/product11.jpg" alt="Product Name">
+				</a>
+
+				<a href="#" class="product-quickview">
+					<i class="fa fa-share-square-o"></i>
+					<span>Quick View</span>
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name"><a href="#" title="Product Name">Woman Shee Blouse</a></h2>
+				<div class="product-ratings">
+					<div class="ratings-box">
+						<div class="rating" style="width:0%"></div>
+					</div>
+				</div>
+
+				<div class="product-price-box">
+					<span class="product-price">$70.00</span>
+				</div>
+
+				<div class="product-actions">
+					<a href="#" class="addtowishlist" title="Add to Wishlist">
+						<i class="fa fa-heart"></i>
+					</a>
+					<a href="#" class="addtocart" title="Add to Cart">
+						<i class="fa fa-shopping-cart"></i>
+						<span>Add to Cart</span>
+					</a>
+					<a href="#" class="comparelink" title="Add to Compare">
+						<i class="glyphicon glyphicon-signal"></i>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
+	-->
 </div>
-
-<div class="modal fade shop-fpass-modal" tabindex="-1" role="dialog" aria-labelledby="myRecoverModal">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-
-			<form action="#">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
-					<h4 class="modal-title" id="myRecoverModal">Recover your password</h4>
-				</div>
-
-				<div class="modal-body">
-					<p>Please enter your email address below. You will receive a link to reset your password.</p>
-					<div class="form-group">
-						<label class="mb-xs">Email Address <span class="required">*</span></label>
-						<input type="email" class="form-control" required>
-					</div>
-				</div>
-
-				<div class="modal-footer">
-					<a href="#" class="btn btn-link pull-left" data-toggle="modal" data-target=".shop-login-modal" data-dismiss="modal"><i class="fa fa-angle-double-left mr-xs"></i>Back to Login</a>
-					<input type="submit" class="btn btn-primary" value="Recover">
-				</div>
-			</form>
-
-		</div>
-	</div>
-</div>
-
       </div>
       <footer id="footer">
   <!--(remove-empty-lines-end)-->
