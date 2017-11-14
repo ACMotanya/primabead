@@ -28,9 +28,7 @@ h1.home-marquee.get-started {
 .home-intro .get-started a {
 	font-size: 28px;
 }
-.mobile-div {
-	display: none;
-}
+
 @media (max-width: 768px) {
 	h1.home-marquee.get-started, .home-intro .get-started a {
 		font-size: 20px;
@@ -43,9 +41,6 @@ h1.home-marquee.get-started {
 	}
 	#header .header-logo {
 		display: none;
-	}
-	.mobile-div {
-		display: block;
 	}
 }
 
@@ -115,7 +110,7 @@ ul.cat-list li a {
 }
 
 
-#header .header-nav-main nav > ul > li:hover > a:hover { 
+#header .header-nav-main nav > ul > li:hover > a:hover, #header .header-nav-main nav > ul > li:hover > a, #header .header-nav-main nav > ul > li.open > a, #header .header-nav-main nav > ul > li.active > a { 
 	color: #76D5D4 !important;
 }
 

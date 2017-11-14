@@ -27,7 +27,6 @@
 		<script src="{{ "/vendor/magnific-popup/jquery.magnific-popup.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/vide/vide.min.js" | prepend: site.baseurl }}"></script>
 	
-
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ "/js/theme.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/vendor/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
@@ -40,7 +39,6 @@
 
 		<!-- Demo -->
 		<script src="{{ "/js/demos/demo-shop-2.js" | prepend: site.baseurl }}"></script>
-		
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.isotope.js" | prepend: site.baseurl }}"></script>
@@ -65,7 +63,7 @@
 		
 
 		<script defer>
-			if (localStorage.getItem('session_no')) {
+			if (localStorage.getItem('session_no') && localStorage.getItem('username') === 'Guest') {
 				$('.loggedOff').show();
 				$('.loggedIn').hide();
 				$('.welcome-msg').html('Welcome '+ localStorage.getItem('username')+ '!');
@@ -78,6 +76,8 @@
 			} else {
 				$('.myaccout.link').show();
 			}
+
+		//	hideSmallCart();
 		</script>
 
 		{% if page.url == "/register/" %}
@@ -123,6 +123,7 @@
 				whichPage();
 			});
 			//    newCustomerSession();
+	//		hideSmallCart();
 			});		
 		</script>
 		{% endif %}

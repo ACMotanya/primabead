@@ -9,6 +9,7 @@ var colorDictionary = {
 var colors = [];
 var functiontype = [];
 var gotTax;
+var loginModal = true;
 var material = [];
 var session_no;
 var shoppingCart = {};
@@ -75,42 +76,43 @@ function createCustomer() {
         createaddress3 = addressArray[2];
       }
     }
-  
-
-  $.ajax({
-    type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APINEWCUST",
-      cust_name: createcompanyname,
-      address1: createaddress1,
-      address2: createaddress2,
-      address3: createaddress3,
-      city: createcity,
-      state: createstate,
-      zip: createzipcode,
-      contact_name: createcontactname,
-      phone: createphone,
-      email: createemail,
-      fax: createfax,
-      country: "US",
-      loc_no: "700"
-    },
-    success: function (response) {
-      if (response.length <= 10) {
-        alert("An error occured, please try again.");
-        return false;
-      } else {
-        var newCustomerNumber = response;
-        $("#newCustomer").hide();
-        $("#newUser").show();
-        document.getElementById("create-user-number").value = newCustomerNumber.trim();
-        document.getElementById("create-user-email").value = createemail.trim();
-        document.getElementById("create-user-contactname").value = createcompanyname.trim();
-        return false;
+    $.ajax({
+      type: "GET",
+      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APINEWCUST",
+        cust_name: createcompanyname,
+        address1: createaddress1,
+        address2: createaddress2,
+        address3: createaddress3,
+        city: createcity,
+        state: createstate,
+        zip: createzipcode,
+        contact_name: createcontactname,
+        phone: createphone,
+        email: createemail,
+        fax: createfax,
+        country: "US",
+        loc_no: "700"
+      },
+      success: function (response) {
+        if (response.length <= 10) {
+          alert("An error occured, please try again.");
+          return false;
+        } else {
+          var newCustomerNumber = response;
+          $("#newCustomer").hide();
+          $("#newUser").show();
+          document.getElementById("create-user-number").value = newCustomerNumber.trim();
+          document.getElementById("create-user-email").value = createemail.trim();
+          document.getElementById("create-user-contactname").value = createcompanyname.trim();
+          return false;
+        }
+      }, 
+      complete: function() {
+        createUser();
       }
-    }
-  });
+    });
   }
 }
 
@@ -152,13 +154,15 @@ function createUser() {
         success: function (response) {
           if (response === response.toUpperCase()) {
             alert("Your PrimaDIY account has been created! Happy Shopping!");
-            $.get("dusername=" + newUserName + "&email=" + userEmail + "&password=" + userPassword + "&name=" + userContactName + "");
+          //  $.get("dusername=" + newUserName + "&email=" + userEmail + "&password=" + userPassword + "&name=" + userContactName + "");
           } else {
             alert("User not created, try again.");
           }
+          $('#login-form-username').val(newUserName);
+          $('#login-form-password').val(UserPassword);
         },
         complete: function () {
-          redirect("login");
+          login();
         }
       });
     }
@@ -171,12 +175,12 @@ function createUser() {
 /// LOGIN INTO THE STORE AND VERIFY  ///
 ////////////////////////////////////////
 function login() {
-  /*
-  if (localStorage.getItem('session_no') && typeof (localStorage.getItem('session_no')) === "string" && localStorage.getItem('session_no').length === 25) {
+  
+  if (localStorage.getItem('session_no') && typeof (localStorage.getItem('session_no')) === "string" && localStorage.getItem('session_no').length === 25 && localStorage.getItem('username') !== "Guest") {
     windowHash("products");
     redirect("store");
   }
-  */
+  
   $("#login-form").on("submit", function (e) {
     e.preventDefault();
 
@@ -204,8 +208,10 @@ function login() {
             }
             localStorage.setItem('username', username);
           }).done(function () {
-            windowHash("products");
-            redirect("store");
+            if( window.location.hash !== "checkout") {
+              windowHash("products");
+              redirect("store");
+            }
           });
         } else {
           alert("Login credentials are incorrect, try again.");
@@ -215,6 +221,45 @@ function login() {
   });
 }
 
+
+$("#login-form-checkout").on("submit", function (e) {
+  e.preventDefault();
+
+  var username = $('#login-form-username-checkout').val();
+  var password = $('#login-form-password-checkout').val();
+
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICLOGIN",
+      username: username,
+      password: password,
+      loc_no: "700"
+    },
+    success: function (response) {
+      if (response.replace(/\s+/g, '').length === 25) {
+        $.get("https://www.primadiy.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function (answer) {
+          if (answer === "0") {
+            $.get("https://www.primadiy.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
+            session_no = response.replace(/\s+/g, '');
+            localStorage.setItem('session_no', session_no);
+          } else {
+            localStorage.setItem('session_no', answer);
+          }
+          localStorage.setItem('username', username);
+        }).done(function () {
+          $('#login-checkout-dismiss').click();
+          addItemsBackLogin();
+          cart();
+        });
+      } else {
+        alert("Login credentials are incorrect, try again.");
+      }
+    }
+  });
+  return false;
+});
 
 
 ////////////////////////////////////////
@@ -284,7 +329,7 @@ function fillShop()
 {
   var params ="";
   if (localStorage.getItem('shopParams')) {
-    params = params = localStorage.getItem('shopParams').split(",");
+    params = localStorage.getItem('shopParams').split(",");
     $('#shopParamName').html(params[0]); 
     if (params[1] === "1") {
       return filterFunction(params[0]);
@@ -351,7 +396,7 @@ function itemRender(div, response) {
 
     for (i = 0; i < linesPlus.length; i++) {
       var flds = linesPlus[i];
-      if ( notbanned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+      if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
       //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
@@ -451,10 +496,7 @@ function filterFunction4(a) {
    });
   $.ajax({
     type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/allproducts.php",
-    data: {
-      numrecords: 500
-    },
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/500/",
     success: function (response) {
       $('.jplist-reset-btn').click();
       $('#display-products').empty();
@@ -479,10 +521,14 @@ function itemRender2(div, response) {
     $("#display-products").empty();
     
     Object.keys(lines).forEach(function(k){
-      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
+      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
-      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span></a>';
+      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) {
+        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-pk-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+      } else {
+        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+      }
       prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
@@ -524,10 +570,14 @@ function itemRender3(div, response) {
     $("#display-products").empty();
     
     Object.keys(lines).forEach(function(k){
-      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) { return; } 
+      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
 
       stringOfDetails = lines[k].itemnum;
-      prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) {
+        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-pk-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+      } else {
+        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+      }
       prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
       prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
@@ -589,13 +639,19 @@ function detailView(callback, callback2) {
       response = JSON.parse(response);
       Object.keys(response).forEach(function(k){
       /* Fill in the pictures for the product */
-        $("#product-zoom").attr({
-          src: "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-lg.jpg",
-          
-          "data-zoom-image": "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-lg.jpg",
-         
-          alt: response[k].shortdescription
-        });
+        if ( notbanned.indexOf(response[k].itemnum) != -1 ) {
+          $("#product-zoom").attr({
+            src: "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-pk-lg.jpg",
+            "data-zoom-image": "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-pk-lg.jpg",
+            alt: response[k].shortdescription
+          });
+        } else {
+          $("#product-zoom").attr({
+            src: "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-lg.jpg",
+            "data-zoom-image": "https://www.primaDIY.com/productimages/" + response[k].itemnum + "-lg.jpg",
+            alt: response[k].shortdescription
+          });
+        }
         /*
         picArray.forEach(function (element) {
           picsGallery += '<div class="product-img-wrapper '+element+'"><a href="#" data-image="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-lg.jpg" data-zoom-image="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-lg.jpg" class="product-gallery-item"><img class="'+element+'" src="https://www.primaDIY.com/productimages/' + fields[0].trim() + element + '-sm.jpg" alt="'+ fields[1].trim() +'"></a></div>';
@@ -653,7 +709,6 @@ function addItemGeneric(session_no, stock_no, qty) {
 
 function addItemWhileUpdating(session_no, stock_no, qty) {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + stock_no + "&qty=" + qty + "");
-  
 }
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
@@ -759,6 +814,16 @@ function loopCart(callback)
   }
 }
 
+function addItemsBackLogin(shoppingList) {
+  $.each(shoppingList, function (key, value) { 
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+      if ( response.length !== 0 ) {
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "");
+      }
+    });
+  });
+}
+
 
 //////////////////////////////
 // Get back the cart header //
@@ -782,8 +847,6 @@ function cartHeader(callback) {
         calculateShipping(cartHeaderFields[22], cartHeaderFields[19]);
         
         if (window.location.hash === "#checkout") {
-          
-         
           document.getElementById("billing-form-name").value = cartHeaderFields[2].trim();
           document.getElementById("billing-form-email").value = cartHeaderFields[17].trim();
           document.getElementById("billing-form-address").value = cartHeaderFields[3].trim();
@@ -901,6 +964,9 @@ function cartList() {
       } else if (window.location.hash === "#checkout") {
         $("table#reviewItemTable tbody").empty();
       }
+    },
+    complete: function() {
+    //  hideSmallCart();
     }
   });
 }
@@ -914,23 +980,29 @@ function cartHelper()
     shoppingCart = {};
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem = '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
-      miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="Product Name"></a></figure>';
+      miniitem =  '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
+      if ( notbanned.indexOf(data[2].replace(/\s+/g, '')) != -1 ) { 
+        miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-pk-sm.jpg" alt="Product Name"></a></figure>';
+      } else {
+        miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="Product Name"></a></figure>';
+      }
       miniitem += '<div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2><div class="cart-qty-price">' + data[6].replace(/\s+/g, '') + ' X <span class="product-price">$' + data[7].substring(0, data[7].length - 3).trim() + '</span></div></div></div>';
 
       html2.push(miniitem);
 
       if (!shoppingCart.hasOwnProperty(data[2].replace(/\s+/g, ''))) {
         shoppingCart[data[2].replace(/\s+/g, '') ] = [ parseInt(data[6].replace(/\s+/g, '')),  data[1].trim()];
-
       } else {
          shoppingCart[data[2].replace(/\s+/g, '')][0] += parseInt(data[6]);
-
       }
 
       if (window.location.hash === "#cart") {
         listitem =  '<tr><td class="product-action-td"><a href="#" title="Remove product" class="btn-remove" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" id="' + data[1].replace(/\s+/g, '') + '"><i class="fa fa-times"></i></a></td>';
-        listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+        if ( notbanned.indexOf(data[2].replace(/\s+/g, '')) != -1 ) {
+          listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-pk-sm.jpg" alt="' + data[3] + '"></a></td>';
+        } else {
+          listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+        } 
         listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
         listitem += '<input type="button" class="qty-dec-btn" title="Dec" value="-" data-type="minus" data-field="quant[' + i + ']" onclick="changeQuantity(this);" />';
         listitem += '<input type="text" class="qty-input" name="quant[' + i + ']" min="1" value="' + data[6].replace(/\s+/g, '') + '" id="' + data[2].replace(/\s+/g, '') + '" />';
@@ -938,7 +1010,6 @@ function cartHelper()
         listitem += '</div></td><td><span class="text-primary">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
 
         html.push(listitem);
-        // $("#updateCartButton").show();
       } //else if (window.location.hash === "#checkout") {
         //$("table#reviewItemTable tbody").append('<tr><td>' + data[3] + '</td><td class="text-center">' + data[6].replace(/\s+/g, '') + '</td><td class="text-right">$' + data[8].substring(0, data[8].length - 4) + '</td></tr>');
       //}
@@ -949,6 +1020,7 @@ function cartHelper()
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
     html.push(item);
   }
+  
 }
 
 
@@ -1570,6 +1642,14 @@ function getComboFilter() {
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 
+function hideSmallCart() 
+{
+  if ($('.cart-qty').text() === "" || $('.cart-qty').text() === "0") {
+    $('.small-cart-list').hide();
+  } else {
+    $('.small-cart-list').show();
+  }
+}
 
 function currentAsideLink(hash) {
   $('ul.nav.nav-list li.' + hash + '-link').addClass("active");
@@ -1581,10 +1661,13 @@ function cart() {
 }
 
 function checkoutPage() {
-  //employeeDiscount();
  
   session_no = localStorage.getItem('session_no');
   username = localStorage.getItem('username');
+  if (loginModal && username === "Guest") {
+    $('.modalopen').click();
+    loginModal = false;
+  }
   billingAddresses = [];
   shippingAddresses = [];
   billstate = $('#billing-form-state').val();
@@ -1658,10 +1741,9 @@ function whichPage() {
       cart();
       break;
     case '#checkout':
- 
       window.scrollTo(0, 0);
       $('#checkout').show();
-      cartHeader();
+      cart();
       checkoutPage();
       break;
     case '#dashboard':
@@ -1755,6 +1837,7 @@ function sessionNumber()
   session_no = localStorage.getItem('session_no');
   if (typeof (session_no) === "undefined" || session_no === null || session_no.length !== 25 ) {
     guestLogin();
+    setTimeout(function(){ location.reload(); }, 1000);
   }
 }
 
@@ -2004,25 +2087,6 @@ function employeeDiscount() {
   employee = usernameSplit.slice(0, 3).join("");
 }
 
-function minimumTotal() {
-  newCustomer = localStorage.getItem('newCustomer');
-  orderAmt = cartHeaderFields[22].trim();
-  orderAmtFloat = parseFloat(orderAmt.replace(/,/g, ''));
-
-  if ((newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200) && employee !== "CCA") {
-    $("#myButton").hide();
-    if (newCustomer === "true") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $200 for new customers.</h2>';
-    }
-    if (newCustomer === "false") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
-    }
-  } else {
-    // if ( hideCC === true) {
-    //   $("#myButton").show();
-    // }
-  }
-}
 
 bootstrap_alert = function () {};
 bootstrap_alert.warning = function (message, alert, timeout) {
@@ -2040,21 +2104,8 @@ function showAlert() {
 
 
 
-banned = [];
-
-notbanned = [
-  "2950542",
-  "2950543",
-  "2950548",
-  "2950550",
-  "2950564",
-  "2950572",
-  "2950579",
-  "3202102",
-  "3244407",
-  "3578897",
-  "3949410",
-  "3949413",
+banned = [
+  "2950513",
   "7120008",
   "7120009",
   "7120031",
@@ -2082,325 +2133,475 @@ notbanned = [
   "7120327",
   "7120328",
   "7120330",
-  "25788114",
-  "25788115",
-  "25788123",
-  "25788132",
-  "25788135",
-  "25788138",
-  "25788139",
-  "25788141",
-  "25788147",
-  "25916126",
-  "25916140",
-  "29497168",
-  "29497169",
-  "29497172",
-  "29497206",
-  "29499133",
-  "29499135",
-  "29499136",
-  "29499137",
-  "29499138",
-  "29499141",
-  "29499142",
-  "29499144",
-  "29505125",
-  "29505165",
-  "29505167",
-  "29505300",
-  "29505301",
-  "29505303",
-  "29505304",
-  "29505306",
-  "29505309",
-  "29505315",
-  "29505316",
-  "29505319",
-  "29505400",
-  "34696026",
-  "34696038",
-  "34696039",
-  "34696040",
-  "34696041",
-  "34696042",
-  "34696048",
-  "34696061",
-  "34696079",
-  "34696104",
-  "34696105",
-  "34696106",
-  "34696107",
-  "34696108",
-  "34696109",
-  "34696111",
-  "34696113",
-  "34696117",
-  "34696122",
-  "34697026",
-  "34697038",
-  "34697040",
-  "34697042",
-  "34697046",
-  "34697048",
-  "34697049",
-  "34697053",
-  "34697054",
-  "34697055",
-  "34697056",
-  "34697063",
-  "34697085",
-  "34697087",
-  "34697090",
-  "34697091",
-  "34697092",
-  "34697095",
-  "34697105",
-  "34697106",
-  "34697108",
-  "34697114",
-  "34697115",
-  "34697117",
-  "34700007",
-  "34700008",
-  "34700010",
-  "34700011",
-  "34700012",
-  "34700027",
-  "34700068",
-  "34706001",
-  "34706003",
-  "34706005",
-  "34706006",
-  "34706007",
-  "34706008",
-  "34706009",
-  "34706010",
-  "34706011",
-  "34706012",
-  "34708145",
-  "34708169",
-  "34708170",
-  "34708171",
-  "34708172",
-  "34708173",
-  "34708174",
-  "34708175",
-  "34708176",
-  "34708177",
-  "34708178",
-  "34708179",
-  "34708180",
-  "34708181",
-  "34708182",
-  "34708184",
-  "34708185",
-  "34708186",
-  "34708206",
-  "34708209",
-  "34708213",
-  "34708215",
-  "34708217",
-  "34708218",
-  "34708219",
-  "34708222",
-  "34708223",
-  "34708224",
-  "34708227",
-  "34708229",
-  "34708230",
-  "34708231",
-  "34708233",
-  "34708235",
-  "34708236",
-  "34708237",
-  "34708238",
-  "34708240",
-  "34708241",
-  "34708245",
-  "34708246",
-  "34708248",
-  "34708258",
-  "34708259",
-  "34708261",
-  "34708281",
-  "34708282",
-  "34708284",
-  "34708286",
-  "34708289",
-  "34708290",
-  "34708291",
-  "34708292",
-  "34708293",
-  "34708296",
-  "34708297",
-  "34708298",
-  "34708307",
-  "34708423",
-  "34708430",
-  "34714001",
-  "34714007",
-  "34714013",
-  "34714018",
-  "34714023",
-  "34714024",
-  "34714025",
-  "34714048",
-  "34714070",
-  "34714072",
-  "34714083",
-  "34714084",
-  "34714085",
-  "34714089",
-  "34714098",
-  "34714112",
-  "34714119",
-  "34714125",
-  "34714126",
-  "34714127",
-  "34716100",
-  "34716101",
-  "34716102",
-  "34716105",
-  "34716107",
-  "34716109",
-  "34716111",
-  "34716113",
-  "34716116",
-  "34716122",
-  "34716124",
-  "34716125",
-  "34716128",
-  "34716129",
-  "34716131",
-  "34716132",
-  "34716133",
-  "34722004",
-  "34722005",
-  "34722007",
-  "34722008",
-  "34722009",
-  "34722010",
-  "34722015",
-  "34722016",
-  "34722017",
-  "34722018",
-  "34722019",
-  "34722021",
-  "34722022",
-  "34722024",
-  "34722027",
-  "34722028",
-  "34722029",
-  "34722030",
-  "34722031",
-  "34722036",
-  "34722037",
-  "34722043",
-  "34722044",
-  "34722045",
-  "34722049",
-  "34722051",
-  "34722052",
-  "34722053",
-  "34722056",
-  "34722071",
-  "34722073",
-  "34722083",
-  "34722091",
-  "34722103",
-  "34722104",
-  "34733027",
-  "34733030",
-  "34733034",
-  "34733055",
-  "34733061",
-  "34733080",
-  "34733085",
-  "34733089",
-  "34733090",
+  "29502176",
+  "29502177",
+  "29502178",
+  "29502180",
+  "34708429",
+  "34708457",
+  "34708458",
+  "34708459",
+  "34708460",
+  "34708462",
+  "34708463",
+  "34708464",
+  "34708467",
+  "34708469",
+  "34708470",
+  "34708471",
+  "34708472",
+  "34708475",
+  "34708476",
+  "34708477",
+  "34708481",
+  "34708482",
+  "34708483",
+  "34708484",
+  "34708487",
+  "34708490",
+  "34708493",
+  "34708495",
+  "34708502",
+  "34708503",
+  "34708504",
+  "34708506",
+  "34708512",
+  "34708513",
+  "34708515",
+  "34708516",
+  "34708517",
+  "34708518",
+  "34708527",
+  "34708532",
+  "34708535",
+  "34708543",
+  "34708545",
+  "34708549",
+  "34708551",
+  "34708552",
+  "34708553",
+  "34708555",
+  "34708560",
+  "34708570",
+  "34708571",
+  "34708573",
+  "34715034",
+  "34715036",
   "34738054",
   "34738056",
-  "34741002",
-  "34741003",
-  "34741004",
-  "34741006",
-  "34741007",
-  "34741009",
-  "34741011",
-  "34741016",
-  "34741018",
-  "34741020",
-  "34741021",
-  "34741022",
-  "34741025",
-  "34741027",
-  "34741028",
-  "34741029",
-  "34741030",
-  "34741031",
-  "34741032",
-  "34741036",
-  "34741037",
-  "34741039",
-  "34741040",
-  "34741044",
-  "34741048",
-  "34741049",
-  "34741052",
-  "34741054",
-  "34741055",
-  "34741057",
-  "34741059",
-  "34741062",
-  "34770480",
-  "34770481",
-  "39494132",
-  "39494134",
-  "39494139",
-  "39494140",
-  "39494141",
-  "39494142",
-  "39494144",
-  "47523193",
-  "47748100",
-  "47748193",
+  "34770201",
+  "34770202",
+  "34770203",
+  "34770204",
+  "34770205",
+  "34770206",
+  "34770207",
+  "34770208",
+  "34770209",
+  "34770210",
+  "34770211",
+  "34770212",
+  "34770213",
+  "34770214",
+  "34770215",
+  "34770216",
+  "34770217",
+  "34770218",
+  "34770219",
+  "34770220",
+  "34770221",
+  "34770222",
+  "34770223",
+  "34770225",
+  "34770226",
+  "34770227",
+  "34770228",
+  "34770229",
+  "34770230",
+  "34770261",
+  "34770263",
+  "34770300",
+  "34770301",
+  "34770302",
+  "34770305",
+  "34770439",
+  "34770445",
+  "34770479",
+  "34770503",
+  "34770504",
+  "34770506",
+  "34774079",
+  "34774081",
   "64116008",
   "72099423",
   "72099427",
   "74100070",
   "74100077",
   "77528350",
-  "2578813",
-  "2578840",
-  "2578865",
-  "2578874",
-  "2591607",
-  "2591625",
-  "2591650",
-  "2591669",
   "2591699",
-  "2949744",
-  "2949753",
-  "2949759",
-  "2949760",
-  "2949889",
-  "2949901",
-  "2949906",
   "2949909",
-  "2949913",
-  "2949914",
-  "2949925",
-  "2949936",
-  "2949941",
-  "2949942",
-  "2949943",
-  "2950509",
-  "2950511",
-  "2950512",
-  "2950513",
-  "2950515",
-  "2950522",
-  "2950523",
-  "2950527"
+  "2949902"
+];
+
+notbanned = [
+  '2950542',
+  '2950543',
+  '2950548',
+  '2950550',
+  '2950564',
+  '2950572',
+  '2950579',
+  '3202102',
+  '3244407',
+  '3578897',
+  '3949410',
+  '3949413',
+  '25788114',
+  '25788115',
+  '25788123',
+  '25788132',
+  '25788135',
+  '25788138',
+  '25788139',
+  '25788141',
+  '25788147',
+  '25916126',
+  '25916140',
+  '29497168',
+  '29497169',
+  '29497172',
+  '29497206',
+  '29499133',
+  '29499135',
+  '29499136',
+  '29499137',
+  '29499138',
+  '29499141',
+  '29499142',
+  '29499144',
+  '29505125',
+  '29505165',
+  '29505167',
+  '29505300',
+  '29505301',
+  '29505303',
+  '29505304',
+  '29505306',
+  '29505309',
+  '29505315',
+  '29505316',
+  '29505319',
+  '29505400',
+  '34696026',
+  '34696038',
+  '34696039',
+  '34696040',
+  '34696041',
+  '34696042',
+  '34696048',
+  '34696061',
+  '34696079',
+  '34696104',
+  '34696105',
+  '34696106',
+  '34696107',
+  '34696108',
+  '34696109',
+  '34696111',
+  '34696113',
+  '34696117',
+  '34696122',
+  '34697026',
+  '34697038',
+  '34697040',
+  '34697042',
+  '34697046',
+  '34697048',
+  '34697049',
+  '34697053',
+  '34697054',
+  '34697055',
+  '34697056',
+  '34697063',
+  '34697085',
+  '34697087',
+  '34697090',
+  '34697091',
+  '34697092',
+  '34697095',
+  '34697105',
+  '34697106',
+  '34697108',
+  '34697114',
+  '34697115',
+  '34697117',
+  '34700007',
+  '34700008',
+  '34700010',
+  '34700011',
+  '34700012',
+  '34700027',
+  '34700068',
+  '34706001',
+  '34706003',
+	'34706005',
+  '34706006',
+  '34706007',
+  '34706008',
+  '34706009',
+  '34706010',
+  '34706011',
+  '34706012',
+  '34708145',
+  '34708169',
+  '34708170',
+  '34708171',
+  '34708172',
+  '34708173',
+  '34708174',
+  '34708175',
+  '34708176',
+  '34708177',
+  '34708178',
+  '34708179',
+  '34708180',
+  '34708181',
+  '34708182',
+  '34708184',
+  '34708185',
+  '34708186',
+  '34708206',
+  '34708209',
+  '34708213',
+  '34708215',
+  '34708217',
+  '34708218',
+  '34708219',
+  '34708222',
+  '34708223',
+  '34708224',
+  '34708227',
+  '34708229',
+  '34708230',
+  '34708231',
+  '34708233',
+  '34708235',
+  '34708236',
+  '34708237',
+  '34708238',
+  '34708240',
+  '34708241',
+  '34708245',
+  '34708246',
+  '34708248',
+  '34708258',
+  '34708259',
+  '34708261',
+  '34708281',
+  '34708282',
+  '34708284',
+  '34708286',
+  '34708289',
+  '34708290',
+  '34708291',
+  '34708292',
+  '34708293',
+  '34708296',
+  '34708297',
+  '34708298',
+  '34708307',
+  '34708423',
+  '34708430',
+  '34714001',
+  '34714007',
+  '34714013',
+  '34714018',
+  '34714023',
+  '34714024',
+  '34714025',
+  '34714048',
+  '34714070',
+  '34714072',
+  '34714083',
+  '34714084',
+  '34714085',
+  '34714089',
+  '34714098',
+  '34714112',
+  '34714119',
+  '34714125',
+  '34714126',
+  '34714127',
+  '34716100',
+  '34716101',
+  '34716102',
+  '34716105',
+  '34716107',
+  '34716109',
+  '34716111',
+  '34716113',
+  '34716116',
+  '34716122',
+  '34716124',
+  '34716125',
+	'34716128',
+  '34716129',
+  '34716131',
+  '34716132',
+  '34716133',
+  '34722004',
+  '34722005',
+  '34722007',
+  '34722008',
+  '34722009',
+  '34722010',
+  '34722015',
+  '34722016',
+  '34722017',
+  '34722018',
+  '34722019',
+  '34722021',
+  '34722022',
+  '34722024',
+  '34722027',
+  '34722028',
+  '34722029',
+  '34722030',
+  '34722031',
+  '34722036',
+  '34722037',
+  '34722043',
+  '34722044',
+  '34722045',
+  '34722049',
+  '34722051',
+  '34722052',
+  '34722053',
+  '34722056',
+  '34722071',
+  '34722073',
+  '34722083',
+  '34722091',
+  '34722103',
+  '34722104',
+  '34733027',
+  '34733030',
+  '34733034',
+  '34733055',
+  '34733061',
+  '34733080',
+  '34733085',
+  '34733089',
+  '34733090',
+  '34741002',
+  '34741003',
+  '34741004',
+  '34741006',
+  '34741007',
+  '34741009',
+  '34741011',
+  '34741016',
+  '34741018',
+  '34741020',
+  '34741021',
+  '34741022',
+  '34741025',
+  '34741027',
+  '34741028',
+  '34741029',
+  '34741030',
+  '34741031',
+  '34741032',
+  '34741036',
+  '34741037',
+  '34741039',
+  '34741040',
+  '34741044',
+  '34741048',
+  '34741049',
+  '34741052',
+  '34741054',
+  '34741055',
+  '34741057',
+  '34741059',
+  '34741062',
+  '34770480',
+  '34770481',
+  '39494132',
+  '39494134',
+  '39494139',
+  '39494140',
+  '39494141',
+  '39494142',
+  '39494144',
+  '47523193',
+  '47748100',
+  '47748193',
+  '2578813',
+  '2578840',
+  '2578865',
+  '2578874',
+  '2591607',
+  '2591625',
+  '2591650',
+	'2591669',
+  '2949744',
+  '2949753',
+  '2949759',
+  '2949760',
+  '2949889',
+  '2949901',
+  '2949906',
+  '2949913',
+  '2949914',
+  '2949925',
+  '2949936',
+  '2949941',
+  '2949942',
+  '2949943',
+  '2950509',
+  '2950511',
+  '2950512',
+  '2950515',
+  '2950522',
+  '2950523',
+  '2950527',
+  '2950210',
+  '2950211',
+  '2950212',
+  '2950214',
+  '2950222',
+  '2950224',
+  '2950225',
+  '2950227',
+  '2950229',
+  '2950230',
+  '2950236',
+  '2950237',
+  '2950241',
+  '2950248',
+  '2950249',
+  '2950255',
+  '2950264',
+  '2950272',
+  '2950288',
+  '2950293',
+  '29502100',
+  '29502104',
+  '29502109',
+  '29502112',
+  '29502126',
+  '29502165',
+  '29502167',
+  '29502168',
+  '29502183',
+  '29502206',
+  '29502209',
+  '29502217',
+  '2950210',
+  '2950211',
+  '2950212',
+  '2950214',
+  '2950222',
+  '2950224'
 ];
