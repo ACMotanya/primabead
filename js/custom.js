@@ -260,6 +260,15 @@ $("#login-form-checkout").on("submit", function (e) {
   });
   return false;
 });
+function addItemsBackLogin(shoppingList) {
+  $.each(shoppingList, function (key, value) { 
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
+      if ( response.length !== 0 ) {
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "");
+      }
+    });
+  });
+}
 
 
 ////////////////////////////////////////
@@ -317,7 +326,6 @@ function search()
         $('.jplist-reset-btn').click();
         $('#display-products').empty();
         itemRender3("display-products", response);
-       // $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       }
     });
   }
@@ -327,6 +335,17 @@ function search()
 ////////////////////////////
 function fillShop()
 {
+  $('#color-panel, #panel-filter-material, #panel-filter-type').empty();
+  $('#demo').jplist({
+    command: 'empty'
+   });
+   $('#demo').jplist({
+    command: 'del',
+    commandData: {
+       $items: $('.hope')  //select your items using jQuery
+    }
+   });
+   
   var params ="";
   if (localStorage.getItem('shopParams')) {
     params = localStorage.getItem('shopParams').split(",");
@@ -341,91 +360,14 @@ function fillShop()
   } else {
     localStorage.setItem('shopParams', ['all', '4']);
     fillShop();
-    
   }  
+
 }
 
 
 //////////////////////////
 // Filter Function      //
 //////////////////////////
-function filterFunction2(a, b, c, d, e, f, g, h) {
-  $('#demo').jplist({
-    command: 'empty'
-   });
-  $.ajax({
-    type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: a,
-      level1: b,
-      level2: c,
-      level3: d,
-      level4: e,
-      level5: f,
-      session_no: g,
-      loc_no: h
-    },
-    success: function (response) {
-      $('.jplist-reset-btn').click();
-      $('#display-products').empty();
-      itemRender("display-products", response);
-
-    }
-  });
-}
-
-function itemRender(div, response) {
-  lines = response.split("\n");
-  lines.shift();
- 
-  functiontype.length = 0;
-  material.length = 0;
-  colors.length = 0;
-  if (lines.length <= 1) {
-
-    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
-  } else {
-    var $demo = $('#demo');
-    var items = [];
-    var linesPlus = [];
-    $("#display-products").empty();
-    for (i = 0; i < lines.length - 1; i++) {
-      linesPlus.push(lines[i].split("|"));
-    }
-
-    for (i = 0; i < linesPlus.length; i++) {
-      var flds = linesPlus[i];
-      if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
-      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
-      prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
-      //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
-      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
-      prod += '<div class="product-price-box"><span class="product-price">$' + flds[3] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
-
-      items.push($(prod));
-     
-      listOfAttributes(functiontype, flds[9]);
-      listOfAttributes(material, flds[10]);
-      listOfAttributes(colors, flds[8]);
-    }
-   
-    $demo.jplist({
-      itemsBox: '#display-products',
-      itemPath: '.hope',
-      panelPath: '.jplist-panel'
-    });
-    $demo.jplist({
-      command: 'add',
-      commandData: {
-        $items: items
-      }
-    });
-  }
-  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
-  fillTypeField();
-}
-
 function fillTypeField() 
 {
   functiontype.forEach(function (element) {
@@ -454,9 +396,7 @@ function listOfAttributes(attr, field)
 // Filter Function      //
 //////////////////////////
 function filterFunction(a) {
-  $('#demo').jplist({
-    command: 'empty'
-   });
+  
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/programs.php?",
@@ -465,17 +405,14 @@ function filterFunction(a) {
       location: "700"
     },
     success: function (response) {
-      
       $('.jplist-reset-btn').click();
-      $('#display-products').empty();
+     // $('#display-products').empty();
       itemRender2("display-products", response);
     }
   });
 }
 function filterFunction3(a) {
-  $('#demo').jplist({
-    command: 'empty'
-   });
+ 
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/functions.php?",
@@ -485,21 +422,19 @@ function filterFunction3(a) {
     },
     success: function (response) {
       $('.jplist-reset-btn').click();
-      $('#display-products').empty();
+    //  $('#display-products').empty();
       itemRender2("display-products", response);
     }
   });
 }
 function filterFunction4(a) {
-  $('#demo').jplist({
-    command: 'empty'
-   });
+
   $.ajax({
     type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/500/",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/300/",
     success: function (response) {
       $('.jplist-reset-btn').click();
-      $('#display-products').empty();
+     // $('#display-products').empty();
       itemRender3("display-products", response);
     }
   });
@@ -735,8 +670,7 @@ function addItemDetailView() {
 /////////////////////////////////////////
 function removeItem(session_no, line_no) {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no=" + session_no + "&line_no=" + line_no + "");
-  cartHeader(cartList);
-  return false;
+  cart();
 }
 function removeItemWhileUpdating(session_no, line_no) {
   return $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no=" + session_no + "&line_no=" + line_no + "");
@@ -773,11 +707,8 @@ function updateCart(callback)
 
     if (!newItems.hasOwnProperty(stockNumber.trim())) {
       newItems[stockNumber.trim()] = [parseInt(qty), line_no];
-    //  removeItemWhileUpdating(session_no, line_no);
     } else {
       newItems[stockNumber.trim()][0] += parseInt(qty);
-    //   removeItemWhileUpdating(session_no, line_no);
-    //  removeItemWhileUpdating(session_no, shoppingCart[stockNumber][1]);
     }
     UpdatedShoppingCart[line_no] = [parseInt(qty), stockNumber.trim()];
   });
@@ -814,16 +745,6 @@ function loopCart(callback)
   }
 }
 
-function addItemsBackLogin(shoppingList) {
-  $.each(shoppingList, function (key, value) { 
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "", function(response) {
-      if ( response.length !== 0 ) {
-        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no=" + session_no + "&stock_no=" + key + "&qty=" + value[0] + "");
-      }
-    });
-  });
-}
-
 
 //////////////////////////////
 // Get back the cart header //
@@ -838,6 +759,7 @@ function cartHeader(callback) {
     },
     success: function (response) {
       console.log(response);
+      hideSmallCart();
       cartheader = response.split("\n");
       
       if (cartheader.length >= 3) {
@@ -964,9 +886,6 @@ function cartList() {
       } else if (window.location.hash === "#checkout") {
         $("table#reviewItemTable tbody").empty();
       }
-    },
-    complete: function() {
-    //  hideSmallCart();
     }
   });
 }
@@ -976,8 +895,9 @@ function cartList() {
 /////////////////////////////////////////////
 function cartHelper() 
 {
+  shoppingCart = {};
   if (cartitems.length > 2) {
-    shoppingCart = {};
+    
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
       miniitem =  '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
@@ -1212,416 +1132,6 @@ function orderHistory() {
 }
 
 
-/////////////////////////////////////
-// SUBROUTINE TO FIND TYPE //
-/////////////////////////////////////
-function whatType(typeCode) {
-  switch (typeCode) {
-    case "100":
-      type = "Necklace";
-      break;
-    case "200":
-      type = "Bracelet";
-      break;
-    case "300":
-      type = "Earrings";
-      break;
-    case "400":
-      type = "Lanyard";
-      break;
-    case "500":
-      type = "Snap";
-      break;
-    case "600":
-      type = "Tassel";
-      break;
-    case "700":
-      type = "Set";
-      break;
-    case "800":
-      type = "Program";
-      break;
-    case "850":
-      type = "Display";
-      break;
-    case "900":
-      type = "Oil";
-      break;
-    case "950":
-      type = "Accessory";
-      break;
-    case "1000":
-      type = "Scarf";
-      break;
-    case "1100":
-      type = "Pendant";
-      break;
-    case "1200":
-      type = "Purse";
-      break;
-    case "1300":
-      type = "Wristlet";
-      break;
-    case "1400":
-      type = "Brooch";
-      break;
-    case "1500":
-      type = "Ring";
-      break;
-    case "1600":
-      type = "Versatile";
-      break;
-    case "1700":
-      type = "Beads";
-      break;
-    case "1800":
-      type = "Seed Beads";
-      break;
-    case "1900":
-      type = "Bead Strands";
-      break;
-    case "2000":
-      type = "Bead Caps";
-      break;
-    case "2100":
-      type = "Slide Beads";
-      break;
-    case "2200":
-      type = "Crimp Beads";
-      break;
-    case "2300":
-      type = "Flatback Rhinestones";
-      break;
-    case "2400":
-      type = "Charms";
-      break;
-    case "2500":
-      type = "Crystals";
-      break;
-    case "2600":
-      type = "Pearls";
-      break;
-    case "2700":
-      type = "Gemstones";
-      break;
-    case "2800":
-      type = "Transfers";
-      break;
-    case "3000":
-      type = "Clasps";
-      break;
-    case "3100":
-      type = "Jump Rings";
-      break;
-    case "3200":
-      type = "Split Rings";
-      break;
-    case "3300":
-      type = "Head Pins";
-      break;
-    case "3400":
-      type = "Eye Pins";
-      break;
-    case "3500":
-      type = "Bails";
-      break;
-    case "3600":
-      type = "Crimp Tubes";
-      break;
-    case "3700":
-      type = "Connectors";
-      break;
-    case "3800":
-      type = "Spacer Beads";
-      break;
-    case "3900":
-      type = "Cord Endings";
-      break;
-    case "4000":
-      type = "Earring Findings";
-      break;
-    case "4100":
-      type = "Cord";
-      break;
-    case "4200":
-      type = "Wire";
-      break;
-    case "4300":
-      type = "Thread";
-      break;
-    case "4400":
-      type = "Jewelry Kits";
-      break;
-    case "4500":
-      type = "PLiers";
-      break;
-    case "4600":
-      type = "Cutters";
-      break;
-    case "4700":
-      type = "Tool Kits";
-      break;
-    case "4800":
-      type = "Cloths";
-      break;
-    case "4900":
-      type = "Organizers";
-      break;
-    case "5000":
-      type = "Heat Set Tools";
-      break;
-    case "5100":
-      type = "Adhesives";
-      break;
-    case "5200":
-      type = "Screwdrivers";
-      break;
-    case "5300":
-      type = "Bead Looms";
-      break;
-    case "5400":
-      type = "Hammer";
-      break;
-    case "5500":
-      type = "Needles";
-      break;
-    case "5600":
-      type = "Tweezers";
-      break;
-    case "5700":
-      type = "Glue Gun";
-      break;
-    case "5800":
-      type = "Gift Packaging";
-      break;
-    case "5900":
-      type = "Plastic Bags";
-      break;
-    case "6000":
-      type = "Specialty";
-      break;
-    case "6100":
-      type = "Hot Fix Rhinestones";
-      break;
-    case "6200":
-      type = "Beading Thread";
-      break;
-    case "6300":
-      type = "Embroidery Thread";
-      break;
-    case "6400":
-      type = "Beading Wire";
-      break;
-    case "6500":
-      type = "Misc Tools";
-      break;
-    case "6600":
-      type = "Stretch Cord";
-      break;
-    case "6700":
-      type = "Satin Cord";
-      break;
-    case "6800":
-      type = "Bicones";
-      break;
-    case "6900":
-      type = "Pony Beads";
-      break;
-    case "7000":
-      type = "Rondelles";
-      break;
-    default:
-      type = "N/A";
-  }
-  return type;
-}
-
-
-/////////////////////////////////////
-// SUBROUTINE TO FIND METAL TYPE //
-/////////////////////////////////////
-function whatMetal(metalCode) {
-  switch (metalCode) {
-    case "10":
-      metal = "Gold Plated";
-      break;
-    case "20":
-      metal = "Silver Plated";
-      break;
-    case "30":
-      metal = "Antique Gold Plated";
-      break;
-    case "40":
-      metal = "Gunmetal";
-      break;
-    case "50":
-      metal = "Stainless Steel";
-      break;
-    case "60":
-      metal = "Acrylic";
-      break;
-    case "70":
-      metal = "Wood";
-      break;
-    case "80":
-      metal = "Plastic";
-      break;
-    case "90":
-      metal = "Nylon";
-      break;
-    case "100":
-      metal = "Suede";
-      break;
-    case "110":
-      metal = "Leather";
-      break;
-    case "120":
-      metal = "Yarn";
-      break;
-    case "130":
-      metal = "Satin";
-      break;
-    case "140":
-      metal = "Lace";
-      break;
-    case "150":
-      metal = "Cotton";
-      break;
-    case "160":
-      metal = "Faux Leather";
-      break;
-    case "170":
-      metal = "Faux Suede";
-      break;
-    case "180":
-      metal = "Hemp";
-      break;
-    case "190":
-      metal = "Jute / Twine";
-      break;
-    case "200":
-      metal = "Porcelain";
-      break;
-    case "210":
-      metal = "Base Metal";
-      break;
-    case "220":
-      metal = "Sterling Silver";
-      break;
-    case "230":
-      metal = "Rose Gold Plated";
-      break;
-    case "240":
-      metal = "Glass";
-      break;
-    case "250":
-      metal = "Platinum Plated";
-      break;
-    case "260":
-      metal = "Copper";
-      break;
-    case "270":
-      metal = "Silk";
-      break;
-    case "280":
-      metal = "Crystal";
-      break;
-    default:
-      metal = "N/A";
-  }
-  return metal;
-}
-
-
-
-//////////////////////////////////////////////
-  // Filter the Products on the Shop Page //
-//////////////////////////////////////////////
-
-/*
-function priceFilter() {
-  var priceRangefrom = ( isNaN(parseFloat($("#min").val())) ? 1 : parseFloat($("#min").val()) );
-  var priceRangeto   = ( isNaN(parseFloat($("#max").val())) ? 9999 : parseFloat($("#max").val()) );
-  $('.ui-group').trigger( 'change');
-  $container.isotope({
-    transitionDuration: '0.65s',
-    filter: function() {
-
-      if( jQuery(this).is(':visible')) {
-        if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
-          price = jQuery(this).find('.product-price ins').text();
-        } else {
-          price = jQuery(this).find('.product-price').text();
-        }
-        priceNum = price.split("$");
-        return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
-      }
-    }
-  });
-}
-
-
-var $container = $('#display-products');
-
-$container.isotope();
-// do stuff when checkbox change
-$('.filterbutton').on( 'change', function( event ) {
- // $container.isotope('destroy');
-  var checkbox = event.target;
-
-  var $checkbox = $( checkbox );
-  var group = $checkbox.parents('.filterbutton').attr('data-group');
-
-  // create array for filter group, if not there yet
-  var filterGroup = filters[ group ];
-  if ( !filterGroup ) {
-    filterGroup = filters[ group ] = [];
-  }
-  // add/remove filter
-  if ( checkbox.checked ) {
-    // add filter
-    filterGroup.push( checkbox.value );
-  } else {
-    // remove filter
-    var index = filterGroup.indexOf( checkbox.value );
-    filterGroup.splice( index, 1 );
-  }
-  
-  var comboFilter = getComboFilter();
-  console.log(comboFilter);
-  $container.isotope({ filter: comboFilter });
-});
-
-
-function getComboFilter() {
-  var combo = [];
-  for ( var prop in filters ) {
-    var group = filters[ prop ];
-    if ( !group.length ) {
-      // no filters in group, carry on
-      continue;
-    }
-    // add first group
-    if ( !combo.length ) {
-      combo = group.slice(0);
-      continue;
-    }
-    // add additional groups
-    var nextCombo = [];
-    // split group into combo: [ A, B ] & [ 1, 2 ] => [ A1, A2, B1, B2 ]
-    for ( var i=0; i < combo.length; i++ ) {
-      for ( var j=0; j < group.length; j++ ) {
-        var itemForCombo = combo[i] + group[j];
-        nextCombo.push( itemForCombo );
-      }
-    }
-    combo = nextCombo;
-  }
-  var comboFilter = combo.join(', ');
-
-  return comboFilter;
-}
-*/
 /////////////////////////////////////////////
 //  Hash loads Ajax. Let's Make this go faster.. //
 /////////////////////////////////////////////
@@ -1644,10 +1154,12 @@ function getComboFilter() {
 
 function hideSmallCart() 
 {
-  if ($('.cart-qty').text() === "" || $('.cart-qty').text() === "0") {
+  if ( Object.keys(shoppingCart).length === 0 ) {
     $('.small-cart-list').hide();
+    console.log("I am running");
   } else {
     $('.small-cart-list').show();
+    console.log("I am running but I am not");
   }
 }
 
@@ -2605,3 +2117,494 @@ notbanned = [
   '2950222',
   '2950224'
 ];
+
+
+/*
+function filterFunction2(a, b, c, d, e, f, g, h) {
+  $('#demo').jplist({
+    command: 'empty'
+   });
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: a,
+      level1: b,
+      level2: c,
+      level3: d,
+      level4: e,
+      level5: f,
+      session_no: g,
+      loc_no: h
+    },
+    success: function (response) {
+      $('.jplist-reset-btn').click();
+      $('#display-products').empty();
+      itemRender("display-products", response);
+
+    }
+  });
+}
+
+function itemRender(div, response) {
+  lines = response.split("\n");
+  lines.shift();
+ 
+  functiontype.length = 0;
+  material.length = 0;
+  colors.length = 0;
+  if (lines.length <= 1) {
+
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
+  } else {
+    var $demo = $('#demo');
+    var items = [];
+    var linesPlus = [];
+    $("#display-products").empty();
+    for (i = 0; i < lines.length - 1; i++) {
+      linesPlus.push(lines[i].split("|"));
+    }
+
+    for (i = 0; i < linesPlus.length; i++) {
+      var flds = linesPlus[i];
+      if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
+      prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="https://www.primaDIY.com/productimages/' + flds[0].trim() + '-md.jpg" alt="' + flds[1] + '"></a>';
+      //prod =  '<li class="hope ' + flds[2].trim() + " " + flds[8].trim() + " " + flds[9].trim() + " " + flds[10].trim() + 1 + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '" class="product-image"><img src="../img/demos/shop/products/product2.jpg" alt="' + flds[1] + '"></a>';
+      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + flds[1] + '">' + flds[1] + '</a></h2><p class="title" style="">' + flds[0] + '</p><p class="desc" style="display: none;">' + flds[2].trim() + '</p><p class="themes" style="display: none;"><span class="' + flds[8].trim() + '">' + flds[8].trim() + '</span></p><p class="materials" style="display: none;"><span class="' + flds[10].trim() + 1+'">' + flds[10].trim() + 1+ '</span></p>';
+      prod += '<div class="product-price-box"><span class="product-price">$' + flds[3] + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+
+      items.push($(prod));
+     
+      listOfAttributes(functiontype, flds[9]);
+      listOfAttributes(material, flds[10]);
+      listOfAttributes(colors, flds[8]);
+    }
+   
+    $demo.jplist({
+      itemsBox: '#display-products',
+      itemPath: '.hope',
+      panelPath: '.jplist-panel'
+    });
+    $demo.jplist({
+      command: 'add',
+      commandData: {
+        $items: items
+      }
+    });
+  }
+  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
+  fillTypeField();
+}
+
+
+/////////////////////////////////////
+// SUBROUTINE TO FIND TYPE //
+/////////////////////////////////////
+function whatType(typeCode) {
+  switch (typeCode) {
+    case "100":
+      type = "Necklace";
+      break;
+    case "200":
+      type = "Bracelet";
+      break;
+    case "300":
+      type = "Earrings";
+      break;
+    case "400":
+      type = "Lanyard";
+      break;
+    case "500":
+      type = "Snap";
+      break;
+    case "600":
+      type = "Tassel";
+      break;
+    case "700":
+      type = "Set";
+      break;
+    case "800":
+      type = "Program";
+      break;
+    case "850":
+      type = "Display";
+      break;
+    case "900":
+      type = "Oil";
+      break;
+    case "950":
+      type = "Accessory";
+      break;
+    case "1000":
+      type = "Scarf";
+      break;
+    case "1100":
+      type = "Pendant";
+      break;
+    case "1200":
+      type = "Purse";
+      break;
+    case "1300":
+      type = "Wristlet";
+      break;
+    case "1400":
+      type = "Brooch";
+      break;
+    case "1500":
+      type = "Ring";
+      break;
+    case "1600":
+      type = "Versatile";
+      break;
+    case "1700":
+      type = "Beads";
+      break;
+    case "1800":
+      type = "Seed Beads";
+      break;
+    case "1900":
+      type = "Bead Strands";
+      break;
+    case "2000":
+      type = "Bead Caps";
+      break;
+    case "2100":
+      type = "Slide Beads";
+      break;
+    case "2200":
+      type = "Crimp Beads";
+      break;
+    case "2300":
+      type = "Flatback Rhinestones";
+      break;
+    case "2400":
+      type = "Charms";
+      break;
+    case "2500":
+      type = "Crystals";
+      break;
+    case "2600":
+      type = "Pearls";
+      break;
+    case "2700":
+      type = "Gemstones";
+      break;
+    case "2800":
+      type = "Transfers";
+      break;
+    case "3000":
+      type = "Clasps";
+      break;
+    case "3100":
+      type = "Jump Rings";
+      break;
+    case "3200":
+      type = "Split Rings";
+      break;
+    case "3300":
+      type = "Head Pins";
+      break;
+    case "3400":
+      type = "Eye Pins";
+      break;
+    case "3500":
+      type = "Bails";
+      break;
+    case "3600":
+      type = "Crimp Tubes";
+      break;
+    case "3700":
+      type = "Connectors";
+      break;
+    case "3800":
+      type = "Spacer Beads";
+      break;
+    case "3900":
+      type = "Cord Endings";
+      break;
+    case "4000":
+      type = "Earring Findings";
+      break;
+    case "4100":
+      type = "Cord";
+      break;
+    case "4200":
+      type = "Wire";
+      break;
+    case "4300":
+      type = "Thread";
+      break;
+    case "4400":
+      type = "Jewelry Kits";
+      break;
+    case "4500":
+      type = "PLiers";
+      break;
+    case "4600":
+      type = "Cutters";
+      break;
+    case "4700":
+      type = "Tool Kits";
+      break;
+    case "4800":
+      type = "Cloths";
+      break;
+    case "4900":
+      type = "Organizers";
+      break;
+    case "5000":
+      type = "Heat Set Tools";
+      break;
+    case "5100":
+      type = "Adhesives";
+      break;
+    case "5200":
+      type = "Screwdrivers";
+      break;
+    case "5300":
+      type = "Bead Looms";
+      break;
+    case "5400":
+      type = "Hammer";
+      break;
+    case "5500":
+      type = "Needles";
+      break;
+    case "5600":
+      type = "Tweezers";
+      break;
+    case "5700":
+      type = "Glue Gun";
+      break;
+    case "5800":
+      type = "Gift Packaging";
+      break;
+    case "5900":
+      type = "Plastic Bags";
+      break;
+    case "6000":
+      type = "Specialty";
+      break;
+    case "6100":
+      type = "Hot Fix Rhinestones";
+      break;
+    case "6200":
+      type = "Beading Thread";
+      break;
+    case "6300":
+      type = "Embroidery Thread";
+      break;
+    case "6400":
+      type = "Beading Wire";
+      break;
+    case "6500":
+      type = "Misc Tools";
+      break;
+    case "6600":
+      type = "Stretch Cord";
+      break;
+    case "6700":
+      type = "Satin Cord";
+      break;
+    case "6800":
+      type = "Bicones";
+      break;
+    case "6900":
+      type = "Pony Beads";
+      break;
+    case "7000":
+      type = "Rondelles";
+      break;
+    default:
+      type = "N/A";
+  }
+  return type;
+}
+
+
+/////////////////////////////////////
+// SUBROUTINE TO FIND METAL TYPE //
+/////////////////////////////////////
+function whatMetal(metalCode) {
+  switch (metalCode) {
+    case "10":
+      metal = "Gold Plated";
+      break;
+    case "20":
+      metal = "Silver Plated";
+      break;
+    case "30":
+      metal = "Antique Gold Plated";
+      break;
+    case "40":
+      metal = "Gunmetal";
+      break;
+    case "50":
+      metal = "Stainless Steel";
+      break;
+    case "60":
+      metal = "Acrylic";
+      break;
+    case "70":
+      metal = "Wood";
+      break;
+    case "80":
+      metal = "Plastic";
+      break;
+    case "90":
+      metal = "Nylon";
+      break;
+    case "100":
+      metal = "Suede";
+      break;
+    case "110":
+      metal = "Leather";
+      break;
+    case "120":
+      metal = "Yarn";
+      break;
+    case "130":
+      metal = "Satin";
+      break;
+    case "140":
+      metal = "Lace";
+      break;
+    case "150":
+      metal = "Cotton";
+      break;
+    case "160":
+      metal = "Faux Leather";
+      break;
+    case "170":
+      metal = "Faux Suede";
+      break;
+    case "180":
+      metal = "Hemp";
+      break;
+    case "190":
+      metal = "Jute / Twine";
+      break;
+    case "200":
+      metal = "Porcelain";
+      break;
+    case "210":
+      metal = "Base Metal";
+      break;
+    case "220":
+      metal = "Sterling Silver";
+      break;
+    case "230":
+      metal = "Rose Gold Plated";
+      break;
+    case "240":
+      metal = "Glass";
+      break;
+    case "250":
+      metal = "Platinum Plated";
+      break;
+    case "260":
+      metal = "Copper";
+      break;
+    case "270":
+      metal = "Silk";
+      break;
+    case "280":
+      metal = "Crystal";
+      break;
+    default:
+      metal = "N/A";
+  }
+  return metal;
+}
+
+
+
+//////////////////////////////////////////////
+  // Filter the Products on the Shop Page //
+//////////////////////////////////////////////
+
+/*
+function priceFilter() {
+  var priceRangefrom = ( isNaN(parseFloat($("#min").val())) ? 1 : parseFloat($("#min").val()) );
+  var priceRangeto   = ( isNaN(parseFloat($("#max").val())) ? 9999 : parseFloat($("#max").val()) );
+  $('.ui-group').trigger( 'change');
+  $container.isotope({
+    transitionDuration: '0.65s',
+    filter: function() {
+
+      if( jQuery(this).is(':visible')) {
+        if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+          price = jQuery(this).find('.product-price ins').text();
+        } else {
+          price = jQuery(this).find('.product-price').text();
+        }
+        priceNum = price.split("$");
+        return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+      }
+    }
+  });
+}
+
+
+var $container = $('#display-products');
+
+$container.isotope();
+// do stuff when checkbox change
+$('.filterbutton').on( 'change', function( event ) {
+ // $container.isotope('destroy');
+  var checkbox = event.target;
+
+  var $checkbox = $( checkbox );
+  var group = $checkbox.parents('.filterbutton').attr('data-group');
+
+  // create array for filter group, if not there yet
+  var filterGroup = filters[ group ];
+  if ( !filterGroup ) {
+    filterGroup = filters[ group ] = [];
+  }
+  // add/remove filter
+  if ( checkbox.checked ) {
+    // add filter
+    filterGroup.push( checkbox.value );
+  } else {
+    // remove filter
+    var index = filterGroup.indexOf( checkbox.value );
+    filterGroup.splice( index, 1 );
+  }
+  
+  var comboFilter = getComboFilter();
+  console.log(comboFilter);
+  $container.isotope({ filter: comboFilter });
+});
+
+
+function getComboFilter() {
+  var combo = [];
+  for ( var prop in filters ) {
+    var group = filters[ prop ];
+    if ( !group.length ) {
+      // no filters in group, carry on
+      continue;
+    }
+    // add first group
+    if ( !combo.length ) {
+      combo = group.slice(0);
+      continue;
+    }
+    // add additional groups
+    var nextCombo = [];
+    // split group into combo: [ A, B ] & [ 1, 2 ] => [ A1, A2, B1, B2 ]
+    for ( var i=0; i < combo.length; i++ ) {
+      for ( var j=0; j < group.length; j++ ) {
+        var itemForCombo = combo[i] + group[j];
+        nextCombo.push( itemForCombo );
+      }
+    }
+    combo = nextCombo;
+  }
+  var comboFilter = combo.join(', ');
+
+  return comboFilter;
+}
+*/
