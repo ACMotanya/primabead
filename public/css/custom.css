@@ -3,6 +3,9 @@
 body {
  font-family: "Source Sans Pro";
 }
+.jplist-drop-down .jplist-dd-panel:after {
+	z-index: 1;
+}
 
 .client img {
     max-width: 80% !important;
