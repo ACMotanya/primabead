@@ -829,6 +829,7 @@ function updateTotals()
 function calculateShipping(total, subtotal)
 {
   var discount_amt;
+  var shipWhat = 25 - parseFloat(cartHeaderFields[19].replace(/[, ]/g, ''));
   if ( subtotal.trim() === ".00") {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=0.00");
     $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
@@ -847,15 +848,15 @@ function calculateShipping(total, subtotal)
       if (parseFloat(subtotal.replace(/[, ]/g, '')) > 25 ) {
         discount_amt = 0 - (parseFloat(subtotal.replace(/[, ]/g, '')) * 0.1);
         discount_amt = discount_amt.toFixed(2);
-        console.log(discount_amt);
         $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
         $("#freeShip").html('<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free Shipping');
       } else {
         discount_amt = 5 - (subtotal.replace(/[, ]/g, '') * 0.1);
         discount_amt = discount_amt.toFixed(2);
-        console.log(discount_amt);
         $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=FT&misc_amt1=" + discount_amt + "");
         $("#freeShip").html('<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">Fixed <span class="text-primary">$5.00</span>');
+        $("#get-free-shipping").empty();
+        $("#get-free-shipping").text('         \(Spend $'+shipWhat.toFixed(2)+' more to receive free shipping!\) ');
       }
     }
   }
@@ -900,6 +901,7 @@ function cartHelper()
     
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
+      console.log(data);
       miniitem =  '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
       if ( notbanned.indexOf(data[2].replace(/\s+/g, '')) != -1 ) { 
         miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-pk-sm.jpg" alt="Product Name"></a></figure>';
@@ -923,16 +925,14 @@ function cartHelper()
         } else {
           listitem += '<td class="product-image-td"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="' + data[2].replace(/\s+/g, '') + '"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         } 
-        listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] + '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
+        listitem += '<td class="product-name-td"><h2 class="product-name"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name">' + data[3] +'' +data[4]+ '</a></h2></td><td>$' + data[7].substring(0, data[7].length - 3) + '</td><td><div class="qty-holder">';
         listitem += '<input type="button" class="qty-dec-btn" title="Dec" value="-" data-type="minus" data-field="quant[' + i + ']" onclick="changeQuantity(this);" />';
         listitem += '<input type="text" class="qty-input" name="quant[' + i + ']" min="1" value="' + data[6].replace(/\s+/g, '') + '" id="' + data[2].replace(/\s+/g, '') + '" />';
         listitem += '<input type="button" class="qty-inc-btn" title="Inc" value="+" data-type="plus" data-field="quant[' + i + ']" onclick="changeQuantity(this);" />';
         listitem += '</div></td><td><span class="text-primary">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
 
         html.push(listitem);
-      } //else if (window.location.hash === "#checkout") {
-        //$("table#reviewItemTable tbody").append('<tr><td>' + data[3] + '</td><td class="text-center">' + data[6].replace(/\s+/g, '') + '</td><td class="text-right">$' + data[8].substring(0, data[8].length - 4) + '</td></tr>');
-      //}
+      }
       
     }
     $("div.cart-products").append(html2.join(''));
@@ -1159,7 +1159,6 @@ function hideSmallCart()
     console.log("I am running");
   } else {
     $('.small-cart-list').show();
-    console.log("I am running but I am not");
   }
 }
 

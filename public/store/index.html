@@ -1054,19 +1054,19 @@
 					<h1 class="product-name itemName">
 					
 					</h1>
-					<!--
+
 					<div class="product-rating-container">
 						<div class="product-ratings">
-							<div class="ratings-box">
-								<div class="rating" style="width:60%"></div>
-							</div>
+						<!--	<div class="ratings-box">
+								<div class="rating" style="width:80%"></div>
+							</div>  -->
 						</div>
 						<div class="review-link">
 							<a href="#" class="review-link-in" rel="nofollow"> <span class="count">1</span> Customer review</a> |
-							<a href="#" class="write-review-link" rel="nofollow">Add a review</a>
+							<a href="#review-pointer" class="write-review-link" rel="nofollow">Add a review</a>
 						</div>
 					</div>
-				-->
+			
 					<div class="product-short-desc">
 						<p></p>
 					</div>
@@ -1076,9 +1076,9 @@
 							<span id="detail-price" class="product-price"></span>
 						</div>
 					
-						<!--
+				
 						<p class="email-to-friend"><a href="#">Email to a Friend</a></p>
-						-->
+					
 					</div>
 
 					<div class="product-actions">
@@ -1109,11 +1109,11 @@
 							<li>
 								<a href="#product-add" data-toggle="tab">Additional</a>
 							</li>
-							<!--
+					
 							<li>
 								<a href="#product-reviews" data-toggle="tab">Reviews</a>
 							</li>
-							-->
+				
 						</ul>
 
 						<div class="tab-content">
@@ -1125,7 +1125,7 @@
 									</tbody>
 								</table>
 							</div>
-							<!--
+						
 							<div id="product-reviews" class="tab-pane">
 								<div class="collateral-box">
 									<ul class="list-unstyled">
@@ -1135,7 +1135,7 @@
 
 								<div class="add-product-review">
 									<h3 class="text-uppercase heading-text-color font-weight-semibold">WRITE YOUR OWN REVIEW</h3>
-									<p>How do you rate this product? *</p>
+									<p id="review-pointer">How do you rate this product? *</p>
 
 									<form action="#">
 										<table class="ratings-table">
@@ -1168,53 +1168,11 @@
 														<input type="radio" name="ratings[1]" id="Quality_5" value="5" class="radio">
 													</td>
 												</tr>
-												<tr>
-													<td>Value</td>
-													<td>
-														<input type="radio" name="value[1]" id="Value_1" value="1" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="value[1]" id="Value_2" value="2" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="value[1]" id="Value_3" value="3" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="value[1]" id="Value_4" value="4" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="value[1]" id="Value_5" value="5" class="radio">
-													</td>
-												</tr>
-												<tr>
-													<td>Price</td>
-													<td>
-														<input type="radio" name="price[1]" id="Price_1" value="1" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="price[1]" id="Price_2" value="2" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="price[1]" id="Price_3" value="3" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="price[1]" id="Price_4" value="4" class="radio">
-													</td>
-													<td>
-														<input type="radio" name="price[1]" id="Price_5" value="5" class="radio">
-													</td>
-												</tr>
+												
 											</tbody>
 										</table>
 
-										<div class="form-group">
-											<label>Nickname<span class="required">*</span></label>
-											<input type="text" class="form-control" required>
-										</div>
-										<div class="form-group">
-											<label>Summary of Your Review<span class="required">*</span></label>
-											<input type="text" class="form-control" required>
-										</div>
+										
 										<div class="form-group mb-xlg">
 											<label>Review<span class="required">*</span></label>
 											<textarea cols="5" rows="6" class="form-control"></textarea>
@@ -1226,7 +1184,7 @@
 									</form>
 								</div>
 							</div>
-							-->
+							
 						</div>
 					</div>
 
@@ -1450,7 +1408,7 @@
 
 <div id="cart" class="container store-page">
 	<h1 class="h2 heading-primary mt-lg clearfix">
-		<span>SHOPPING CART</span>
+		<span>SHOPPING CART</span><span id="get-free-shipping" style="text-align: center"></span>
 		<a href="#checkout" class="btn btn-primary pull-right">Proceed to Checkout</a>
 	</h1>
 
@@ -1818,21 +1776,10 @@
 							<p>We offer free shipping on all orders over $25, and a flat rate $5 for any orders below that amount.</p>
 							<div class="radio">
 								<label id="freeShip">
-									<!--
-									<input type="radio" value="shipping-method-1" name="shipping[method]" checked="checked"> Free
-									-->
 								</label>
 							</div>
 						</div>
 					</div>
-					<!--
-					<div class="radio">
-						<label>
-								<input type="radio" value="shipping-method-2" name="shipping[method]" checked="checked">
-								Fixed <span class="text-primary">$5.00</span>
-							</label>
-					</div>
-					-->
 				</div>
 			</div>
 			<div class="form-col">
