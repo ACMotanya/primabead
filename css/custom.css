@@ -76,6 +76,11 @@ h1.home-marquee.get-started {
     z-index: 5000;
 }
 
+.product-details-box .product-actions .addtocart:hover, .product-details-box .product-actions .addtocart:focus {
+	color: #64D5D4;
+	border-color: #64D5D4;
+}
+
 .get-started {
 	text-align: center;
 }
@@ -142,8 +147,9 @@ html section.section-secondary {
 }
 
 .product-details-box .product-actions .addtocart, .product .product-quickview { 
-    color: #5BC1A5;
-    background-color: #DCF3ED;
+    color: #64d5d4;
+		background-color: #cef2f2;
+		border-color: #64d5d4;
 }
 
 

@@ -16,40 +16,11 @@ var shoppingCart = {};
 var UpdatedShoppingCart = {};
 
 //3949422, 34719146, 34719128
-function beaderCoupon()
-{
-  if (localStorage.getItem('couponUsed') !== "true") {
-    itemsInCart = [];
-    if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
-      localStorage.setItem('couponUsed', "true");
-      addItemGeneric(session_no, "COUPONWEMISSU", "1");
-      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
-        couponcartitems = response.split("\n");
-        console.log(cartitems);
-        if (couponcartitems.length > 2) {
-          for (i = 1; i < couponcartitems.length - 1; i++) {
-            coupondata = couponcartitems[i].split("|");
-            itemsInCart.push(coupondata[2]);
-          }
-        }
-        if ( itemsInCart.indexOf("7746222") != -1 ) { 
-          return false;
-        } else {
-          addItemGeneric(session_no, "7746222", "1");
-        }
-      });
-    }
-  } else {
-    return false;
-  }
-}
-
 /////////////////////////////////////////
 // create new customer //
 /////////////////////////////////////////
 
 function createCustomer() {
-
   if ($("#create-contactname").valid() && $("#create-email").valid() && $("#create-phone").valid() && $("#create-address").valid() && $("#create-city").valid() && $("#create-state").valid() && $("#create-zipcode").valid()) {
     var createcompanyname = $("#create-contactname").val();
     var createcontactname = $("#create-contactname").val();
@@ -396,7 +367,6 @@ function listOfAttributes(attr, field)
 // Filter Function      //
 //////////////////////////
 function filterFunction(a) {
-  
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/programs.php?",
@@ -406,8 +376,17 @@ function filterFunction(a) {
     },
     success: function (response) {
       $('.jplist-reset-btn').click();
-     // $('#display-products').empty();
       itemRender2("display-products", response);
+    }
+  });
+}
+function filterFunction2(a) {
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/onsale/30/",
+    success: function (response) {
+      $('.jplist-reset-btn').click();
+      itemRender3("display-products", response);
     }
   });
 }
@@ -422,7 +401,6 @@ function filterFunction3(a) {
     },
     success: function (response) {
       $('.jplist-reset-btn').click();
-    //  $('#display-products').empty();
       itemRender2("display-products", response);
     }
   });
@@ -464,8 +442,17 @@ function itemRender2(div, response) {
       } else {
         prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
       }
-      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
-      prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+      if (lines[k].onsale === "Y" ) {
+        prod += '<div class="product-label"><span class="discount">-10%</span></div>';
+      }
+      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><div class="product-price-box">';
+      //  prod += '<p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
+        
+      if (lines[k].onsale === "Y" ) {
+        prod += '<span class="old-price">$' + lines[k].price + '</span>';
+      }
+      
+      prod += '<span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
      
@@ -486,7 +473,6 @@ function itemRender2(div, response) {
       }
     });
   }
-  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
   fillTypeField();
 }
 
@@ -497,7 +483,6 @@ function itemRender3(div, response) {
   material.length = 0;
   colors.length = 0;
   if (lines.length <= 1) {
-
     document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
     var $demo = $('#demo');
@@ -513,15 +498,23 @@ function itemRender3(div, response) {
       } else {
         prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
       }
-      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
-      prod += '<div class="product-price-box"><span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+      if (lines[k].onsale === "Y" ) {
+        prod += '<div class="product-label"><span class="discount">-$' + (parseFloat(lines[k].price) - parseFloat(lines[k].msrp)).toFixed(2) + '</span></div>';
+      }
+      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><div class="product-price-box">';
+    //  prod += '<p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
+      
+      if (lines[k].onsale === "Y" ) {
+        prod += '<span class="old-price">$' + lines[k].price + '</span>';
+      }
+      
+      prod += '<span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
      
       listOfAttributes(functiontype, lines[k].func );      
       listOfAttributes(material, lines[k].material);
       listOfAttributes(colors, lines[k].color);
-      
     });
    
     $demo.jplist({
@@ -536,7 +529,6 @@ function itemRender3(div, response) {
       }
     });
   }
-  $("#panel-filter-type, #panel-filter-material, #color-panel").empty();
   fillTypeField();
 }
 
@@ -1586,19 +1578,6 @@ function displayBillingAddress(index) {
   document.getElementById("billing-form-zipcode").value = billingAddresses[ind][6].trim();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////
-// Find Minimum for the order //
-////////////////////////////////
-
-function employeeDiscount() {
-  username = localStorage.getItem("username");
-  usernameSplit = username.split("");
-  employee = usernameSplit.slice(0, 3).join("");
-}
-
-
 bootstrap_alert = function () {};
 bootstrap_alert.warning = function (message, alert, timeout) {
   $('<div id="floating_alert" class="alert alert-' + alert + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '&nbsp;&nbsp;</div>').appendTo('body');
@@ -1613,6 +1592,11 @@ function showAlert() {
 
 }
 
+function dennyHover()
+{
+  $( '.dropdown-menu' ).hide();
+  setTimeout(function(){ $( '.dropdown-menu' ).show(); }, 1000);
+}
 
 
 banned = [
@@ -2119,6 +2103,34 @@ notbanned = [
 
 
 /*
+function beaderCoupon()
+{
+  if (localStorage.getItem('couponUsed') !== "true") {
+    itemsInCart = [];
+    if ($('#coupon1').val().toUpperCase() === "WEMISSEDYOU" || $('#coupon2').val().toUpperCase() === "WEMISSEDYOU" ) {
+      localStorage.setItem('couponUsed', "true");
+      addItemGeneric(session_no, "COUPONWEMISSU", "1");
+      $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
+        couponcartitems = response.split("\n");
+        console.log(cartitems);
+        if (couponcartitems.length > 2) {
+          for (i = 1; i < couponcartitems.length - 1; i++) {
+            coupondata = couponcartitems[i].split("|");
+            itemsInCart.push(coupondata[2]);
+          }
+        }
+        if ( itemsInCart.indexOf("7746222") != -1 ) { 
+          return false;
+        } else {
+          addItemGeneric(session_no, "7746222", "1");
+        }
+      });
+    }
+  } else {
+    return false;
+  }
+}
+
 function filterFunction2(a, b, c, d, e, f, g, h) {
   $('#demo').jplist({
     command: 'empty'
