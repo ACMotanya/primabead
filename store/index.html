@@ -92,7 +92,8 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
+      
+<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
 	<div class="header-body">
 		<div class="header-top header-top-style-2">
 			<div class="container">
@@ -257,7 +258,7 @@
 										</ul>
 									</li>
 									<li>
-										<a href="/">
+										<a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">
 											Sale
 										</a>
 									</li>
@@ -637,19 +638,23 @@
 							<div class="panel-body">
 								<ul class="cat-list">
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop();">Beads</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Crafting Supplies', '1']); fillShop();">Crafting Supplies</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
-									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li>
+								
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['kits', '1']); fillShop();">Kits</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
-									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
-									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>
-									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li>
+									
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Kids', '1']); fillShop();">Kids</a></li>
+									
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Chains', '1']); fillShop();">Chains</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop();">Cording &amp; Wire</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Finished jewelry', '1']); fillShop();">Finished Jewelry</a></li>
+									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>
 									<li><a href="#" onclick="localStorage.setItem('shopParams', ['Storage', '1']); fillShop();">Storage</a></li>
 								</ul>
 							</div>
@@ -2703,6 +2708,7 @@
 		<script src="/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
 
 		<!-- Demo -->
+		<script src="/js/notify.min.js"></script>
 		<script src="/js/demos/demo-shop-2.js"></script>
 		<script src="/js/select2.js"></script>
 		<script src="/js/jquery.datatables.js"></script>
@@ -2751,33 +2757,13 @@
 
 		
 		<script defer>
+			whichPage();
 			sessionNumber();
-
-			$('#coupon1, #coupon2').keypress(function(e){
-        if(e.which == 13 ) {
-					e.preventDefault();
-					beaderCoupon();
-				}
-			});
-
-			$(function() {
-				if ( localStorage.getItem('urlHash') && localStorage.getItem('session_no') ) {
-					window.location.hash = localStorage.getItem('urlHash');
-					localStorage.removeItem('urlHash');
-				} else {
-					if (!localStorage.getItem('shopParams')) {
-						localStorage.setItem('shopParams', ['all','4']);
-					}
-					fillShop();
-					whichPage();
-				}
-			
 			$(window).on('hashchange', function() {
 				whichPage();
 			});
 			//    newCustomerSession();
-	
-			});		
+			
 		</script>
 		
 
