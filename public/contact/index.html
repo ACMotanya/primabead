@@ -92,7 +92,8 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
+      
+<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '2'}"  class="">
 	<div class="header-body">
 		<div class="header-top header-top-style-2">
 			<div class="container">
@@ -257,7 +258,7 @@
 										</ul>
 									</li>
 									<li>
-										<a href="/">
+										<a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">
 											Sale
 										</a>
 									</li>
@@ -519,7 +520,7 @@
 				<ul class="list-unstyled list-contact">
 					<li>
 						<i class="fa fa-phone"></i>
-						<div>PHONE: (727) 536 3568</div>
+						<div>PHONE: (800) 366-2218</div>
 						<div>FAX: (727) 536 3509</div>
 					</li>
 
@@ -535,22 +536,22 @@
 								<i class="fa fa-facebook"></i>
 							</a>
 						</li>
-						<li class="social-icons-instagram" style="margin-left: 10px;">
+						<li class="social-icons-instagram" style="margin-left: 15px;">
 							<a href="https://www.instagram.com/PrimaDIY" target="_blank" title="Instagram">
 								<i class="fa fa-instagram"></i>
 							</a>
 						</li>
-						<li class="social-icons-pinterest" style="margin-left: 10px;">
+						<li class="social-icons-pinterest" style="margin-left: 15px;">
 							<a href="https://www.pinterest.com/PrimaDIY" target="_blank" title="Pinterest">
 								<i class="fa fa-pinterest"></i>
 							</a>
 						</li>
-						<li class="social-icons-youtube" style="margin-left: 10px;">
+						<li class="social-icons-youtube" style="margin-left: 15px;">
 							<a href="https://www.youtube.com/PrimaDIY" target="_blank" title="Youtube">
 								<i class="fa fa-youtube"></i>
 							</a>
 						</li>
-						<li class="social-icons-twitter" style="margin-left: 10px;">
+						<li class="social-icons-twitter" style="margin-left: 15px;">
 							<a href="https://www.twitter.com/PrimaDIY" target="_blank" title="Twitter">
 								<i class="fa fa-twitter"></i>
 							</a>
@@ -769,6 +770,7 @@
 		<script src="/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
 
 		<!-- Demo -->
+		<script src="/js/notify.min.js"></script>
 		<script src="/js/demos/demo-shop-2.js"></script>
 		<script src="/js/select2.js"></script>
 		<script src="/js/jquery.datatables.js"></script>

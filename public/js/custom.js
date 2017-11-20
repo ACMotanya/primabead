@@ -296,7 +296,7 @@ function search()
         windowHash("products");
         $('.jplist-reset-btn').click();
         $('#display-products').empty();
-        itemRender3("display-products", response);
+        itemRender("display-products", response);
       }
     });
   }
@@ -306,7 +306,10 @@ function search()
 ////////////////////////////
 function fillShop()
 {
-  $('#color-panel, #panel-filter-material, #panel-filter-type').empty();
+  functiontype = [];
+  colors = [];
+  material = [];
+  $('#color-panel, #panel-filter-material, #panel-filter-type, #display-products').empty();
   $('#demo').jplist({
     command: 'empty'
    });
@@ -323,6 +326,8 @@ function fillShop()
     $('#shopParamName').html(params[0]); 
     if (params[1] === "1") {
       return filterFunction(params[0]);
+    } else if ( params[1] === "2") {
+      return filterFunction2();
     } else if ( params[1] === "3") {
       return filterFunction3(params[0]);
     } else if ( params[1] === "4") {
@@ -376,7 +381,7 @@ function filterFunction(a) {
     },
     success: function (response) {
       $('.jplist-reset-btn').click();
-      itemRender2("display-products", response);
+      itemRender("display-products", response);
     }
   });
 }
@@ -386,12 +391,11 @@ function filterFunction2(a) {
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/onsale/30/",
     success: function (response) {
       $('.jplist-reset-btn').click();
-      itemRender3("display-products", response);
+      itemRender("display-products", response);
     }
   });
 }
 function filterFunction3(a) {
- 
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/functions.php?",
@@ -401,82 +405,25 @@ function filterFunction3(a) {
     },
     success: function (response) {
       $('.jplist-reset-btn').click();
-      itemRender2("display-products", response);
+      itemRender("display-products", response);
     }
   });
 }
 function filterFunction4(a) {
-
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/300/",
     success: function (response) {
       $('.jplist-reset-btn').click();
      // $('#display-products').empty();
-      itemRender3("display-products", response);
+      itemRender("display-products", response);
     }
   });
 }
 
 
-function itemRender2(div, response) {
-  lines = JSON.parse(response);
 
-  functiontype.length = 0;
-  material.length = 0;
-  colors.length = 0;
-  if (lines.length <= 1) {
-
-    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
-  } else {
-    var $demo = $('#demo');
-    var items = [];
-    $("#display-products").empty();
-    
-    Object.keys(lines).forEach(function(k){
-      if ( banned.indexOf(lines[k].itemnum) != -1 ) { return; } 
-
-      stringOfDetails = lines[k].itemnum;
-      if ( notbanned.indexOf(lines[k].itemnum) != -1 ) {
-        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-pk-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
-      } else {
-        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
-      }
-      if (lines[k].onsale === "Y" ) {
-        prod += '<div class="product-label"><span class="discount">-10%</span></div>';
-      }
-      prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><div class="product-price-box">';
-      //  prod += '<p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
-        
-      if (lines[k].onsale === "Y" ) {
-        prod += '<span class="old-price">$' + lines[k].price + '</span>';
-      }
-      
-      prod += '<span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
-
-      items.push($(prod));
-     
-      listOfAttributes(functiontype, lines[k].func );
-      listOfAttributes(material, lines[k].material);
-      listOfAttributes(colors, lines[k].color);
-    });
-   
-    $demo.jplist({
-      itemsBox: '#display-products',
-      itemPath: '.hope',
-      panelPath: '.jplist-panel'
-    });
-    $demo.jplist({
-      command: 'add',
-      commandData: {
-        $items: items
-      }
-    });
-  }
-  fillTypeField();
-}
-
-function itemRender3(div, response) {
+function itemRender(div, response) {
   lines = response;
  
   functiontype.length = 0;
@@ -502,13 +449,13 @@ function itemRender3(div, response) {
         prod += '<div class="product-label"><span class="discount">-$' + (parseFloat(lines[k].price) - parseFloat(lines[k].msrp)).toFixed(2) + '</span></div>';
       }
       prod += '</figure><div class="product-details-area"><h2 class="product-name"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '">' + lines[k].shortdescription + '</a></h2><p class="title" style="display: none;">' + lines[k].shortdescription + '</p><div class="product-price-box">';
-    //  prod += '<p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
+      prod += '<p class="desc" style="display: none;">' + lines[k].program + '</p><p class="themes" style="display: none;"><span class="' + lines[k].color.replace(/ +/g, "") + '">' + lines[k].color + '</span></p><p class="materials" style="display: none;"><span class="' + lines[k].material.replace(/ +/g, "") + '">' + lines[k].material + '</span></p>';
       
       if (lines[k].onsale === "Y" ) {
         prod += '<span class="old-price">$' + lines[k].price + '</span>';
       }
       
-      prod += '<span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); event.preventDefault();"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
+      prod += '<span class="product-price">$' + lines[k].msrp + '</span></div><div class="product-actions"><a href="#" class="addtocart" title="Add to Cart" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); cart(); showAlert(); return false;"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a></div></div></div></li>';
 
       items.push($(prod));
      
@@ -537,7 +484,7 @@ function itemRender3(div, response) {
 // Get Detail View for Item //
 //////////////////////////////
 function detailView(callback, callback2) {
-  jQuery("#productGalleryThumbs, .product-short-desc p").empty();
+  jQuery("#productGalleryThumbs, .product-short-desc p, #detail-old-price").empty();
   jQuery("a.detailadd").remove();
 
   var picsGallery = "";
@@ -563,7 +510,6 @@ function detailView(callback, callback2) {
     },
     success: function (response) {
      
-      response = JSON.parse(response);
       Object.keys(response).forEach(function(k){
       /* Fill in the pictures for the product */
         if ( notbanned.indexOf(response[k].itemnum) != -1 ) {
@@ -588,11 +534,12 @@ function detailView(callback, callback2) {
         // add in custom ratings
 
         if (response[k].longdescription && response[k].longdescription.length !== 0 ) {
-          $(".product-short-desc p").html(response[k].description);
-        } else {
-          $(".product-short-desc p").html(response[k].shortdescription);
+          $(".product-short-desc p").html(response[k].longdescription);
+        } 
+
+        if (response[k].onsale === "Y" ) {
+          $("#detail-old-price").text('$' + response[k].price);
         }
-        
         $("#detail-price").text('$' + response[k].msrp);
 
         $(".product-detail-qty").after('<a href="#" class="addtocart detailadd" title="Add to Cart" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView(); return false;"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>');
@@ -893,7 +840,7 @@ function cartHelper()
     
     for (i = 1; i < cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      console.log(data);
+    
       miniitem =  '<div class="product product-sm"><a href="#" onclick="removeItem(\'' + session_no + '\', \'' + data[1].replace(/\s+/g, '') + '\'); return false;" class="btn-remove" title="Remove Product"><i class="fa fa-times"></i></a>';
       if ( notbanned.indexOf(data[2].replace(/\s+/g, '')) != -1 ) { 
         miniitem += '<figure class="product-image-area"><a href="#product-details+' + data[2].replace(/\s+/g, '') + '" title="Product Name" class="product-image"><img src="https://www.primaDIY.com/productimages/' + data[2].replace(/\s+/g, '') + '-pk-sm.jpg" alt="Product Name"></a></figure>';
@@ -1050,7 +997,6 @@ function openOrders() {
     },
     success: function (response) {
       openlines = response.split("\n");
-      console.log(openlines);
       // lines[0] is header row
       // lines[1]+ are data lines
 
@@ -1148,7 +1094,6 @@ function hideSmallCart()
 {
   if ( Object.keys(shoppingCart).length === 0 ) {
     $('.small-cart-list').hide();
-    console.log("I am running");
   } else {
     $('.small-cart-list').show();
   }
@@ -1298,6 +1243,10 @@ function whichPage() {
       break;
     default:
       window.scrollTo(0, 0);
+      if (!localStorage.getItem('shopParams')) {
+        localStorage.setItem('shopParams', ['all','4']);
+      }
+      fillShop();
       $('#products').show();
       cart();
   }
@@ -1578,18 +1527,13 @@ function displayBillingAddress(index) {
   document.getElementById("billing-form-zipcode").value = billingAddresses[ind][6].trim();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bootstrap_alert = function () {};
-bootstrap_alert.warning = function (message, alert, timeout) {
-  $('<div id="floating_alert" class="alert alert-' + alert + ' fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '&nbsp;&nbsp;</div>').appendTo('body');
-  setTimeout(function () {
-    $(".alert").alert('close');
-  }, timeout);
-};
 
-function showAlert() {
-  bootstrap_alert.warning('Item has been added to your cart.', 'success', 4000);
+
+
+function showAlert(e) {
+
+  $.notify("The item has been added to your cart");
   // available: success, info, warning, danger
-
 }
 
 function dennyHover()
@@ -2103,6 +2047,13 @@ notbanned = [
 
 
 /*
+
+$('#coupon1, #coupon2').keypress(function(e){
+  if(e.which == 13 ) {
+    e.preventDefault();
+    beaderCoupon();
+  }
+});
 function beaderCoupon()
 {
   if (localStorage.getItem('couponUsed') !== "true") {
@@ -2112,7 +2063,7 @@ function beaderCoupon()
       addItemGeneric(session_no, "COUPONWEMISSU", "1");
       $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function(response) {
         couponcartitems = response.split("\n");
-        console.log(cartitems);
+    
         if (couponcartitems.length > 2) {
           for (i = 1; i < couponcartitems.length - 1; i++) {
             coupondata = couponcartitems[i].split("|");
@@ -2585,7 +2536,7 @@ $('.filterbutton').on( 'change', function( event ) {
   }
   
   var comboFilter = getComboFilter();
-  console.log(comboFilter);
+
   $container.isotope({ filter: comboFilter });
 });
 

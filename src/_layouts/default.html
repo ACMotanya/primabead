@@ -38,6 +38,7 @@
 		<script src="{{ "/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js" | prepend: site.baseurl }}"></script>
 
 		<!-- Demo -->
+		<script src="{{ "/js/notify.min.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/demos/demo-shop-2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
@@ -98,33 +99,13 @@
 
 		{% if page.url == "/store/" %}
 		<script defer>
+			whichPage();
 			sessionNumber();
-
-			$('#coupon1, #coupon2').keypress(function(e){
-        if(e.which == 13 ) {
-					e.preventDefault();
-					beaderCoupon();
-				}
-			});
-
-			$(function() {
-				if ( localStorage.getItem('urlHash') && localStorage.getItem('session_no') ) {
-					window.location.hash = localStorage.getItem('urlHash');
-					localStorage.removeItem('urlHash');
-				} else {
-					if (!localStorage.getItem('shopParams')) {
-						localStorage.setItem('shopParams', ['all','4']);
-					}
-					fillShop();
-					whichPage();
-				}
-			
 			$(window).on('hashchange', function() {
 				whichPage();
 			});
 			//    newCustomerSession();
-	
-			});		
+			
 		</script>
 		{% endif %}
 
