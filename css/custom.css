@@ -7,9 +7,6 @@ body {
 	z-index: 1;
 }
 
-.client img {
-    max-width: 80% !important;
-}
 
 /* hide the 'X' on orders and invoice page */
 .panel-action.panel-action-dismiss {
@@ -27,6 +24,16 @@ h1.home-marquee.get-started {
 	text-align: center;
 }
 
+#header .custom-block a, #header .custom-block {
+	color: #F4898F;
+}
+
+#header .header-search .header-search-wrapper {
+	background-color: #f4898f;
+}
+#header .header-container.header-nav {
+	background-color: #fff;
+}
 
 .home-intro .get-started a {
 	font-size: 28px;
@@ -118,7 +125,8 @@ ul.cat-list li a {
 }
 
 
-#header .header-nav-main nav > ul > li:hover > a:hover, #header .header-nav-main nav > ul > li:hover > a, #header .header-nav-main nav > ul > li.open > a, #header .header-nav-main nav > ul > li.active > a { 
+#header .header-nav-main nav > ul > li:hover > a:hover, #header .header-nav-main nav > ul > li:hover > a, #header .header-nav-main nav > ul > li.open > a, 
+#header .header-nav-main nav > ul > li.active > a, #header .cart-dropdown .cart-dropdown-icon i { 
 	color: #76D5D4 !important;
 }
 
