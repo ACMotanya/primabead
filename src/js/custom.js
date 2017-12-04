@@ -313,12 +313,12 @@ function fillShop()
   $('#demo').jplist({
     command: 'empty'
    });
-   $('#demo').jplist({
-    command: 'del',
-    commandData: {
-       $items: $('.hope')  //select your items using jQuery
-    }
-   });
+//   $('#demo').jplist({
+//   command: 'del',
+//    commandData: {
+//       $items: $('.hope')  //select your items using jQuery
+//    }
+//   });
    
   var params ="";
   if (localStorage.getItem('shopParams')) {
@@ -380,7 +380,7 @@ function filterFunction(a) {
       location: "700"
     },
     success: function (response) {
-      $('.jplist-reset-btn').click();
+     // $('.jplist-reset-btn').click();
       itemRender("display-products", response);
     }
   });
@@ -388,9 +388,9 @@ function filterFunction(a) {
 function filterFunction2(a) {
   $.ajax({
     type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/onsale/30/",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/onsale/",
     success: function (response) {
-      $('.jplist-reset-btn').click();
+    //  $('.jplist-reset-btn').click();
       itemRender("display-products", response);
     }
   });
@@ -404,7 +404,7 @@ function filterFunction3(a) {
       location: "700"
     },
     success: function (response) {
-      $('.jplist-reset-btn').click();
+    //  $('.jplist-reset-btn').click();
       itemRender("display-products", response);
     }
   });
@@ -414,7 +414,7 @@ function filterFunction4(a) {
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/300/",
     success: function (response) {
-      $('.jplist-reset-btn').click();
+    //  $('.jplist-reset-btn').click();
      // $('#display-products').empty();
       itemRender("display-products", response);
     }

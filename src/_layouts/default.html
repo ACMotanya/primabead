@@ -5,7 +5,7 @@
 
   <body>
     <div class="body">
-      {% include newheader.html %}
+      {% include header.html %}
       <div role="main" class="main">
         {{ content }}
       </div>
@@ -39,7 +39,7 @@
 
 		<!-- Demo -->
 		<script src="{{ "/js/notify.min.js" | prepend: site.baseurl }}"></script>
-		<script src="{{ "/js/demos/demo-shop-2.js" | prepend: site.baseurl }}"></script>
+		<script src="{{ "/js/demos/demo-shop-4.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/select2.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.datatables.js" | prepend: site.baseurl }}"></script>
 		<script src="{{ "/js/jquery.isotope.js" | prepend: site.baseurl }}"></script>
@@ -115,7 +115,7 @@
 
 		{% if page.url == "/index2/" %}
 		<script>
-			$( "#header" ).addClass( "transparent header-full-width" );
+//			$( "#header" ).addClass( "transparent header-full-width" );
 		
 		</script>
 		{% endif %}
@@ -126,7 +126,7 @@
 		
 		<script>
 					
-			 document.getElementById("validateButton").disabled = true;
+			sdocument.getElementById("validateButton").disabled = true;
       function enableBtn(){
         document.getElementById("validateButton").disabled = false;
       }
