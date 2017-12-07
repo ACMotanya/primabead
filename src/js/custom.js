@@ -2,10 +2,10 @@ var calls = [];
 var colorDictionary = {
   "Silver": "#c0c0c0","Gold": "#ffd700","Black": "#000000","Blue": "#0000ff","Brown": "#A52A2A",
   "Clear": "rgba(255,255,255,0)","Green": "#00ff00","Grey": "#808080","Opal": "#a9c6c2","Orange": "#FFA500",
-  "Pink": "#FFC0CB","Purple": "#800080","Rainbow": "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))",
+  "Pink": "#FFC0CB","Purple": "#800080","Rainbow": "linear-gradient(to right, orange , yellow, green, cyan, blue, violet)",
   "Red": "#FF0000","Tan": "#D2B48C","Teal": "#008080","Turquoise": "#40E0D0","White": "#fff","Yellow": "#ffff00",
-  "Multi": "repeating-linear-gradient(red: yellow 10%: green 20%);","Copper": "#b87333","Rose Gold": "#b76e79","Antique Gold": "#D4AF37","Gunmetal": "#2c3539",
-  "Crystal AB": "rgba(255,255,255,0)"};
+  "Multi": "repeating-linear-gradient(red, yellow 10%, green 20%)","Copper": "#b87333","Rose Gold": "#b76e79",
+  "Antique Gold": "#D4AF37", "Gunmetal": "#2c3539", "Crystal AB": "rgba(255,255,255,0)"};
 var colors = [];
 var functiontype = [];
 var gotTax;
@@ -306,6 +306,7 @@ function search()
 ////////////////////////////
 function fillShop()
 {
+ // $("span[data-number='all']").click();
   functiontype = [];
   colors = [];
   material = [];
@@ -441,9 +442,9 @@ function itemRender(div, response) {
 
       stringOfDetails = lines[k].itemnum;
       if ( notbanned.indexOf(lines[k].itemnum) != -1 ) {
-        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-pk-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+        prod =  '<li class="hope ' + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-pk-md.jpg" alt="' + lines[k].shortdescription + '"></span</a>';
       } else {
-        prod =  '<li class="hope ' + lines[k].program + " " + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shirtdescription + '"></span</a>';
+        prod =  '<li class="hope ' + lines[k].color.replace(/ +/g, "") + " " + lines[k].func.replace(/ +/g, "") + " " + lines[k].material.replace(/ +/g, "") + '"><div class="product"><figure class="product-image-area"><a href="#product-details+' + stringOfDetails + '" title="' + lines[k].shortdescription + '" class="product-image"><span class="thumb-info"><img src="https://www.primaDIY.com/productimages/' + lines[k].itemnum + '-md.jpg" alt="' + lines[k].shortdescription + '"></span</a>';
       }
       if (lines[k].onsale === "Y" ) {
         prod += '<div class="product-label"><span class="discount">-$' + (parseFloat(lines[k].price) - parseFloat(lines[k].msrp)).toFixed(2) + '</span></div>';

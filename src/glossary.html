@@ -4,23 +4,416 @@ layout: default
 
 
 <style>
-span {
-    font-size: 40px;
-    cursor: pointer;
-}
+  h1.alphabet > a {
+      font-size: 40px;
+      cursor: pointer;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
 
-<h1>
-<span> A</span><span> B</span><span> C</span><span> D</span><span> E</span><span> F</span><span> G</span><span> H</span><span> I</span><span> J</span><span> K</span><span> L</span><span> M</span>
-<span> N</span><span> O</span><span> P</span><span> Q</span><span> R</span><span> S</span><span> T</span><span> U</span><span> V</span><span> W</span><span> X</span><span> Y</span><span> Z</span>
-</h1>
+<div class="row" style="margin-top: 30px;">
+  <div class="col-md-12">
+    <h2 class="mb-none" style="font-size: 2.2em; text-align: center; color: #76D5D4;">Glossary</h2>
+    <hr class="tall">
+  </div>
+</div>
 
+<div class="row" >
+  <h1 class="alphabet center">
+    <a onclick="$('a[href=\'#collapse1A\']').click();" href="#defineA"> A </a><a onclick="$('a[href=\'#collapse1B\']').click();" href="#defineB"> B </a><a onclick="$('a[href=\'#collapse1C\']').click();" href="#defineC"> C </a>
+    <a onclick="$('a[href=\'#collapse1D\']').click();" href="#defineD"> D </a><a onclick="$('a[href=\'#collapse1E\']').click();" href="#defineE"> E </a><a onclick="$('a[href=\'#collapse1F\']').click();" href="#defineF"> F </a>
+    <a onclick="$('a[href=\'#collapse1G\']').click();" href="#defineG"> G </a><a onclick="$('a[href=\'#collapse1H\']').click();" href="#defineH"> H </a><a onclick="$('a[href=\'#collapse1I\']').click();" href="#defineI"> I </a>
+    <a onclick="$('a[href=\'#collapse1J\']').click();" href="#defineJ"> J </a><a onclick="$('a[href=\'#collapse1K\']').click();" href="#defineK"> K </a><a onclick="$('a[href=\'#collapse1L\']').click();" href="#defineL"> L </a>
+    <a onclick="$('a[href=\'#collapse1M\']').click();" href="#defineM"> M </a><a onclick="$('a[href=\'#collapse1N\']').click();" href="#defineN"> N </a><a onclick="$('a[href=\'#collapse1O\']').click();" href="#defineO"> O </a>
+    <a onclick="$('a[href=\'#collapse1P\']').click();" href="#defineP"> P </a><a onclick="$('a[href=\'#collapse1Q\']').click();" href="#defineQ"> Q </a><a onclick="$('a[href=\'#collapse1R\']').click();" href="#defineR"> R </a>
+    <a onclick="$('a[href=\'#collapse1S\']').click();" href="#defineS"> S </a><a onclick="$('a[href=\'#collapse1T\']').click();" href="#defineT"> T </a><a onclick="$('a[href=\'#collapse1U\']').click();" href="#defineU"> U </a>
+    <a onclick="$('a[href=\'#collapse1V\']').click();" href="#defineV"> V </a><a onclick="$('a[href=\'#collapse1W\']').click();" href="#defineW"> W </a><a onclick="$('a[href=\'#collapse1X\']').click();" href="#defineX"> X </a>
+    <a onclick="$('a[href=\'#collapse1Y\']').click();" href="#defineY"> Y </a><a onclick="$('a[href=\'#collapse1Z\']').click();" href="#defineZ"> Z </a>
+  </h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="defineA">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1A">
+                A
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1A" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineB">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1B">
+                B
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1B" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineC">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1C">
+                C
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1C" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default" id="defineD">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1D">
+                D
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1D" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default" id="defineE">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1E">
+                E
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1E" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineF">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1F">
+                F
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1F" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineG">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1G">
+                G
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1G" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineH">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1H">
+                H
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1H" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineI">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1I">
+                I
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1I" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineJ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1J">
+                J
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1J" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineK">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1K">
+                K
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1K" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineL">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1L">
+                L
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1L" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineM">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1M">
+                M
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1M" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineN">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1N">
+                N
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1N" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineO">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1O">
+                O
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1O" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineP">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1P">
+                P
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1P" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineQ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Q">
+                Q
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Q" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineR">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1R">
+                R
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1R" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineS">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1S">
+                S
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1S" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineT">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1T">
+                T
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1T" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineU">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1U">
+                U
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1U" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineV">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1V">
+                V
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1V" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineW">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1W">
+                W
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1W" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineX">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1X">
+                X
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1X" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineY">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Y">
+                Y
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Y" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineZ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Z">
+                Z
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Z" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-jQuery("h1 span").hover(function(){
+  jQuery("h1.alphabet a").hover(function(){
        jQuery(this).animate({fontSize: "52px"}, 300)
    }, function() {
       jQuery(this).animate({fontSize: "40"}, 300)  
-   })
+   });
 
 </script>

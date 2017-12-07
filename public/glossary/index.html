@@ -92,9 +92,9 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 147, 'stickySetTop': '-187px', 'stickyChangeLogo': false}">
+      <header id="header" data-plugin-options="{'stickyEnabled': false, 'stickyEnableOnBoxed': false, 'stickyEnableOnMobile': false, 'stickyStartAt': 147, 'stickySetTop': '-177px', 'stickyChangeLogo': false}">
   <div class="header-body">
-    <!--
+    
     <div class="header-top header-top-style-2">
       <div class="container">
 				<p class="pull-left hidden-xs">
@@ -133,84 +133,51 @@
     
     </div>
 
-  -->
+
     <div class="header-container container">
       <div class="header-row">
         <div class="header-column">
           <div class="header-logo">
-            <a href="demo-shop-4.html">
+            <a href="/">
               <img alt="PrimaDIY" src="/images/logos/primalogo-1.png">
             </a>
           </div>
         </div>
         <div class="header-column">
           <div class="row">
+            
             <div class="cart-area">
               <div class="custom-block">
-                <i class="fa fa-phone"></i>
-                <span>(+404) 158 14 25 78</span>
-                <span class="split"></span>
-                <a href="#">CONTACT US</a>
+                <span class="welcome-msg pull-left" style="color: #F4898F;"></span>
+                <span class="myaccount-link"><span class="split"></span><a href="/store/#dashboard">MY ACCOUNT</a></span>
+          <!--			<li><a href="/comingsoon">My Wishlist</a></li> -->
+                <span class="loggedOff"><span class="split"></span><a href="/login">LOG IN</a></span>
+                <span class="loggedIn"><span class="split"></span><a href="#" onclick="logoff();">LOG OUT</a></span>
               </div>
 
               <div class="cart-dropdown">
                 <a href="#" class="cart-dropdown-icon">
                   <i class="minicart-icon"></i>
                   <span class="cart-info">
-                    <span class="cart-qty">2</span>
+                    <span class="cart-qty"></span>
                     <span class="cart-text">item(s)</span>
                   </span>
                 </a>
 
                 <div class="cart-dropdownmenu right">
-                  <div class="dropdownmenu-wrapper">
+                  <div class="small-cart-list dropdownmenu-wrapper">
+                    
                     <div class="cart-products">
-                      <div class="product product-sm">
-                        <a href="#" class="btn-remove" title="Remove Product">
-                          <i class="fa fa-times"></i>
-                        </a>
-                        <figure class="product-image-area">
-                          <a href="demo-shop-4-product-details.html" title="Product Name" class="product-image">
-                            <img src="../img/demos/shop/products/thumbs/cart-product1.jpg" alt="Product Name">
-                          </a>
-                        </figure>
-                        <div class="product-details-area">
-                          <h2 class="product-name"><a href="demo-shop-4-product-details.html" title="Product Name">Blue Women Top</a></h2>
-
-                          <div class="cart-qty-price">
-                            1 X 
-                            <span class="product-price">$65.00</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product product-sm">
-                        <a href="#" class="btn-remove" title="Remove Product">
-                          <i class="fa fa-times"></i>
-                        </a>
-                        <figure class="product-image-area">
-                          <a href="demo-shop-4-product-details.html" title="Product Name" class="product-image">
-                            <img src="../img/demos/shop/products/thumbs/cart-product2.jpg" alt="Product Name">
-                          </a>
-                        </figure>
-                        <div class="product-details-area">
-                          <h2 class="product-name"><a href="demo-shop-4-product-details.html" title="Product Name">Black Utility Top</a></h2>
-
-                          <div class="cart-qty-price">
-                            1 X 
-                            <span class="product-price">$39.00</span>
-                          </div>
-                        </div>
-                      </div>
+                                           
                     </div>
 
                     <div class="cart-totals">
-                      Total: <span>$104.00</span>
+                     
                     </div>
-
                     <div class="cart-actions">
-                      <a href="demo-shop-4-cart.html" class="btn btn-primary">View Cart</a>
-                      <a href="demo-shop-4-checkout.html" class="btn btn-primary">Checkout</a>
-                    </div>
+                      <a href="/store/#cart" class="btn btn-primary">View Cart</a>
+                      <a href="/store/#checkout" class="btn btn-primary">Checkout</a>
+										</div>
                   </div>
                 </div>
               </div>
@@ -220,8 +187,7 @@
               <a href="#" class="search-toggle"><i class="fa fa-search"></i></a>
               <form action="#" method="get">
                 <div class="header-search-wrapper">
-                  <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
-                  
+                  <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>                  
                   <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                 </div>
               </form>
@@ -235,261 +201,570 @@
       </div>
     </div>
     <div class="header-container container header-nav header-nav-center">
-        <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
-          <nav>
-            <ul class="nav nav-pills" id="mainNav">
-              <li>
-                <a href="/">
-                  New!!
-                </a>
-              </li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop(); dennyHover();">Swarovski&reg;</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop(); dennyHover();">Beads</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop(); dennyHover();">Findings</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop(); dennyHover();">STRINGING</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop(); dennyHover();">Kits</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop(); dennyHover();">Holiday</a></li>
-              <li>
-                <a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">
-                  Sale
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse color-nav">
+        <nav>
+          <ul class="nav nav-pills" id="mainNav">
+            <li><a href="/">New!!</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop(); dennyHover();">Swarovski&reg;</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop(); dennyHover();">Beads &amp; Charms</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop(); dennyHover();">Findings</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop(); dennyHover();">STRINGING</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop(); dennyHover();">Kits</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop(); dennyHover();">Holiday</a></li>
+            <li><a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">Sale</a></li>
+          </ul>
+        </nav>
       </div>
+      <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+        <nav>
+          <ul class="nav nav-pills" id="mainNav">
+            <li><a href="/comingsoon">inspiration</a></li>
+            <li><a href="/comingsoon">Glossary</a></li>
+            <li><a href="/comingsoon">Ask A Designer</a></li>
+            <li><a href="/comingsoon">Prima Style Quiz</a></li>            
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="mobile-nav">
-  <div class="mobile-nav-wrapper">
-    <ul class="mobile-side-menu">
-      <li><a href="demo-shop-4.html">Home</a></li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Fashion <span class="tip tip-new">New</span></a>
+	<div class="mobile-nav-wrapper">
+		<ul class="mobile-side-menu">
+			<li><a href="/">Home</a></li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Learning Center</a>
+				<ul>
+					<li>
+						<a href="/youtube">Watch &amp; Learn</a>
+					</li>
+					<li>
+						<a href="/maintenance">Step by Step Techinques</a>
+					</li>
+					<li>
+						<a href="/maintenance">Project Ideas</a>
+					</li>
+				</ul>
+			</li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Login &amp; Register</a>
+				<ul>
+					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span class="mmenu-toggle"></span>
+				<a href="#">SHOP</span></a>
+				<ul>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Brands</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li> 
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Finished Jewelry', '1']); fillShop();">Finished Jewelry</a></li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Craft Supplies</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop();">Cord / Wire</a></li>																			
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop();">Kits</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Chains', '1']); fillShop();">Chains</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Crafting Supplies', '1']); fillShop();">Supplies</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['rhinestones', '3']); fillShop();">Rhinestones</a></li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Tools &amp; Storage</a>
 
-        <ul>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Women</a>
-            <ul>
-              <li>
-                <a href="#">Tops &amp; Blouses</a>
-              </li>
-              <li>
-                <a href="#">Accessories</a>
-              </li>
-              <li>
-                <a href="#">Dresses &amp; Skirts</a>
-              </li>
-              <li>
-                <a href="#">Shoes &amp; Boots</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Men</a>
-
-            <ul>
-              <li>
-                <a href="#">Accessories</a>
-              </li>
-              <li>
-                <a href="#">Watch &amp; Fashion <span class="tip tip-new">New</span></a>
-              </li>
-              <li>
-                <a href="#">Tees, Knits &amp; Polos</a>
-              </li>
-              <li>
-                <a href="#">Pants &amp; Denim</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Jewellery <span class="tip tip-hot">Hot</span></a>
-
-            <ul>
-              <li>
-                <a href="#">Sweaters</a>
-              </li>
-              <li>
-                <a href="#">Heels &amp; Sandals</a>
-              </li>
-              <li>
-                <a href="#">Jeans &amp; Shorts</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Kids Fashion</a>
-
-            <ul>
-              <li>
-                <a href="#">Casual Shoes</a>
-              </li>
-              <li>
-                <a href="#">Spring &amp; Autumn</a>
-              </li>
-              <li>
-                <a href="#">Winter Sneakers</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Pages <span class="tip tip-hot">Hot!</span></a>
-
-        <ul>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Category</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-category-2col.html">2 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-3col.html">3 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-4col.html">4 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-5col.html">5 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-6col.html">6 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-7col.html">7 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-8col.html">8 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-right-sidebar.html">Right Sidebar</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-list.html">Category List</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Category Banners</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-category-banner-boxed-slider.html">Boxed slider</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-banner-boxed-image.html">Boxed Image</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-banner-fullwidth.html">Fullwidth</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Product Details</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-product-details.html">Product Details 1</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details2.html">Product Details 2</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details3.html">Product Details 3</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details4.html">Product Details 4</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="demo-shop-4-cart.html">Shopping Cart</a>
-          </li>
-          <li>
-            <a href="demo-shop-4-checkout.html">Checkout</a>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Loign &amp; Register</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-login.html">Login</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-register.html">Register</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Dashboard</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-dashboard.html">Dashboard</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-myaccount.html">My Account</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="demo-shop-4-about-us.html">About Us</a>
-      </li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Blog</a>
-        <ul>
-          <li><a href="demo-shop-4-blog.html">Blog</a></li>
-          <li><a href="demo-shop-4-blog-post.html">Blog Post</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="demo-shop-4-contact-us.html">Contact Us</a>
-      </li>
-      <li>
-        <a href="#">Buy Porto!</a>
-      </li>
-    </ul>
-  </div>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Storage', '1']); fillShop();">Storage</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>															
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Organizers', '3']); fillShop();">Organizers</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Misc Tools', '3']); fillShop();">Misc Tools</a></li>	
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Beads &amp; Charms</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop();">Beads</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Gemstones', '3']); fillShop();">Gemstones</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Pendants', '3']); fillShop();">Pendants</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['connnectors', '3']); fillShop();">Connectors</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/store/#cart">Cart</a>
+			</li>
+			<li>
+				<a href="/store/#checkout">Checkout</a>
+			</li>
+			
+			<li class="loggedOff">
+				<a href="#" onclick="logoff();">Log Out</a>
+			</li>
+			<li class="loggedOff">
+				<span class="mmenu-toggle"></span>
+				<a class="myaccount-link" href="#">My Account</a>
+				<ul>
+					<li>
+						<a href="/store/#dashboard">Dashboard</a>
+					</li>
+					<li>
+						<a href="/store/#orders">Orders</a>
+					</li>
+					<li>
+						<a href="/store/#invoices">Invoices</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/about">About Us</a>
+			</li>
+			<li>
+				<a href="/contact">Contact Us</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
 <div id="mobile-menu-overlay"></div>
       <div role="main" class="main">
         <style>
-span {
-    font-size: 40px;
-    cursor: pointer;
-}
+  h1.alphabet > a {
+      font-size: 40px;
+      cursor: pointer;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
 
-<h1>
-<span> A</span><span> B</span><span> C</span><span> D</span><span> E</span><span> F</span><span> G</span><span> H</span><span> I</span><span> J</span><span> K</span><span> L</span><span> M</span>
-<span> N</span><span> O</span><span> P</span><span> Q</span><span> R</span><span> S</span><span> T</span><span> U</span><span> V</span><span> W</span><span> X</span><span> Y</span><span> Z</span>
-</h1>
+<div class="row" style="margin-top: 30px;">
+  <div class="col-md-12">
+    <h2 class="mb-none" style="font-size: 2.2em; text-align: center; color: #76D5D4;">Glossary</h2>
+    <hr class="tall">
+  </div>
+</div>
 
+<div class="row" >
+  <h1 class="alphabet center">
+    <a onclick="$('a[href=\'#collapse1A\']').click();" href="#defineA"> A </a><a onclick="$('a[href=\'#collapse1B\']').click();" href="#defineB"> B </a><a onclick="$('a[href=\'#collapse1C\']').click();" href="#defineC"> C </a>
+    <a onclick="$('a[href=\'#collapse1D\']').click();" href="#defineD"> D </a><a onclick="$('a[href=\'#collapse1E\']').click();" href="#defineE"> E </a><a onclick="$('a[href=\'#collapse1F\']').click();" href="#defineF"> F </a>
+    <a onclick="$('a[href=\'#collapse1G\']').click();" href="#defineG"> G </a><a onclick="$('a[href=\'#collapse1H\']').click();" href="#defineH"> H </a><a onclick="$('a[href=\'#collapse1I\']').click();" href="#defineI"> I </a>
+    <a onclick="$('a[href=\'#collapse1J\']').click();" href="#defineJ"> J </a><a onclick="$('a[href=\'#collapse1K\']').click();" href="#defineK"> K </a><a onclick="$('a[href=\'#collapse1L\']').click();" href="#defineL"> L </a>
+    <a onclick="$('a[href=\'#collapse1M\']').click();" href="#defineM"> M </a><a onclick="$('a[href=\'#collapse1N\']').click();" href="#defineN"> N </a><a onclick="$('a[href=\'#collapse1O\']').click();" href="#defineO"> O </a>
+    <a onclick="$('a[href=\'#collapse1P\']').click();" href="#defineP"> P </a><a onclick="$('a[href=\'#collapse1Q\']').click();" href="#defineQ"> Q </a><a onclick="$('a[href=\'#collapse1R\']').click();" href="#defineR"> R </a>
+    <a onclick="$('a[href=\'#collapse1S\']').click();" href="#defineS"> S </a><a onclick="$('a[href=\'#collapse1T\']').click();" href="#defineT"> T </a><a onclick="$('a[href=\'#collapse1U\']').click();" href="#defineU"> U </a>
+    <a onclick="$('a[href=\'#collapse1V\']').click();" href="#defineV"> V </a><a onclick="$('a[href=\'#collapse1W\']').click();" href="#defineW"> W </a><a onclick="$('a[href=\'#collapse1X\']').click();" href="#defineX"> X </a>
+    <a onclick="$('a[href=\'#collapse1Y\']').click();" href="#defineY"> Y </a><a onclick="$('a[href=\'#collapse1Z\']').click();" href="#defineZ"> Z </a>
+  </h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="defineA">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1A">
+                A
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1A" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineB">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1B">
+                B
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1B" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineC">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1C">
+                C
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1C" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default" id="defineD">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1D">
+                D
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1D" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default" id="defineE">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1E">
+                E
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1E" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineF">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1F">
+                F
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1F" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineG">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1G">
+                G
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1G" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineH">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1H">
+                H
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1H" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineI">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1I">
+                I
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1I" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineJ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1J">
+                J
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1J" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineK">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1K">
+                K
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1K" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineL">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1L">
+                L
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1L" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineM">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1M">
+                M
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1M" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineN">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1N">
+                N
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1N" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineO">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1O">
+                O
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1O" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineP">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1P">
+                P
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1P" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineQ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Q">
+                Q
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Q" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineR">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1R">
+                R
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1R" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineS">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1S">
+                S
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1S" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineT">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1T">
+                T
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1T" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineU">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1U">
+                U
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1U" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineV">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1V">
+                V
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1V" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineW">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1W">
+                W
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1W" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineX">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1X">
+                X
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1X" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineY">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Y">
+                Y
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Y" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien. Praesent id enim sit amet odio vulputate eleifend in in tortor. Donec tellus massa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="defineZ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1Z">
+                Z
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1Z" class="accordion-body collapse">
+            <div class="panel-body">
+              <p>Donec tellus massa, tristique sit amet condimentum vel, facilisis quis sapien.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-jQuery("h1 span").hover(function(){
+  jQuery("h1.alphabet a").hover(function(){
        jQuery(this).animate({fontSize: "52px"}, 300)
    }, function() {
       jQuery(this).animate({fontSize: "40"}, 300)  
-   })
+   });
 
 </script>
       </div>
@@ -697,7 +972,6 @@ jQuery("h1 span").hover(function(){
 
 		<!-- Current Page Vendor and Views -->
 		<script src="/js/views/view.contact.js"></script>
-		<script src="/vendor/nivo-slider/jquery.nivo.slider.min.js"></script>
 		<script src="/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
 
 		<!-- Demo -->
@@ -711,9 +985,7 @@ jQuery("h1 span").hover(function(){
 		<script src="/js/admin.extension.js"></script>
 		<script src="/js/examples.datatables.tabletools.js"></script>
 		<script src="/js/youmax.min.js"></script>
-		<!--
-		<script src="/js/pinterest2.js"></script> 
-		-->
+
 		<!-- Theme Initialization Files -->
 		<script src="/js/theme.init.js"></script>
 
