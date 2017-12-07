@@ -92,9 +92,9 @@
 
   <body>
     <div class="body">
-      <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 147, 'stickySetTop': '-187px', 'stickyChangeLogo': false}">
+      <header id="header" data-plugin-options="{'stickyEnabled': false, 'stickyEnableOnBoxed': false, 'stickyEnableOnMobile': false, 'stickyStartAt': 147, 'stickySetTop': '-177px', 'stickyChangeLogo': false}">
   <div class="header-body">
-    <!--
+    
     <div class="header-top header-top-style-2">
       <div class="container">
 				<p class="pull-left hidden-xs">
@@ -133,84 +133,51 @@
     
     </div>
 
-  -->
+
     <div class="header-container container">
       <div class="header-row">
         <div class="header-column">
           <div class="header-logo">
-            <a href="demo-shop-4.html">
+            <a href="/">
               <img alt="PrimaDIY" src="/images/logos/primalogo-1.png">
             </a>
           </div>
         </div>
         <div class="header-column">
           <div class="row">
+            
             <div class="cart-area">
               <div class="custom-block">
-                <i class="fa fa-phone"></i>
-                <span>(+404) 158 14 25 78</span>
-                <span class="split"></span>
-                <a href="#">CONTACT US</a>
+                <span class="welcome-msg pull-left" style="color: #F4898F;"></span>
+                <span class="myaccount-link"><span class="split"></span><a href="/store/#dashboard">MY ACCOUNT</a></span>
+          <!--			<li><a href="/comingsoon">My Wishlist</a></li> -->
+                <span class="loggedOff"><span class="split"></span><a href="/login">LOG IN</a></span>
+                <span class="loggedIn"><span class="split"></span><a href="#" onclick="logoff();">LOG OUT</a></span>
               </div>
 
               <div class="cart-dropdown">
                 <a href="#" class="cart-dropdown-icon">
                   <i class="minicart-icon"></i>
                   <span class="cart-info">
-                    <span class="cart-qty">2</span>
+                    <span class="cart-qty"></span>
                     <span class="cart-text">item(s)</span>
                   </span>
                 </a>
 
                 <div class="cart-dropdownmenu right">
-                  <div class="dropdownmenu-wrapper">
+                  <div class="small-cart-list dropdownmenu-wrapper">
+                    
                     <div class="cart-products">
-                      <div class="product product-sm">
-                        <a href="#" class="btn-remove" title="Remove Product">
-                          <i class="fa fa-times"></i>
-                        </a>
-                        <figure class="product-image-area">
-                          <a href="demo-shop-4-product-details.html" title="Product Name" class="product-image">
-                            <img src="../img/demos/shop/products/thumbs/cart-product1.jpg" alt="Product Name">
-                          </a>
-                        </figure>
-                        <div class="product-details-area">
-                          <h2 class="product-name"><a href="demo-shop-4-product-details.html" title="Product Name">Blue Women Top</a></h2>
-
-                          <div class="cart-qty-price">
-                            1 X 
-                            <span class="product-price">$65.00</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product product-sm">
-                        <a href="#" class="btn-remove" title="Remove Product">
-                          <i class="fa fa-times"></i>
-                        </a>
-                        <figure class="product-image-area">
-                          <a href="demo-shop-4-product-details.html" title="Product Name" class="product-image">
-                            <img src="../img/demos/shop/products/thumbs/cart-product2.jpg" alt="Product Name">
-                          </a>
-                        </figure>
-                        <div class="product-details-area">
-                          <h2 class="product-name"><a href="demo-shop-4-product-details.html" title="Product Name">Black Utility Top</a></h2>
-
-                          <div class="cart-qty-price">
-                            1 X 
-                            <span class="product-price">$39.00</span>
-                          </div>
-                        </div>
-                      </div>
+                                           
                     </div>
 
                     <div class="cart-totals">
-                      Total: <span>$104.00</span>
+                     
                     </div>
-
                     <div class="cart-actions">
-                      <a href="demo-shop-4-cart.html" class="btn btn-primary">View Cart</a>
-                      <a href="demo-shop-4-checkout.html" class="btn btn-primary">Checkout</a>
-                    </div>
+                      <a href="/store/#cart" class="btn btn-primary">View Cart</a>
+                      <a href="/store/#checkout" class="btn btn-primary">Checkout</a>
+										</div>
                   </div>
                 </div>
               </div>
@@ -220,8 +187,7 @@
               <a href="#" class="search-toggle"><i class="fa fa-search"></i></a>
               <form action="#" method="get">
                 <div class="header-search-wrapper">
-                  <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
-                  
+                  <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>                  
                   <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                 </div>
               </form>
@@ -235,238 +201,154 @@
       </div>
     </div>
     <div class="header-container container header-nav header-nav-center">
-        <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
-          <nav>
-            <ul class="nav nav-pills" id="mainNav">
-              <li>
-                <a href="/">
-                  New!!
-                </a>
-              </li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop(); dennyHover();">Swarovski&reg;</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop(); dennyHover();">Beads</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop(); dennyHover();">Findings</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop(); dennyHover();">STRINGING</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop(); dennyHover();">Kits</a></li>
-              <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop(); dennyHover();">Holiday</a></li>
-              <li>
-                <a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">
-                  Sale
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse color-nav">
+        <nav>
+          <ul class="nav nav-pills" id="mainNav">
+            <li><a href="/">New!!</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop(); dennyHover();">Swarovski&reg;</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop(); dennyHover();">Beads &amp; Charms</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop(); dennyHover();">Findings</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop(); dennyHover();">STRINGING</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop(); dennyHover();">Kits</a></li>
+            <li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop(); dennyHover();">Holiday</a></li>
+            <li><a  href="/store/#products" onclick="localStorage.setItem('shopParams', ['sale', '2']); fillShop();">Sale</a></li>
+          </ul>
+        </nav>
       </div>
+      <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+        <nav>
+          <ul class="nav nav-pills" id="mainNav">
+            <li><a href="/comingsoon">inspiration</a></li>
+            <li><a href="/comingsoon">Glossary</a></li>
+            <li><a href="/comingsoon">Ask A Designer</a></li>
+            <li><a href="/comingsoon">Prima Style Quiz</a></li>            
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="mobile-nav">
-  <div class="mobile-nav-wrapper">
-    <ul class="mobile-side-menu">
-      <li><a href="demo-shop-4.html">Home</a></li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Fashion <span class="tip tip-new">New</span></a>
+	<div class="mobile-nav-wrapper">
+		<ul class="mobile-side-menu">
+			<li><a href="/">Home</a></li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Learning Center</a>
+				<ul>
+					<li>
+						<a href="/youtube">Watch &amp; Learn</a>
+					</li>
+					<li>
+						<a href="/maintenance">Step by Step Techinques</a>
+					</li>
+					<li>
+						<a href="/maintenance">Project Ideas</a>
+					</li>
+				</ul>
+			</li>
+			<li class="loggedIn">
+				<span class="mmenu-toggle"></span>
+				<a href="#">Login &amp; Register</a>
+				<ul>
+					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span class="mmenu-toggle"></span>
+				<a href="#">SHOP</span></a>
+				<ul>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Brands</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['DC Comics', '1']); fillShop();">DC Comics</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Swarovski', '1']); fillShop();">Swarovski&reg;</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Elegance', '1']); fillShop();">Elegance</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Jewelry Basics', '1']); fillShop();">Jewelry Basics</a></li> 
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Holiday', '1']); fillShop();">Holiday</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Finished Jewelry', '1']); fillShop();">Finished Jewelry</a></li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Craft Supplies</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Findings', '1']); fillShop();">Findings</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Cording', '1']); fillShop();">Cord / Wire</a></li>																			
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Kits', '1']); fillShop();">Kits</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Chains', '1']); fillShop();">Chains</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Crafting Supplies', '1']); fillShop();">Supplies</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['rhinestones', '3']); fillShop();">Rhinestones</a></li>
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Tools &amp; Storage</a>
 
-        <ul>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Women</a>
-            <ul>
-              <li>
-                <a href="#">Tops &amp; Blouses</a>
-              </li>
-              <li>
-                <a href="#">Accessories</a>
-              </li>
-              <li>
-                <a href="#">Dresses &amp; Skirts</a>
-              </li>
-              <li>
-                <a href="#">Shoes &amp; Boots</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Men</a>
-
-            <ul>
-              <li>
-                <a href="#">Accessories</a>
-              </li>
-              <li>
-                <a href="#">Watch &amp; Fashion <span class="tip tip-new">New</span></a>
-              </li>
-              <li>
-                <a href="#">Tees, Knits &amp; Polos</a>
-              </li>
-              <li>
-                <a href="#">Pants &amp; Denim</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Jewellery <span class="tip tip-hot">Hot</span></a>
-
-            <ul>
-              <li>
-                <a href="#">Sweaters</a>
-              </li>
-              <li>
-                <a href="#">Heels &amp; Sandals</a>
-              </li>
-              <li>
-                <a href="#">Jeans &amp; Shorts</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Kids Fashion</a>
-
-            <ul>
-              <li>
-                <a href="#">Casual Shoes</a>
-              </li>
-              <li>
-                <a href="#">Spring &amp; Autumn</a>
-              </li>
-              <li>
-                <a href="#">Winter Sneakers</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Pages <span class="tip tip-hot">Hot!</span></a>
-
-        <ul>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Category</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-category-2col.html">2 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-3col.html">3 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-4col.html">4 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-5col.html">5 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-6col.html">6 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-7col.html">7 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-8col.html">8 Columns</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-right-sidebar.html">Right Sidebar</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-list.html">Category List</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Category Banners</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-category-banner-boxed-slider.html">Boxed slider</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-banner-boxed-image.html">Boxed Image</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-category-banner-fullwidth.html">Fullwidth</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Product Details</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-product-details.html">Product Details 1</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details2.html">Product Details 2</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details3.html">Product Details 3</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-product-details4.html">Product Details 4</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="demo-shop-4-cart.html">Shopping Cart</a>
-          </li>
-          <li>
-            <a href="demo-shop-4-checkout.html">Checkout</a>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Loign &amp; Register</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-login.html">Login</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-register.html">Register</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span class="mmenu-toggle"></span>
-            <a href="#">Dashboard</a>
-            <ul>
-              <li>
-                <a href="demo-shop-4-dashboard.html">Dashboard</a>
-              </li>
-              <li>
-                <a href="demo-shop-4-myaccount.html">My Account</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="demo-shop-4-about-us.html">About Us</a>
-      </li>
-      <li>
-        <span class="mmenu-toggle"></span>
-        <a href="#">Blog</a>
-        <ul>
-          <li><a href="demo-shop-4-blog.html">Blog</a></li>
-          <li><a href="demo-shop-4-blog-post.html">Blog Post</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="demo-shop-4-contact-us.html">Contact Us</a>
-      </li>
-      <li>
-        <a href="#">Buy Porto!</a>
-      </li>
-    </ul>
-  </div>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Storage', '1']); fillShop();">Storage</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Tools', '1']); fillShop();">Tools</a></li>															
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Organizers', '3']); fillShop();">Organizers</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Misc Tools', '3']); fillShop();">Misc Tools</a></li>	
+						</ul>
+					</li>
+					<li>
+						<span class="mmenu-toggle"></span>
+						<a href="#">Beads &amp; Charms</a>
+						<ul>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Beads', '1']); fillShop();">Beads</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Gemstones', '3']); fillShop();">Gemstones</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Pendants', '3']); fillShop();">Pendants</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['Charms', '1']); fillShop();">Charms</a></li>
+							<li><a href="/store/#products" onclick="localStorage.setItem('shopParams', ['connnectors', '3']); fillShop();">Connectors</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/store/#cart">Cart</a>
+			</li>
+			<li>
+				<a href="/store/#checkout">Checkout</a>
+			</li>
+			
+			<li class="loggedOff">
+				<a href="#" onclick="logoff();">Log Out</a>
+			</li>
+			<li class="loggedOff">
+				<span class="mmenu-toggle"></span>
+				<a class="myaccount-link" href="#">My Account</a>
+				<ul>
+					<li>
+						<a href="/store/#dashboard">Dashboard</a>
+					</li>
+					<li>
+						<a href="/store/#orders">Orders</a>
+					</li>
+					<li>
+						<a href="/store/#invoices">Invoices</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/about">About Us</a>
+			</li>
+			<li>
+				<a href="/contact">Contact Us</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
 <div id="mobile-menu-overlay"></div>
@@ -476,210 +358,127 @@
 		<div id="revolutionSlider" class="slider rev_slider manual">
 			<ul>
 				<li data-transition="fade">
-					<img src="../img/demos/shop/slides/shop14/slide1.jpg"  
+					<img src="/images/indeximg8.jpg"  
 						alt="slide bg"
 						data-bgposition="center center" 
 						data-bgfit="cover" 
 						data-bgrepeat="no-repeat"
 						class="rev-slidebg">
-
-					<div class="tp-caption"
-						data-x="center"
-						data-y="194"
-						data-start="1000"
-						data-whitespace="nowrap"						 
-						data-transform_in="y:[100%];s:500;"
-						data-transform_out="opacity:0;s:500;"
-						data-mask_in="x:0px;y:0px;" style="font-size: 79px; line-height:1; font-weight:800; color: #fff;">eCOMMERCE?</div>
-
-					<div class="tp-caption"
-						data-x="center" data-hoffset="-220"
-						data-y="293"
-						data-start="1200"
-						data-transform_in="x:[-300%];opacity:0;s:500;"><img src="../img/slides/slide-title-border.png" alt="Border"></div>
-
-					<div class="tp-caption"
-						data-x="center"
-						data-y="285"
-						data-start="1500"
-						data-transform_in="y:[100%];opacity:0;s:500;" style="font-size: 23px; line-height:1; font-weight:300; color: #fff;">Check out our options and features.</div>
-
-					<div class="tp-caption"
-						data-x="center" data-hoffset="220"
-						data-y="293"
-						data-start="1200"
-						data-transform_in="x:[300%];opacity:0;s:500;"><img src="../img/slides/slide-title-border.png" alt="Border"></div>
-				</li>
-				<li data-transition="fade">
-					<img src="../img/demos/shop/slides/shop14/slide2.jpg"  
-						alt="slide bg"
-						data-bgposition="center center" 
-						data-bgfit="cover" 
-						data-bgrepeat="no-repeat"
-						class="rev-slidebg">
-
-					<div class="tp-caption"
-					data-x="480"
-					data-y="130"
-					data-start="500"
-					data-whitespace="nowrap"						 
-					data-transform_in="y:[100%];s:500;"
-					data-transform_out="opacity:0;s:500;"
-					style="z-index: 5; font-size: 26px; font-weight:300; line-height:1.5; color: #fff;"
-					data-mask_in="x:0px;y:0px;">up to <span style="font-weight: 600;">70%</span> off!</div>
-
-					<div class="tp-caption"
-						data-x="475"
-						data-y="164"
-						data-start="900"
-						data-whitespace="nowrap"						 
-						data-transform_in="y:[100%];s:500;"
-						data-transform_out="opacity:0;s:500;"
-						style="z-index: 5; font-size: 82px; text-transform: uppercase; font-weight:600; line-height:1;color: #fff;"
-						data-mask_in="x:0px;y:0px;">Huge <span style="font-weight: 800;">Sale</span></div>
-
-					<div class="tp-caption tp-resizeme"
-						data-x="480"
-						data-y="256"
-						data-start="1300"
-						style="z-index: 5; font-size: 18px; font-weight: 600; line-height:1;color: #fff;"
-						data-transform_in="y:[100%];opacity:0;s:500;">Fashion<span style="margin-left:13px;margin-right:13px;">-</span>Electronics<span style="margin-left:13px;margin-right:13px;">-</span>Gifts<span style="margin-left:13px;margin-right:13px;">-</span>Music<span style="margin-left:13px;margin-right:13px;">-</span>Sports</div>
-					
-					<div class="tp-caption tp-resizeme"
-						data-x="784"
-						data-y="300"
-						data-start="1800"
-						style="z-index: 5; font-size: 16px; font-weight: 300; line-height:1;"
-						data-transform_in="y:[100%];opacity:0;s:500;"><a href="#" class="btn btn-default" style="border:none; font-weight: 600; padding-top: 10px; padding-bottom:10px;">SHOP NOW</a></div>
-				</li>
-				<li data-transition="fade">
-					<img src="../img/demos/shop/slides/shop14/slide3.jpg"  
-						alt="slide bg"
-						data-bgposition="center center" 
-						data-bgfit="cover" 
-						data-bgrepeat="no-repeat"
-						class="rev-slidebg">
-
-					<div class="tp-caption"
-						data-x="170"
-						data-y="180"
-						data-start="500"
-						data-whitespace="nowrap"						 
-						data-transform_in="y:[100%];s:500;"
-						data-transform_out="opacity:0;s:500;"
-						style="z-index: 5; font-size: 26px; font-weight:300; line-height:1; color: #fff;"
-						data-mask_in="x:0px;y:0px;">It's time to feel</div>
-
-					<div class="tp-caption"
-						data-x="170"
-						data-y="214"
-						data-start="900"
-						data-whitespace="nowrap"						 
-						data-transform_in="y:[100%];s:500;"
-						data-transform_out="opacity:0;s:500;"
-						style="z-index: 5; font-size: 82px; text-transform: uppercase; font-weight:600; line-height:1;color: #fff;"
-						data-mask_in="x:0px;y:0px;">The <span style="font-weight: 800;">Power</span></div>
-					
-					<div class="tp-caption tp-resizeme"
-						data-x="508"
-						data-y="308"
-						data-start="1300"
-						style="z-index: 5; font-size: 16px; font-weight: 300; line-height:1;"
-						data-transform_in="y:[100%];opacity:0;s:500;"><a href="#" class="btn btn-default" style="border:none; font-weight: 600; padding-top: 10px; padding-bottom:10px;">SHOP NOW</a></div>
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 
-<div class="container mb-sm" style="margin-top: 15px">
-		<h2 class="slider-title v2 heading-primary text-center">FEATURED PRODUCTS</h2>
-	
-		<div class="owl-carousel owl-theme manual new-products-carousel">
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709416');" title="Product Name" class="product-image">
-						<img src="https://www.primaDIY.com/productimages/34709416-md.jpg" alt="Product Name">
-					</a>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name">
-						<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709416');" title="Product Name">"The Joker" Charm</a>
-					</h2>
-					<div class="product-price-box">
-						<span class="product-price">$4.99</span>
-					</div>
+<div class="container mb-sm" style="margin-top: 25px">
+	<h1 class="heading-primary text-center">FEATURED PRODUCTS</h1>
+
+	<div class="owl-carousel owl-theme manual new-products-carousel">
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709416');" title="Product Name" class="product-image">
+					<img src="https://www.primaDIY.com/productimages/34709416-md.jpg" alt="Product Name">
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name">
+					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709416');" title="Product Name">"The Joker" Charm</a>
+				</h2>
+				<div class="product-price-box">
+					<span class="product-price">$4.99</span>
 				</div>
 			</div>
-	
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39494135');"  title="Product Name" class="product-image">
-						<img src="https://www.primaDIY.com/productimages/39494135-md.jpg" alt="Product Name">
-					</a>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name">
-						<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39494135');"  title="Product Name">Rose Gold Plated Cross Charm</a>
-					</h2>
-					<div class="product-price-box">
-						<span class="product-price">$5.00</span>
-					</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39494135');"  title="Product Name" class="product-image">
+					<img src="https://www.primaDIY.com/productimages/39494135-md.jpg" alt="Product Name">
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name">
+					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39494135');"  title="Product Name">Rose Gold Plated Cross Charm</a>
+				</h2>
+				<div class="product-price-box">
+					<span class="product-price">$5.00</span>
 				</div>
 			</div>
-	
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39910206');" title="Product Name" class="product-image">
-						<img src="https://www.primaDIY.com/productimages/39910206-md.jpg" alt="Product Name">
-					</a>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name">
-						<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39910206');" title="Product Name">Charm Sugar Skull</a>
-					</h2>
-					<div class="product-price-box">
-						<span class="product-price">$7.99</span>
-					</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39910206');" title="Product Name" class="product-image">
+					<img src="https://www.primaDIY.com/productimages/39910206-md.jpg" alt="Product Name">
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name">
+					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+39910206');" title="Product Name">Charm Sugar Skull</a>
+				</h2>
+				<div class="product-price-box">
+					<span class="product-price">$7.99</span>
 				</div>
 			</div>
-	
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709404');" title="Product Name" class="product-image">
-						<img src="https://www.primaDIY.com/productimages/34709404-md.jpg" alt="Product Name">
-					</a>
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name">
-						<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709404');" title="Product Name">Wonder Woman Pendant Gold Locket</a>
-					</h2>
-			
-	
-					<div class="product-price-box">
-						<span class="product-price">$5.99</span>
-					</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709404');" title="Product Name" class="product-image">
+					<img src="https://www.primaDIY.com/productimages/34709404-md.jpg" alt="Product Name">
+				</a>
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name">
+					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34709404');" title="Product Name">Wonder Woman Pendant Gold Locket</a>
+				</h2>
+		
+
+				<div class="product-price-box">
+					<span class="product-price">$5.99</span>
 				</div>
 			</div>
-	
-			<div class="product">
-				<figure class="product-image-area">
-					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34738035');" title="Product Name" class="product-image">
-						<img src="https://www.primaDIY.com/productimages/34738035-lg.jpg" alt="Product Name">
-					</a>
-			
-				</figure>
-				<div class="product-details-area">
-					<h2 class="product-name">
-						<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34738035');" title="Product Name">Burgundy Seed Bead Strand</a>
-					</h2>
-					<div class="product-price-box">
-						<span class="product-price">$4.00</span>
-					</div>
+		</div>
+
+		<div class="product">
+			<figure class="product-image-area">
+				<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34738035');" title="Product Name" class="product-image">
+					<img src="https://www.primaDIY.com/productimages/34738035-lg.jpg" alt="Product Name">
+				</a>
+		
+			</figure>
+			<div class="product-details-area">
+				<h2 class="product-name">
+					<a href="/store/" onclick="localStorage.setItem('urlHash', '#product-details+34738035');" title="Product Name">Burgundy Seed Bead Strand</a>
+				</h2>
+				<div class="product-price-box">
+					<span class="product-price">$4.00</span>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="container">
+	<div class="banners-container">
+		<div class="row">
+			
+			<div class="col-xs-6 col-sm-6">
+				<a href="#" class="banner">
+					<img src="/images/dc.jpg" alt="Banner">
+				</a>
+			</div>
+
+			<div class="clearfix visible-xs"></div>
+
+			<div class="col-xs-6 col-sm-6">
+				<a href="#" class="banner">
+					<img src="/images/swarovski.jpg" alt="Banner">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
       </div>
       <footer id="footer">
   <!--(remove-empty-lines-end)-->
@@ -885,7 +684,6 @@
 
 		<!-- Current Page Vendor and Views -->
 		<script src="/js/views/view.contact.js"></script>
-		<script src="/vendor/nivo-slider/jquery.nivo.slider.min.js"></script>
 		<script src="/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
 
 		<!-- Demo -->
@@ -899,9 +697,7 @@
 		<script src="/js/admin.extension.js"></script>
 		<script src="/js/examples.datatables.tabletools.js"></script>
 		<script src="/js/youmax.min.js"></script>
-		<!--
-		<script src="/js/pinterest2.js"></script> 
-		-->
+
 		<!-- Theme Initialization Files -->
 		<script src="/js/theme.init.js"></script>
 
@@ -938,6 +734,92 @@
 
 		
 
+		
+		<script>
+			(function( $ ) {
+
+			// Home page slider
+			if ($.fn.revolution) {
+				$('#revolutionSlider').revolution({
+					sliderType: 'standard',
+					sliderLayout: 'auto',
+					delay: 9000,
+					gridwidth: 1140,
+					gridheight: 521,
+					disableProgressBar: 'on',
+					spinner: 'spinner3',
+					parallax:{
+						type:"mouse",
+						origo:"slidercenter",
+						speed:2000,
+						levels:[2,3,4,5,6,7,12,16,10,50],
+					},
+					navigation: {
+						touch: {
+												touchenabled: "on",
+												swipe_threshold: 75,
+												swipe_min_touches: 1,
+												swipe_direction: "horizontal",
+												drag_block_vertical: false
+										},
+						arrows: {
+							style: "custom",
+							enable: true,
+							hide_onmobile: false,
+							hide_onleave: true,
+							hide_under:768,
+							tmp: '',
+							left: {
+								h_align: "left",
+								v_align: "center",
+								h_offset: 20,
+								v_offset: 0
+							},
+							right: {
+								h_align: "right",
+								v_align: "center",
+								h_offset: 20,
+								v_offset: 0
+							}
+						}
+					}
+				});
+			}
+
+			// New Products Carousel
+			$('.new-products-carousel').owlCarousel({
+				loop: false,
+				responsive: {
+					0: {
+						items: 1
+					},
+					360: {
+						items: 2
+					},
+					520: {
+						items: 3
+					},
+					768: {
+						items: 4
+					},
+					992: {
+						items: 5
+					},
+					1200: {
+						items: 6
+					},
+					1320: {
+						items: 7
+					}
+				},
+				margin: 20,
+				nav:true,
+				navText: [],
+				dots: false,
+				autoWidth: false
+			});
+		}).apply( this, [ jQuery ]);
+		</script>
 		
 
 		
