@@ -291,8 +291,7 @@ function search()
         data: searchTerm,
         location: "700"},
       success: function(response) {
-       // $('#searchDiv').empty();
-        
+             
         windowHash("products");
         $('.jplist-reset-btn').click();
         $('#display-products').empty();
@@ -307,9 +306,7 @@ function search()
 function fillShop()
 {
  // $("span[data-number='all']").click();
-  functiontype = [];
-  colors = [];
-  material = [];
+
   $('#color-panel, #panel-filter-material, #panel-filter-type, #display-products').empty();
   $('#demo').jplist({
     command: 'empty'
@@ -321,7 +318,7 @@ function fillShop()
 //    }
 //   });
    
-  var params ="";
+  var params = "";
   if (localStorage.getItem('shopParams')) {
     params = localStorage.getItem('shopParams').split(",");
     $('#shopParamName').html(params[0]); 
@@ -345,33 +342,6 @@ function fillShop()
 //////////////////////////
 // Filter Function      //
 //////////////////////////
-function fillTypeField() 
-{
-  functiontype.forEach(function (element) {
-    $('#panel-filter-type').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"><label for="checkboxExample2">'+ element + '</label></div></li>');
-  });
-
-  material.forEach(function (element) {
-    $('#panel-filter-material').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox"onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"><label for="checkboxExample2">'+ element +'</label></div></li>');
-  });
-  
-  colors.forEach(function (element) {
-    $('#color-panel').append('<li id="'+ element.replace(/ +/g, "") + 1 +'"><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ element +'" style="background: '+ colorDictionary[element] +'" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"></span></a></li>');
-  });
-  $('span').tooltip({}); 
-}
-
-function listOfAttributes(attr, field)
-{
-  if ( attr.indexOf(field.trim()) == -1 ) {
-    attr.push(field.trim());
-  }
-}
-
-
-//////////////////////////
-// Filter Function      //
-//////////////////////////
 function filterFunction(a) {
   $.ajax({
     type: "GET",
@@ -386,7 +356,7 @@ function filterFunction(a) {
     }
   });
 }
-function filterFunction2(a) {
+function filterFunction2() {
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/onsale/",
@@ -410,7 +380,7 @@ function filterFunction3(a) {
     }
   });
 }
-function filterFunction4(a) {
+function filterFunction4() {
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/300/",
@@ -480,6 +450,32 @@ function itemRender(div, response) {
   fillTypeField();
 }
 
+
+//////////////////////////
+// Filter Function      //
+//////////////////////////
+function fillTypeField() 
+{
+  functiontype.forEach(function (element) {
+    $('#panel-filter-type').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"><label for="checkboxExample2">'+ element + '</label></div></li>');
+  });
+
+  material.forEach(function (element) {
+    $('#panel-filter-material').append('<li><div class="checkbox-custom checkbox-themed"><input type="checkbox"onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"><label for="checkboxExample2">'+ element +'</label></div></li>');
+  });
+  
+  colors.forEach(function (element) {
+    $('#color-panel').append('<li id="'+ element.replace(/ +/g, "") + 1 +'"><a href="#"><span data-plugin-tooltip data-toggle="tooltip" data-placement="top" title="'+ element +'" style="background: '+ colorDictionary[element] +'" onclick="$(\'#'+ element.replace(/ +/g, "") +'\').click();"></span></a></li>');
+  });
+  $('span').tooltip({}); 
+}
+
+function listOfAttributes(attr, field)
+{
+  if ( attr.indexOf(field.trim()) == -1 ) {
+    attr.push(field.trim());
+  }
+}
 
 //////////////////////////////
 // Get Detail View for Item //
