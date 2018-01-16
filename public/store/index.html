@@ -966,7 +966,7 @@
 							</div>  
 						</div>
 						<div class="review-link">
-							<a href="#" class="review-link-in" rel="nofollow"> <span class="count">1</span> Customer review</a> |
+							<a href="#" class="review-link-in" rel="nofollow"> <span id="number-of-reviews" class="count">1</span> Customer review</a> |
 							<a href="#review-pointer" class="write-review-link" rel="nofollow">Add a review</a>
 						</div>
 					</div>
@@ -1033,11 +1033,12 @@
 						
 							<div id="product-reviews" class="tab-pane">
 								<div class="collateral-box">
-									<ul class="list-unstyled">
+									<ul id="listOfReviews" class="list-unstyled">
 										<li>Be the first to review this product</li>
 									</ul>
+									<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin" onclick="populateReviewModal(); return false;">Add a Review</a>
 								</div>
-
+								<!--
 								<div class="add-product-review">
 									<h3 class="text-uppercase heading-text-color font-weight-semibold">WRITE YOUR OWN REVIEW</h3>
 									<p id="review-pointer">How do you rate this product? *</p>
@@ -1088,6 +1089,7 @@
 										</div>
 									</form>
 								</div>
+								-->
 							</div>
 							
 						</div>
@@ -2383,6 +2385,24 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="reviewFormModalLabel">SUBMIT A REVIEW</h4>
+			</div>
+			<div id="reviewModalBody"class="modal-body">
+			
+			</div>
+			<div class="modal-footer">
+				<button id="fakeRevQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal Reviews End -->
 
 <script>
 	(function ($) {

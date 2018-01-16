@@ -568,6 +568,103 @@ function detailView(callback, callback2) {
 }
 
 
+//////////////////////////////
+  // Populate the Review //
+//////////////////////////////
+function populateReviewModal()
+{
+  var cust_name = localStorage.getItem("cust_name").trim();
+  var cust_no = localStorage.getItem("cust_no").trim();
+  var email_addr = localStorage.getItem("email_addr").trim();
+  var hash = window.location.hash.split("+");
+  var stock_no = hash[1];
+  var rLines;
+
+  $("#reviewModalBody").empty();
+
+  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="GET"><div class="bottommargin-sm">';
+  rLines += '<div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating-loading" data-size="sm"></div></div><div class="clear"></div>';
+  rLines += '<div class="col_full"><label for="template-reviewform-comment">Comment <small>*</small></label><input type="hidden" name="custname" value="'+ cust_name +'" />';
+  rLines += '<textarea class="required form-control" id="template-reviewform-comment" name="comment" rows="6" cols="30"></textarea></div><input type="hidden" name="custnum" value="'+ cust_no +'" />';
+  rLines += '<input type="hidden" name="email" value="'+ email_addr +'" /><input type="hidden" name="item" value="'+ stock_no +'" /><input type="hidden" name="source" value="LJ website" /><div class="col_full nobottommargin">';
+  rLines += '<button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit" onclick="$(\'#fakeRevQuestion\').click();">Submit Review</button></div></form>';
+
+  $("#reviewModalBody").html(rLines);
+  
+  $('#cust-rating').rating({
+      step: 1,
+      starCaptions: {1: 'Not for me', 2: 'I\’d probably re-gift it', 3: 'It\'s okay', 4: 'I really like it', 5: 'I love it'},
+      starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}, 
+      showClear: false, 
+      showCaption: true
+  });
+}
+
+function getReviews(stock_no)
+{
+  productRating = [];
+
+  $("#listOfReviews").empty();
+  $("#number-of-reviews").empty();
+  var reviewhtml = [];
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
+    rdata = reviewdata.split("\n");
+    if (rdata.length < 2) {
+      custrLines = '<li>Be the first to review this product</li>';
+      $("#listOfReviews").prepend(custrLines);
+      $("#mainRatingDiv").html('<a href="#" onclick="$(\'#addReviewButton\').click(); return false;">Be the first to review this item</a>');
+    } else {
+      $("#mainRatingDiv").html('<div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="" data-size="xs" disabled></div>');
+      for (i=0; i<rdata.length - 1; i++) {
+        rdatalines    = rdata[i].split("|");
+        dateAddedPre  = Date(rdatalines[0]).split(" ");
+        dateAddedPost = dateAddedPre[1] + " " + dateAddedPre[2].replace(/^[0]+/g,"")+ ", " + dateAddedPre[3];
+        dateAppPre    = Date(rdatalines[1]).split(" ");
+        dateAppPost   = dateAppPre[1] + " " + dateAppPre[2].replace(/^[0]+/g,"")+ ", " + dateAppPre[3];
+
+        custrLines  = '<li class="comment even thread-even depth-1" id="li-comment-'+ i +'"><div id="comment-'+ i +'" class="comment-wrap clearfix"><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[3] +'<span>';
+        custrLines += '<a>'+ dateAddedPost +'</a></span></div><div class="white-section different-stars"><input id="rating-'+ i +'" value="'+ rdatalines[6] +'" class="rating-loading" data-size="xs" readonly></div>';
+        custrLines += '<p class="notopmargin">'+ rdatalines[2] +'</p></div><div class="clear"></div></div></li>';
+
+        if (rdatalines[4].length>3) {
+          custrLines += '<li class="comment odd thread-odd depth-2" id="li-comment-'+ i +'"><div id="comment-'+ i +'" class="comment-wrap clearfix"><div class="comment-meta"><div class="comment-author vcard"><span class="comment-avatar clearfix">';
+          custrLines += '<img alt="reply arrow" src="../img/reply.png" height="60" width="60" /></span></div></div><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[5] +'<span><a>'+ dateAppPost +'</a>';
+          custrLines += '</span></div><p>'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
+        }
+         custrLines += '<hr>';
+        if (rdatalines[8] === "1") {
+          reviewhtml.unshift(custrLines);
+        } else {
+          reviewhtml.push(custrLines);
+        }
+
+        productRating.push(rdatalines[6]);
+      }
+
+      $("#listOfReviews").html(reviewhtml.join(''));
+      for (i=0; i<rdata.length - 1; i++) {
+        $('#rating-'+i+'').rating({ showClear: false, showCaption: false });
+      }
+
+      $('#mainRating').val(getAvg(productRating));
+      $('#mainRating').rating('refresh', {showClear: false, showCaption: false});
+    }
+    $("#number-of-reviews").html("Reviews ("+ (rdata.length - 1) +")");
+  });
+}
+
+function getAvg(elmt)
+{
+  var sum = 0;
+  for( var i = 0; i < elmt.length; i++ ){
+      sum += parseInt( elmt[i], 10 ); //don't forget to add the base
+  }
+  var avg = sum/elmt.length;
+  return avg.toFixed(2);
+}
+
+
+
 
 ////////////////////////////////////////
 /// SUBROUTINE- Add item to the cart ///

@@ -616,7 +616,7 @@ permalink: /store/
 							</div>  
 						</div>
 						<div class="review-link">
-							<a href="#" class="review-link-in" rel="nofollow"> <span class="count">1</span> Customer review</a> |
+							<a href="#" class="review-link-in" rel="nofollow"> <span id="number-of-reviews" class="count">1</span> Customer review</a> |
 							<a href="#review-pointer" class="write-review-link" rel="nofollow">Add a review</a>
 						</div>
 					</div>
@@ -683,11 +683,12 @@ permalink: /store/
 						
 							<div id="product-reviews" class="tab-pane">
 								<div class="collateral-box">
-									<ul class="list-unstyled">
+									<ul id="listOfReviews" class="list-unstyled">
 										<li>Be the first to review this product</li>
 									</ul>
+									<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin" onclick="populateReviewModal(); return false;">Add a Review</a>
 								</div>
-
+								<!--
 								<div class="add-product-review">
 									<h3 class="text-uppercase heading-text-color font-weight-semibold">WRITE YOUR OWN REVIEW</h3>
 									<p id="review-pointer">How do you rate this product? *</p>
@@ -738,6 +739,7 @@ permalink: /store/
 										</div>
 									</form>
 								</div>
+								-->
 							</div>
 							
 						</div>
