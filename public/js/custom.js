@@ -610,7 +610,7 @@ function getReviews(stock_no)
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
-      custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
+      custrLines = '<li>Be the first to review this product</li>';
       $("#listOfReviews").prepend(custrLines);
       $("#mainRatingDiv").html('<a href="#" onclick="$(\'#addReviewButton\').click(); return false;">Be the first to review this item</a>');
     } else {
@@ -618,9 +618,9 @@ function getReviews(stock_no)
       for (i=0; i<rdata.length - 1; i++) {
         rdatalines    = rdata[i].split("|");
         dateAddedPre  = Date(rdatalines[0]).split(" ");
-        dateAddedPost = dateAddedPre[1] + " "+ dateAddedPre[2].replace(/^[0]+/g,"")+ ", "+ dateAddedPre[3];
+        dateAddedPost = dateAddedPre[1] + " " + dateAddedPre[2].replace(/^[0]+/g,"")+ ", " + dateAddedPre[3];
         dateAppPre    = Date(rdatalines[1]).split(" ");
-        dateAppPost   = dateAppPre[1] + " "+ dateAppPre[2].replace(/^[0]+/g,"")+ ", "+ dateAppPre[3];
+        dateAppPost   = dateAppPre[1] + " " + dateAppPre[2].replace(/^[0]+/g,"")+ ", " + dateAppPre[3];
 
         custrLines  = '<li class="comment even thread-even depth-1" id="li-comment-'+ i +'"><div id="comment-'+ i +'" class="comment-wrap clearfix"><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[3] +'<span>';
         custrLines += '<a>'+ dateAddedPost +'</a></span></div><div class="white-section different-stars"><input id="rating-'+ i +'" value="'+ rdatalines[6] +'" class="rating-loading" data-size="xs" readonly></div>';
@@ -653,7 +653,6 @@ function getReviews(stock_no)
   });
 }
 
- 
 function getAvg(elmt)
 {
   var sum = 0;
